@@ -13,7 +13,6 @@
 <header class="site-header">
   <div class="wrap nav-row">
     <a href="index.html" class="brand">
-      <img src="assets/logo.jpeg" alt="ایران رانرز" style="height:38px;width:auto;border-radius:8px;">
       <span>ایران رانرز</span>
     </a>
     <nav class="main-nav">
@@ -99,7 +98,7 @@
         <h3>ثبت‌نام در کلاس</h3>
         <p class="form-sub">همه فیلدها با ستاره الزامی هستن.</p>
         <div class="form-grid">
-          <div class="field">
+          <div class="field full">
             <label for="fname">نام و نام‌خانوادگی *</label>
             <input type="text" id="fname" name="fname" required>
           </div>
@@ -121,13 +120,42 @@
               <option value="1on1">مربیگری اختصاصی</option>
             </select>
           </div>
+          <div class="field">
+            <label for="age">سن *</label>
+            <input type="number" id="age" name="age" min="1" required>
+          </div>
+          <div class="field">
+            <label for="height">قد (سانتی‌متر) *</label>
+            <input type="number" id="height" name="height" required>
+          </div>
+          <div class="field">
+            <label for="weight">وزن (کیلوگرم) *</label>
+            <input type="number" id="weight" name="weight" required>
+          </div>
+          <div class="field">
+            <label for="rhr">ضربان استراحت *</label>
+            <input type="number" id="rhr" name="rhr" placeholder="مثلاً ۶۵" required>
+          </div>
           <div class="field full">
-            <label for="msg">توضیحات (اختیاری)</label>
-            <textarea id="msg" name="msg" placeholder="سطح فعلی، هدفت، یا هر سوالی که داری..."></textarea>
+            <label for="history">سابقه بیماری</label>
+            <input type="text" id="history" name="history" placeholder="در صورت وجود بنویس، در غیر این صورت خالی بگذار">
+          </div>
+          <div class="field full">
+            <label for="sport-history">سابقه ورزشی</label>
+            <input type="text" id="sport-history" name="sport-history" placeholder="مثلاً ۲ سال دویدن، سابقه فوتبال و ...">
+          </div>
+          <div class="field full">
+            <label for="max-distance">بیشترین مسافت دویدن</label>
+            <input type="text" id="max-distance" name="max-distance" placeholder="مثلاً ۱۰ کیلومتر">
+          </div>
+          <div class="field full">
+            <label for="msg">مورد ویژه (اختیاری)</label>
+            <textarea id="msg" name="msg" placeholder="اگر مورد خاصی وجود داره (آسیب، محدودیت و ...) اینجا بنویس..."></textarea>
           </div>
         </div>
+        <p class="form-note" style="margin-top:18px;">نحوه اندازه‌گیری ضربان استراحت: صبح، بلافاصله بعد از بیدار شدن از خواب، ضربانت رو اندازه بگیر.</p>
         <button type="submit" class="submit-btn">ارسال درخواست ثبت‌نام</button>
-        <p class="form-note">پس از ارسال فرم، از طریق ایمیل یا واتساپ باهات هماهنگ می‌کنیم.</p>
+        <p class="form-note">پس از ارسال فرم، برنامه تمرینی متناسب با شرایط فیزیکی و سطحت ارائه می‌شه. از طریق ایمیل یا واتساپ باهات هماهنگ می‌کنیم.</p>
       </form>
     </div>
   </section>
