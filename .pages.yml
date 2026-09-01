@@ -113,6 +113,10 @@ content:
         type: number
         required: true
 
+      - name: price_toman
+        label: "قیمت ماهانه (تومان — با کاما بنویس، مثلاً 2,500,000)"
+        type: string
+
   - name: gallery_photos
     label: "عکس‌های گالری"
     type: file
