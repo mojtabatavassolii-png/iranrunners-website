@@ -51,7 +51,8 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
         <h3>{{ c.title }}</h3>
         <p class="desc">{{ c.description }}</p>
         <div class="meta">
-          <span class="price">{{ c.price }}€ <small>/ ماه</small></span>
+         <span class="price">{{ c.price }}€ <small>/ ماه</small>{% if c.price_toman %}<br><small style="color:var(--text-faint);font-weight:500;">{{ c.price_toman }} تومان</small>{% endif %}</span>
+
           <a href="{{ '/classes.html' | relative_url }}" class="enroll">جزئیات</a>
         </div>
       </div>
