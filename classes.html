@@ -22,7 +22,8 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
         <p class="desc">{{ c.description }}</p>
         <p class="desc" style="font-size:0.85rem;color:var(--text-faint);">{{ c.schedule }}</p>
         <div class="meta">
-          <span class="price">{{ c.price }}€ <small>/ ماه</small></span>
+         <span class="price">{{ c.price }}€ <small>/ ماه</small>{% if c.price_toman %}<br><small style="color:var(--text-faint);font-weight:500;">{{ c.price_toman }} تومان</small>{% endif %}</span>
+
           <a href="#register" class="enroll">ثبت‌نام</a>
         </div>
       </div>
