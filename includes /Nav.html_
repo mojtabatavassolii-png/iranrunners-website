@@ -1,0 +1,16 @@
+<header class="site-header">
+  {% assign navctx = page.nav | default: layout.nav %}
+  <div class="wrap nav-row">
+    <a href="{{ '/index.html' | relative_url }}" class="brand">
+      <span>ایران رانرز</span>
+    </a>
+    <nav class="main-nav">
+      <a href="{{ '/index.html' | relative_url }}"{% if navctx == 'home' %} class="active"{% endif %}>خانه</a>
+      <a href="{{ '/classes.html' | relative_url }}"{% if navctx == 'classes' %} class="active"{% endif %}>کلاس‌ها</a>
+      <a href="{{ '/blog.html' | relative_url }}"{% if navctx == 'blog' %} class="active"{% endif %}>وبلاگ</a>
+      <a href="{{ '/gallery.html' | relative_url }}"{% if navctx == 'gallery' %} class="active"{% endif %}>گالری</a>
+      <a href="{{ '/about.html' | relative_url }}"{% if navctx == 'about' %} class="active"{% endif %}>درباره ما</a>
+    </nav>
+    <a href="{{ '/classes.html' | relative_url }}#register" class="nav-cta">ثبت‌نام کلاس</a>
+  </div>
+</header>
