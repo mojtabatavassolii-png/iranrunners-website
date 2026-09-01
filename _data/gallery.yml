@@ -1,0 +1,44 @@
+- file: desert-trail.jpeg
+  alt: دویدن تیمی در کویر
+  tag: DESERT TRAIL
+  size: wide-tall
+
+- file: race-expo.jpeg
+  alt: مسابقه اولترا
+  tag: RACE DAY
+  size: normal
+
+- file: snow-jump.jpeg
+  alt: جشن روی برف
+  tag: SNOW DAY
+  size: normal
+
+- file: sunrise-skyline.jpeg
+  alt: دویدن سحرگاهی
+  tag: SUNRISE RUN
+  size: wide
+
+- file: snow-mountain.jpeg
+  alt: تمرین زمستانی در کوهستان
+  tag: WINTER TRAINING
+  size: tall
+
+- file: park-evening.jpeg
+  alt: دویدن عصرگاهی در پارک
+  tag: EVENING RUN
+  size: normal
+
+- file: vorta-cafe.jpeg
+  alt: جمع تیمی بعد از تمرین
+  tag: TEAM MEETUP
+  size: wide
+
+- file: cafe-table.jpeg
+  alt: صبحانه تیمی
+  tag: POST-RUN COFFEE
+  size: normal
+
+- file: race-bibs.jpeg
+  alt: ثبت‌نام مسابقه کاپادوکیا
+  tag: RACE REGISTRATION
+  size: wide
