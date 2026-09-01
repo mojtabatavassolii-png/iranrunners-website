@@ -5,6 +5,12 @@ media:
     output: /assets/gallery
     categories: [image]
 
+  - name: coaches
+    label: "عکس‌های مربیان"
+    input: assets/coaches
+    output: /assets/coaches
+    categories: [image]
+
 content:
   - name: posts
     label: "مقالات وبلاگ"
@@ -146,3 +152,57 @@ content:
           - wide
           - tall
           - wide-tall
+
+  - name: hero_photos
+    label: "هدر سایت (اسلایدشو صفحه اصلی)"
+    type: file
+    path: _data/hero.yml
+    list: true
+    fields:
+      - name: file
+        label: "عکس (اندازه استاندارد: حداقل 1600×900 پیکسل، افقی)"
+        type: image
+        media: gallery
+        required: true
+
+  - name: coaches
+    label: "مربیان"
+    type: file
+    path: _data/coaches.yml
+    list: true
+    fields:
+      - name: name
+        label: "نام و نام‌خانوادگی"
+        type: string
+        required: true
+
+      - name: role
+        label: "سمت (مثلاً سرمربی)"
+        type: string
+
+      - name: photo
+        label: "عکس مربی (اندازه استاندارد: حداقل 800×1000 پیکسل، عمودی)"
+        type: image
+        media: coaches
+
+      - name: bio
+        label: "بیوگرافی"
+        type: text
+        required: true
+
+      - name: credentials
+        label: "مدارک و سوابق (هر خط یک مورد)"
+        type: string
+        list: true
+
+      - name: pr_5k
+        label: "رکورد ۵ کیلومتر (اختیاری)"
+        type: string
+
+      - name: pr_half
+        label: "رکورد نیم‌ماراتن (اختیاری)"
+        type: string
+
+      - name: pr_marathon
+        label: "رکورد ماراتن (اختیاری)"
+        type: string
