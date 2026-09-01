@@ -17,7 +17,7 @@ description: درباره مربی ایران رانرز و راه‌های تم
     <div class="about-grid" {% unless forloop.first %}style="margin-top:60px;"{% endunless %}>
       {% if coach.photo and coach.photo != "" %}
       <div class="coach-photo" style="padding:0;overflow:hidden;">
-        <img src="{{ '/assets/coaches/' | append: coach.photo | relative_url }}" alt="{{ coach.name }}" style="width:100%;height:100%;object-fit:cover;">
+        <img src="{{ coach.photo | relative_url }}" alt="{{ coach.name }}" style="width:100%;height:100%;object-fit:cover;">
       </div>
       {% else %}
       <div class="coach-photo">عکس مربی<br>(جایگزین شود)</div>
