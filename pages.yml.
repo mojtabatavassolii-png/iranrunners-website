@@ -1,0 +1,144 @@
+media:
+  - name: gallery
+    label: "عکس‌های گالری"
+    input: assets/gallery
+    output: /assets/gallery
+    categories: [image]
+
+content:
+  - name: posts
+    label: "مقالات وبلاگ"
+    type: collection
+    path: _posts
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      primary: title
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: "عنوان"
+        type: string
+        required: true
+
+      - name: description
+        label: "توضیح متا (برای گوگل، حدود ۱۵۰ کاراکتر)"
+        type: text
+        required: true
+
+      - name: category
+        label: "دسته‌بندی"
+        type: select
+        options:
+          - "علم دویدن"
+          - "تغذیه"
+          - "پیشگیری از آسیب"
+          - "برنامه تمرینی"
+          - "تجهیزات"
+          - "سلامت"
+        required: true
+
+      - name: icon
+        label: "آیکون تصویر مقاله"
+        type: select
+        options:
+          - beginner
+          - nutrition
+          - knee
+          - chart
+          - marathon
+          - shoe
+          - recovery
+          - air
+        required: true
+
+      - name: read_time
+        label: "زمان مطالعه (مثلاً 6 MIN READ)"
+        type: string
+
+      - name: date
+        label: "تاریخ انتشار"
+        type: date
+        required: true
+
+      - name: lead
+        label: "پاراگراف مقدمه (زیر تیتر اصلی)"
+        type: text
+        required: true
+
+      - name: cta_title
+        label: "عنوان دعوت به اقدام (پایین مقاله)"
+        type: string
+
+      - name: cta_text
+        label: "متن دعوت به اقدام"
+        type: text
+
+      - name: body
+        label: "متن مقاله (از ## برای زیرعنوان‌ها استفاده کن)"
+        type: rich-text
+
+  - name: classes
+    label: "کلاس‌ها"
+    type: file
+    path: _data/classes.yml
+    list: true
+    fields:
+      - name: value
+        label: "شناسه داخلی (انگلیسی، بدون فاصله - مثل beginner)"
+        type: string
+        required: true
+
+      - name: level_tag
+        label: "برچسب سطح (انگلیسی کوتاه، مثل BEGINNER)"
+        type: string
+        required: true
+
+      - name: title
+        label: "عنوان کلاس"
+        type: string
+        required: true
+
+      - name: description
+        label: "توضیحات کلاس"
+        type: text
+        required: true
+
+      - name: schedule
+        label: "زمان‌بندی جلسات"
+        type: string
+
+      - name: price
+        label: "قیمت ماهانه (یورو)"
+        type: number
+        required: true
+
+  - name: gallery_photos
+    label: "عکس‌های گالری"
+    type: file
+    path: _data/gallery.yml
+    list: true
+    fields:
+      - name: file
+        label: "عکس"
+        type: image
+        media: gallery
+        required: true
+
+      - name: alt
+        label: "توضیح عکس (برای دسترسی‌پذیری و سئو)"
+        type: string
+        required: true
+
+      - name: tag
+        label: "برچسب روی عکس (انگلیسی کوتاه)"
+        type: string
+
+      - name: size
+        label: "اندازه در چیدمان گالری"
+        type: select
+        options:
+          - normal
+          - wide
+          - tall
+          - wide-tall
