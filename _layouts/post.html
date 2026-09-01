@@ -1,0 +1,49 @@
+---
+layout: default
+nav: blog
+---
+{% assign icons = site.data.icons %}
+{% assign icon_paths = icons[page.icon] | default: icons["beginner"] %}
+
+<div class="wrap" style="padding-top:36px;">
+  <div class="breadcrumb"><a href="{{ '/index.html' | relative_url }}">خانه</a> / <a href="{{ '/blog.html' | relative_url }}">وبلاگ</a> / {{ page.category }}</div>
+
+  <div class="article-hero-media">
+    <svg viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+      <defs>
+        <radialGradient id="g1" cx="30%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#fbeaea"/>
+          <stop offset="100%" stop-color="#ffffff"/>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="420" fill="url(#g1)"/>
+      <path d="M0,340 C150,300 250,370 400,330 C550,290 650,360 800,320 C950,280 1050,350 1200,310" fill="none" stroke="#E8121A" stroke-width="2.5" opacity="0.35"/>
+      <path d="M0,90 C150,60 250,120 400,90 C550,60 650,120 800,90 C950,60 1050,120 1200,90" fill="none" stroke="#111111" stroke-width="1.5" opacity="0.12"/>
+      <circle cx="600" cy="210" r="92" fill="#111111"/>
+      <circle cx="600" cy="210" r="92" fill="none" stroke="#E8121A" stroke-width="3"/>
+      <g transform="translate(600,210)" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        {{ icon_paths }}
+      </g>
+    </svg>
+  </div>
+
+  <div class="article-meta-row">
+    <span class="cat-pill">{{ page.category }}</span>
+    <span>{{ page.read_time }}</span>
+  </div>
+</div>
+
+<article class="article-body wrap">
+  <h1>{{ page.title }}</h1>
+  {% if page.lead %}<p class="lead-p">{{ page.lead }}</p>{% endif %}
+
+  {{ content }}
+
+  {% if page.cta_title %}
+  <div class="article-cta">
+    <h3>{{ page.cta_title }}</h3>
+    <p>{{ page.cta_text }}</p>
+    <a href="{{ '/classes.html' | relative_url }}#register" class="btn-primary">ثبت‌نام در کلاس</a>
+  </div>
+  {% endif %}
+</article>
