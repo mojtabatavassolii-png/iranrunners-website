@@ -4,12 +4,11 @@ nav: home
 title: null
 description: "ایران رانرز — کلاس‌های دویدن، مربیگری تخصصی و جامعه‌ای از دوندگان ایرانی در مانهایم."
 ---
-{% assign hero_photos = site.data.gallery | slice: 0, 4 %}
 {% assign icons = site.data.icons %}
 
 <section class="hero rotating-header">
   <div class="hero-slides">
-    {% for photo in hero_photos %}
+    {% for photo in site.data.hero %}
     <div class="slide" style="background-image:url('{{ "/assets/gallery/" | append: photo.file | relative_url }}');"></div>
     {% endfor %}
   </div>
@@ -20,7 +19,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
     <p class="lead">ایران رانرز، تیم دویدن و مربیگری برای دوندگان ایرانی مقیم آلمان — از قدم اول تا خط پایان، با برنامه‌ای که مخصوص خودت طراحی می‌شه.</p>
     <div class="cta-row">
       <a href="{{ '/classes.html' | relative_url }}" class="btn-primary">مشاهده کلاس‌ها</a>
-      <a href="{{ '/about.html' | relative_url }}" class="btn-ghost">آشنایی با مربی</a>
+      <a href="{{ '/about.html' | relative_url }}" class="btn-ghost">آشنایی با مربیان</a>
     </div>
   </div>
 </section>
@@ -33,7 +32,6 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
 <section class="classes-preview">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">// CLASSES</span>
       <h2>کلاس‌هایی برای هر سطح</h2>
       <p>از اولین قدم دویدن تا آماده‌سازی برای مسابقه، هر مسیر یه برنامه مخصوص خودش داره.</p>
     </div>
@@ -64,7 +62,6 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
 <section class="blog-preview">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">// JOURNAL</span>
       <h2>از وبلاگ ایران رانرز</h2>
       <p>مقالات علمی و تجربی درباره تمرین، تغذیه و پیشگیری از آسیب.</p>
     </div>
@@ -96,7 +93,6 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
 <section class="gallery-preview">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">// TEAM</span>
       <h2>لحظه‌های ایران رانرز</h2>
       <p>تمرین‌ها، مسابقه‌ها و لحظه‌های تیمی.</p>
     </div>
