@@ -1,75 +1,27 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>گالری | ایران رانرز</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header class="site-header">
-  <div class="wrap nav-row">
-    <a href="index.html" class="brand">
-      <span>ایران رانرز</span>
-    </a>
-    <nav class="main-nav">
-      <a href="index.html">خانه</a>
-      <a href="classes.html">کلاس‌ها</a>
-      <a href="blog.html">وبلاگ</a>
-      <a href="gallery.html" class="active">گالری</a>
-      <a href="about.html">درباره ما</a>
-    </nav>
-    <a href="classes.html#register" class="nav-cta">ثبت‌نام کلاس</a>
-  </div>
-</header>
-
-<main>
-  <section class="page-hero">
-    <div class="wrap">
-      <span class="eyebrow">// TEAM</span>
-      <h1>گالری تیم</h1>
-      <p>لحظه‌های تمرین، مسابقه و جمع‌های دوستانه ایران رانرز.</p>
-    </div>
-  </section>
-
-  <section class="gallery-full">
-    <div class="wrap">
-      <div class="gallery-grid">
-        <div class="g-item wide tall"><img src="assets/gallery/desert-trail.jpeg" alt="دویدن تیمی در کویر" loading="lazy"><span class="g-tag">DESERT TRAIL</span></div>
-        <div class="g-item"><img src="assets/gallery/race-expo.jpeg" alt="مسابقه اولترا" loading="lazy"><span class="g-tag">RACE DAY</span></div>
-        <div class="g-item"><img src="assets/gallery/snow-jump.jpeg" alt="جشن روی برف" loading="lazy"><span class="g-tag">SNOW DAY</span></div>
-        <div class="g-item wide"><img src="assets/gallery/sunrise-skyline.jpeg" alt="دویدن سحرگاهی" loading="lazy"><span class="g-tag">SUNRISE RUN</span></div>
-        <div class="g-item tall"><img src="assets/gallery/snow-mountain.jpeg" alt="تمرین زمستانی در کوهستان" loading="lazy"><span class="g-tag">WINTER TRAINING</span></div>
-        <div class="g-item"><img src="assets/gallery/park-evening.jpeg" alt="دویدن عصرگاهی در پارک" loading="lazy"><span class="g-tag">EVENING RUN</span></div>
-        <div class="g-item wide"><img src="assets/gallery/vorta-cafe.jpeg" alt="جمع تیمی بعد از تمرین" loading="lazy"><span class="g-tag">TEAM MEETUP</span></div>
-        <div class="g-item"><img src="assets/gallery/cafe-table.jpeg" alt="صبحانه تیمی" loading="lazy"><span class="g-tag">POST-RUN COFFEE</span></div>
-        <div class="g-item wide"><img src="assets/gallery/race-bibs.jpeg" alt="ثبت‌نام مسابقه کاپادوکیا" loading="lazy"><span class="g-tag">RACE REGISTRATION</span></div>
-      </div>
-      <p style="color:var(--text-faint);font-size:0.85rem;margin-top:26px;">گالری به‌طور مرتب با عکس‌های جدید تیم به‌روزرسانی می‌شود.</p>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
+---
+layout: default
+nav: gallery
+title: گالری
+description: گالری عکس‌های تیم ایران رانرز — تمرین، مسابقه و لحظه‌های تیمی.
+---
+<section class="page-hero">
   <div class="wrap">
-    <div class="footer-row">
-      <a href="index.html" class="brand">
-        <img src="assets/logo.jpeg" alt="ایران رانرز" style="height:30px;width:auto;border-radius:6px;">
-      </a>
-      <nav class="footer-nav">
-        <a href="index.html">خانه</a>
-        <a href="classes.html">کلاس‌ها</a>
-        <a href="blog.html">وبلاگ</a>
-        <a href="gallery.html">گالری</a>
-        <a href="about.html">درباره ما</a>
-      </nav>
-    </div>
-    <div class="footer-copy">© 2026 IRAN RUNNERS — MANNHEIM, GERMANY</div>
+    <span class="eyebrow">// TEAM</span>
+    <h1>گالری تیم</h1>
+    <p>لحظه‌های تمرین، مسابقه و جمع‌های دوستانه ایران رانرز.</p>
   </div>
-</footer>
+</section>
 
-</body>
-</html>
+<section class="gallery-full">
+  <div class="wrap">
+    <div class="gallery-grid">
+      {% for photo in site.data.gallery %}
+      <div class="g-item {% if photo.size == 'wide' %}wide{% elsif photo.size == 'tall' %}tall{% elsif photo.size == 'wide-tall' %}wide tall{% endif %}">
+        <img src="{{ '/assets/gallery/' | append: photo.file | relative_url }}" alt="{{ photo.alt }}" loading="lazy">
+        <span class="g-tag">{{ photo.tag }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    <p style="color:var(--text-faint);font-size:0.85rem;margin-top:26px;">گالری به‌طور مرتب با عکس‌های جدید تیم به‌روزرسانی می‌شود.</p>
+  </div>
+</section>

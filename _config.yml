@@ -1,0 +1,23 @@
+title: "ایران رانرز"
+description: "تیم دویدن و مربیگری برای دوندگان ایرانی مقیم آلمان"
+lang: fa
+
+# اگه دامین اختصاصی iranrunners.com رو وصل کردید (Custom domain در تنظیمات Pages)،
+# این خط رو به baseurl: "" تغییر بدید. تا وقتی سایت روی
+# mojtabatavassolii-png.github.io/iranrunners-website هست، همین مقدار درسته.
+baseurl: "/iranrunners-website"
+url: ""
+
+markdown: kramdown
+permalink: /blog/:title.html
+
+collections:
+  posts:
+    output: true
+
+exclude:
+  - README.md
+  - "*.py"
+
+kramdown:
+  input: GFM
