@@ -9,7 +9,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
 <section class="hero rotating-header">
   <div class="hero-slides">
     {% for photo in site.data.hero %}
-    <div class="slide" style="background-image:url('{{ "/assets/gallery/" | append: photo.file | relative_url }}');"></div>
+    <div class="slide" style="background-image:url('{{ photo.file | relative_url }}');"></div>
     {% endfor %}
   </div>
   <div class="hero-overlay"></div>
@@ -99,7 +99,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
     <div class="gallery-grid" style="grid-auto-rows:130px;">
       {% for photo in site.data.gallery limit: 5 %}
       <div class="g-item {% if photo.size == 'wide' %}wide{% elsif photo.size == 'tall' %}tall{% elsif photo.size == 'wide-tall' %}wide tall{% endif %}">
-        <img src="{{ '/assets/gallery/' | append: photo.file | relative_url }}" alt="{{ photo.alt }}" loading="lazy">
+        <img src="{{ photo.file | relative_url }}" alt="{{ photo.alt }}" loading="lazy">
         <span class="g-tag">{{ photo.tag }}</span>
       </div>
       {% endfor %}
