@@ -23,13 +23,13 @@
   tag: EVENING RUN
   size: normal
   rotation: "0"
-- file: /assets/gallery/cafe-table.jpeg
-  alt: صبحانه تیمی
-  tag: POST-RUN COFFEE
-  size: normal
-  rotation: "90"
 - file: /assets/gallery/race-bibs.jpeg
   alt: ثبت‌نام مسابقه کاپادوکیا
   tag: RACE REGISTRATION
   size: wide
+  rotation: "0"
+- file: /assets/gallery/IMG_1461.jpeg
+  alt: کافه بازی
+  tag: Cafe
+  size: normal
   rotation: "0"
