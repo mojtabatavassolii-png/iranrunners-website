@@ -8,6 +8,11 @@ nav: blog
 <div class="wrap" style="padding-top:36px;">
   <div class="breadcrumb"><a href="{{ '/index.html' | relative_url }}">خانه</a> / <a href="{{ '/blog.html' | relative_url }}">وبلاگ</a> / {{ page.category }}</div>
 
+  {% if page.image and page.image != "" %}
+  <div class="article-hero-media">
+    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" style="width:100%;height:auto;display:block;">
+  </div>
+  {% else %}
   <div class="article-hero-media">
     <svg viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
       <defs>
@@ -26,6 +31,7 @@ nav: blog
       </g>
     </svg>
   </div>
+  {% endif %}
 
   <div class="article-meta-row">
     <span class="cat-pill">{{ page.category }}</span>
