@@ -2,43 +2,52 @@
   alt: دویدن تیمی در کویر
   tag: DESERT TRAIL
   size: wide-tall
+  rotation: "0"
 
 - file: /assets/gallery/race-expo.jpeg
   alt: مسابقه اولترا
   tag: RACE DAY
   size: normal
+  rotation: "0"
 
 - file: /assets/gallery/snow-jump.jpeg
   alt: جشن روی برف
   tag: SNOW DAY
   size: normal
+  rotation: "0"
 
 - file: /assets/gallery/sunrise-skyline.jpeg
   alt: دویدن سحرگاهی
   tag: SUNRISE RUN
   size: wide
+  rotation: "0"
 
 - file: /assets/gallery/snow-mountain.jpeg
   alt: تمرین زمستانی در کوهستان
   tag: WINTER TRAINING
   size: tall
+  rotation: "0"
 
 - file: /assets/gallery/park-evening.jpeg
   alt: دویدن عصرگاهی در پارک
   tag: EVENING RUN
   size: normal
+  rotation: "0"
 
 - file: /assets/gallery/vorta-cafe.jpeg
   alt: جمع تیمی بعد از تمرین
   tag: TEAM MEETUP
   size: wide
+  rotation: "0"
 
 - file: /assets/gallery/cafe-table.jpeg
   alt: صبحانه تیمی
   tag: POST-RUN COFFEE
   size: normal
+  rotation: "0"
 
 - file: /assets/gallery/race-bibs.jpeg
   alt: ثبت‌نام مسابقه کاپادوکیا
   tag: RACE REGISTRATION
   size: wide
+  rotation: "0"
