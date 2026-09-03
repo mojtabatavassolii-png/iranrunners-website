@@ -2,7 +2,7 @@
 layout: default
 nav: home
 title: null
-description: "ایران رانرز — کلاس‌های دویدن، مربیگری تخصصی و جامعه‌ای از دوندگان ایرانی در مانهایم."
+description: "ایران رانرز — کلاسهای دویدن، مربیگری تخصصی و جامعهای از دوندگان ایرانی در مانهایم."
 ---
 {% assign icons = site.data.icons %}
 {% assign sorted_classes = site.classes | sort: 'order' %}
@@ -129,7 +129,9 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
     <div class="section-head">
       <h2>شرکای ما</h2>
     </div>
-    <div class="partners-grid">
+  </div>
+  <div class="partners-bar">
+    <div class="wrap partners-grid">
       {% for p in site.data.partners %}
         {% if p.logo and p.logo != "" %}
           {% if p.link and p.link != "" %}
