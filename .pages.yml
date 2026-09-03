@@ -48,26 +48,28 @@ content:
         label: "دسته‌بندی"
         type: select
         options:
-          - "علم دویدن"
-          - "تغذیه"
-          - "پیشگیری از آسیب"
-          - "برنامه تمرینی"
-          - "تجهیزات"
-          - "سلامت"
+          values:
+            - "علم دویدن"
+            - "تغذیه"
+            - "پیشگیری از آسیب"
+            - "برنامه تمرینی"
+            - "تجهیزات"
+            - "سلامت"
         required: true
 
       - name: icon
         label: "آیکون تصویر مقاله (اگه عکس واقعی نذاری، از این آیکون استفاده می‌شه)"
         type: select
         options:
-          - beginner
-          - nutrition
-          - knee
-          - chart
-          - marathon
-          - shoe
-          - recovery
-          - air
+          values:
+            - beginner
+            - nutrition
+            - knee
+            - chart
+            - marathon
+            - shoe
+            - recovery
+            - air
         required: true
 
       - name: image
@@ -173,27 +175,29 @@ content:
         label: "اندازه در چیدمان گالری"
         type: select
         options:
-          - label: "معمولی"
-            value: normal
-          - label: "پهن (دو ستون)"
-            value: wide
-          - label: "بلند (دو ردیف)"
-            value: tall
-          - label: "پهن و بلند"
-            value: wide-tall
+          values:
+            - name: normal
+              label: "معمولی"
+            - name: wide
+              label: "پهن (دو ستون)"
+            - name: tall
+              label: "بلند (دو ردیف)"
+            - name: wide-tall
+              label: "پهن و بلند"
 
       - name: rotation
         label: "چرخش عکس"
         type: select
         options:
-          - label: "بدون چرخش"
-            value: "0"
-          - label: "۹۰ درجه (راست‌گرد)"
-            value: "90"
-          - label: "۱۸۰ درجه (وارونه)"
-            value: "180"
-          - label: "۲۷۰ درجه (چپ‌گرد)"
-            value: "270"
+          values:
+            - name: "0"
+              label: "بدون چرخش"
+            - name: "90"
+              label: "۹۰ درجه (راست‌گرد)"
+            - name: "180"
+              label: "۱۸۰ درجه (وارونه)"
+            - name: "270"
+              label: "۲۷۰ درجه (چپگرد)"
 
   - name: hero_photos
     label: "هدر سایت (اسلایدشو صفحه اصلی)"
