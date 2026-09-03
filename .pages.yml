@@ -11,6 +11,18 @@ media:
     output: /assets/coaches
     categories: [image]
 
+  - name: partners
+    label: "لوگوی شرکا"
+    input: assets/partners
+    output: /assets/partners
+    categories: [image]
+
+  - name: blog
+    label: "عکس‌های وبلاگ"
+    input: assets/blog
+    output: /assets/blog
+    categories: [image]
+
 content:
   - name: posts
     label: "مقالات وبلاگ"
@@ -45,7 +57,7 @@ content:
         required: true
 
       - name: icon
-        label: "آیکون تصویر مقاله"
+        label: "آیکون تصویر مقاله (اگه عکس واقعی نذاری، از این آیکون استفاده می‌شه)"
         type: select
         options:
           - beginner
@@ -57,6 +69,11 @@ content:
           - recovery
           - air
         required: true
+
+      - name: image
+        label: "عکس مقاله (اختیاری — اگه نذاری، آیکون بالا نمایش داده می‌شه)"
+        type: image
+        media: blog
 
       - name: read_time
         label: "زمان مطالعه (مثلاً 6 MIN READ)"
@@ -86,12 +103,16 @@ content:
 
   - name: classes
     label: "کلاس‌ها"
-    type: file
-    path: _data/classes.yml
-    list: true
+    type: collection
+    path: _classes
+    filename: "{primary}.md"
+    view:
+      primary: title
+      sort: order
+      order: asc
     fields:
-      - name: value
-        label: "شناسه داخلی (انگلیسی، بدون فاصله - مثل beginner)"
+      - name: title
+        label: "عنوان کلاس"
         type: string
         required: true
 
@@ -100,13 +121,13 @@ content:
         type: string
         required: true
 
-      - name: title
-        label: "عنوان کلاس"
-        type: string
+      - name: order
+        label: "ترتیب نمایش (عدد کوچیک‌تر = بالاتر)"
+        type: number
         required: true
 
       - name: description
-        label: "توضیحات کلاس"
+        label: "توضیح کوتاه (روی کارت نشون داده می‌شه)"
         type: text
         required: true
 
@@ -122,6 +143,10 @@ content:
       - name: price_toman
         label: "قیمت ماهانه (تومان — با کاما بنویس، مثلاً 2,500,000)"
         type: string
+
+      - name: body
+        label: "توضیحات کامل (این متن توی صفحه جزئیات کلاس نشون داده می‌شه)"
+        type: rich-text
 
   - name: gallery_photos
     label: "عکس‌های گالری"
@@ -148,10 +173,27 @@ content:
         label: "اندازه در چیدمان گالری"
         type: select
         options:
-          - normal
-          - wide
-          - tall
-          - wide-tall
+          - label: "معمولی"
+            value: normal
+          - label: "پهن (دو ستون)"
+            value: wide
+          - label: "بلند (دو ردیف)"
+            value: tall
+          - label: "پهن و بلند"
+            value: wide-tall
+
+      - name: rotation
+        label: "چرخش عکس"
+        type: select
+        options:
+          - label: "بدون چرخش"
+            value: "0"
+          - label: "۹۰ درجه (راست‌گرد)"
+            value: "90"
+          - label: "۱۸۰ درجه (وارونه)"
+            value: "180"
+          - label: "۲۷۰ درجه (چپ‌گرد)"
+            value: "270"
 
   - name: hero_photos
     label: "هدر سایت (اسلایدشو صفحه اصلی)"
@@ -205,4 +247,24 @@ content:
 
       - name: pr_marathon
         label: "رکورد ماراتن (اختیاری)"
+        type: string
+
+  - name: partners
+    label: "شرکای ما"
+    type: file
+    path: _data/partners.yml
+    list: true
+    fields:
+      - name: name
+        label: "نام شرکت"
+        type: string
+        required: true
+
+      - name: logo
+        label: "لوگو (اندازه استاندارد: حداکثر ۴۰۰×۱۶۰ پیکسل، پس‌زمینه شفاف PNG بهتره)"
+        type: image
+        media: partners
+
+      - name: link
+        label: "لینک سایت شرکت (اختیاری)"
         type: string
