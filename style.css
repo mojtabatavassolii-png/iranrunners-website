@@ -717,3 +717,51 @@ footer.site-footer {
 
 .related-strip { max-width: 760px; margin: 0 auto 70px; }
 .related-strip h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; }
+
+/* ---------- partners strip ---------- */
+.partners-section {
+  padding: 0;
+  margin-top: 40px;
+  background: var(--text-primary);
+}
+.partners-section .section-head {
+  text-align: center;
+  margin: 0 auto;
+  padding: 28px 0 4px;
+}
+.partners-section .section-head h2 {
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  opacity: 0.6;
+}
+.partners-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  padding: 20px 24px 44px;
+}
+.partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+.partner-logo img {
+  height: 40px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+}
+.partner-logo.text-only {
+  font-family: "JetBrains Mono", monospace;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
