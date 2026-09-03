@@ -717,25 +717,27 @@ footer.site-footer {
 
 .related-strip { max-width: 760px; margin: 0 auto 70px; }
 .related-strip h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; }
-
 /* ---------- partners strip ---------- */
 .partners-section {
-  padding: 0;
-  margin-top: 40px;
-  background: var(--text-primary);
+  margin-top: 50px;
 }
 .partners-section .section-head {
   text-align: center;
-  margin: 0 auto;
-  padding: 28px 0 4px;
+  margin: 0 auto 20px;
 }
 .partners-section .section-head h2 {
-  color: #ffffff;
   font-size: 0.85rem;
   font-family: "JetBrains Mono", monospace;
   letter-spacing: 0.08em;
   font-weight: 600;
-  opacity: 0.6;
+  color: var(--text-faint);
+}
+.partners-bar {
+  background: var(--text-primary);
+  height: 113px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .partners-grid {
   display: flex;
@@ -743,16 +745,15 @@ footer.site-footer {
   align-items: center;
   justify-content: center;
   gap: 56px;
-  padding: 20px 24px 44px;
 }
 .partner-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: 44px;
 }
 .partner-logo img {
-  height: 40px;
+  height: 44px;
   width: auto;
   max-width: 150px;
   object-fit: contain;
@@ -764,4 +765,3 @@ footer.site-footer {
   font-size: 1rem;
   opacity: 0.85;
 }
-
