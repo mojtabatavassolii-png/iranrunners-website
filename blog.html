@@ -17,6 +17,9 @@ description: مقالات علمی و تجربی ایران رانرز دربا�
     <div class="post-grid">
       {% for post in site.posts %}
       <a href="{{ post.url | relative_url }}" class="post-card" style="display:flex;">
+        {% if post.image and post.image != "" %}
+        <div class="post-thumb" style="background-image:url('{{ post.image | relative_url }}');background-size:cover;background-position:center;"></div>
+        {% else %}
         <div class="post-thumb" style="background:linear-gradient(135deg,#fbeaea,#ffffff);">
           <svg viewBox="0 0 100 100" width="72" height="72" style="position:relative;z-index:1;">
             <circle cx="50" cy="50" r="34" fill="#111111"/>
@@ -26,6 +29,7 @@ description: مقالات علمی و تجربی ایران رانرز دربا�
             </g>
           </svg>
         </div>
+        {% endif %}
         <div class="post-body">
           <span class="post-cat">{{ post.category }}</span>
           <h3>{{ post.title }}</h3>
