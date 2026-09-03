@@ -14,6 +14,15 @@ permalink: /blog/:title.html
 collections:
   posts:
     output: true
+  classes:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "classes"
+    values:
+      layout: "class"
 
 exclude:
   - README.md
