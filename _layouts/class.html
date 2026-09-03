@@ -1,0 +1,29 @@
+---
+layout: default
+nav: classes
+---
+<div class="wrap" style="padding-top:36px;">
+  <div class="breadcrumb"><a href="{{ '/index.html' | relative_url }}">خانه</a> / <a href="{{ '/classes.html' | relative_url }}">کلاس‌ها</a></div>
+</div>
+
+<article class="article-body wrap">
+  <span class="level-tag" style="margin-bottom:14px;display:inline-block;">{{ page.level_tag }}</span>
+  <h1>{{ page.title }}</h1>
+  {% if page.description %}<p class="lead-p">{{ page.description }}</p>{% endif %}
+
+  <div class="article-meta-row" style="margin-bottom:30px;">
+    {% if page.schedule %}<span>{{ page.schedule }}</span>{% endif %}
+    <span class="mono" style="color:var(--accent-sunrise);font-weight:700;">
+      {% if page.price and page.price != 0 %}{{ page.price }}€ / ماه{% endif %}
+      {% if page.price_toman %} · {{ page.price_toman }} تومان{% endif %}
+    </span>
+  </div>
+
+  {{ content }}
+
+  <div class="article-cta">
+    <h3>آماده‌ای شروع کنی؟</h3>
+    <p>همین حالا توی این کلاس ثبت‌نام کن.</p>
+    <a href="{{ '/classes.html' | relative_url }}#register" class="btn-primary">ثبت‌نام در کلاس</a>
+  </div>
+</article>
