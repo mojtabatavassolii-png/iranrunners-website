@@ -4,6 +4,7 @@ nav: classes
 title: کلاس‌ها و ثبت‌نام
 description: کلاس‌ها و برنامه‌های تمرینی ایران رانرز — دویدن مبتدی، آماده‌سازی مسابقه، دویدن گروهی و مربیگری اختصاصی.
 ---
+{% assign sorted_classes = site.classes | sort: 'order' %}
 <section class="page-hero">
   <div class="wrap">
     <h1>کلاس‌ها و برنامه‌های تمرینی</h1>
@@ -14,7 +15,7 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
 <section class="classes-list">
   <div class="wrap">
     <div class="card-grid">
-      {% for c in site.data.classes %}
+      {% for c in sorted_classes %}
       <div class="class-card">
         <span class="level-tag">{{ c.level_tag }}</span>
         <h3>{{ c.title }}</h3>
@@ -25,7 +26,7 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
             {% if c.price and c.price != 0 %}{{ c.price }}€ <small>/ ماه</small>{% endif %}
             {% if c.price_toman %}<br><small style="color:var(--accent-sunrise-dim);font-weight:700;font-size:0.9rem;">{{ c.price_toman }} تومان</small>{% endif %}
           </span>
-          <a href="#register" class="enroll">ثبت‌نام</a>
+          <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
         </div>
       </div>
       {% endfor %}
@@ -64,8 +65,8 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
           <label for="class">کلاس موردنظر *</label>
           <select id="class" name="class" required>
             <option value="">انتخاب کن</option>
-            {% for c in site.data.classes %}
-            <option value="{{ c.value }}">{{ c.title }}</option>
+            {% for c in sorted_classes %}
+            <option value="{{ c.title }}">{{ c.title }}</option>
             {% endfor %}
           </select>
         </div>
