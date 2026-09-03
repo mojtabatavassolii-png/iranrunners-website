@@ -16,7 +16,7 @@ description: گالری عکس‌های تیم ایران رانرز — تمر�
     <div class="gallery-grid">
       {% for photo in site.data.gallery %}
       <div class="g-item {% if photo.size == 'wide' %}wide{% elsif photo.size == 'tall' %}tall{% elsif photo.size == 'wide-tall' %}wide tall{% endif %}">
-        <img src="{{ photo.file | relative_url }}" alt="{{ photo.alt }}" loading="lazy">
+        <img src="{{ photo.file | relative_url }}" alt="{{ photo.alt }}" loading="lazy" {% if photo.rotation and photo.rotation != "0" %}style="transform:rotate({{ photo.rotation }}deg);"{% endif %}>
         <span class="g-tag">{{ photo.tag }}</span>
       </div>
       {% endfor %}
