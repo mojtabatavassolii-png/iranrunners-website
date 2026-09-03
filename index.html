@@ -5,6 +5,7 @@ title: null
 description: "ایران رانرز — کلاس‌های دویدن، مربیگری تخصصی و جامعه‌ای از دوندگان ایرانی در مانهایم."
 ---
 {% assign icons = site.data.icons %}
+{% assign sorted_classes = site.classes | sort: 'order' %}
 
 <section class="hero rotating-header">
   <div class="hero-slides">
@@ -36,7 +37,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
       <p>از اولین قدم دویدن تا آماده‌سازی برای مسابقه، هر مسیر یه برنامه مخصوص خودش داره.</p>
     </div>
     <div class="card-grid">
-      {% for c in site.data.classes %}
+      {% for c in sorted_classes %}
       <div class="class-card">
         <span class="level-tag">{{ c.level_tag }}</span>
         <h3>{{ c.title }}</h3>
@@ -46,7 +47,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
             {% if c.price and c.price != 0 %}{{ c.price }}€ <small>/ ماه</small>{% endif %}
             {% if c.price_toman %}<br><small style="color:var(--accent-sunrise-dim);font-weight:700;font-size:0.9rem;">{{ c.price_toman }} تومان</small>{% endif %}
           </span>
-          <a href="{{ '/classes.html' | relative_url }}" class="enroll">جزئیات</a>
+          <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
         </div>
       </div>
       {% endfor %}
@@ -68,6 +69,9 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
     <div class="post-grid">
       {% for post in site.posts limit: 3 %}
       <a href="{{ post.url | relative_url }}" class="post-card" style="display:flex;">
+        {% if post.image and post.image != "" %}
+        <div class="post-thumb" style="background-image:url('{{ post.image | relative_url }}');background-size:cover;background-position:center;"></div>
+        {% else %}
         <div class="post-thumb" style="background:linear-gradient(135deg,#fbeaea,#ffffff);">
           <svg viewBox="0 0 100 100" width="72" height="72" style="position:relative;z-index:1;">
             <circle cx="50" cy="50" r="34" fill="#111111"/>
@@ -77,6 +81,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
             </g>
           </svg>
         </div>
+        {% endif %}
         <div class="post-body">
           <span class="post-cat">{{ post.category }}</span>
           <h3>{{ post.title }}</h3>
@@ -99,7 +104,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
     <div class="gallery-grid" style="grid-auto-rows:130px;">
       {% for photo in site.data.gallery limit: 5 %}
       <div class="g-item {% if photo.size == 'wide' %}wide{% elsif photo.size == 'tall' %}tall{% elsif photo.size == 'wide-tall' %}wide tall{% endif %}">
-        <img src="{{ photo.file | relative_url }}" alt="{{ photo.alt }}" loading="lazy">
+        <img src="{{ photo.file | relative_url }}" alt="{{ photo.alt }}" loading="lazy" {% if photo.rotation and photo.rotation != "0" %}style="transform:rotate({{ photo.rotation }}deg);"{% endif %}>
         <span class="g-tag">{{ photo.tag }}</span>
       </div>
       {% endfor %}
@@ -117,3 +122,30 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
     <a href="{{ '/classes.html' | relative_url }}#register" class="btn-primary">ثبت‌نام در کلاس</a>
   </div>
 </section>
+
+{% if site.data.partners.size > 0 %}
+<section class="partners-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>شرکای ما</h2>
+    </div>
+    <div class="partners-grid">
+      {% for p in site.data.partners %}
+        {% if p.logo and p.logo != "" %}
+          {% if p.link and p.link != "" %}
+          <a href="{{ p.link }}" class="partner-logo" target="_blank" rel="noopener">
+            <img src="{{ p.logo | relative_url }}" alt="{{ p.name }}">
+          </a>
+          {% else %}
+          <div class="partner-logo">
+            <img src="{{ p.logo | relative_url }}" alt="{{ p.name }}">
+          </div>
+          {% endif %}
+        {% else %}
+        <div class="partner-logo text-only">{{ p.name }}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
