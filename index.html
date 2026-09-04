@@ -2,7 +2,7 @@
 layout: default
 nav: home
 title: null
-description: "ایران رانرز — کلاسهای دویدن، مربیگری تخصصی و جامعهای از دوندگان ایرانی در مانهایم."
+description: "ایران رانرز — کلاس‌های دویدن، مربیگری تخصصی و جامعه‌ای از دوندگان ایرانی در مانهایم."
 ---
 {% assign icons = site.data.icons %}
 {% assign sorted_classes = site.classes | sort: 'order' %}
@@ -15,9 +15,11 @@ description: "ایران رانرز — کلاسهای دویدن، مربیگر
   </div>
   <div class="hero-overlay"></div>
   <div class="wrap hero-content">
-    <div class="hero-logo-badge"><img src="{{ '/assets/logo.jpeg' | relative_url }}" alt="ایران رانرز"></div>
+    <div class="hero-logo-badge"><img src="{{ '/assets/logo-transparent.png' | relative_url }}" alt="ایران رانرز"></div>
     <h1>هر قدم، یک <span>مسیر</span> تازه به‌سوی هدفت</h1>
-    <p class="lead">ایران رانرز، تیم دویدن و مربیگری برای دوندگان ایرانی مقیم آلمان — از قدم اول تا خط پایان، با برنامه‌ای که مخصوص خودت طراحی می‌شه.</p>
+    {% if site.data.hero_text.lead and site.data.hero_text.lead != "" %}
+    <p class="lead">{{ site.data.hero_text.lead }}</p>
+    {% endif %}
     <div class="cta-row">
       <a href="{{ '/classes.html' | relative_url }}" class="btn-primary">مشاهده کلاس‌ها</a>
       <a href="{{ '/about.html' | relative_url }}" class="btn-ghost">آشنایی با مربیان</a>
