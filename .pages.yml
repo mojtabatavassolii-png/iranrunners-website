@@ -198,6 +198,15 @@ content:
               label: "۱۸۰ درجه (وارونه)"
             - name: "270"
               label: "۲۷۰ درجه (چپ‌گرد)"
+              
+  - name: hero_text
+    label: "متن زیر عنوان اصلی صفحه اول"
+    type: file
+    path: _data/hero_text.yml
+    fields:
+      - name: lead
+        label: "متن (خالی بذار تا کامل حذف بشه)"
+        type: text
 
   - name: hero_photos
     label: "هدر سایت (اسلایدشو صفحه اصلی)"
