@@ -7,10 +7,13 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
 {% assign icons = site.data.icons %}
 {% assign sorted_classes = site.classes | sort: 'order' %}
 
+{% assign hero_count = site.data.hero.size %}
+{% assign hero_duration = hero_count | times: 5 %}
 <section class="hero rotating-header">
   <div class="hero-slides">
     {% for photo in site.data.hero %}
-    <div class="slide" style="background-image:url('{{ photo.file | relative_url }}');"></div>
+    {% assign delay = forloop.index0 | times: 5 %}
+    <div class="slide" style="background-image:url('{{ photo.file | relative_url }}');{% if hero_count == 1 %} opacity:1;{% else %} animation-duration:{{ hero_duration }}s; animation-delay:{{ delay }}s;{% endif %}"></div>
     {% endfor %}
   </div>
   <div class="hero-overlay"></div>
