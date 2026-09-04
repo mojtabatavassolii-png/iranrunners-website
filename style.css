@@ -737,20 +737,25 @@ footer.site-footer {
   height: 113px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .partners-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
   gap: 56px;
+  margin: 0 auto;
+  padding: 0 24px;
+  min-width: min-content;
 }
 .partner-logo {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 44px;
+  flex-shrink: 0;
 }
 .partner-logo img {
   height: 44px;
@@ -764,4 +769,11 @@ footer.site-footer {
   font-weight: 700;
   font-size: 1rem;
   opacity: 0.85;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .partners-bar { height: 90px; }
+  .partners-grid { gap: 32px; }
+  .partner-logo, .partner-logo img { height: 32px; }
+  .partner-logo img { max-width: 110px; }
 }
