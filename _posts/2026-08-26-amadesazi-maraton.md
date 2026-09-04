@@ -4,6 +4,7 @@ description: راهنمای گامبه‌گام آماده‌سازی برای �
   انتخاب برنامه تمرینی تا استراتژی روز مسابقه.
 category: برنامه تمرینی
 icon: marathon
+image: /assets/gallery/F8E3DD1B-A54D-48EB-820A-1D20AF331124-4.png
 read_time: 8 MIN READ
 date: 2026-09-03
 lead: اولین ماراتن یا نیم‌ماراتنت قراره یکی از به‌یادموندنی‌ترین تجربه‌های
