@@ -584,7 +584,7 @@ footer.site-footer {
 .hero-slides .slide:nth-child(3) { animation-delay: 10s; }
 .hero-slides .slide:nth-child(4) { animation-delay: 15s; }
 @keyframes heroCycle {
-  0% { opacity: 0; }
+  0% { opacity: 1; }
   4% { opacity: 1; }
   23% { opacity: 1; }
   28% { opacity: 0; }
@@ -598,15 +598,12 @@ footer.site-footer {
 }
 .hero-content { position: relative; z-index: 2; padding: 90px 0; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .hero-logo-badge {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 10px 22px;
   display: inline-flex;
   align-items: center;
   margin-bottom: 26px;
-  box-shadow: 0 20px 50px -20px rgba(0,0,0,0.5);
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,0.4));
 }
-.hero-logo-badge img { height: 46px; width: auto; }
+.hero-logo-badge img { height: 56px; width: auto; }
 .rotating-header .eyebrow { color: #ffe1a8; }
 .rotating-header h1 { color: #ffffff; max-width: 780px; margin-left: auto; margin-right: auto; }
 .rotating-header h1 span { color: var(--accent-sunrise); }
@@ -717,6 +714,7 @@ footer.site-footer {
 
 .related-strip { max-width: 760px; margin: 0 auto 70px; }
 .related-strip h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; }
+
 /* ---------- partners strip ---------- */
 .partners-section {
   margin-top: 50px;
@@ -729,8 +727,6 @@ footer.site-footer {
   font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-primary);
-}
-
 }
 .partners-bar {
   background: var(--text-primary);
