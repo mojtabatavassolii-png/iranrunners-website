@@ -5,7 +5,7 @@ lang: fa
 # اگه دامین اختصاصی iranrunners.com رو وصل کردید (Custom domain در تنظیمات Pages)،
 # این خط رو به baseurl: "" تغییر بدید. تا وقتی سایت روی
 # mojtabatavassolii-png.github.io/iranrunners-website هست، همین مقدار درسته.
-baseurl: "/iranrunners-website"
+baseurl: ""
 url: ""
 
 markdown: kramdown
