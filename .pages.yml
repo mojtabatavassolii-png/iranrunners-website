@@ -133,9 +133,21 @@ content:
         type: text
         required: true
 
-      - name: schedule
-        label: "زمان‌بندی جلسات"
+
+      - name: coach
+        label: "نام مربی (دقیقاً همون‌طور که در بخش «مربیان» ثبت کردی بنویس)"
         type: string
+
+      - name: currency
+        label: "واحد نمایش قیمت در سایت"
+        type: select
+        options:
+          values:
+            - name: EUR
+              label: "یورو"
+            - name: TOMAN
+              label: "تومان"
+
 
       - name: price
         label: "قیمت ماهانه (یورو)"
@@ -258,9 +270,11 @@ content:
         label: "رکورد نیم‌ماراتن (اختیاری)"
         type: string
 
-      - name: pr_marathon
-        label: "رکورد ماراتن (اختیاری)"
+
+      - name: telegram
+        label: "آیدی تلگرام (بدون @، فقط مثلاً mojtaba_coach)"
         type: string
+
 
   - name: partners
     label: "شرکای ما"
