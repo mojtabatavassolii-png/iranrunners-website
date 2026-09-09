@@ -8,7 +8,7 @@
   credentials:
     - "مدرک مربیگری از فدراسیون دوومیدانی ایران "
     - مدرک مربیگری CX از فدراسیون پرورش اندام ایران
-  telegram: "@mojtabatavassoli"
+  telegram: mojtabatavassoli
 - name: "شهاب ذی فهم "
   role: مربی
   photo: /assets/gallery/IMG_0095.jpeg
