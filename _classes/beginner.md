@@ -5,7 +5,8 @@ order: 1
 description: |-
   روزهای یکشنبه و سه شنبه هر هفته
   مناسب همه سطوح
-schedule: ۲ جلسه در هفته
+coach: شهاب ذی فهم
+currency: TOMAN
 price: 0
 price_toman: ۳.۵۰۰۰.۰۰۰
 ---
