@@ -17,16 +17,23 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
     <div class="card-grid">
       {% for c in sorted_classes %}
       <div class="class-card">
-        <span class="level-tag">{{ c.level_tag }}</span>
         <h3>{{ c.title }}</h3>
         <p class="desc">{{ c.description }}</p>
         <p class="desc" style="font-size:0.85rem;color:var(--text-faint);">{{ c.schedule }}</p>
-        <div class="meta">
-          <span class="price">
-            {% if c.price and c.price != 0 %}{{ c.price }}€ <small>/ ماه</small>{% endif %}
-            {% if c.price_toman %}<br><small style="color:var(--accent-sunrise-dim);font-weight:700;font-size:0.9rem;">{{ c.price_toman }} تومان</small>{% endif %}
-          </span>
-          <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
+        <div class="meta" style="flex-direction:column;align-items:flex-start;gap:12px;">
+          {% if c.coach and c.coach != "" %}
+          <span style="color:var(--accent-sunrise);font-weight:700;font-size:0.9rem;">مربی: {{ c.coach }}</span>
+          {% endif %}
+          <div style="display:flex;justify-content:space-between;align-items:center;width:100%;">
+            <span class="price">
+              {% if c.currency == "TOMAN" %}
+                {% if c.price_toman %}{{ c.price_toman }} <small>تومان / ماه</small>{% endif %}
+              {% else %}
+                {% if c.price and c.price != 0 %}{{ c.price }}€ <small>/ ماه</small>{% endif %}
+              {% endif %}
+            </span>
+            <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
+          </div>
         </div>
       </div>
       {% endfor %}
@@ -43,9 +50,9 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
   <div class="wrap" style="max-width:720px;">
     <div class="section-head">
       <h2>فرم ثبت‌نام</h2>
-      <p>اطلاعاتت رو وارد کن، طی ۲۴ ساعت باهات تماس می‌گیریم.</p>
+      <p>اطلاعاتت رو وارد کن — درخواستت مستقیم برای مربی همون کلاس ارسال می‌شه (از طریق تلگرام).</p>
     </div>
-    <form class="form-panel">
+    <form class="form-panel" id="register-form">
       <h3>ثبت‌نام در کلاس</h3>
       <p class="form-sub">همه فیلدها با ستاره الزامی هستن.</p>
       <div class="form-grid">
@@ -105,7 +112,66 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
       </div>
       <p class="form-note" style="margin-top:18px;">نحوه اندازه‌گیری ضربان استراحت: صبح، بلافاصله بعد از بیدار شدن از خواب، ضربانت رو اندازه بگیر.</p>
       <button type="submit" class="submit-btn">ارسال درخواست ثبت‌نام</button>
-      <p class="form-note">پس از ارسال فرم، برنامه تمرینی متناسب با شرایط فیزیکی و سطحت ارائه می‌شه. از طریق ایمیل یا واتساپ باهات هماهنگ می‌کنیم.</p>
+      <p class="form-note">با زدن دکمه بالا، تلگرام باز می‌شه و اطلاعاتت مستقیم برای مربی همون کلاس ارسال می‌شه.</p>
     </form>
   </div>
 </section>
+
+<script>
+  var classCoachMap = {
+    {% for c in sorted_classes %}
+      {% assign coach_obj = site.data.coaches | where: "name", c.coach | first %}
+      "{{ c.title | escape }}": "{{ coach_obj.telegram | default: '' }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var params = new URLSearchParams(window.location.search);
+    var preselect = params.get('class');
+    var classSelect = document.getElementById('class');
+
+    if (preselect && classSelect) {
+      for (var i = 0; i < classSelect.options.length; i++) {
+        if (classSelect.options[i].value === preselect) {
+          classSelect.options[i].selected = true;
+          break;
+        }
+      }
+    }
+
+    var form = document.getElementById('register-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        function get(id) {
+          var el = document.getElementById(id);
+          return el ? el.value : '';
+        }
+        var className = classSelect ? classSelect.value : '';
+        var lines = [
+          'درخواست ثبت‌نام کلاس جدید — ایران رانرز',
+          'کلاس: ' + className,
+          'نام: ' + get('fname'),
+          'تلفن: ' + get('phone'),
+          'ایمیل: ' + get('email'),
+          'سن: ' + get('age'),
+          'قد: ' + get('height') + ' سانتی‌متر',
+          'وزن: ' + get('weight') + ' کیلوگرم',
+          'ضربان استراحت: ' + get('rhr'),
+          'سابقه بیماری: ' + (get('history') || '-'),
+          'سابقه ورزشی: ' + (get('sport-history') || '-'),
+          'بیشترین مسافت دویدن: ' + (get('max-distance') || '-'),
+          'مورد ویژه: ' + (get('msg') || '-')
+        ];
+        var message = lines.join('\n');
+        var telegramUsername = classCoachMap[className];
+
+        if (telegramUsername && telegramUsername !== '') {
+          window.location.href = 'https://t.me/' + telegramUsername + '?text=' + encodeURIComponent(message);
+        } else {
+          alert('برای این کلاس هنوز آیدی تلگرام مربی ثبت نشده. لطفاً از طریق صفحه «درباره ما» با ما تماس بگیر.');
+        }
+      });
+    }
+  });
+</script>
