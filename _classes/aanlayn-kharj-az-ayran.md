@@ -1,8 +1,10 @@
 ---
 title: کلاس های غیرحضوری (خارج از ایران)
 level_tag: Forign
-order: 5
+order: 3
 description: این کلاس ها مخصوصا ایرانیان خارج از کشور میباشد.
+coach: مجتبی توسلی
+currency: EUR
 price: 45
 price_toman: "-"
 ---
