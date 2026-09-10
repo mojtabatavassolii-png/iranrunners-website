@@ -276,6 +276,37 @@ content:
         type: string
 
 
+        
+  - name: team
+    label: "اعضای تیم (صفحه درباره ما)"
+    type: file
+    path: _data/team.yml
+    list: true
+    fields:
+      - name: name
+        label: "نام"
+        type: string
+
+      - name: role
+        label: "سمت"
+        type: string
+
+      - name: photo
+        label: "عکس"
+        type: image
+        media: coaches
+
+  - name: about_text
+    label: "متن صفحه درباره ما"
+    type: file
+    path: _data/about_text.yml
+    fields:
+      - name: body
+        label: "متن معرفی تیم و برند"
+        type: text
+
+
+
   - name: partners
     label: "شرکای ما"
     type: file
