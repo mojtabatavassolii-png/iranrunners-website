@@ -772,3 +772,29 @@ footer.site-footer {
   .partner-logo, .partner-logo img { height: 32px; }
   .partner-logo img { max-width: 110px; }
 }
+
+/* ---------- team grid (about page) ---------- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+@media (max-width: 780px) { .team-grid { grid-template-columns: 1fr; } }
+.team-member { text-align: center; }
+.team-member .team-photo {
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--bg-panel-raised), var(--bg-night));
+  border: 1px solid var(--line-hair);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+}
+.team-member .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+.team-member h4 { margin: 0 0 4px; font-size: 1.05rem; font-weight: 800; }
+.team-member .team-role { color: var(--accent-sunrise); font-weight: 700; font-size: 0.9rem; }
