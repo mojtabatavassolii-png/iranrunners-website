@@ -2,13 +2,14 @@
   {% assign navctx = page.nav | default: layout.nav %}
   <div class="wrap nav-row">
     <a href="{{ '/index.html' | relative_url }}" class="brand">
-      <img src="{{ '/assets/logo-transparent.png' | relative_url }}" alt="ایران رانرز" style="height:88px;width:auto;">
+      <img src="{{ '/assets/logo-transparent.png' | relative_url }}" alt="ایران رانرز" style="height:64px;width:auto;">
     </a>
     <nav class="main-nav">
       <a href="{{ '/index.html' | relative_url }}"{% if navctx == 'home' %} class="active"{% endif %}>خانه</a>
       <a href="{{ '/classes.html' | relative_url }}"{% if navctx == 'classes' %} class="active"{% endif %}>کلاس‌ها</a>
       <a href="{{ '/blog.html' | relative_url }}"{% if navctx == 'blog' %} class="active"{% endif %}>وبلاگ</a>
       <a href="{{ '/gallery.html' | relative_url }}"{% if navctx == 'gallery' %} class="active"{% endif %}>گالری</a>
+      <a href="{{ '/coaches.html' | relative_url }}"{% if navctx == 'coaches' %} class="active"{% endif %}>مربیان</a>
       <a href="{{ '/about.html' | relative_url }}"{% if navctx == 'about' %} class="active"{% endif %}>درباره ما</a>
     </nav>
     <a href="{{ '/classes.html' | relative_url }}#register" class="nav-cta">ثبت‌نام کلاس</a>
