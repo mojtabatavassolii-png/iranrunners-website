@@ -810,3 +810,9 @@ footer.site-footer {
   .team-member { width: 90px; }
   .team-member .team-photo { width: 84px; height: 84px; }
 }
+
+/* ---------- about text justify ---------- */
+.about-text-section p {
+  text-align: justify;
+  text-align-last: right;
+}
