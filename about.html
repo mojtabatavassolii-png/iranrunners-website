@@ -2,7 +2,7 @@
 layout: default
 nav: about
 title: درباره ما و تماس
-description: درباره مربی ایران رانرز و راه‌های تماس با تیم.
+description: درباره ایران رانرز — تیم، برند و راه‌های تماس.
 ---
 <section class="page-hero">
   <div class="wrap">
@@ -11,40 +11,37 @@ description: درباره مربی ایران رانرز و راه‌های تم
   </div>
 </section>
 
-<section class="about-section">
+<section class="about-text-section">
+  <div class="wrap" style="max-width:760px;">
+    <p style="font-size:1.05rem;color:var(--text-muted);line-height:2;">{{ site.data.about_text.body }}</p>
+  </div>
+</section>
+
+<svg class="route-divider" viewBox="0 0 1200 64" preserveAspectRatio="none">
+  <path d="M0,32 C150,54 250,10 400,32 C550,54 650,10 800,32 C950,54 1050,10 1200,32" />
+  <circle cx="1195" cy="32" r="5"/>
+</svg>
+
+<section class="team-section">
   <div class="wrap">
-    {% for coach in site.data.coaches %}
-    <div class="about-grid" {% unless forloop.first %}style="margin-top:60px;"{% endunless %}>
-      {% if coach.photo and coach.photo != "" %}
-      <div class="coach-photo" style="padding:0;overflow:hidden;">
-        <img src="{{ coach.photo | relative_url }}" alt="{{ coach.name }}" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      {% else %}
-      <div class="coach-photo">عکس مربی<br>(جایگزین شود)</div>
-      {% endif %}
-      <div>
-        <h2 style="font-size:1.8rem;font-weight:800;margin:0 0 6px;">{{ coach.name }}</h2>
-        {% if coach.role %}<p style="color:var(--accent-sunrise);font-weight:700;margin:0 0 14px;">{{ coach.role }}</p>{% endif %}
-        <p style="color:var(--text-muted);">{{ coach.bio }}</p>
-
-        {% if coach.credentials %}
-        <ul class="credential-list">
-          {% for item in coach.credentials %}
-          <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-
-        {% if coach.pr_5k or coach.pr_half or coach.pr_marathon %}
-        <div class="pr-strip">
-          {% if coach.pr_5k %}<div class="pr-item"><span class="num">{{ coach.pr_5k }}</span><span class="lbl">۵ کیلومتر</span></div>{% endif %}
-          {% if coach.pr_half %}<div class="pr-item"><span class="num">{{ coach.pr_half }}</span><span class="lbl">نیم‌ماراتن</span></div>{% endif %}
-          {% if coach.pr_marathon %}<div class="pr-item"><span class="num">{{ coach.pr_marathon }}</span><span class="lbl">ماراتن</span></div>{% endif %}
+    <div class="section-head">
+      <h2>اعضای تیم</h2>
+    </div>
+    <div class="team-grid">
+      {% for member in site.data.team %}
+        {% if member.name and member.name != "" %}
+        <div class="team-member">
+          {% if member.photo and member.photo != "" %}
+          <div class="team-photo"><img src="{{ member.photo | relative_url }}" alt="{{ member.name }}"></div>
+          {% else %}
+          <div class="team-photo">عکس<br>(جایگزین شود)</div>
+          {% endif %}
+          <h4>{{ member.name }}</h4>
+          {% if member.role %}<span class="team-role">{{ member.role }}</span>{% endif %}
         </div>
         {% endif %}
-      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 </section>
 
