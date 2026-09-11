@@ -310,13 +310,14 @@ section { padding: 74px 0; }
   border-top: 1px solid var(--line-hair);
   padding-top: 16px;
   margin-top: 4px;
-}
-.class-card .price {
-  font-family: "JetBrains Mono", monospace;
+   
+}.class-card .price {
   direction: ltr;
   color: var(--accent-sunrise);
   font-weight: 700;
   font-size: 1.05rem;
+}
+
 }
 .class-card .price small { color: var(--text-faint); font-size: 0.75rem; }
 .class-card a.enroll {
