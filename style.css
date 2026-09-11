@@ -861,3 +861,8 @@ footer.site-footer {
     padding-left: 20px;
   }
 }
+
+/* ---------- reduce gap under about page title ---------- */
+.about-text-section {
+  padding-top: 10px;
+}
