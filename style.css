@@ -898,13 +898,22 @@ footer.site-footer {
 .gallery-grid.uniform-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
   gap: 14px;
 }
 .gallery-grid.uniform-grid .g-item {
-  aspect-ratio: 1/1;
   padding: 0;
+  height: 220px;
   display: block;
 }
+.gallery-grid.uniform-grid .g-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @media (max-width: 780px) {
   .gallery-grid.uniform-grid { grid-template-columns: repeat(2, 1fr); }
 }
