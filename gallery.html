@@ -2,25 +2,33 @@
 layout: default
 nav: gallery
 title: گالری
-description: گالری عکس‌های تیم ایران رانرز — تمرین، مسابقه و لحظه‌های تیمی.
+description: گالری عکس‌های تیم ایران رانرز به تفکیک رویدادها.
 ---
 <section class="page-hero">
   <div class="wrap">
     <h1>گالری تیم</h1>
-    <p>لحظه‌های تمرین، مسابقه و جمع‌های دوستانه ایران رانرز.</p>
+    <p>لحظه‌های تمرین، مسابقه و جمع‌های دوستانه ایران رانرز — به تفکیک رویداد.</p>
   </div>
 </section>
 
 <section class="gallery-full">
   <div class="wrap">
-    <div class="gallery-grid">
-      {% for photo in site.data.gallery %}
-      <div class="g-item {% if photo.size == 'wide' %}wide{% elsif photo.size == 'tall' %}tall{% elsif photo.size == 'wide-tall' %}wide tall{% endif %}">
-        <img src="{{ photo.file | relative_url }}" alt="{{ photo.alt }}" loading="lazy" {% if photo.rotation and photo.rotation != "0" %}style="transform:rotate({{ photo.rotation }}deg);"{% endif %}>
-        <span class="g-tag">{{ photo.tag }}</span>
-      </div>
+    {% assign sorted_events = site.events | sort: 'date' | reverse %}
+    <div class="event-grid">
+      {% for event in sorted_events %}
+      <a href="{{ event.url | relative_url }}" class="event-card">
+        <div class="event-cover">
+          {% if event.photos and event.photos.size > 0 %}
+          <img src="{{ event.photos[0] | relative_url }}" alt="{{ event.title }}" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="event-body">
+          <h3>{{ event.title }}</h3>
+          <span class="event-date">{{ event.date | date: "%d %B %Y" }}</span>
+          {% if event.photos %}<span class="event-count">{{ event.photos.size }} عکس</span>{% endif %}
+        </div>
+      </a>
       {% endfor %}
     </div>
-    <p style="color:var(--text-faint);font-size:0.85rem;margin-top:26px;">گالری به‌طور مرتب با عکس‌های جدید تیم به‌روزرسانی می‌شود.</p>
   </div>
 </section>
