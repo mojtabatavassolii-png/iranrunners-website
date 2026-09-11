@@ -816,3 +816,35 @@ footer.site-footer {
   text-align: justify;
   text-align-last: right;
 }
+
+/* ---------- mobile menu ---------- */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 28px 20px;
+  border-top: 1px solid var(--line-hair);
+}
+.mobile-nav a {
+  padding: 13px 4px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--line-hair);
+}
+.mobile-nav a.active { color: var(--accent-sunrise); font-weight: 700; }
+.mobile-nav .mobile-nav-cta {
+  margin-top: 12px;
+  background: var(--accent-sunrise);
+  color: #ffffff;
+  text-align: center;
+  border-radius: 999px;
+  padding: 13px;
+  font-weight: 700;
+  border-bottom: none;
+}
+.mobile-nav.open { display: flex; }
+
+@media (max-width: 780px) {
+  .nav-cta { display: none; }
+  .menu-toggle { order: -1; }
+  .brand { order: 2; }
+}
