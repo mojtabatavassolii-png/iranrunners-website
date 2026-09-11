@@ -1,0 +1,23 @@
+---
+layout: default
+nav: gallery
+---
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="{{ '/index.html' | relative_url }}">خانه</a> / <a href="{{ '/gallery.html' | relative_url }}">گالری</a></div>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.date | date: "%d %B %Y" }}{% if page.description %} — {{ page.description }}{% endif %}</p>
+  </div>
+</section>
+
+<section class="gallery-full">
+  <div class="wrap">
+    <div class="gallery-grid uniform-grid">
+      {% for photo in page.photos %}
+      <div class="g-item">
+        <img src="{{ photo | relative_url }}" alt="{{ page.title }}" loading="lazy">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
