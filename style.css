@@ -844,7 +844,9 @@ footer.site-footer {
 .mobile-nav.open { display: flex; }
 
 @media (max-width: 780px) {
-  .nav-cta { display: none; }
-  .menu-toggle { order: -1; }
+  .nav-row nav.main-nav { display: none !important; }
+  .nav-cta { display: none !important; }
+  .menu-toggle { display: inline-flex !important; order: -1; }
   .brand { order: 2; }
 }
+
