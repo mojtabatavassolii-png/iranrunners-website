@@ -500,6 +500,8 @@ section { padding: 74px 0; }
 
 .coach-photo {
   aspect-ratio: 4/5;
+  max-width: 280px;
+  margin: 0 auto;
   border-radius: var(--radius-card);
   background: linear-gradient(160deg, var(--bg-panel-raised), var(--bg-night));
   border: 1px solid var(--line-hair);
@@ -512,6 +514,7 @@ section { padding: 74px 0; }
   text-align: center;
   padding: 20px;
 }
+
 
 .credential-list { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-direction: column; gap: 14px; }
 .credential-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--text-muted); font-size: 0.95rem; }
