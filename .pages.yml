@@ -23,6 +23,12 @@ media:
     output: /assets/blog
     categories: [image]
 
+  - name: events
+    label: "عکس‌های رویدادها"
+    input: assets/events
+    output: /assets/events
+    categories: [image]
+
 content:
   - name: posts
     label: "مقالات وبلاگ"
@@ -161,6 +167,37 @@ content:
       - name: body
         label: "توضیحات کامل (این متن توی صفحه جزئیات کلاس نشون داده می‌شه)"
         type: rich-text
+
+  - name: events
+    label: "رویدادهای گالری"
+    type: collection
+    path: _events
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      primary: title
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: "نام رویداد"
+        type: string
+        required: true
+
+      - name: date
+        label: "تاریخ رویداد"
+        type: date
+        required: true
+
+      - name: description
+        label: "توضیح کوتاه (اختیاری)"
+        type: text
+
+      - name: photos
+        label: "عکس‌های این رویداد"
+        type: image
+        media: events
+        list: true
+        required: true
 
   - name: gallery_photos
     label: "عکس‌های گالری"
