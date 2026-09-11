@@ -1,8 +1,15 @@
 <header class="site-header">
   {% assign navctx = page.nav | default: layout.nav %}
   <div class="wrap nav-row">
+    <button class="menu-toggle" id="menu-toggle" aria-label="باز کردن منو" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
     <a href="{{ '/index.html' | relative_url }}" class="brand">
-      <img src="{{ '/assets/logo-transparent.png' | relative_url }}" alt="ایران رانرز" style="height:88px;width:auto;">
+      <img src="{{ '/assets/logo-transparent.png' | relative_url }}" alt="ایران رانرز" style="height:64px;width:auto;">
     </a>
     <nav class="main-nav">
       <a href="{{ '/index.html' | relative_url }}"{% if navctx == 'home' %} class="active"{% endif %}>خانه</a>
@@ -14,4 +21,25 @@
     </nav>
     <a href="{{ '/classes.html' | relative_url }}#register" class="nav-cta">ثبت‌نام کلاس</a>
   </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="{{ '/index.html' | relative_url }}"{% if navctx == 'home' %} class="active"{% endif %}>خانه</a>
+    <a href="{{ '/classes.html' | relative_url }}"{% if navctx == 'classes' %} class="active"{% endif %}>کلاس‌ها</a>
+    <a href="{{ '/blog.html' | relative_url }}"{% if navctx == 'blog' %} class="active"{% endif %}>وبلاگ</a>
+    <a href="{{ '/gallery.html' | relative_url }}"{% if navctx == 'gallery' %} class="active"{% endif %}>گالری</a>
+    <a href="{{ '/coaches.html' | relative_url }}"{% if navctx == 'coaches' %} class="active"{% endif %}>مربیان</a>
+    <a href="{{ '/about.html' | relative_url }}"{% if navctx == 'about' %} class="active"{% endif %}>درباره ما</a>
+    <a href="{{ '/classes.html' | relative_url }}#register" class="mobile-nav-cta">ثبت‌نام کلاس</a>
+  </div>
 </header>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('menu-toggle');
+    var menu = document.getElementById('mobile-nav');
+    if (btn && menu) {
+      btn.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+  });
+</script>
