@@ -16,6 +16,8 @@ collections:
     output: true
   classes:
     output: true
+  events:
+    output: true
 
 defaults:
   - scope:
@@ -23,6 +25,12 @@ defaults:
       type: "classes"
     values:
       layout: "class"
+  - scope:
+      path: ""
+      type: "events"
+    values:
+      layout: "event"
+
 
 exclude:
   - README.md
