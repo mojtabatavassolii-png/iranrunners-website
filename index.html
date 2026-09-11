@@ -112,17 +112,43 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
       <h2>لحظه‌های ایران رانرز</h2>
       <p>تمرین‌ها، مسابقه‌ها و لحظه‌های تیمی.</p>
     </div>
-    <div class="gallery-grid" style="grid-auto-rows:130px;">
-      {% for photo in site.data.gallery limit: 5 %}
-      <div class="g-item {% if photo.size == 'wide' %}wide{% elsif photo.size == 'tall' %}tall{% elsif photo.size == 'wide-tall' %}wide tall{% endif %}">
-        <img src="{{ photo.file | relative_url }}" alt="{{ photo.alt }}" loading="lazy" {% if photo.rotation and photo.rotation != "0" %}style="transform:rotate({{ photo.rotation }}deg);"{% endif %}>
-        <span class="g-tag">{{ photo.tag }}</span>
-      </div>
-      {% endfor %}
-    </div>
+    <div class="gallery-grid" id="gallery-preview-grid"></div>
     <div style="margin-top:26px;"><a href="{{ '/gallery.html' | relative_url }}" class="btn-ghost">مشاهده گالری کامل</a></div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var allPhotos = [
+      {% for event in site.events %}{% for photo in event.photos %}"{{ photo | relative_url }}",{% endfor %}{% endfor %}
+    ];
+    if (allPhotos.length === 0) { return; }
+
+    function seededRandom(seed) {
+      var x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    }
+    var bucket = Math.floor(Date.now() / (60 * 60 * 60 * 1000)); /* rotates roughly every 2.5 days */
+    var shuffled = allPhotos.slice();
+    for (var i = shuffled.length - 1; i > 0; i--) {
+      var j = Math.floor(seededRandom(bucket + i) * (i + 1));
+      var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
+    }
+    var picked = shuffled.slice(0, Math.min(5, shuffled.length));
+    var grid = document.getElementById('gallery-preview-grid');
+    if (!grid) { return; }
+    picked.forEach(function (url) {
+      var item = document.createElement('div');
+      item.className = 'g-item';
+      var img = document.createElement('img');
+      img.src = url;
+      img.loading = 'lazy';
+      item.appendChild(img);
+      grid.appendChild(item);
+    });
+  })();
+</script>
+
 
 <section class="cta-final">
   <div class="wrap" style="text-align:center;">
