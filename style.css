@@ -913,9 +913,15 @@ footer.site-footer {
 .gallery-preview .gallery-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 160px;
   gap: 14px;
 }
-.gallery-preview .g-item { aspect-ratio: 1/1; padding: 0; }
+.gallery-preview .g-item {
+  aspect-ratio: 1/1;
+  padding: 0;
+  height: 160px;
+}
+
 @media (max-width: 900px) {
   .gallery-preview .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
