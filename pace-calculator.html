@@ -1,0 +1,101 @@
+---
+layout: default
+nav: pace-calculator
+title: محاسبه‌گر پیس مسابقه
+description: پیش‌بینی زمان مسابقه‌ات توی فاصله‌های دیگه، بر اساس فرمول Riegel.
+---
+<section class="page-hero">
+  <div class="wrap">
+    <h1>محاسبه‌گر پیس مسابقه</h1>
+    <p>زمان یه مسابقه‌ات رو وارد کن تا پیش‌بینی زمانت توی فاصله‌های دیگه رو ببینی — بر اساس فرمول Riegel.</p>
+  </div>
+</section>
+
+<section class="pace-calc-section">
+  <div class="wrap" style="max-width:720px;">
+    <form class="form-panel" id="pace-form">
+      <h3>زمانت رو وارد کن</h3>
+      <p class="form-sub">فاصله‌ای که دویدی و زمانش رو مشخص کن.</p>
+      <div class="form-grid">
+        <div class="field full">
+          <label for="pace-distance">فاصله *</label>
+          <select id="pace-distance" name="pace-distance" required>
+            <option value="5">۵ کیلومتر</option>
+            <option value="10">۱۰ کیلومتر</option>
+            <option value="21.0975">نیم‌ماراتن</option>
+            <option value="42.195">ماراتن</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="pace-minutes">دقیقه *</label>
+          <input type="number" id="pace-minutes" name="pace-minutes" min="0" required>
+        </div>
+        <div class="field">
+          <label for="pace-seconds">ثانیه *</label>
+          <input type="number" id="pace-seconds" name="pace-seconds" min="0" max="59" required>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">محاسبه کن</button>
+      <p class="form-note">فرمت زمان: دقیقه:ثانیه (mm:ss) — مثلاً برای ۲۵ دقیقه و ۳۰ ثانیه، عدد ۲۵ رو توی دقیقه و ۳۰ رو توی ثانیه بنویس.</p>
+    </form>
+
+    <div class="pace-results" id="pace-results" hidden>
+      <div class="section-head" style="margin-bottom:24px;">
+        <h2 style="font-size:1.4rem;">پیش‌بینی زمان</h2>
+      </div>
+      <div class="pace-results-grid" id="pace-results-grid"></div>
+      <p class="pace-disclaimer">این فقط یه تخمینه، نه یه قول قطعی — عوامل زیادی مثل شرایط آب‌وهوا و برنامه تمرینی روی نتیجه واقعی تأثیر می‌ذارن.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var DISTANCES = [
+      { km: 5, label: '۵ کیلومتر' },
+      { km: 10, label: '۱۰ کیلومتر' },
+      { km: 21.0975, label: 'نیم‌ماراتن' },
+      { km: 42.195, label: 'ماراتن' }
+    ];
+
+    function formatTime(totalSeconds) {
+      var s = Math.max(0, Math.round(totalSeconds));
+      var h = Math.floor(s / 3600);
+      var m = Math.floor((s % 3600) / 60);
+      var sec = s % 60;
+      var mm = h > 0 ? String(m).padStart(2, '0') : String(m);
+      var ss = String(sec).padStart(2, '0');
+      return h > 0 ? (h + ':' + mm + ':' + ss) : (mm + ':' + ss);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('pace-form');
+      var resultsWrap = document.getElementById('pace-results');
+      var grid = document.getElementById('pace-results-grid');
+
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var d1 = parseFloat(document.getElementById('pace-distance').value);
+        var minutes = parseFloat(document.getElementById('pace-minutes').value) || 0;
+        var seconds = parseFloat(document.getElementById('pace-seconds').value) || 0;
+        var t1 = minutes * 60 + seconds;
+
+        if (!d1 || t1 <= 0) return;
+
+        grid.innerHTML = '';
+        DISTANCES.forEach(function (d) {
+          if (Math.abs(d.km - d1) < 0.001) return;
+          var t2 = t1 * Math.pow(d.km / d1, 1.06);
+          var card = document.createElement('div');
+          card.className = 'pace-result-card';
+          card.innerHTML = '<span class="dist-label">' + d.label + '</span><span class="dist-time mono">' + formatTime(t2) + '</span>';
+          grid.appendChild(card);
+        });
+
+        resultsWrap.hidden = false;
+      });
+    });
+  })();
+</script>
