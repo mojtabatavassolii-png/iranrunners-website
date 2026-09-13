@@ -113,6 +113,7 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
       <p class="form-note" style="margin-top:18px;">نحوه اندازه‌گیری ضربان استراحت: صبح، بلافاصله بعد از بیدار شدن از خواب، ضربانت رو اندازه بگیر.</p>
       <button type="submit" class="submit-btn">ارسال درخواست ثبت‌نام</button>
       <p class="form-note">با زدن دکمه بالا، تلگرام باز می‌شه و اطلاعاتت مستقیم برای مربی همون کلاس ارسال می‌شه.</p>
+      <p class="vpn-notice" id="vpn-notice" hidden>برای باز شدن تلگرام، لطفاً اول VPN رو روشن کن.</p>
     </form>
   </div>
 </section>
@@ -167,7 +168,11 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
         var telegramUsername = classCoachMap[className];
 
         if (telegramUsername && telegramUsername !== '') {
-          window.location.href = 'https://t.me/' + telegramUsername + '?text=' + encodeURIComponent(message);
+          var vpnNotice = document.getElementById('vpn-notice');
+          if (vpnNotice) { vpnNotice.hidden = false; }
+          setTimeout(function () {
+            window.location.href = 'https://t.me/' + telegramUsername + '?text=' + encodeURIComponent(message);
+          }, 2000);
         } else {
           alert('برای این کلاس هنوز آیدی تلگرام مربی ثبت نشده. لطفاً از طریق صفحه «درباره ما» با ما تماس بگیر.');
         }
