@@ -143,10 +143,8 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
     var grid = document.getElementById('gallery-preview-grid');
     if (!grid) { return; }
     picked.forEach(function (url) {
-      var item = document.createElement('a');
+      var item = document.createElement('div');
       item.className = 'g-item';
-      item.href = url;
-      item.setAttribute('data-lightbox', url);
       var img = document.createElement('img');
       img.src = url;
       img.loading = 'lazy';
