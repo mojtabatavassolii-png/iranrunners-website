@@ -712,9 +712,6 @@ footer.site-footer {
 
 /* ---------- article / blog post page ---------- */
 .breadcrumb {
-  font-family: "JetBrains Mono", monospace;
-  direction: ltr;
-  text-align: right;
   font-size: 0.78rem;
   color: var(--text-faint);
   margin-bottom: 18px;
@@ -741,6 +738,12 @@ footer.site-footer {
   direction: ltr;
   font-size: 0.8rem;
   margin: 18px 0 8px;
+}
+.article-meta-row.class-meta-row {
+  font-family: "Vazirmatn", sans-serif;
+  direction: rtl;
+  font-size: 0.95rem;
+  color: var(--text-primary);
 }
 .article-meta-row .cat-pill {
   font-family: "Vazirmatn", sans-serif;
