@@ -40,7 +40,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
       <h2>کلاس‌هایی برای هر سطح</h2>
       <p>از اولین قدم دویدن تا آماده‌سازی برای مسابقه، هر مسیر یه برنامه مخصوص خودش داره.</p>
     </div>
-    <div class="card-grid">
+    <div class="preview-scroll-row">
       {% for c in sorted_classes %}
       <div class="class-card">
         <h3>{{ c.title }}</h3>
@@ -77,8 +77,8 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
       <h2>از وبلاگ ایران رانرز</h2>
       <p>مقالات علمی و تجربی درباره تمرین، تغذیه و پیشگیری از آسیب.</p>
     </div>
-    <div class="post-grid">
-      {% for post in site.posts limit: 3 %}
+    <div class="preview-scroll-row">
+      {% for post in site.posts limit: 6 %}
       <a href="{{ post.url | relative_url }}" class="post-card" style="display:flex;">
         {% if post.image and post.image != "" %}
         <div class="post-thumb" style="background-image:url('{{ post.image | relative_url }}');background-size:cover;background-position:center;"></div>
