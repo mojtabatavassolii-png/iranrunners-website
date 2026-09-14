@@ -117,7 +117,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
       <h2>لحظه‌های ایران رانرز</h2>
       <p>تمرین‌ها، مسابقه‌ها و لحظه‌های تیمی.</p>
     </div>
-    <div class="gallery-grid" id="gallery-preview-grid"></div>
+    <div class="preview-scroll-row" id="gallery-preview-grid"></div>
     <div style="margin-top:26px;"><a href="{{ '/gallery.html' | relative_url }}" class="btn-ghost">مشاهده گالری کامل</a></div>
   </div>
 </section>
@@ -139,12 +139,16 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
       var j = Math.floor(seededRandom(bucket + i) * (i + 1));
       var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
     }
-    var picked = shuffled.slice(0, Math.min(5, shuffled.length));
+    var picked = shuffled.slice(0, Math.min(9, shuffled.length));
     var grid = document.getElementById('gallery-preview-grid');
     if (!grid) { return; }
     picked.forEach(function (url) {
-      var item = document.createElement('div');
+      var item = document.createElement('a');
       item.className = 'g-item';
+      item.href = url;
+      item.setAttribute('download', '');
+      item.target = '_blank';
+      item.rel = 'noopener';
       var img = document.createElement('img');
       img.src = url;
       img.loading = 'lazy';

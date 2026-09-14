@@ -14,9 +14,9 @@ nav: gallery
   <div class="wrap">
     <div class="gallery-grid uniform-grid">
       {% for photo in page.photos %}
-      <div class="g-item">
+      <a class="g-item" href="{{ photo | relative_url }}" download target="_blank" rel="noopener">
         <img src="{{ photo | relative_url }}" alt="{{ page.title }}" loading="lazy">
-      </div>
+      </a>
       {% endfor %}
     </div>
   </div>
