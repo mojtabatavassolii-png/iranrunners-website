@@ -634,15 +634,16 @@ footer.site-footer {
   gap: 24px;
   align-items: center;
 }
-.footer-brand-group { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.footer-brand-group { display: flex; align-items: center; gap: 14px; flex-wrap: nowrap; }
 .footer-nav { display: flex; gap: 22px; color: var(--text-muted); font-size: 0.9rem; flex-wrap: wrap; }
 .footer-social {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 700;
+  white-space: nowrap;
   transition: color 0.2s ease;
 }
 .footer-social:hover { color: var(--accent-sunrise); }
