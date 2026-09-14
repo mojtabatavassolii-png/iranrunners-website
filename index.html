@@ -146,9 +146,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
       var item = document.createElement('a');
       item.className = 'g-item';
       item.href = url;
-      item.setAttribute('download', '');
-      item.target = '_blank';
-      item.rel = 'noopener';
+      item.setAttribute('data-lightbox', url);
       var img = document.createElement('img');
       img.src = url;
       img.loading = 'lazy';
