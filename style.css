@@ -1010,3 +1010,49 @@ footer.site-footer {
   transition: transform 0.5s ease;
 }
 .gallery-preview .g-item:hover img { transform: scale(1.06); }
+
+/* ---------- photo lightbox ---------- */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 60px 20px;
+}
+.lightbox-overlay[hidden] { display: none; }
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 78vh;
+  border-radius: 10px;
+  box-shadow: 0 30px 70px -20px rgba(0,0,0,0.6);
+}
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  color: #ffffff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.22); }
+.lightbox-download {
+  background: var(--accent-sunrise);
+  color: #ffffff;
+  padding: 13px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.lightbox-download:hover { background: #ff4141; transform: translateY(-2px); }
