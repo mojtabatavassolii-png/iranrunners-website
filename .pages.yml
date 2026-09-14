@@ -342,6 +342,29 @@ content:
         label: "متن معرفی تیم و برند"
         type: text
 
+  - name: contact
+    label: "راه‌های تماس (صفحه درباره ما)"
+    type: file
+    path: _data/contact.yml
+    fields:
+      - name: email
+        label: "ایمیل"
+        type: string
+        required: true
+
+      - name: location
+        label: "موقعیت مکانی"
+        type: string
+        required: true
+
+      - name: instagram
+        label: "آیدی اینستاگرام"
+        type: string
+
+      - name: whatsapp
+        label: "واتساپ (شماره یا متنی مثل «به‌زودی»)"
+        type: string
+
 
 
   - name: partners
