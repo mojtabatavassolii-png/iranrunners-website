@@ -6,10 +6,13 @@ lang: fa
 # این خط رو به baseurl: "" تغییر بدید. تا وقتی سایت روی
 # mojtabatavassolii-png.github.io/iranrunners-website هست، همین مقدار درسته.
 baseurl: ""
-url: ""
+url: "https://iranrunners.com"
 
 markdown: kramdown
 permalink: /blog/:title.html
+
+plugins:
+  - jekyll-sitemap
 
 collections:
   posts:
