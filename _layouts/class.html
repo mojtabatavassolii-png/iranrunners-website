@@ -15,7 +15,7 @@ nav: classes
     <span style="color:var(--accent-sunrise);font-weight:700;">مربی: {{ page.coach }}</span>
     {% endif %}
     {% if page.schedule %}<span>{{ page.schedule }}</span>{% endif %}
-    <span class="mono" style="color:var(--accent-sunrise);font-weight:700;font-size:1.1rem;">
+    <span style="direction:ltr;display:inline-block;color:var(--accent-sunrise);font-weight:700;font-size:1.1rem;">
       {% if page.currency == "TOMAN" %}
         {% if page.price_toman %}{{ page.price_toman }} تومان / ماه{% endif %}
       {% else %}
