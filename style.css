@@ -610,11 +610,14 @@ section { padding: 74px 0; }
 }
 @media (max-width: 780px) { .contact-grid { grid-template-columns: 1fr; } }
 .contact-item {
+  display: block;
   background: var(--bg-panel);
   border: 1px solid var(--line-hair);
   border-radius: var(--radius-card);
   padding: 26px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
+a.contact-item:hover { border-color: rgba(232,18,26,0.35); transform: translateY(-2px); }
 .contact-item .c-label { color: var(--text-faint); font-size: 0.8rem; font-family: "JetBrains Mono", monospace; direction: ltr; text-align: right; display: block; margin-bottom: 8px; }
 .contact-item .c-value { font-size: 1.1rem; font-weight: 700; }
 

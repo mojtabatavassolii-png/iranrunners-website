@@ -347,11 +347,6 @@ content:
     type: file
     path: _data/contact.yml
     fields:
-      - name: email
-        label: "ایمیل"
-        type: string
-        required: true
-
       - name: location
         label: "موقعیت مکانی"
         type: string
@@ -359,10 +354,6 @@ content:
 
       - name: instagram
         label: "آیدی اینستاگرام"
-        type: string
-
-      - name: whatsapp
-        label: "واتساپ (شماره یا متنی مثل «به‌زودی»)"
         type: string
 
 
