@@ -634,21 +634,18 @@ footer.site-footer {
   gap: 24px;
   align-items: center;
 }
-.footer-nav-group { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.footer-brand-group { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
 .footer-nav { display: flex; gap: 22px; color: var(--text-muted); font-size: 0.9rem; flex-wrap: wrap; }
 .footer-social {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--line-hair);
+  gap: 10px;
   color: var(--text-muted);
-  flex-shrink: 0;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
 }
-.footer-social:hover { color: var(--accent-sunrise); border-color: rgba(232,18,26,0.35); }
+.footer-social:hover { color: var(--accent-sunrise); }
 .footer-copy { color: var(--text-faint); font-size: 0.8rem; font-family: "JetBrains Mono", monospace; direction: ltr; text-align: right; margin-top: 30px; }
 
 /* ---------- generic ---------- */
