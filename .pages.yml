@@ -45,6 +45,10 @@ content:
         type: string
         required: true
 
+      - name: slug
+        label: "آدرس صفحه (اختیاری — به فارسی و با خط تیره بین کلمات بنویس، مثلاً: راهنمای-شروع-دویدن. اگه خالی بذاری، آدرس از روی اسم فایل ساخته می‌شه)"
+        type: string
+
       - name: description
         label: "توضیح متا (برای گوگل، حدود ۱۵۰ کاراکتر)"
         type: text
