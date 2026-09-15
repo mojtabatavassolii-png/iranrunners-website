@@ -90,8 +90,8 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
           <input type="number" id="weight" name="weight" required>
         </div>
         <div class="field">
-          <label for="rhr">ضربان استراحت *</label>
-          <input type="number" id="rhr" name="rhr" placeholder="مثلاً ۶۵" required>
+          <label for="rhr">ضربان استراحت</label>
+          <input type="number" id="rhr" name="rhr" placeholder="مثلاً ۶۵">
         </div>
         <div class="field full">
           <label for="history">سابقه بیماری</label>
@@ -158,7 +158,7 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
           'سن: ' + get('age'),
           'قد: ' + get('height') + ' سانتی‌متر',
           'وزن: ' + get('weight') + ' کیلوگرم',
-          'ضربان استراحت: ' + get('rhr'),
+          'ضربان استراحت: ' + (get('rhr') || '-'),
           'سابقه بیماری: ' + (get('history') || '-'),
           'سابقه ورزشی: ' + (get('sport-history') || '-'),
           'بیشترین مسافت دویدن: ' + (get('max-distance') || '-'),
