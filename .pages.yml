@@ -29,9 +29,118 @@ media:
     output: /assets/events
     categories: [image]
 
+# ===========================================================
+# صفحه اول
+# ===========================================================
 content:
+  - name: hero_photos
+    label: "صفحه اول › اسلایدشو هدر"
+    type: file
+    path: _data/hero.yml
+    list: true
+    fields:
+      - name: file
+        label: "عکس (اندازه استاندارد: حداقل 1600×900 پیکسل، افقی)"
+        type: image
+        media: gallery
+        required: true
+
+  - name: hero_text
+    label: "صفحه اول › متن زیر عنوان اصلی"
+    type: file
+    path: _data/hero_text.yml
+    fields:
+      - name: lead
+        label: "متن (خالی بذار تا کامل حذف بشه)"
+        type: text
+
+  - name: partners
+    label: "صفحه اول › شرکای ما"
+    type: file
+    path: _data/partners.yml
+    list: true
+    fields:
+      - name: name
+        label: "نام شرکت"
+        type: string
+        required: true
+
+      - name: logo
+        label: "لوگو (اندازه استاندارد: حداکثر ۴۰۰×۱۶۰ پیکسل، پس‌زمینه شفاف PNG بهتره)"
+        type: image
+        media: partners
+
+      - name: link
+        label: "لینک سایت شرکت (اختیاری)"
+        type: string
+
+  # ===========================================================
+  # کلاس‌ها
+  # ===========================================================
+  - name: classes
+    label: "کلاس‌ها"
+    type: collection
+    path: _classes
+    filename: "{primary}.md"
+    view:
+      primary: title
+      sort: order
+      order: asc
+    fields:
+      - name: title
+        label: "عنوان کلاس"
+        type: string
+        required: true
+
+      - name: level_tag
+        label: "برچسب سطح (انگلیسی کوتاه، مثل BEGINNER)"
+        type: string
+        required: true
+
+      - name: order
+        label: "ترتیب نمایش (عدد کوچیک‌تر = بالاتر)"
+        type: number
+        required: true
+
+      - name: description
+        label: "توضیح کوتاه (روی کارت نشون داده می‌شه)"
+        type: text
+        required: true
+
+
+      - name: coach
+        label: "نام مربی (دقیقاً همون‌طور که در بخش «مربیان» ثبت کردی بنویس)"
+        type: string
+
+      - name: currency
+        label: "واحد نمایش قیمت در سایت"
+        type: select
+        options:
+          values:
+            - name: EUR
+              label: "یورو"
+            - name: TOMAN
+              label: "تومان"
+
+
+      - name: price
+        label: "قیمت ماهانه (یورو)"
+        type: number
+        required: true
+
+      - name: price_toman
+        label: "قیمت ماهانه (تومان — با کاما بنویس، مثلاً 2,500,000)"
+        type: string
+
+      - name: body
+        label: "توضیحات کامل (این متن توی صفحه جزئیات کلاس نشون داده می‌شه)"
+        type: rich-text
+
+  # ===========================================================
+  # وبلاگ
+  # ===========================================================
   - name: posts
-    label: "مقالات وبلاگ"
+    label: "وبلاگ › مقالات"
     type: collection
     path: _posts
     filename: "{year}-{month}-{day}-{primary}.md"
@@ -113,67 +222,11 @@ content:
         label: "متن مقاله (از ## برای زیرعنوان‌ها استفاده کن)"
         type: rich-text
 
-  - name: classes
-    label: "کلاس‌ها"
-    type: collection
-    path: _classes
-    filename: "{primary}.md"
-    view:
-      primary: title
-      sort: order
-      order: asc
-    fields:
-      - name: title
-        label: "عنوان کلاس"
-        type: string
-        required: true
-
-      - name: level_tag
-        label: "برچسب سطح (انگلیسی کوتاه، مثل BEGINNER)"
-        type: string
-        required: true
-
-      - name: order
-        label: "ترتیب نمایش (عدد کوچیک‌تر = بالاتر)"
-        type: number
-        required: true
-
-      - name: description
-        label: "توضیح کوتاه (روی کارت نشون داده می‌شه)"
-        type: text
-        required: true
-
-
-      - name: coach
-        label: "نام مربی (دقیقاً همون‌طور که در بخش «مربیان» ثبت کردی بنویس)"
-        type: string
-
-      - name: currency
-        label: "واحد نمایش قیمت در سایت"
-        type: select
-        options:
-          values:
-            - name: EUR
-              label: "یورو"
-            - name: TOMAN
-              label: "تومان"
-
-
-      - name: price
-        label: "قیمت ماهانه (یورو)"
-        type: number
-        required: true
-
-      - name: price_toman
-        label: "قیمت ماهانه (تومان — با کاما بنویس، مثلاً 2,500,000)"
-        type: string
-
-      - name: body
-        label: "توضیحات کامل (این متن توی صفحه جزئیات کلاس نشون داده می‌شه)"
-        type: rich-text
-
+  # ===========================================================
+  # گالری
+  # ===========================================================
   - name: events
-    label: "رویدادهای گالری"
+    label: "گالری › رویدادها و عکس‌ها"
     type: collection
     path: _events
     filename: "{year}-{month}-{day}-{primary}.md"
@@ -203,76 +256,9 @@ content:
         list: true
         required: true
 
-  - name: gallery_photos
-    label: "عکس‌های گالری"
-    type: file
-    path: _data/gallery.yml
-    list: true
-    fields:
-      - name: file
-        label: "عکس"
-        type: image
-        media: gallery
-        required: true
-
-      - name: alt
-        label: "توضیح عکس (برای دسترسی‌پذیری و سئو)"
-        type: string
-        required: true
-
-      - name: tag
-        label: "برچسب روی عکس (انگلیسی کوتاه)"
-        type: string
-
-      - name: size
-        label: "اندازه در چیدمان گالری"
-        type: select
-        options:
-          values:
-            - name: normal
-              label: "معمولی"
-            - name: wide
-              label: "پهن (دو ستون)"
-            - name: tall
-              label: "بلند (دو ردیف)"
-            - name: wide-tall
-              label: "پهن و بلند"
-
-      - name: rotation
-        label: "چرخش عکس"
-        type: select
-        options:
-          values:
-            - name: "0"
-              label: "بدون چرخش"
-            - name: "90"
-              label: "۹۰ درجه (راست‌گرد)"
-            - name: "180"
-              label: "۱۸۰ درجه (وارونه)"
-            - name: "270"
-              label: "۲۷۰ درجه (چپ‌گرد)"
-              
-  - name: hero_text
-    label: "متن زیر عنوان اصلی صفحه اول"
-    type: file
-    path: _data/hero_text.yml
-    fields:
-      - name: lead
-        label: "متن (خالی بذار تا کامل حذف بشه)"
-        type: text
-
-  - name: hero_photos
-    label: "هدر سایت (اسلایدشو صفحه اصلی)"
-    type: file
-    path: _data/hero.yml
-    list: true
-    fields:
-      - name: file
-        label: "عکس (اندازه استاندارد: حداقل 1600×900 پیکسل، افقی)"
-        type: image
-        media: gallery
-        required: true
-
+  # ===========================================================
+  # مربیان
+  # ===========================================================
   - name: coaches
     label: "مربیان"
     type: file
@@ -316,10 +302,11 @@ content:
         label: "آیدی تلگرام (بدون @، فقط مثلاً mojtaba_coach)"
         type: string
 
-
-        
+  # ===========================================================
+  # درباره ما
+  # ===========================================================
   - name: team
-    label: "اعضای تیم (صفحه درباره ما)"
+    label: "درباره ما › اعضای تیم"
     type: file
     path: _data/team.yml
     list: true
@@ -338,7 +325,7 @@ content:
         media: coaches
 
   - name: about_text
-    label: "متن صفحه درباره ما"
+    label: "درباره ما › متن معرفی"
     type: file
     path: _data/about_text.yml
     fields:
@@ -347,7 +334,7 @@ content:
         type: text
 
   - name: contact
-    label: "راه‌های تماس (صفحه درباره ما)"
+    label: "درباره ما › راه‌های تماس"
     type: file
     path: _data/contact.yml
     fields:
@@ -358,26 +345,4 @@ content:
 
       - name: instagram
         label: "آیدی اینستاگرام"
-        type: string
-
-
-
-  - name: partners
-    label: "شرکای ما"
-    type: file
-    path: _data/partners.yml
-    list: true
-    fields:
-      - name: name
-        label: "نام شرکت"
-        type: string
-        required: true
-
-      - name: logo
-        label: "لوگو (اندازه استاندارد: حداکثر ۴۰۰×۱۶۰ پیکسل، پس‌زمینه شفاف PNG بهتره)"
-        type: image
-        media: partners
-
-      - name: link
-        label: "لینک سایت شرکت (اختیاری)"
         type: string
