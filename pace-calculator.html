@@ -14,11 +14,26 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
 <section class="pace-calc-section">
   <div class="wrap" style="max-width:720px;">
     <div class="pace-tabs">
-      <button type="button" class="pace-tab-btn active" id="tab-btn-convert" data-tab="convert">تبدیل پیس</button>
-      <button type="button" class="pace-tab-btn" id="tab-btn-predict" data-tab="predict">پیش‌بینی مسابقه</button>
+      <button type="button" class="pace-tab-btn active" id="tab-btn-convert" data-tab="convert">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h11l-3-3"/><path d="M17 17H6l3 3"/></svg>
+        تبدیل پیس
+      </button>
+      <button type="button" class="pace-tab-btn" id="tab-btn-predict" data-tab="predict">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 13V9"/><path d="M9 3h6"/></svg>
+        پیش‌بینی مسابقه
+      </button>
     </div>
 
     <div id="tab-convert">
+      <div class="pace-tool-intro">
+        <div class="pace-tool-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h11l-3-3"/><path d="M17 17H6l3 3"/></svg>
+        </div>
+        <div>
+          <h2>تبدیل پیس، زمان و فاصله</h2>
+          <p>می‌خوای بدونی با یه فاصله و زمان مشخص پیست چقدره؟ یا با یه پیس مشخص، فلان فاصله رو تو چقدر زمان می‌دوی؟ این ابزار برای همینه — هر دوتا از این سه مقدار رو بدی، سومی رو خودش حساب می‌کنه.</p>
+        </div>
+      </div>
       <form class="form-panel" id="convert-form">
         <h3>تبدیل پیس، زمان و فاصله</h3>
         <p class="form-sub">دقیقاً دوتا از این سه مقدار رو پر کن — سومی خودش محاسبه می‌شه.</p>
@@ -58,6 +73,15 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
     </div>
 
     <div id="tab-predict" hidden>
+      <div class="pace-tool-intro">
+        <div class="pace-tool-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 13V9"/><path d="M9 3h6"/></svg>
+        </div>
+        <div>
+          <h2>پیش‌بینی زمان مسابقه</h2>
+          <p>یه مسابقه دویدی و می‌خوای بدونی توی فاصله‌های دیگه (از ۵ کیلومتر تا ماراتن) چه زمانی می‌تونی بزنی؟ زمان یکی از فاصله‌ها رو بده، بر اساس فرمول علمی Riegel پیش‌بینی زمانت توی بقیه فاصله‌ها رو ببین.</p>
+        </div>
+      </div>
       <form class="form-panel" id="pace-form">
         <h3>زمانت رو وارد کن</h3>
         <p class="form-sub">فاصله‌ای که دویدی و زمانش رو مشخص کن.</p>
