@@ -33,46 +33,44 @@ media:
 # صفحه اول
 # ===========================================================
 content:
-  - name: hero_photos
-    label: "صفحه اول › اسلایدشو هدر"
+  - name: home
+    label: "صفحه اول"
     type: file
-    path: _data/hero.yml
-    list: true
+    path: _data/home.yml
     fields:
-      - name: file
-        label: "عکس (اندازه استاندارد: حداقل 1600×900 پیکسل، افقی)"
-        type: image
-        media: gallery
-        required: true
-
-  - name: hero_text
-    label: "صفحه اول › متن زیر عنوان اصلی"
-    type: file
-    path: _data/hero_text.yml
-    fields:
-      - name: lead
-        label: "متن (خالی بذار تا کامل حذف بشه)"
+      - name: hero_lead
+        label: "متن زیر عنوان اصلی (خالی بذار تا کامل حذف بشه)"
         type: text
 
-  - name: partners
-    label: "صفحه اول › شرکای ما"
-    type: file
-    path: _data/partners.yml
-    list: true
-    fields:
-      - name: name
-        label: "نام شرکت"
-        type: string
-        required: true
+      - name: hero_photos
+        label: "اسلایدشو هدر"
+        type: object
+        list: true
+        fields:
+          - name: file
+            label: "عکس (اندازه استاندارد: حداقل 1600×900 پیکسل، افقی)"
+            type: image
+            media: gallery
+            required: true
 
-      - name: logo
-        label: "لوگو (اندازه استاندارد: حداکثر ۴۰۰×۱۶۰ پیکسل، پس‌زمینه شفاف PNG بهتره)"
-        type: image
-        media: partners
+      - name: partners
+        label: "شرکای ما"
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: "نام شرکت"
+            type: string
+            required: true
 
-      - name: link
-        label: "لینک سایت شرکت (اختیاری)"
-        type: string
+          - name: logo
+            label: "لوگو (اندازه استاندارد: حداکثر ۴۰۰×۱۶۰ پیکسل، پس‌زمینه شفاف PNG بهتره)"
+            type: image
+            media: partners
+
+          - name: link
+            label: "لینک سایت شرکت (اختیاری)"
+            type: string
 
   # ===========================================================
   # کلاس‌ها
@@ -305,44 +303,42 @@ content:
   # ===========================================================
   # درباره ما
   # ===========================================================
-  - name: team
-    label: "درباره ما › اعضای تیم"
+  - name: about
+    label: "درباره ما"
     type: file
-    path: _data/team.yml
-    list: true
-    fields:
-      - name: name
-        label: "نام"
-        type: string
-
-      - name: role
-        label: "سمت"
-        type: string
-
-      - name: photo
-        label: "عکس"
-        type: image
-        media: coaches
-
-  - name: about_text
-    label: "درباره ما › متن معرفی"
-    type: file
-    path: _data/about_text.yml
+    path: _data/about.yml
     fields:
       - name: body
         label: "متن معرفی تیم و برند"
         type: text
 
-  - name: contact
-    label: "درباره ما › راه‌های تماس"
-    type: file
-    path: _data/contact.yml
-    fields:
-      - name: location
-        label: "موقعیت مکانی"
-        type: string
-        required: true
+      - name: team
+        label: "اعضای تیم"
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: "نام"
+            type: string
 
-      - name: instagram
-        label: "آیدی اینستاگرام"
-        type: string
+          - name: role
+            label: "سمت"
+            type: string
+
+          - name: photo
+            label: "عکس"
+            type: image
+            media: coaches
+
+      - name: contact
+        label: "راه‌های تماس"
+        type: object
+        fields:
+          - name: location
+            label: "موقعیت مکانی"
+            type: string
+            required: true
+
+          - name: instagram
+            label: "آیدی اینستاگرام"
+            type: string
