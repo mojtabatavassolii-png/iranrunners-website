@@ -303,44 +303,42 @@ content:
   # ===========================================================
   # درباره ما
   # ===========================================================
-  - name: team
-    label: "درباره ما › اعضای تیم"
+  - name: about
+    label: "درباره ما"
     type: file
-    path: _data/team.yml
-    list: true
-    fields:
-      - name: name
-        label: "نام"
-        type: string
-
-      - name: role
-        label: "سمت"
-        type: string
-
-      - name: photo
-        label: "عکس"
-        type: image
-        media: coaches
-
-  - name: about_text
-    label: "درباره ما › متن معرفی"
-    type: file
-    path: _data/about_text.yml
+    path: _data/about.yml
     fields:
       - name: body
         label: "متن معرفی تیم و برند"
         type: text
 
-  - name: contact
-    label: "درباره ما › راه‌های تماس"
-    type: file
-    path: _data/contact.yml
-    fields:
-      - name: location
-        label: "موقعیت مکانی"
-        type: string
-        required: true
+      - name: team_members
+        label: "اعضای تیم"
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: "نام"
+            type: string
 
-      - name: instagram
-        label: "آیدی اینستاگرام"
-        type: string
+          - name: role
+            label: "سمت"
+            type: string
+
+          - name: photo
+            label: "عکس"
+            type: image
+            media: coaches
+
+      - name: contact_info
+        label: "راه‌های تماس"
+        type: object
+        fields:
+          - name: location
+            label: "موقعیت مکانی"
+            type: string
+            required: true
+
+          - name: instagram
+            label: "آیدی اینستاگرام"
+            type: string
