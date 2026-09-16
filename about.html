@@ -12,7 +12,7 @@ description: درباره ایران رانرز — تیم، برند و راه�
 
 <section class="about-text-section">
   <div class="wrap" style="max-width:760px;">
-    <p style="font-size:1.05rem;color:var(--text-muted);line-height:2;">{{ site.data.about.body }}</p>
+    <p style="font-size:1.05rem;color:var(--text-muted);line-height:2;">{{ site.data.about_text.body }}</p>
   </div>
 </section>
 
@@ -27,7 +27,7 @@ description: درباره ایران رانرز — تیم، برند و راه�
       <h2>تیم ایران رانرز</h2>
     </div>
     <div class="team-grid">
-      {% for member in site.data.about.team %}
+      {% for member in site.data.team %}
         {% if member.name and member.name != "" %}
         <div class="team-member">
           {% if member.photo and member.photo != "" %}
@@ -58,11 +58,11 @@ description: درباره ایران رانرز — تیم، برند و راه�
     <div class="contact-grid">
       <div class="contact-item">
         <span class="c-label">LOCATION</span>
-        <span class="c-value">{{ site.data.about.contact.location }}</span>
+        <span class="c-value">{{ site.data.contact.location }}</span>
       </div>
-      <a href="https://instagram.com/{{ site.data.about.contact.instagram | remove: '@' }}" class="contact-item" target="_blank" rel="noopener noreferrer">
+      <a href="https://instagram.com/{{ site.data.contact.instagram | remove: '@' }}" class="contact-item" target="_blank" rel="noopener noreferrer">
         <span class="c-label">INSTAGRAM</span>
-        <span class="c-value">{{ site.data.about.contact.instagram }}</span>
+        <span class="c-value">{{ site.data.contact.instagram }}</span>
       </a>
     </div>
   </div>
