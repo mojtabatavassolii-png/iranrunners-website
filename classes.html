@@ -20,20 +20,11 @@ description: کلاس‌ها و برنامه‌های تمرینی ایران ر
         <h3>{{ c.title }}</h3>
         <p class="desc">{{ c.description }}</p>
         <p class="desc" style="font-size:0.85rem;color:var(--text-faint);">{{ c.schedule }}</p>
-        <div class="meta" style="flex-direction:column;align-items:flex-start;gap:12px;">
+        <div class="meta" style="flex-direction:column;align-items:center;gap:12px;text-align:center;">
           {% if c.coach and c.coach != "" %}
           <span style="color:var(--accent-sunrise);font-weight:700;font-size:0.9rem;">مربی: {{ c.coach }}</span>
           {% endif %}
-          <div style="display:flex;justify-content:space-between;align-items:center;width:100%;">
-            <span class="price">
-              {% if c.currency == "TOMAN" %}
-                {% if c.price_toman %}{{ c.price_toman }} <small>تومان / ماه</small>{% endif %}
-              {% else %}
-                {% if c.price and c.price != 0 %}{{ c.price }}€ <small>/ ماه</small>{% endif %}
-              {% endif %}
-            </span>
-            <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
-          </div>
+          <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
         </div>
       </div>
       {% endfor %}
