@@ -49,16 +49,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
           {% if c.coach and c.coach != "" %}
           <span style="color:var(--accent-sunrise);font-weight:700;font-size:0.9rem;">مربی: {{ c.coach }}</span>
           {% endif %}
-          <div style="display:flex;justify-content:space-between;align-items:center;width:100%;">
-            <span class="price">
-              {% if c.currency == "TOMAN" %}
-                {% if c.price_toman %}{{ c.price_toman }} <small>تومان / ماه</small>{% endif %}
-              {% else %}
-                {% if c.price and c.price != 0 %}{{ c.price }}€ <small>/ ماه</small>{% endif %}
-              {% endif %}
-            </span>
-            <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
-          </div>
+          <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
         </div>
       </div>
       {% endfor %}
