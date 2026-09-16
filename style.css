@@ -419,6 +419,9 @@ section { padding: 74px 0; }
   flex-wrap: wrap;
 }
 .pace-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-family: inherit;
   font-size: 0.95rem;
   font-weight: 700;
@@ -435,6 +438,29 @@ section { padding: 74px 0; }
   background: var(--accent-sunrise);
   border-color: var(--accent-sunrise);
   color: #ffffff;
+}
+
+.pace-tool-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+.pace-tool-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(232,18,26,0.08);
+  color: var(--accent-sunrise);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pace-tool-intro h2 { margin: 0 0 8px; font-size: 1.25rem; font-weight: 800; }
+.pace-tool-intro p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; }
+@media (max-width: 560px) {
+  .pace-tool-intro { flex-direction: column; align-items: center; text-align: center; }
 }
 
 .pace-results { margin-top: 40px; }
