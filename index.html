@@ -6,12 +6,12 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
 ---
 {% assign icons = site.data.icons %}
 {% assign sorted_classes = site.classes | sort: 'order' %}
-{% assign hero_count = site.data.hero.size %}
+{% assign hero_count = site.data.home.hero_photos.size %}
 {% assign hero_duration = hero_count | times: 5 %}
 
 <section class="hero rotating-header">
   <div class="hero-slides">
-    {% for photo in site.data.hero %}
+    {% for photo in site.data.home.hero_photos %}
     {% assign delay = forloop.index0 | times: 5 %}
     <div class="slide" style="background-image:url('{{ photo.file | relative_url }}');{% if hero_count == 1 %} opacity:1;{% else %} animation-duration:{{ hero_duration }}s; animation-delay:{{ delay }}s;{% endif %}"></div>
     {% endfor %}
@@ -19,8 +19,8 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
   <div class="hero-overlay"></div>
   <div class="wrap hero-content">
     <h1>هر قدم، یک <span>مسیر</span> تازه به‌سوی هدفت</h1>
-    {% if site.data.hero_text.lead and site.data.hero_text.lead != "" %}
-    <p class="lead">{{ site.data.hero_text.lead }}</p>
+    {% if site.data.home.hero_lead and site.data.home.hero_lead != "" %}
+    <p class="lead">{{ site.data.home.hero_lead }}</p>
     {% endif %}
     <div class="cta-row">
       <a href="{{ '/classes.html' | relative_url }}" class="btn-primary">مشاهده کلاس‌ها</a>
@@ -166,7 +166,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
   </div>
 </section>
 
-{% if site.data.partners.size > 0 %}
+{% if site.data.home.partners.size > 0 %}
 <section class="partners-section">
   <div class="wrap">
     <div class="section-head">
@@ -175,7 +175,7 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
   </div>
   <div class="partners-bar">
     <div class="wrap partners-grid">
-      {% for p in site.data.partners %}
+      {% for p in site.data.home.partners %}
         {% if p.logo and p.logo != "" %}
           {% if p.link and p.link != "" %}
           <a href="{{ p.link }}" class="partner-logo" target="_blank" rel="noopener">
