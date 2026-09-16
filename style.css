@@ -411,6 +411,32 @@ section { padding: 74px 0; }
   margin-top: 14px;
 }
 
+.pace-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 34px;
+  flex-wrap: wrap;
+}
+.pace-tab-btn {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: 1px solid var(--line-hair);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.pace-tab-btn:hover { border-color: rgba(232,18,26,0.35); color: var(--text-primary); }
+.pace-tab-btn.active {
+  background: var(--accent-sunrise);
+  border-color: var(--accent-sunrise);
+  color: #ffffff;
+}
+
 .pace-results { margin-top: 40px; }
 .pace-results-grid {
   display: grid;

@@ -1,63 +1,102 @@
 ---
 layout: default
 nav: pace-calculator
-title: محاسبه‌گر پیس مسابقه
-description: پیش‌بینی زمان مسابقه‌ات توی فاصله‌های دیگه، بر اساس فرمول Riegel.
+title: محاسبه‌گر پیس
+description: تبدیل پیس، زمان و فاصله دویدن، و پیش‌بینی زمان مسابقه‌ات با فرمول Riegel.
 ---
 <section class="page-hero">
   <div class="wrap">
-    <h1>محاسبه‌گر پیس مسابقه</h1>
-    <p>زمان یه مسابقه‌ات رو وارد کن تا پیش‌بینی زمانت توی فاصله‌های دیگه رو ببینی — بر اساس فرمول Riegel.</p>
+    <h1>محاسبه‌گر پیس</h1>
+    <p>پیس، زمان و فاصله رو به هم تبدیل کن، یا زمان یه مسابقه رو وارد کن تا پیش‌بینی زمانت توی فاصله‌های دیگه رو ببینی.</p>
   </div>
 </section>
 
 <section class="pace-calc-section">
   <div class="wrap" style="max-width:720px;">
-    <form class="form-panel" id="pace-form">
-      <h3>زمانت رو وارد کن</h3>
-      <p class="form-sub">فاصله‌ای که دویدی و زمانش رو مشخص کن.</p>
-      <div class="form-grid">
-        <div class="field full">
-          <label for="pace-distance">فاصله *</label>
-          <select id="pace-distance" name="pace-distance" required>
-            <option value="5">۵ کیلومتر</option>
-            <option value="10">۱۰ کیلومتر</option>
-            <option value="21.0975">نیم‌ماراتن</option>
-            <option value="42.195">ماراتن</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="pace-minutes">دقیقه *</label>
-          <input type="number" id="pace-minutes" name="pace-minutes" min="0" required>
-        </div>
-        <div class="field">
-          <label for="pace-seconds">ثانیه *</label>
-          <input type="number" id="pace-seconds" name="pace-seconds" min="0" max="59" required>
-        </div>
-      </div>
-      <button type="submit" class="submit-btn">محاسبه کن</button>
-      <p class="form-note">فرمت زمان: دقیقه:ثانیه (mm:ss) — مثلاً برای ۲۵ دقیقه و ۳۰ ثانیه، عدد ۲۵ رو توی دقیقه و ۳۰ رو توی ثانیه بنویس.</p>
-    </form>
+    <div class="pace-tabs">
+      <button type="button" class="pace-tab-btn active" id="tab-btn-convert" data-tab="convert">تبدیل پیس</button>
+      <button type="button" class="pace-tab-btn" id="tab-btn-predict" data-tab="predict">پیش‌بینی مسابقه</button>
+    </div>
 
-    <div class="pace-results" id="pace-results" hidden>
-      <div class="section-head" style="margin-bottom:24px;">
-        <h2 style="font-size:1.4rem;">پیش‌بینی زمان</h2>
+    <div id="tab-convert">
+      <form class="form-panel" id="convert-form">
+        <h3>تبدیل پیس، زمان و فاصله</h3>
+        <p class="form-sub">دقیقاً دوتا از این سه مقدار رو پر کن — سومی خودش محاسبه می‌شه.</p>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="conv-distance">فاصله (کیلومتر)</label>
+            <input type="number" id="conv-distance" min="0" step="0.01" placeholder="مثلاً 10">
+          </div>
+
+          <div class="field full">
+            <label>زمان کل</label>
+            <div style="display:flex;gap:10px;">
+              <input type="number" id="conv-hours" min="0" placeholder="ساعت" style="flex:1;">
+              <input type="number" id="conv-minutes" min="0" placeholder="دقیقه" style="flex:1;">
+              <input type="number" id="conv-seconds" min="0" max="59" placeholder="ثانیه" style="flex:1;">
+            </div>
+          </div>
+
+          <div class="field full">
+            <label>پیس (به ازای هر کیلومتر)</label>
+            <div style="display:flex;gap:10px;">
+              <input type="number" id="conv-pace-minutes" min="0" placeholder="دقیقه" style="flex:1;">
+              <input type="number" id="conv-pace-seconds" min="0" max="59" placeholder="ثانیه" style="flex:1;">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">محاسبه کن</button>
+        <p class="form-note">مثلاً اگه فاصله و زمان کل رو پر کنی، پیس هر کیلومتر خودش حساب می‌شه.</p>
+      </form>
+
+      <div class="pace-results" id="convert-results" hidden>
+        <div class="section-head" style="margin-bottom:24px;">
+          <h2 style="font-size:1.4rem;">نتیجه</h2>
+        </div>
+        <div class="pace-results-grid" id="convert-results-grid"></div>
       </div>
-      <div class="pace-results-grid" id="pace-results-grid"></div>
-      <p class="pace-disclaimer">این فقط یه تخمینه، نه یه قول قطعی — عوامل زیادی مثل شرایط آب‌وهوا و برنامه تمرینی روی نتیجه واقعی تأثیر می‌ذارن.</p>
+    </div>
+
+    <div id="tab-predict" hidden>
+      <form class="form-panel" id="pace-form">
+        <h3>زمانت رو وارد کن</h3>
+        <p class="form-sub">فاصله‌ای که دویدی و زمانش رو مشخص کن.</p>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="pace-distance">فاصله *</label>
+            <select id="pace-distance" name="pace-distance" required>
+              <option value="5">۵ کیلومتر</option>
+              <option value="10">۱۰ کیلومتر</option>
+              <option value="21.0975">نیم‌ماراتن</option>
+              <option value="42.195">ماراتن</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pace-minutes">دقیقه *</label>
+            <input type="number" id="pace-minutes" name="pace-minutes" min="0" required>
+          </div>
+          <div class="field">
+            <label for="pace-seconds">ثانیه *</label>
+            <input type="number" id="pace-seconds" name="pace-seconds" min="0" max="59" required>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">محاسبه کن</button>
+        <p class="form-note">فرمت زمان: دقیقه:ثانیه (mm:ss) — مثلاً برای ۲۵ دقیقه و ۳۰ ثانیه، عدد ۲۵ رو توی دقیقه و ۳۰ رو توی ثانیه بنویس.</p>
+      </form>
+
+      <div class="pace-results" id="pace-results" hidden>
+        <div class="section-head" style="margin-bottom:24px;">
+          <h2 style="font-size:1.4rem;">پیش‌بینی زمان</h2>
+        </div>
+        <div class="pace-results-grid" id="pace-results-grid"></div>
+        <p class="pace-disclaimer">این فقط یه تخمینه، نه یه قول قطعی — عوامل زیادی مثل شرایط آب‌وهوا و برنامه تمرینی روی نتیجه واقعی تأثیر می‌ذارن.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
   (function () {
-    var DISTANCES = [
-      { km: 5, label: '۵ کیلومتر' },
-      { km: 10, label: '۱۰ کیلومتر' },
-      { km: 21.0975, label: 'نیم‌ماراتن' },
-      { km: 42.195, label: 'ماراتن' }
-    ];
-
     function formatTime(totalSeconds) {
       var s = Math.max(0, Math.round(totalSeconds));
       var h = Math.floor(s / 3600);
@@ -68,34 +107,127 @@ description: پیش‌بینی زمان مسابقه‌ات توی فاصله‌
       return h > 0 ? (h + ':' + mm + ':' + ss) : (mm + ':' + ss);
     }
 
+    function formatPace(secondsPerKm) {
+      var s = Math.max(0, Math.round(secondsPerKm));
+      var m = Math.floor(s / 60);
+      var sec = s % 60;
+      return m + ':' + String(sec).padStart(2, '0');
+    }
+
+    function formatDistance(km) {
+      var rounded = Math.round(km * 100) / 100;
+      return rounded + ' کیلومتر';
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
+
+      /* ---------- tab switching ---------- */
+      var tabButtons = document.querySelectorAll('.pace-tab-btn');
+      var panes = {
+        convert: document.getElementById('tab-convert'),
+        predict: document.getElementById('tab-predict')
+      };
+      tabButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          tabButtons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          var target = btn.getAttribute('data-tab');
+          Object.keys(panes).forEach(function (key) {
+            panes[key].hidden = key !== target;
+          });
+        });
+      });
+
+      /* ---------- tab 1: convert pace / time / distance ---------- */
+      var convertForm = document.getElementById('convert-form');
+      var convertResults = document.getElementById('convert-results');
+      var convertGrid = document.getElementById('convert-results-grid');
+
+      function numVal(id) {
+        var el = document.getElementById(id);
+        var v = el ? parseFloat(el.value) : NaN;
+        return isNaN(v) ? 0 : v;
+      }
+
+      if (convertForm) {
+        convertForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          var distanceInput = document.getElementById('conv-distance').value;
+          var distance = distanceInput ? parseFloat(distanceInput) : null;
+          if (distance !== null && (isNaN(distance) || distance <= 0)) distance = null;
+
+          var totalTime = numVal('conv-hours') * 3600 + numVal('conv-minutes') * 60 + numVal('conv-seconds');
+          if (totalTime <= 0) totalTime = null;
+
+          var pace = numVal('conv-pace-minutes') * 60 + numVal('conv-pace-seconds');
+          if (pace <= 0) pace = null;
+
+          var filledCount = [distance, totalTime, pace].filter(function (v) { return v !== null; }).length;
+          if (filledCount < 2) {
+            alert('لطفاً حداقل دوتا از سه مقدار (فاصله، زمان کل، پیس) رو پر کن.');
+            return;
+          }
+
+          if (distance !== null && totalTime !== null) {
+            pace = totalTime / distance;
+          } else if (distance !== null && pace !== null) {
+            totalTime = distance * pace;
+          } else {
+            distance = totalTime / pace;
+          }
+
+          convertGrid.innerHTML = '';
+          var items = [
+            { label: 'فاصله', value: formatDistance(distance) },
+            { label: 'زمان کل', value: formatTime(totalTime) },
+            { label: 'پیس (هر کیلومتر)', value: formatPace(pace) }
+          ];
+          items.forEach(function (item) {
+            var card = document.createElement('div');
+            card.className = 'pace-result-card';
+            card.innerHTML = '<span class="dist-label">' + item.label + '</span><span class="dist-time mono">' + item.value + '</span>';
+            convertGrid.appendChild(card);
+          });
+          convertResults.hidden = false;
+        });
+      }
+
+      /* ---------- tab 2: race time prediction (Riegel formula) ---------- */
+      var DISTANCES = [
+        { km: 5, label: '۵ کیلومتر' },
+        { km: 10, label: '۱۰ کیلومتر' },
+        { km: 21.0975, label: 'نیم‌ماراتن' },
+        { km: 42.195, label: 'ماراتن' }
+      ];
+
       var form = document.getElementById('pace-form');
       var resultsWrap = document.getElementById('pace-results');
       var grid = document.getElementById('pace-results-grid');
 
-      if (!form) return;
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var d1 = parseFloat(document.getElementById('pace-distance').value);
+          var minutes = parseFloat(document.getElementById('pace-minutes').value) || 0;
+          var seconds = parseFloat(document.getElementById('pace-seconds').value) || 0;
+          var t1 = minutes * 60 + seconds;
 
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var d1 = parseFloat(document.getElementById('pace-distance').value);
-        var minutes = parseFloat(document.getElementById('pace-minutes').value) || 0;
-        var seconds = parseFloat(document.getElementById('pace-seconds').value) || 0;
-        var t1 = minutes * 60 + seconds;
+          if (!d1 || t1 <= 0) return;
 
-        if (!d1 || t1 <= 0) return;
+          grid.innerHTML = '';
+          DISTANCES.forEach(function (d) {
+            if (Math.abs(d.km - d1) < 0.001) return;
+            var t2 = t1 * Math.pow(d.km / d1, 1.06);
+            var card = document.createElement('div');
+            card.className = 'pace-result-card';
+            card.innerHTML = '<span class="dist-label">' + d.label + '</span><span class="dist-time mono">' + formatTime(t2) + '</span>';
+            grid.appendChild(card);
+          });
 
-        grid.innerHTML = '';
-        DISTANCES.forEach(function (d) {
-          if (Math.abs(d.km - d1) < 0.001) return;
-          var t2 = t1 * Math.pow(d.km / d1, 1.06);
-          var card = document.createElement('div');
-          card.className = 'pace-result-card';
-          card.innerHTML = '<span class="dist-label">' + d.label + '</span><span class="dist-time mono">' + formatTime(t2) + '</span>';
-          grid.appendChild(card);
+          resultsWrap.hidden = false;
         });
-
-        resultsWrap.hidden = false;
-      });
+      }
     });
   })();
 </script>
