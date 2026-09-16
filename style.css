@@ -371,7 +371,7 @@ section { padding: 74px 0; }
 }
 @media (max-width: 700px) { .form-grid { grid-template-columns: 1fr; } }
 
-.field { display: flex; flex-direction: column; gap: 8px; }
+.field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .field.full { grid-column: 1 / -1; }
 .field label { font-size: 0.88rem; color: var(--text-muted); }
 .field input, .field select, .field textarea {
@@ -451,7 +451,8 @@ section { padding: 74px 0; }
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: rgba(232,18,26,0.08);
+  background: rgba(232,18,26,0.1);
+  border: 1.5px solid rgba(232,18,26,0.25);
   color: var(--accent-sunrise);
   display: flex;
   align-items: center;
@@ -461,6 +462,8 @@ section { padding: 74px 0; }
 .pace-tool-intro p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; }
 @media (max-width: 560px) {
   .pace-tool-intro { flex-direction: column; align-items: center; text-align: center; }
+  .pace-tool-icon { width: 52px; height: 52px; }
+  .pace-tool-icon svg { width: 26px; height: 26px; }
 }
 
 .pace-results { margin-top: 40px; }
