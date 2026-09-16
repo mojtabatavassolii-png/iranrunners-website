@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
-{% if page.nav == "home" and site.data.home.hero_photos.first.file %}
-<link rel="preload" as="image" href="{{ site.data.home.hero_photos.first.file | relative_url }}">
+{% if page.nav == "home" and site.data.hero.first.file %}
+<link rel="preload" as="image" href="{{ site.data.hero.first.file | relative_url }}">
 {% endif %}
 </head>
 <body>
