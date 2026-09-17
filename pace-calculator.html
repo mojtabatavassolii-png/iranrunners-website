@@ -89,10 +89,15 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
           <div class="field full">
             <label for="pace-distance">مسافت *</label>
             <select id="pace-distance" name="pace-distance" required>
+              <option value="3">۳ کیلومتر</option>
               <option value="5">۵ کیلومتر</option>
               <option value="10">۱۰ کیلومتر</option>
+              <option value="15">۱۵ کیلومتر</option>
               <option value="21.0975">نیم‌ماراتن</option>
               <option value="42.195">ماراتن</option>
+              <option value="50">۵۰ کیلومتر</option>
+              <option value="100">۱۰۰ کیلومتر</option>
+              <option value="170">UTMB (~۱۷۰ کیلومتر)</option>
             </select>
           </div>
           <div class="field full">
@@ -100,7 +105,7 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
             <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:10px;">
               <input type="number" id="pace-hours" name="pace-hours" min="0" placeholder="ساعت">
               <input type="number" id="pace-minutes" name="pace-minutes" min="0" max="59" required placeholder="دقیقه">
-              <input type="number" id="pace-seconds" name="pace-seconds" min="0" max="59" required placeholder="ثانیه">
+              <input type="number" id="pace-seconds" name="pace-seconds" min="0" max="59" placeholder="ثانیه">
             </div>
           </div>
         </div>
@@ -219,10 +224,15 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
 
       /* ---------- tab 2: race time prediction (Riegel formula) ---------- */
       var DISTANCES = [
+        { km: 3, label: '۳ کیلومتر' },
         { km: 5, label: '۵ کیلومتر' },
         { km: 10, label: '۱۰ کیلومتر' },
+        { km: 15, label: '۱۵ کیلومتر' },
         { km: 21.0975, label: 'نیم‌ماراتن' },
-        { km: 42.195, label: 'ماراتن' }
+        { km: 42.195, label: 'ماراتن' },
+        { km: 50, label: '۵۰ کیلومتر' },
+        { km: 100, label: '۱۰۰ کیلومتر' },
+        { km: 170, label: 'UTMB (~۱۷۰ کیلومتر)' }
       ];
 
       var form = document.getElementById('pace-form');
