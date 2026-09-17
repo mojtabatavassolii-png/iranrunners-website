@@ -301,6 +301,39 @@ content:
         type: string
 
   # ===========================================================
+  # محاسبه‌گر پیس
+  # ===========================================================
+  - name: pace_calculator
+    label: "محاسبه‌گر پیس"
+    type: file
+    path: _data/pace_calculator.yml
+    fields:
+      - name: hero_lead
+        label: "متن زیر عنوان اصلی (بالای صفحه)"
+        type: text
+        required: true
+
+      - name: convert_heading
+        label: "عنوان تب «تبدیل پیس»"
+        type: string
+        required: true
+
+      - name: convert_description
+        label: "توضیح تب «تبدیل پیس»"
+        type: text
+        required: true
+
+      - name: predict_heading
+        label: "عنوان تب «پیش‌بینی مسابقه»"
+        type: string
+        required: true
+
+      - name: predict_description
+        label: "توضیح تب «پیش‌بینی مسابقه»"
+        type: text
+        required: true
+
+  # ===========================================================
   # درباره ما
   # ===========================================================
   - name: about
