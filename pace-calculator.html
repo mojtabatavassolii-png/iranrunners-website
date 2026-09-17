@@ -87,7 +87,7 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
         <p class="form-sub">فاصله‌ای که دویدی و زمانش رو مشخص کن.</p>
         <div class="form-grid">
           <div class="field full">
-            <label for="pace-distance">فاصله *</label>
+            <label for="pace-distance">مسافت *</label>
             <select id="pace-distance" name="pace-distance" required>
               <option value="5">۵ کیلومتر</option>
               <option value="10">۱۰ کیلومتر</option>
@@ -95,17 +95,17 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
               <option value="42.195">ماراتن</option>
             </select>
           </div>
-          <div class="field">
-            <label for="pace-minutes">دقیقه *</label>
-            <input type="number" id="pace-minutes" name="pace-minutes" min="0" required>
-          </div>
-          <div class="field">
-            <label for="pace-seconds">ثانیه *</label>
-            <input type="number" id="pace-seconds" name="pace-seconds" min="0" max="59" required>
+          <div class="field full">
+            <label>زمان *</label>
+            <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:10px;">
+              <input type="number" id="pace-hours" name="pace-hours" min="0" placeholder="ساعت">
+              <input type="number" id="pace-minutes" name="pace-minutes" min="0" max="59" required placeholder="دقیقه">
+              <input type="number" id="pace-seconds" name="pace-seconds" min="0" max="59" required placeholder="ثانیه">
+            </div>
           </div>
         </div>
         <button type="submit" class="submit-btn">محاسبه کن</button>
-        <p class="form-note">فرمت زمان: دقیقه:ثانیه (mm:ss) — مثلاً برای ۲۵ دقیقه و ۳۰ ثانیه، عدد ۲۵ رو توی دقیقه و ۳۰ رو توی ثانیه بنویس.</p>
+        <p class="form-note">فرمت زمان: ساعت:دقیقه:ثانیه — برای دویدن‌های زیر یک ساعت، فیلد ساعت رو خالی بذار.</p>
       </form>
 
       <div class="pace-results" id="pace-results" hidden>
@@ -233,9 +233,10 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           var d1 = parseFloat(document.getElementById('pace-distance').value);
+          var hours = parseFloat(document.getElementById('pace-hours').value) || 0;
           var minutes = parseFloat(document.getElementById('pace-minutes').value) || 0;
           var seconds = parseFloat(document.getElementById('pace-seconds').value) || 0;
-          var t1 = minutes * 60 + seconds;
+          var t1 = hours * 3600 + minutes * 60 + seconds;
 
           if (!d1 || t1 <= 0) return;
 
