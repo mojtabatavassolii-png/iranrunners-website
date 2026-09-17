@@ -492,7 +492,7 @@ section { padding: 74px 0; }
   justify-content: center;
 }
 .pace-tool-intro h2 { margin: 0 0 8px; font-size: 1.25rem; font-weight: 800; }
-.pace-tool-intro p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; }
+.pace-tool-intro p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; text-align: justify; text-align-last: right; }
 @media (max-width: 560px) {
   .pace-tool-intro { flex-direction: column; align-items: center; text-align: center; }
   .pace-tool-icon { width: 52px; height: 52px; }
@@ -994,7 +994,8 @@ footer.site-footer {
 
 /* ---------- about text justify ---------- */
 .about-text-section p,
-.coach-bio {
+.coach-bio,
+.pace-hero-lead {
   text-align: justify;
   text-align-last: right;
 }
