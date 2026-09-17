@@ -993,7 +993,8 @@ footer.site-footer {
 }
 
 /* ---------- about text justify ---------- */
-.about-text-section p {
+.about-text-section p,
+.coach-bio {
   text-align: justify;
   text-align-last: right;
 }
