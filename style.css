@@ -102,8 +102,19 @@ nav.main-nav {
   color: var(--text-muted);
 }
 
-nav.main-nav a { transition: color 0.2s ease; padding: 4px 2px; }
+nav.main-nav a { position: relative; transition: color 0.2s ease; padding: 4px 2px; }
+nav.main-nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--accent-sunrise);
+  transition: width 0.25s ease;
+}
 nav.main-nav a:hover, nav.main-nav a:focus-visible { color: var(--accent-sunrise); }
+nav.main-nav a:hover::after, nav.main-nav a:focus-visible::after { width: 100%; }
 nav.main-nav a.active { color: var(--text-primary); }
 
 .nav-cta {
@@ -204,9 +215,13 @@ nav.main-nav a.active { color: var(--text-primary); }
   border-radius: 999px;
   font-weight: 700;
   display: inline-block;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-primary:hover { background: #ff4141; transform: translateY(-2px); }
+.btn-primary:hover, .btn-primary:active {
+  background: #ff4141;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -8px rgba(232,18,26,0.55);
+}
 
 .btn-ghost {
   border: 1px solid var(--line-hair);
@@ -215,9 +230,13 @@ nav.main-nav a.active { color: var(--text-primary); }
   border-radius: 999px;
   font-weight: 600;
   display: inline-block;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
-.btn-ghost:hover { border-color: var(--accent-teal-bright); background: rgba(17,17,17,0.05); }
+.btn-ghost:hover, .btn-ghost:active {
+  border-color: var(--accent-teal-bright);
+  background: rgba(17,17,17,0.06);
+  transform: translateY(-2px);
+}
 
 /* ---------- stat strip ---------- */
 .stat-strip {
@@ -309,9 +328,13 @@ section { padding: 74px 0; }
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
-.class-card:hover { transform: translateY(-4px); border-color: rgba(232,18,26,0.35); }
+.class-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(232,18,26,0.4);
+  box-shadow: var(--shadow-soft);
+}
 .class-card .level-tag {
   align-self: flex-start;
   font-family: "JetBrains Mono", monospace;
@@ -348,9 +371,13 @@ section { padding: 74px 0; }
   background: var(--accent-sunrise);
   padding: 8px 16px;
   border-radius: 999px;
-  transition: background 0.2s ease;
+  display: inline-block;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
-.class-card a.enroll:hover { background: #ff4141; }
+.class-card a.enroll:hover, .class-card a.enroll:active {
+  background: #ff4141;
+  transform: scale(1.06);
+}
 
 /* ---------- registration form ---------- */
 .form-panel {
