@@ -36,22 +36,21 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
       </div>
       <form class="form-panel" id="convert-form">
         <h3>تبدیل پیس، زمان و فاصله</h3>
-        <p class="form-sub">دقیقاً دوتا از این سه مقدار رو پر کن — سومی خودش محاسبه می‌شه.</p>
+        <p class="form-sub">اول واحد اندازه‌گیری رو انتخاب کن، بعد دقیقاً دوتا از این سه مقدار رو پر کن — سومی خودش محاسبه می‌شه.</p>
         <div class="form-grid">
           <div class="field full">
-            <label for="conv-distance">فاصله (کیلومتر)</label>
+            <label for="conv-unit">واحد اندازه‌گیری</label>
+            <select id="conv-unit">
+              <option value="km">کیلومتر</option>
+              <option value="mile">مایل</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="conv-distance" id="conv-distance-label">فاصله (کیلومتر)</label>
             <input type="number" id="conv-distance" min="0" step="any" placeholder="مثلاً 10">
             <select id="conv-distance-preset">
               <option value="">یا یکی از دسته‌های اصلی رو انتخاب کن…</option>
-              <option value="3">۳ کیلومتر</option>
-              <option value="5">۵ کیلومتر</option>
-              <option value="10">۱۰ کیلومتر</option>
-              <option value="15">۱۵ کیلومتر</option>
-              <option value="21.0975">نیم‌ماراتن</option>
-              <option value="42.195">ماراتن</option>
-              <option value="50">۵۰ کیلومتر</option>
-              <option value="100">۱۰۰ کیلومتر</option>
-              <option value="170">UTMB (~۱۷۰ کیلومتر)</option>
             </select>
           </div>
 
@@ -65,7 +64,7 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
           </div>
 
           <div class="field full">
-            <label>پیس (به ازای هر کیلومتر)</label>
+            <label id="conv-pace-label">پیس (به ازای هر کیلومتر)</label>
             <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px;">
               <input type="number" id="conv-pace-minutes" min="0" placeholder="دقیقه">
               <input type="number" id="conv-pace-seconds" min="0" max="59" placeholder="ثانیه">
@@ -73,7 +72,7 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
           </div>
         </div>
         <button type="submit" class="submit-btn">محاسبه کن</button>
-        <p class="form-note">مثلاً اگه فاصله و زمان کل رو پر کنی، پیس هر کیلومتر خودش حساب می‌شه.</p>
+        <p class="form-note">مثلاً اگه فاصله و زمان کل رو پر کنی، پیس بر اساس واحد انتخابی خودش حساب می‌شه.</p>
       </form>
 
       <div class="pace-results" id="convert-results" hidden>
@@ -150,9 +149,42 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
       return m + ':' + String(sec).padStart(2, '0');
     }
 
-    function formatDistance(km) {
-      var rounded = Math.round(km * 100) / 100;
-      return rounded + ' کیلومتر';
+    function unitWord(unit) {
+      return unit === 'mile' ? 'مایل' : 'کیلومتر';
+    }
+
+    function formatDistance(value, unit) {
+      var rounded = Math.round(value * 100) / 100;
+      return rounded + ' ' + unitWord(unit);
+    }
+
+    var KM_TO_MI = 0.621371;
+    var RACE_PRESETS = [
+      { km: 3, key: 'plain' },
+      { km: 5, key: 'plain' },
+      { km: 10, key: 'plain' },
+      { km: 15, key: 'plain' },
+      { km: 21.0975, key: 'half' },
+      { km: 42.195, key: 'marathon' },
+      { km: 50, key: 'plain' },
+      { km: 100, key: 'plain' },
+      { km: 170, key: 'utmb' }
+    ];
+
+    function presetValue(preset, unit) {
+      var val = unit === 'mile' ? preset.km * KM_TO_MI : preset.km;
+      return Math.round(val * 10000) / 10000;
+    }
+
+    function presetLabel(preset, unit) {
+      if (preset.key === 'half') return 'نیم‌ماراتن';
+      if (preset.key === 'marathon') return 'ماراتن';
+      if (preset.key === 'utmb') {
+        var utmbVal = unit === 'mile' ? Math.round(preset.km * KM_TO_MI) : Math.round(preset.km);
+        return 'UTMB (~' + utmbVal + ' ' + unitWord(unit) + ')';
+      }
+      var displayVal = Math.round(presetValue(preset, unit) * 100) / 100;
+      return displayVal + ' ' + unitWord(unit);
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -185,7 +217,38 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
         return isNaN(v) ? 0 : v;
       }
 
+      var unitSelect = document.getElementById('conv-unit');
+      var distanceLabel = document.getElementById('conv-distance-label');
+      var paceLabel = document.getElementById('conv-pace-label');
       var distancePreset = document.getElementById('conv-distance-preset');
+
+      function rebuildDistancePresets(unit) {
+        distancePreset.innerHTML = '';
+        var placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'یا یکی از دسته‌های اصلی رو انتخاب کن…';
+        distancePreset.appendChild(placeholder);
+        RACE_PRESETS.forEach(function (preset) {
+          var opt = document.createElement('option');
+          opt.value = presetValue(preset, unit);
+          opt.textContent = presetLabel(preset, unit);
+          distancePreset.appendChild(opt);
+        });
+      }
+
+      function applyUnit(unit) {
+        distanceLabel.textContent = 'فاصله (' + unitWord(unit) + ')';
+        paceLabel.textContent = 'پیس (به ازای هر ' + unitWord(unit) + ')';
+        rebuildDistancePresets(unit);
+      }
+
+      if (unitSelect) {
+        applyUnit(unitSelect.value);
+        unitSelect.addEventListener('change', function () {
+          applyUnit(unitSelect.value);
+        });
+      }
+
       if (distancePreset) {
         distancePreset.addEventListener('change', function () {
           if (distancePreset.value) {
@@ -222,16 +285,18 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
             distance = totalTime / pace;
           }
 
+          var unit = unitSelect ? unitSelect.value : 'km';
           convertGrid.innerHTML = '';
           var items = [
-            { label: 'فاصله', value: formatDistance(distance) },
-            { label: 'زمان کل', value: formatTime(totalTime) },
-            { label: 'پیس (هر کیلومتر)', value: formatPace(pace) }
+            { label: 'فاصله', value: formatDistance(distance, unit), mono: false },
+            { label: 'زمان کل', value: formatTime(totalTime), mono: true },
+            { label: 'پیس (هر ' + unitWord(unit) + ')', value: formatPace(pace), mono: true }
           ];
           items.forEach(function (item) {
             var card = document.createElement('div');
             card.className = 'pace-result-card';
-            card.innerHTML = '<span class="dist-label">' + item.label + '</span><span class="dist-time mono">' + item.value + '</span>';
+            var valueClass = item.mono ? 'dist-time mono' : 'dist-time';
+            card.innerHTML = '<span class="dist-label">' + item.label + '</span><span class="' + valueClass + '">' + item.value + '</span>';
             convertGrid.appendChild(card);
           });
           convertResults.hidden = false;
