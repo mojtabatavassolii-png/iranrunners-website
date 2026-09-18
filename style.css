@@ -939,6 +939,13 @@ footer.site-footer {
   max-width: 150px;
   object-fit: contain;
 }
+.partner-logo.featured {
+  height: 68px;
+}
+.partner-logo.featured img {
+  height: 68px;
+  max-width: 220px;
+}
 .partner-logo.text-only {
   font-family: "JetBrains Mono", monospace;
   color: #ffffff;
@@ -952,6 +959,8 @@ footer.site-footer {
   .partners-grid { gap: 32px; }
   .partner-logo, .partner-logo img { height: 32px; }
   .partner-logo img { max-width: 110px; }
+  .partner-logo.featured, .partner-logo.featured img { height: 48px; }
+  .partner-logo.featured img { max-width: 150px; }
 }
 
 /* ---------- team grid (about page) ---------- */

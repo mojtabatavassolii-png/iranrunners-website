@@ -8,6 +8,7 @@ partner_list:
   - name: "TBS Power Solutions"
     logo: /assets/partners/tbs-power-solutions-white.png
     link: ""
+    featured: true
   - name: "KOOP"
     logo: /assets/partners/koop-white.png
     link: ""
