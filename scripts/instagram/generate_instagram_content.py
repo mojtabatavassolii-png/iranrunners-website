@@ -17,6 +17,7 @@ See sample_article.json for the expected input shape.
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
@@ -29,18 +30,55 @@ BRAND_BLACK = "#111111"
 BRAND_MUTED = "#555555"
 BRAND_FAINT = "#8a8a8a"
 
+PERSIAN_RE = re.compile(r"[؀-ۿ]")
+
+# Boilerplate strings the tool itself writes (not the user's own title/
+# heading/body text, which stays exactly as typed). Direction/alignment
+# for these follows the detected language via CSS logical properties, so
+# no per-string left/right flipping is needed here.
+STRINGS = {
+    "fa": {
+        "swipe_hint": "ورق بزنید",
+        "counter": "{i} از {n}",
+        "cta_text": "برای دیدن متن کامل مقاله<br>به سایت ایران رانرز برید",
+    },
+    "en": {
+        "swipe_hint": "Swipe to see more",
+        "counter": "{i} of {n}",
+        "cta_text": "Read the full article<br>on the Iran Runners website",
+    },
+}
+
+
+def detect_lang(*texts):
+    """fa if any Persian/Arabic-script character appears anywhere in the
+    combined text, else en. Biased toward fa so a Persian article with an
+    occasional English loanword (e.g. "GPS") doesn't flip the whole set."""
+    combined = " ".join(t for t in texts if t)
+    return "fa" if PERSIAN_RE.search(combined) else "en"
+
+
+def font_family(lang):
+    return "Baloo Bhaijaan 2" if lang == "fa" else "Baloo 2"
+
+
 FONT_LINK = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">'
     '<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;700;800'
+    '&family=Baloo+2:wght@400;700;800'
     '&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">'
 )
 
-BASE_CSS = f"""
+
+def base_css(lang):
+    direction = "rtl" if lang == "fa" else "ltr"
+    family = font_family(lang)
+    return f"""
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 html, body {{
   width: 100%; height: 100%;
-  font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif;
-  direction: rtl;
+  font-family: "{family}", "Tahoma", sans-serif;
+  direction: {direction};
   -webkit-font-smoothing: antialiased;
 }}
 .mono {{ font-family: "JetBrains Mono", monospace; direction: ltr; display: inline-block; letter-spacing: -0.02em; }}
@@ -59,19 +97,14 @@ html, body {{
   padding: 10px 28px; border-radius: 999px;
   white-space: nowrap;
 }}
-.logo-badge {{
-  position: absolute; bottom: 44px; left: 44px;
-  display: flex; align-items: center; gap: 14px;
-}}
-.logo-badge img {{ height: 56px; width: auto; }}
 .dots {{ display: flex; gap: 12px; align-items: center; }}
 .dot {{ width: 14px; height: 14px; border-radius: 50%; background: {BRAND_FAINT}; }}
 .dot.active {{ background: {BRAND_RED}; width: 34px; border-radius: 8px; }}
 .accent-bar {{ width: 110px; height: 8px; border-radius: 4px; background: {BRAND_RED}; }}
 .point-body-list {{ list-style: none; display: flex; flex-direction: column; gap: 20px; }}
-.point-body-list li {{ position: relative; padding-right: 32px; }}
+.point-body-list li {{ position: relative; padding-inline-start: 32px; }}
 .point-body-list li::before {{
-  content: ""; position: absolute; right: 0; top: 0.55em;
+  content: ""; position: absolute; inset-inline-start: 0; top: 0.55em;
   width: 12px; height: 12px; border-radius: 50%; background: {BRAND_RED};
 }}
 """
@@ -89,13 +122,14 @@ def _render(html: str, width: int, height: int, out_path: Path, page, tmp_dir: P
     tmp_html.unlink()
 
 
-def cover_slide(w, h, title, category, is_story):
+def cover_slide(w, h, title, category, is_story, lang):
     img_h_ratio = "78%" if is_story else "100%"
     title_size = "76px" if is_story else "64px"
     top_pad = "150px" if is_story else "56px"
     bottom_pad = "210px" if is_story else "64px"
+    swipe_hint = STRINGS[lang]["swipe_hint"]
     return f"""<!DOCTYPE html><html><head><meta charset="utf-8">{FONT_LINK}
-    <style>{BASE_CSS}
+    <style>{base_css(lang)}
     .cover-photo {{ position:absolute; inset:0; width:100%; height:{img_h_ratio};
       background-size: cover; background-position: center; }}
     .cover-overlay {{ position:absolute; inset:0; height:{img_h_ratio};
@@ -118,12 +152,12 @@ def cover_slide(w, h, title, category, is_story):
       <div class="cover-bottom">
         <div class="accent-bar"></div>
         <div class="cover-title">{title}</div>
-        <div class="swipe-hint">برای ادامه بکش &#8592;</div>
+        <div class="swipe-hint">{swipe_hint} &#8592;</div>
       </div>
     </div></body></html>"""
 
 
-def point_slide(w, h, index, total, heading, body, logo_path, is_story):
+def point_slide(w, h, index, total, heading, body, logo_path, is_story, lang):
     heading_size = "62px" if is_story else "54px"
     body_size = "34px" if is_story else "31px"
     pad_top = "170px" if is_story else "72px"
@@ -131,9 +165,10 @@ def point_slide(w, h, index, total, heading, body, logo_path, is_story):
     footer_bottom = "110px" if is_story else "44px"
     body_lines = [line.strip() for line in body.split("\n") if line.strip()]
     body_html = "".join(f"<li>{line}</li>" for line in body_lines)
-    header_html = f'<div class="point-header"><span class="pill" style="align-self:flex-start;">{index} از {total}</span></div>' if total > 1 else ""
+    counter = STRINGS[lang]["counter"].format(i=index, n=total)
+    header_html = f'<div class="point-header"><span class="pill" style="align-self:flex-start;">{counter}</span></div>' if total > 1 else ""
     return f"""<!DOCTYPE html><html><head><meta charset="utf-8">{FONT_LINK}
-    <style>{BASE_CSS}
+    <style>{base_css(lang)}
     .point-wrap {{ padding: {pad_top} 72px {pad_bottom}; display:flex; flex-direction:column; flex: 1; }}
     .point-header {{ flex-shrink: 0; }}
     .point-content {{ flex: 1; display:flex; flex-direction:column; justify-content:center; gap: 32px; }}
@@ -159,10 +194,11 @@ def point_slide(w, h, index, total, heading, body, logo_path, is_story):
     </div></body></html>"""
 
 
-def cta_slide(w, h, cta_text, article_title, is_story):
+def cta_slide(w, h, cta_text, article_title, is_story, lang):
     cta_size = "56px" if is_story else "48px"
+    cta_main_text = STRINGS[lang]["cta_text"]
     return f"""<!DOCTYPE html><html><head><meta charset="utf-8">{FONT_LINK}
-    <style>{BASE_CSS}
+    <style>{base_css(lang)}
     .cta-slide {{ background:{BRAND_RED}; align-items:center; justify-content:center; text-align:center; padding: 80px; gap: 44px; }}
     .cta-text {{ color:#ffffff; font-weight:800; font-size:{cta_size}; line-height:1.5; }}
     .cta-sub {{ color:rgba(255,255,255,0.85); font-weight:400; font-size:28px; line-height:1.8; max-width: 80%; }}
@@ -170,7 +206,7 @@ def cta_slide(w, h, cta_text, article_title, is_story):
     </style></head>
     <body><div class="slide cta-slide" style="--w:{w}px;--h:{h}px;">
       <img src="file://{{LOGO}}" style="height:90px;width:auto;">
-      <div class="cta-text">برای دیدن متن کامل مقاله<br>به سایت ایران رانرز برید</div>
+      <div class="cta-text">{cta_main_text}</div>
       <div class="cta-sub">{article_title}</div>
       <div class="cta-url mono">iranrunners.com</div>
     </div></body></html>"""
@@ -183,13 +219,19 @@ def build_slides(article, fmt):
     logo_mark_white_path = str(REPO_ROOT / "assets" / "logo-mark-white.png")
     img_path = str(REPO_ROOT / article["image"].lstrip("/"))
 
+    lang = detect_lang(
+        article["title"], article["category"], article.get("cta_text", ""),
+        *[p["heading"] for p in article["points"]],
+        *[p["body"] for p in article["points"]],
+    )
+
     slides = []
-    slides.append(("00-cover", cover_slide(w, h, article["title"], article["category"], is_story)
+    slides.append(("00-cover", cover_slide(w, h, article["title"], article["category"], is_story, lang)
                    .replace("{IMG}", img_path).replace("{LOGO_WHITE}", logo_mark_white_path)))
     total = len(article["points"])
     for i, p in enumerate(article["points"], start=1):
-        slides.append((f"{i:02d}-point", point_slide(w, h, i, total, p["heading"], p["body"], logo_mark_path, is_story)))
-    slides.append((f"{total+1:02d}-cta", cta_slide(w, h, article.get("cta_text", ""), article["title"], is_story).replace("{LOGO}", logo_mark_white_path)))
+        slides.append((f"{i:02d}-point", point_slide(w, h, i, total, p["heading"], p["body"], logo_mark_path, is_story, lang)))
+    slides.append((f"{total+1:02d}-cta", cta_slide(w, h, article.get("cta_text", ""), article["title"], is_story, lang).replace("{LOGO}", logo_mark_white_path)))
     return w, h, slides
 
 
