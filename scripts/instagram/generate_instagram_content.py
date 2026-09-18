@@ -102,7 +102,7 @@ def cover_slide(w, h, title, category, is_story):
     .cover-title {{ color:#ffffff; font-weight:800; font-size:{title_size}; line-height:1.35; margin-top:26px; }}
     .swipe-hint {{ color:rgba(255,255,255,0.75); font-size:26px; font-weight:600; margin-top:28px; display:flex; align-items:center; gap:10px; }}
     </style></head>
-    <body><div class="slide" style="--w:{w}px;--h:{h}px;">
+    <body><div class="slide" style="--w:{w}px;--h:{h}px;background:{BRAND_BLACK};">
       <div class="cover-photo" style="background-image:url('file://{{IMG}}');"></div>
       <div class="cover-overlay"></div>
       <div class="cover-base"></div>
@@ -163,7 +163,7 @@ def cta_slide(w, h, cta_text, article_title, is_story):
     .cta-url {{ background:#ffffff; color:{BRAND_RED}; font-weight:700; font-size:30px; padding:18px 44px; border-radius:999px; }}
     </style></head>
     <body><div class="slide cta-slide" style="--w:{w}px;--h:{h}px;">
-      <img src="file://{{LOGO}}" style="height:120px;width:auto;filter:brightness(0) invert(1);">
+      <img src="file://{{LOGO}}" style="height:120px;width:auto;">
       <div class="cta-text">برای دیدن متن کامل مقاله<br>به سایت ایران رانرز برید</div>
       <div class="cta-sub">{article_title}</div>
       <div class="cta-url mono">iranrunners.com</div>
@@ -174,6 +174,7 @@ def build_slides(article, fmt):
     w, h = (1080, 1080) if fmt == "post" else (1080, 1920)
     is_story = fmt == "story"
     logo_path = str(REPO_ROOT / "assets" / "logo-transparent.png")
+    logo_white_path = str(REPO_ROOT / "assets" / "logo-white.png")
     img_path = str(REPO_ROOT / article["image"].lstrip("/"))
 
     slides = []
@@ -181,7 +182,7 @@ def build_slides(article, fmt):
     total = len(article["points"])
     for i, p in enumerate(article["points"], start=1):
         slides.append((f"{i:02d}-point", point_slide(w, h, i, total, p["heading"], p["body"], logo_path, is_story)))
-    slides.append((f"{total+1:02d}-cta", cta_slide(w, h, article.get("cta_text", ""), article["title"], is_story).replace("{LOGO}", logo_path)))
+    slides.append((f"{total+1:02d}-cta", cta_slide(w, h, article.get("cta_text", ""), article["title"], is_story).replace("{LOGO}", logo_white_path)))
     return w, h, slides
 
 
