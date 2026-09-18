@@ -31,7 +31,7 @@ BRAND_FAINT = "#8a8a8a"
 
 FONT_LINK = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">'
-    '<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900'
+    '<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;700;800'
     '&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">'
 )
 
@@ -39,7 +39,7 @@ BASE_CSS = f"""
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 html, body {{
   width: 100%; height: 100%;
-  font-family: "Vazirmatn", "Tahoma", sans-serif;
+  font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif;
   direction: rtl;
   -webkit-font-smoothing: antialiased;
 }}
@@ -99,7 +99,7 @@ def cover_slide(w, h, title, category, is_story):
     .cover-top {{ position:relative; padding: {top_pad} 56px 0; display:flex; justify-content:space-between; align-items:flex-start; z-index:2; }}
     .brand-lockup {{ color:#ffffff; font-weight:700; font-size:30px; letter-spacing:0.02em; }}
     .cover-bottom {{ position:absolute; bottom: 0; right:0; left:0; padding: 0 56px {bottom_pad}; z-index:2; }}
-    .cover-title {{ color:#ffffff; font-weight:900; font-size:{title_size}; line-height:1.35; margin-top:26px; }}
+    .cover-title {{ color:#ffffff; font-weight:800; font-size:{title_size}; line-height:1.35; margin-top:26px; }}
     .swipe-hint {{ color:rgba(255,255,255,0.75); font-size:26px; font-weight:600; margin-top:28px; display:flex; align-items:center; gap:10px; }}
     </style></head>
     <body><div class="slide" style="--w:{w}px;--h:{h}px;">
@@ -129,8 +129,8 @@ def point_slide(w, h, index, total, heading, body, logo_path, is_story):
     .point-wrap {{ padding: {pad_top} 72px {pad_bottom}; display:flex; flex-direction:column; flex: 1; }}
     .point-header {{ flex-shrink: 0; }}
     .point-content {{ flex: 1; display:flex; flex-direction:column; justify-content:center; gap: 32px; }}
-    .point-heading {{ font-weight:900; font-size:{heading_size}; line-height:1.4; color:{BRAND_BLACK}; }}
-    .point-body {{ font-weight:500; font-size:{body_size}; line-height:1.9; color:{BRAND_MUTED}; }}
+    .point-heading {{ font-weight:800; font-size:{heading_size}; line-height:1.4; color:{BRAND_BLACK}; }}
+    .point-body {{ font-weight:400; font-size:{body_size}; line-height:1.9; color:{BRAND_MUTED}; }}
     .point-footer {{ position:absolute; bottom:{footer_bottom}; right:56px; left:56px; display:flex; justify-content:space-between; align-items:center; }}
     </style></head>
     <body><div class="slide" style="--w:{w}px;--h:{h}px;">
@@ -158,8 +158,8 @@ def cta_slide(w, h, cta_text, article_title, is_story):
     return f"""<!DOCTYPE html><html><head><meta charset="utf-8">{FONT_LINK}
     <style>{BASE_CSS}
     .cta-slide {{ background:{BRAND_RED}; align-items:center; justify-content:center; text-align:center; padding: 80px; gap: 44px; }}
-    .cta-text {{ color:#ffffff; font-weight:900; font-size:{cta_size}; line-height:1.5; }}
-    .cta-sub {{ color:rgba(255,255,255,0.85); font-weight:500; font-size:28px; line-height:1.8; max-width: 80%; }}
+    .cta-text {{ color:#ffffff; font-weight:800; font-size:{cta_size}; line-height:1.5; }}
+    .cta-sub {{ color:rgba(255,255,255,0.85); font-weight:400; font-size:28px; line-height:1.8; max-width: 80%; }}
     .cta-url {{ background:#ffffff; color:{BRAND_RED}; font-weight:700; font-size:30px; padding:18px 44px; border-radius:999px; }}
     </style></head>
     <body><div class="slide cta-slide" style="--w:{w}px;--h:{h}px;">
@@ -198,7 +198,11 @@ def main():
         browser = p.chromium.launch(
             executable_path="/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
             headless=True,
-            args=["--no-sandbox"],
+            # --ignore-certificate-errors: this dev sandbox routes HTTPS through a
+            # proxy with its own CA that Chromium doesn't trust by default, which
+            # silently breaks Google Fonts loading (falls back to a system font)
+            # without this flag. Not needed outside this sandboxed environment.
+            args=["--no-sandbox", "--ignore-certificate-errors"],
         )
         page = browser.new_page()
         for fmt in ("post", "story"):
