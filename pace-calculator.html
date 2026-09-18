@@ -142,8 +142,8 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
       return h > 0 ? (h + ':' + mm + ':' + ss) : (mm + ':' + ss);
     }
 
-    function formatPace(secondsPerKm) {
-      var s = Math.max(0, Math.round(secondsPerKm));
+    function formatPaceValue(secondsPerUnit) {
+      var s = Math.max(0, Math.round(secondsPerUnit));
       var m = Math.floor(s / 60);
       var sec = s % 60;
       return m + ':' + String(sec).padStart(2, '0');
@@ -153,12 +153,32 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
       return unit === 'mile' ? 'مایل' : 'کیلومتر';
     }
 
-    function formatDistance(value, unit) {
-      var rounded = Math.round(value * 100) / 100;
-      return rounded + ' ' + unitWord(unit);
+    function otherUnit(unit) {
+      return unit === 'mile' ? 'km' : 'mile';
     }
 
     var KM_TO_MI = 0.621371;
+    var MI_TO_KM = 1.609344;
+
+    function convertDistance(value, fromUnit) {
+      return fromUnit === 'mile' ? value * MI_TO_KM : value * KM_TO_MI;
+    }
+
+    function convertPace(secondsPerUnit, fromUnit) {
+      return fromUnit === 'mile' ? secondsPerUnit * KM_TO_MI : secondsPerUnit * MI_TO_KM;
+    }
+
+    function formatDistance(value, unit) {
+      var rounded = Math.round(value * 100) / 100;
+      var otherVal = Math.round(convertDistance(value, unit) * 100) / 100;
+      return rounded + ' ' + unitWord(unit) + ' (' + otherVal + ' ' + unitWord(otherUnit(unit)) + ')';
+    }
+
+    function formatPace(secondsPerUnit, unit) {
+      var primary = formatPaceValue(secondsPerUnit);
+      var otherStr = formatPaceValue(convertPace(secondsPerUnit, unit));
+      return primary + ' (' + otherStr + ' در هر ' + unitWord(otherUnit(unit)) + ')';
+    }
     var RACE_PRESETS = [
       { km: 3, key: 'plain' },
       { km: 5, key: 'plain' },
@@ -290,7 +310,7 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
           var items = [
             { label: 'فاصله', value: formatDistance(distance, unit), mono: false },
             { label: 'زمان کل', value: formatTime(totalTime), mono: true },
-            { label: 'پیس (هر ' + unitWord(unit) + ')', value: formatPace(pace), mono: true }
+            { label: 'پیس (هر ' + unitWord(unit) + ')', value: formatPace(pace, unit), mono: false }
           ];
           items.forEach(function (item) {
             var card = document.createElement('div');
