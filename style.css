@@ -843,6 +843,39 @@ footer.site-footer {
   border-radius: 999px;
 }
 
+.article-share {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 0;
+}
+.article-share-label {
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  margin-inline-end: 2px;
+}
+.article-share .share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--line-hair);
+  color: var(--text-muted);
+  background: var(--bg-panel);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.article-share .share-btn:hover {
+  color: var(--accent-sunrise);
+  border-color: rgba(232,18,26,0.35);
+}
+.share-copied-msg {
+  color: var(--accent-sunrise);
+  font-size: 0.85rem;
+}
+
 .article-body {
   max-width: 760px;
   margin: 0 auto;
