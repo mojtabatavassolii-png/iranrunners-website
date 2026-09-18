@@ -346,7 +346,7 @@ section { padding: 74px 0; }
   border-radius: 999px;
 }
 .class-card h3 { margin: 0; font-size: 1.25rem; font-weight: 700; }
-.class-card p.desc { color: var(--text-muted); font-size: 0.95rem; margin: 0; flex-grow: 1; text-align: justify; text-align-last: right; }
+.class-card p.desc { color: var(--text-muted); font-size: 0.95rem; margin: 0; flex-grow: 1; direction: rtl; text-align: justify; text-align-last: right; }
 .class-card .meta {
   display: flex;
   justify-content: space-between;
@@ -492,7 +492,7 @@ section { padding: 74px 0; }
   justify-content: center;
 }
 .pace-tool-intro h2 { margin: 0 0 8px; font-size: 1.25rem; font-weight: 800; }
-.pace-tool-intro p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; text-align: justify; text-align-last: right; }
+.pace-tool-intro p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; direction: rtl; text-align: justify; text-align-last: right; }
 @media (max-width: 560px) {
   .pace-tool-intro { flex-direction: column; align-items: center; text-align: center; }
   .pace-tool-icon { width: 52px; height: 52px; }
@@ -594,7 +594,7 @@ section { padding: 74px 0; }
 .post-body { padding: 22px 24px 26px; flex-grow: 1; display: flex; flex-direction: column; gap: 10px; }
 .post-body .post-cat { font-size: 0.78rem; color: var(--accent-teal-bright); font-weight: 700; }
 .post-body h3 { margin: 0; font-size: 1.12rem; line-height: 1.5; }
-.post-body p { margin: 0; color: var(--text-muted); font-size: 0.92rem; flex-grow: 1; text-align: justify; text-align-last: right; }
+.post-body p { margin: 0; color: var(--text-muted); font-size: 0.92rem; flex-grow: 1; direction: rtl; text-align: justify; text-align-last: right; }
 .post-body .post-meta { font-size: 0.78rem; color: var(--text-faint); font-family: "JetBrains Mono", monospace; direction: ltr; text-align: right; }
 
 /* ---------- gallery ---------- */
@@ -860,11 +860,18 @@ footer.site-footer {
   justify-content: center;
   width: 34px;
   height: 34px;
+  flex-shrink: 0;
   border-radius: 999px;
   border: 1px solid var(--line-hair);
   color: var(--text-muted);
   background: var(--bg-panel);
   cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  line-height: 1;
+  -webkit-appearance: none;
+  appearance: none;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 .article-share .share-btn:hover {
@@ -892,6 +899,7 @@ footer.site-footer {
   font-size: 1.12rem;
   color: var(--text-muted);
   margin: 0 0 8px;
+  direction: rtl;
   text-align: justify;
   text-align-last: right;
 }
@@ -903,7 +911,7 @@ footer.site-footer {
   border-top: 1px solid var(--line-hair);
 }
 .article-body h2:first-of-type { border-top: none; margin-top: 30px; }
-.article-body p { color: var(--text-primary); font-size: 1.02rem; line-height: 2; margin: 0 0 18px; text-align: justify; text-align-last: right; }
+.article-body p { color: var(--text-primary); font-size: 1.02rem; line-height: 2; margin: 0 0 18px; direction: rtl; text-align: justify; text-align-last: right; }
 .article-body ul, .article-body ol { margin: 0 0 20px; padding-inline-start: 24px; color: var(--text-primary); line-height: 2; }
 .article-body li { margin-bottom: 8px; }
 .article-body strong { color: var(--accent-sunrise-dim); }
@@ -1040,6 +1048,7 @@ footer.site-footer {
 .about-text-section p,
 .coach-bio,
 .pace-hero-lead {
+  direction: rtl;
   text-align: justify;
   text-align-last: right;
 }
