@@ -179,31 +179,39 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
       var otherStr = formatPaceValue(convertPace(secondsPerUnit, unit));
       return primary + ' (' + otherStr + ' در هر ' + unitWord(otherUnit(unit)) + ')';
     }
-    var RACE_PRESETS = [
-      { km: 3, key: 'plain' },
-      { km: 5, key: 'plain' },
-      { km: 10, key: 'plain' },
-      { km: 15, key: 'plain' },
-      { km: 21.0975, key: 'half' },
-      { km: 42.195, key: 'marathon' },
-      { km: 50, key: 'plain' },
-      { km: 100, key: 'plain' },
-      { km: 170, key: 'utmb' }
+    var KM_PRESETS = [
+      { value: 3, key: 'plain' },
+      { value: 5, key: 'plain' },
+      { value: 10, key: 'plain' },
+      { value: 15, key: 'plain' },
+      { value: 21.0975, key: 'half' },
+      { value: 42.195, key: 'marathon' },
+      { value: 50, key: 'plain' },
+      { value: 100, key: 'plain' },
+      { value: 170, key: 'utmb' }
     ];
 
-    function presetValue(preset, unit) {
-      var val = unit === 'mile' ? preset.km * KM_TO_MI : preset.km;
-      return Math.round(val * 10000) / 10000;
+    var MILE_PRESETS = [
+      { value: 1, key: 'plain' },
+      { value: 5, key: 'plain' },
+      { value: 10, key: 'plain' },
+      { value: 13.1094, key: 'half' },
+      { value: 26.2187, key: 'marathon' },
+      { value: 50, key: 'plain' },
+      { value: 100, key: 'plain' }
+    ];
+
+    function presetsForUnit(unit) {
+      return unit === 'mile' ? MILE_PRESETS : KM_PRESETS;
     }
 
     function presetLabel(preset, unit) {
       if (preset.key === 'half') return 'نیم‌ماراتن';
       if (preset.key === 'marathon') return 'ماراتن';
       if (preset.key === 'utmb') {
-        var utmbVal = unit === 'mile' ? Math.round(preset.km * KM_TO_MI) : Math.round(preset.km);
-        return 'UTMB (~' + utmbVal + ' ' + unitWord(unit) + ')';
+        return 'UTMB (~' + Math.round(preset.value) + ' ' + unitWord(unit) + ')';
       }
-      var displayVal = Math.round(presetValue(preset, unit) * 100) / 100;
+      var displayVal = Math.round(preset.value * 100) / 100;
       return displayVal + ' ' + unitWord(unit);
     }
 
@@ -248,9 +256,9 @@ description: تبدیل پیس، زمان و فاصله دویدن، و پیش�
         placeholder.value = '';
         placeholder.textContent = 'یا یکی از دسته‌های اصلی رو انتخاب کن…';
         distancePreset.appendChild(placeholder);
-        RACE_PRESETS.forEach(function (preset) {
+        presetsForUnit(unit).forEach(function (preset) {
           var opt = document.createElement('option');
-          opt.value = presetValue(preset, unit);
+          opt.value = preset.value;
           opt.textContent = presetLabel(preset, unit);
           distancePreset.appendChild(opt);
         });
