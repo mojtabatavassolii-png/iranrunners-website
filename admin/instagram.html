@@ -95,7 +95,6 @@ sitemap: false
   .cover-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.05) 75%); }
   .cover-base { position: absolute; left: 0; right: 0; bottom: 0; background: var(--black); }
   .cover-top { position: relative; display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; }
-  .brand-lockup { color: #fff; font-weight: 700; font-size: 30px; letter-spacing: 0.02em; }
   .cover-bottom { position: absolute; bottom: 0; right: 0; left: 0; z-index: 2; }
   .cover-title { color: #fff; font-weight: 800; line-height: 1.35; margin-top: 26px; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
   .swipe-hint { color: rgba(255,255,255,0.75); font-size: 26px; font-weight: 600; margin-top: 28px; display: flex; align-items: center; gap: 10px; }
@@ -103,7 +102,9 @@ sitemap: false
   .point-wrap { display: flex; flex-direction: column; flex: 1; }
   .point-content { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 32px; }
   .point-heading { font-weight: 800; line-height: 1.4; color: var(--black); font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
-  .point-body { font-weight: 400; line-height: 1.9; color: var(--muted); font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .point-body-list { list-style: none; font-weight: 400; line-height: 1.7; color: var(--muted); font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; display: flex; flex-direction: column; gap: 20px; }
+  .point-body-list li { position: relative; padding-right: 32px; }
+  .point-body-list li::before { content: ""; position: absolute; right: 0; top: 0.55em; width: 12px; height: 12px; border-radius: 50%; background: var(--red); }
   .point-footer { position: absolute; right: 56px; left: 56px; display: flex; justify-content: space-between; align-items: center; }
 
   .cta-slide { background: var(--red); align-items: center; justify-content: center; text-align: center; gap: 44px; }
@@ -215,7 +216,7 @@ sitemap: false
     row.innerHTML =
       '<button type="button" class="remove-point">حذف</button>' +
       '<div class="field" style="margin-bottom:10px;"><label>تیتر نکته</label><input type="text" class="p-heading" value="' + (heading || '').replace(/"/g, '&quot;') + '"></div>' +
-      '<div class="field" style="margin-bottom:0;"><label>توضیح کوتاه</label><textarea class="p-body">' + (body || '') + '</textarea></div>';
+      '<div class="field" style="margin-bottom:0;"><label>توضیح (هر خط یه بولت جدا می‌شه)</label><textarea class="p-body" placeholder="خط اول بولت&#10;خط دوم بولت">' + (body || '') + '</textarea></div>';
     row.querySelector('.remove-point').addEventListener('click', function () { row.remove(); });
     pointsContainer.appendChild(row);
   }
@@ -235,8 +236,8 @@ sitemap: false
   }
 
   /* ---------- slide builders ---------- */
-  var LOGO_URL = "{{ '/assets/logo-transparent.png' | relative_url }}";
-  var LOGO_WHITE_URL = "{{ '/assets/logo-white.png' | relative_url }}";
+  var LOGO_MARK_URL = "{{ '/assets/logo-mark.png' | relative_url }}";
+  var LOGO_MARK_WHITE_URL = "{{ '/assets/logo-mark-white.png' | relative_url }}";
 
   function el(tag, className, styleText) {
     var e = document.createElement(tag);
@@ -257,7 +258,12 @@ sitemap: false
       slide.appendChild(base);
     }
     var top = el('div', 'cover-top', 'padding:' + (isStory ? '150px' : '56px') + ' 56px 0;');
-    top.innerHTML = '<span class="brand-lockup mono">IRAN RUNNERS</span><span class="pill">' + category + '</span>';
+    var topLogo = el('img', '', 'height:46px;width:auto;');
+    topLogo.src = LOGO_MARK_WHITE_URL;
+    var catPill = el('span', 'pill');
+    catPill.textContent = category;
+    top.appendChild(topLogo);
+    top.appendChild(catPill);
     slide.appendChild(top);
     var bottom = el('div', 'cover-bottom', 'padding:0 56px ' + (isStory ? '210px' : '64px') + ';');
     var titleEl = el('div', 'cover-title', 'font-size:' + (isStory ? '76px' : '64px') + ';');
@@ -274,24 +280,30 @@ sitemap: false
   function buildPointSlide(w, h, index, total, heading, body, isStory) {
     var slide = el('div', 'slide', 'width:' + w + 'px;height:' + h + 'px;');
     var wrap = el('div', 'point-wrap', 'padding:' + (isStory ? '170px' : '72px') + ' 72px ' + (isStory ? '230px' : '160px') + ';');
-    var header = el('div', '', 'flex-shrink:0;');
-    var pill = el('span', 'pill', 'align-self:flex-start;');
-    pill.textContent = 'نکته ' + index + ' از ' + total;
-    header.appendChild(pill);
-    wrap.appendChild(header);
+    if (total > 1) {
+      var header = el('div', '', 'flex-shrink:0;');
+      var pill = el('span', 'pill', 'align-self:flex-start;');
+      pill.textContent = index + ' از ' + total;
+      header.appendChild(pill);
+      wrap.appendChild(header);
+    }
     var content = el('div', 'point-content');
     content.appendChild(el('div', 'accent-bar'));
     var h1 = el('div', 'point-heading', 'font-size:' + (isStory ? '62px' : '54px') + ';');
     h1.textContent = heading;
-    var b1 = el('div', 'point-body', 'font-size:' + (isStory ? '34px' : '31px') + ';');
-    b1.textContent = body;
+    var list = el('ul', 'point-body-list', 'font-size:' + (isStory ? '34px' : '31px') + ';');
+    body.split('\n').map(function (line) { return line.trim(); }).filter(Boolean).forEach(function (line) {
+      var li = document.createElement('li');
+      li.textContent = line;
+      list.appendChild(li);
+    });
     content.appendChild(h1);
-    content.appendChild(b1);
+    content.appendChild(list);
     wrap.appendChild(content);
     slide.appendChild(wrap);
     var footer = el('div', 'point-footer', 'bottom:' + (isStory ? '110px' : '44px') + ';');
-    var logo = el('img', '', 'height:52px;width:auto;');
-    logo.src = LOGO_URL;
+    var logo = el('img', '', 'height:76px;width:auto;');
+    logo.src = LOGO_MARK_URL;
     var dots = el('div', 'dots');
     for (var i = 1; i <= total; i++) {
       dots.appendChild(el('span', 'dot' + (i === index ? ' active' : '')));
@@ -304,8 +316,8 @@ sitemap: false
 
   function buildCtaSlide(w, h, articleTitle, ctaText, isStory) {
     var slide = el('div', 'slide cta-slide', 'width:' + w + 'px;height:' + h + 'px;padding:80px;');
-    var logo = el('img', '', 'height:120px;width:auto;');
-    logo.src = LOGO_WHITE_URL;
+    var logo = el('img', '', 'height:90px;width:auto;');
+    logo.src = LOGO_MARK_WHITE_URL;
     var text = el('div', 'cta-text', 'font-size:' + (isStory ? '56px' : '48px') + ';');
     text.innerHTML = 'برای دیدن متن کامل مقاله<br>به سایت ایران رانرز برید';
     var sub = el('div', 'cta-sub');

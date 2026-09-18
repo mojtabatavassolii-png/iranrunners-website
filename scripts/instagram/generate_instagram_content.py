@@ -68,6 +68,12 @@ html, body {{
 .dot {{ width: 14px; height: 14px; border-radius: 50%; background: {BRAND_FAINT}; }}
 .dot.active {{ background: {BRAND_RED}; width: 34px; border-radius: 8px; }}
 .accent-bar {{ width: 110px; height: 8px; border-radius: 4px; background: {BRAND_RED}; }}
+.point-body-list {{ list-style: none; display: flex; flex-direction: column; gap: 20px; }}
+.point-body-list li {{ position: relative; padding-right: 32px; }}
+.point-body-list li::before {{
+  content: ""; position: absolute; right: 0; top: 0.55em;
+  width: 12px; height: 12px; border-radius: 50%; background: {BRAND_RED};
+}}
 """
 
 
@@ -97,7 +103,6 @@ def cover_slide(w, h, title, category, is_story):
     .cover-base {{ position:absolute; left:0; right:0; bottom:0; top:{img_h_ratio};
       background:{BRAND_BLACK}; display:{'flex' if is_story else 'none'}; }}
     .cover-top {{ position:relative; padding: {top_pad} 56px 0; display:flex; justify-content:space-between; align-items:flex-start; z-index:2; }}
-    .brand-lockup {{ color:#ffffff; font-weight:700; font-size:30px; letter-spacing:0.02em; }}
     .cover-bottom {{ position:absolute; bottom: 0; right:0; left:0; padding: 0 56px {bottom_pad}; z-index:2; }}
     .cover-title {{ color:#ffffff; font-weight:800; font-size:{title_size}; line-height:1.35; margin-top:26px; }}
     .swipe-hint {{ color:rgba(255,255,255,0.75); font-size:26px; font-weight:600; margin-top:28px; display:flex; align-items:center; gap:10px; }}
@@ -107,7 +112,7 @@ def cover_slide(w, h, title, category, is_story):
       <div class="cover-overlay"></div>
       <div class="cover-base"></div>
       <div class="cover-top">
-        <span class="brand-lockup mono">IRAN RUNNERS</span>
+        <img src="file://{{LOGO_WHITE}}" style="height:46px;width:auto;">
         <span class="pill">{category}</span>
       </div>
       <div class="cover-bottom">
@@ -124,28 +129,29 @@ def point_slide(w, h, index, total, heading, body, logo_path, is_story):
     pad_top = "170px" if is_story else "72px"
     pad_bottom = "230px" if is_story else "160px"
     footer_bottom = "110px" if is_story else "44px"
+    body_lines = [line.strip() for line in body.split("\n") if line.strip()]
+    body_html = "".join(f"<li>{line}</li>" for line in body_lines)
+    header_html = f'<div class="point-header"><span class="pill" style="align-self:flex-start;">{index} از {total}</span></div>' if total > 1 else ""
     return f"""<!DOCTYPE html><html><head><meta charset="utf-8">{FONT_LINK}
     <style>{BASE_CSS}
     .point-wrap {{ padding: {pad_top} 72px {pad_bottom}; display:flex; flex-direction:column; flex: 1; }}
     .point-header {{ flex-shrink: 0; }}
     .point-content {{ flex: 1; display:flex; flex-direction:column; justify-content:center; gap: 32px; }}
     .point-heading {{ font-weight:800; font-size:{heading_size}; line-height:1.4; color:{BRAND_BLACK}; }}
-    .point-body {{ font-weight:400; font-size:{body_size}; line-height:1.9; color:{BRAND_MUTED}; }}
+    .point-body-list {{ font-weight:400; font-size:{body_size}; line-height:1.7; color:{BRAND_MUTED}; }}
     .point-footer {{ position:absolute; bottom:{footer_bottom}; right:56px; left:56px; display:flex; justify-content:space-between; align-items:center; }}
     </style></head>
     <body><div class="slide" style="--w:{w}px;--h:{h}px;">
       <div class="point-wrap">
-        <div class="point-header">
-          <span class="pill" style="align-self:flex-start;">نکته {index} از {total}</span>
-        </div>
+        {header_html}
         <div class="point-content">
           <div class="accent-bar"></div>
           <div class="point-heading">{heading}</div>
-          <div class="point-body">{body}</div>
+          <ul class="point-body-list">{body_html}</ul>
         </div>
       </div>
       <div class="point-footer">
-        <img src="file://{logo_path}" style="height:52px;width:auto;">
+        <img src="file://{logo_path}" style="height:76px;width:auto;">
         <div class="dots">
           {''.join('<span class="dot' + (' active' if i == index else '') + '"></span>' for i in range(1, total + 1))}
         </div>
@@ -163,7 +169,7 @@ def cta_slide(w, h, cta_text, article_title, is_story):
     .cta-url {{ background:#ffffff; color:{BRAND_RED}; font-weight:700; font-size:30px; padding:18px 44px; border-radius:999px; }}
     </style></head>
     <body><div class="slide cta-slide" style="--w:{w}px;--h:{h}px;">
-      <img src="file://{{LOGO}}" style="height:120px;width:auto;">
+      <img src="file://{{LOGO}}" style="height:90px;width:auto;">
       <div class="cta-text">برای دیدن متن کامل مقاله<br>به سایت ایران رانرز برید</div>
       <div class="cta-sub">{article_title}</div>
       <div class="cta-url mono">iranrunners.com</div>
@@ -173,16 +179,17 @@ def cta_slide(w, h, cta_text, article_title, is_story):
 def build_slides(article, fmt):
     w, h = (1080, 1080) if fmt == "post" else (1080, 1920)
     is_story = fmt == "story"
-    logo_path = str(REPO_ROOT / "assets" / "logo-transparent.png")
-    logo_white_path = str(REPO_ROOT / "assets" / "logo-white.png")
+    logo_mark_path = str(REPO_ROOT / "assets" / "logo-mark.png")
+    logo_mark_white_path = str(REPO_ROOT / "assets" / "logo-mark-white.png")
     img_path = str(REPO_ROOT / article["image"].lstrip("/"))
 
     slides = []
-    slides.append(("00-cover", cover_slide(w, h, article["title"], article["category"], is_story).replace("{IMG}", img_path)))
+    slides.append(("00-cover", cover_slide(w, h, article["title"], article["category"], is_story)
+                   .replace("{IMG}", img_path).replace("{LOGO_WHITE}", logo_mark_white_path)))
     total = len(article["points"])
     for i, p in enumerate(article["points"], start=1):
-        slides.append((f"{i:02d}-point", point_slide(w, h, i, total, p["heading"], p["body"], logo_path, is_story)))
-    slides.append((f"{total+1:02d}-cta", cta_slide(w, h, article.get("cta_text", ""), article["title"], is_story).replace("{LOGO}", logo_white_path)))
+        slides.append((f"{i:02d}-point", point_slide(w, h, i, total, p["heading"], p["body"], logo_mark_path, is_story)))
+    slides.append((f"{total+1:02d}-cta", cta_slide(w, h, article.get("cta_text", ""), article["title"], is_story).replace("{LOGO}", logo_mark_white_path)))
     return w, h, slides
 
 

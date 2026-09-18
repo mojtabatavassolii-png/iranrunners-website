@@ -33,15 +33,20 @@ python3 generate_instagram_content.py --config article.json --out-dir OUT_DIR
   "image": "/assets/gallery/hero.jpg",
   "cta_text": "یک جمله کوتاه، مثلا معرفی کلاس مرتبط",
   "points": [
-    { "heading": "تیتر نکته (کوتاه)", "body": "توضیح یکی‌دو خطی نکته" }
+    { "heading": "تیتر نکته (کوتاه)", "body": "خط اول بولت\nخط دوم بولت" }
   ]
 }
 ```
 
-3–5 points works best — each becomes one slide. Claude writes this file by
-hand per article (pulling from the post's `lead` and `##` sections), so
-there's no automated extraction step to review separately — the owner
-reviews the rendered slides themselves and asks for wording changes.
+`body` is rendered as a bulleted list — each `\n`-separated line becomes its
+own bullet. A single line still works fine (renders as one bullet).
+
+3–5 points works best — each becomes one slide. When there's only one
+point, the "X از Y" counter pill is omitted entirely since it's meaningless
+for a single slide. Claude writes this file by hand per article (pulling
+from the post's `lead` and `##` sections), so there's no automated
+extraction step to review separately — the owner reviews the rendered
+slides themselves and asks for wording changes.
 
 ## How it renders
 
