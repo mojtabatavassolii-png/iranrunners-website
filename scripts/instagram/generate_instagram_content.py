@@ -162,7 +162,7 @@ def point_slide(w, h, index, total, heading, body, logo_path, is_story, lang):
     body_size = "34px" if is_story else "31px"
     pad_top = "170px" if is_story else "72px"
     pad_bottom = "260px" if is_story else "160px"
-    footer_bottom = "140px" if is_story else "44px"
+    footer_bottom = "180px" if is_story else "44px"
     body_lines = [line.strip() for line in body.split("\n") if line.strip()]
     body_html = "".join(f"<li>{line}</li>" for line in body_lines)
     counter = STRINGS[lang]["counter"].format(i=index, n=total)
