@@ -295,7 +295,7 @@ sitemap: false
     top.appendChild(topLogo);
     top.appendChild(catPill);
     slide.appendChild(top);
-    var bottom = el('div', 'cover-bottom', 'padding:0 56px ' + (isStory ? '210px' : '64px') + ';');
+    var bottom = el('div', 'cover-bottom', 'padding:0 56px ' + (isStory ? '260px' : '64px') + ';');
     var titleEl = el('div', 'cover-title', 'font-size:' + (isStory ? '76px' : '64px') + ';');
     titleEl.textContent = title;
     bottom.appendChild(el('div', 'accent-bar'));
@@ -309,7 +309,7 @@ sitemap: false
 
   function buildPointSlide(w, h, index, total, heading, body, isStory, lang) {
     var slide = el('div', 'slide', slideBaseStyle(w, h, lang));
-    var wrap = el('div', 'point-wrap', 'padding:' + (isStory ? '170px' : '72px') + ' 72px ' + (isStory ? '230px' : '160px') + ';');
+    var wrap = el('div', 'point-wrap', 'padding:' + (isStory ? '170px' : '72px') + ' 72px ' + (isStory ? '260px' : '160px') + ';');
     if (total > 1) {
       var header = el('div', '', 'flex-shrink:0;');
       var pill = el('span', 'pill', 'align-self:flex-start;');
@@ -331,7 +331,7 @@ sitemap: false
     content.appendChild(list);
     wrap.appendChild(content);
     slide.appendChild(wrap);
-    var footer = el('div', 'point-footer', 'bottom:' + (isStory ? '110px' : '44px') + ';');
+    var footer = el('div', 'point-footer', 'bottom:' + (isStory ? '140px' : '44px') + ';');
     var logo = el('img', '', 'height:76px;width:auto;');
     logo.src = LOGO_MARK_URL;
     var dots = el('div', 'dots');
