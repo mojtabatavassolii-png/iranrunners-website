@@ -167,18 +167,20 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
   <div class="partners-bar">
     <div class="wrap partners-grid">
       {% for p in site.data.home.partner_list %}
+        {% assign logo_class = "partner-logo" %}
+        {% if p.featured %}{% assign logo_class = "partner-logo featured" %}{% endif %}
         {% if p.logo and p.logo != "" %}
           {% if p.link and p.link != "" %}
-          <a href="{{ p.link }}" class="partner-logo" target="_blank" rel="noopener">
+          <a href="{{ p.link }}" class="{{ logo_class }}" target="_blank" rel="noopener">
             <img src="{{ p.logo | relative_url }}" alt="{{ p.name }}">
           </a>
           {% else %}
-          <div class="partner-logo">
+          <div class="{{ logo_class }}">
             <img src="{{ p.logo | relative_url }}" alt="{{ p.name }}">
           </div>
           {% endif %}
         {% else %}
-        <div class="partner-logo text-only">{{ p.name }}</div>
+        <div class="{{ logo_class }} text-only">{{ p.name }}</div>
         {% endif %}
       {% endfor %}
     </div>
