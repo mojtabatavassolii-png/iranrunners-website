@@ -1,0 +1,417 @@
+---
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>ابزار محتوای اینستاگرام | ایران رانرز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;700;800&family=Vazirmatn:wght@400;500;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<script src="{{ '/assets/vendor/html2canvas.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/vendor/jszip.min.js' | relative_url }}"></script>
+<style>
+  :root {
+    --red: #e8121a;
+    --black: #111111;
+    --muted: #555555;
+    --faint: #8a8a8a;
+    --panel: #f6f6f6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #ffffff; color: var(--black);
+    font-family: "Vazirmatn", "Tahoma", sans-serif;
+    direction: rtl;
+  }
+  .mono { font-family: "JetBrains Mono", monospace; direction: ltr; display: inline-block; letter-spacing: -0.02em; }
+
+  /* ---------- gate ---------- */
+  #gate {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  #gate .box { max-width: 360px; width: 100%; text-align: center; }
+  #gate h1 { font-size: 1.3rem; margin-bottom: 10px; }
+  #gate p { color: var(--muted); font-size: 0.9rem; margin-bottom: 22px; }
+  #gate input {
+    width: 100%; padding: 14px 16px; border-radius: 12px;
+    border: 1px solid #ddd; font-size: 1rem; font-family: inherit;
+    margin-bottom: 14px; text-align: center;
+  }
+  #gate button, .btn-main {
+    width: 100%; padding: 14px 16px; border-radius: 999px; border: none;
+    background: var(--red); color: #fff; font-weight: 700; font-size: 1rem;
+    font-family: inherit; cursor: pointer;
+  }
+  #gate .error { color: var(--red); font-size: 0.85rem; margin-top: 10px; min-height: 1.2em; }
+
+  /* ---------- app ---------- */
+  #app { display: none; max-width: 920px; margin: 0 auto; padding: 40px 20px 100px; }
+  #app h1 { font-size: 1.5rem; margin-bottom: 6px; }
+  #app .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 30px; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 0.88rem; color: var(--muted); margin-bottom: 8px; }
+  .field input[type=text], .field textarea, .field input[type=file] {
+    width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #ddd;
+    font-family: inherit; font-size: 0.95rem;
+  }
+  .field textarea { resize: vertical; min-height: 60px; }
+  .point-row {
+    border: 1px solid #eee; border-radius: 12px; padding: 16px; margin-bottom: 14px; background: var(--panel);
+    position: relative;
+  }
+  .point-row .remove-point {
+    position: absolute; top: 12px; left: 12px; background: none; border: none;
+    color: var(--red); font-weight: 700; cursor: pointer; font-size: 0.85rem;
+  }
+  #add-point {
+    background: none; border: 1px dashed #ccc; border-radius: 10px; padding: 12px;
+    width: 100%; color: var(--muted); font-family: inherit; cursor: pointer; margin-bottom: 26px;
+  }
+  .btn-main { margin-top: 10px; }
+  #status { margin-top: 16px; font-size: 0.9rem; color: var(--muted); text-align: center; min-height: 1.4em; }
+
+  /* ---------- preview thumbnails ---------- */
+  #preview { margin-top: 40px; }
+  #preview h2 { font-size: 1.1rem; margin-bottom: 16px; }
+  .preview-group { margin-bottom: 30px; }
+  .preview-group h3 { font-size: 0.95rem; color: var(--muted); margin-bottom: 10px; }
+  .thumb-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .thumb-row img { height: 140px; border-radius: 8px; border: 1px solid #eee; }
+
+  /* ---------- offscreen render stage (real 1080-based slides, captured by html2canvas) ---------- */
+  #stage { position: absolute; top: 0; left: -100000px; }
+  .slide { position: relative; overflow: hidden; background: #ffffff; display: flex; flex-direction: column; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .pill { display: inline-flex; align-items: center; background: var(--red); color: #fff; font-weight: 700; font-size: 28px; padding: 10px 28px; border-radius: 999px; white-space: nowrap; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .dots { display: flex; gap: 12px; align-items: center; }
+  .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--faint); }
+  .dot.active { background: var(--red); width: 34px; border-radius: 8px; }
+  .accent-bar { width: 110px; height: 8px; border-radius: 4px; background: var(--red); }
+
+  .cover-photo { position: absolute; inset: 0; width: 100%; background-size: cover; background-position: center; }
+  .cover-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.05) 75%); }
+  .cover-base { position: absolute; left: 0; right: 0; bottom: 0; background: var(--black); }
+  .cover-top { position: relative; display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; }
+  .brand-lockup { color: #fff; font-weight: 700; font-size: 30px; letter-spacing: 0.02em; }
+  .cover-bottom { position: absolute; bottom: 0; right: 0; left: 0; z-index: 2; }
+  .cover-title { color: #fff; font-weight: 800; line-height: 1.35; margin-top: 26px; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .swipe-hint { color: rgba(255,255,255,0.75); font-size: 26px; font-weight: 600; margin-top: 28px; display: flex; align-items: center; gap: 10px; }
+
+  .point-wrap { display: flex; flex-direction: column; flex: 1; }
+  .point-content { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 32px; }
+  .point-heading { font-weight: 800; line-height: 1.4; color: var(--black); font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .point-body { font-weight: 400; line-height: 1.9; color: var(--muted); font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .point-footer { position: absolute; right: 56px; left: 56px; display: flex; justify-content: space-between; align-items: center; }
+
+  .cta-slide { background: var(--red); align-items: center; justify-content: center; text-align: center; gap: 44px; }
+  .cta-text { color: #fff; font-weight: 800; line-height: 1.5; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .cta-sub { color: rgba(255,255,255,0.85); font-weight: 400; font-size: 28px; line-height: 1.8; max-width: 80%; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .cta-url { background: #fff; color: var(--red); font-weight: 700; font-size: 30px; padding: 18px 44px; border-radius: 999px; }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="box">
+    <h1>ابزار محتوای اینستاگرام</h1>
+    <p>این صفحه فقط برای مدیر سایته. رمز رو وارد کن.</p>
+    <input type="password" id="pw-input" placeholder="رمز عبور" autocomplete="off">
+    <button id="pw-submit">ورود</button>
+    <div class="error" id="pw-error"></div>
+  </div>
+</div>
+
+<div id="app">
+  <h1>ابزار محتوای اینستاگرام</h1>
+  <p class="sub">اطلاعات مقاله رو پر کن تا یه ست کامل پست (1080×1080) و استوری (1080×1920) براش ساخته بشه.</p>
+
+  <div class="field">
+    <label for="f-title">عنوان مقاله</label>
+    <input type="text" id="f-title" placeholder="مثلاً راهنمای کامل شروع دویدن برای مبتدیان">
+  </div>
+
+  <div class="field">
+    <label for="f-category">دسته‌بندی</label>
+    <input type="text" id="f-category" placeholder="مثلاً علم دویدن">
+  </div>
+
+  <div class="field">
+    <label for="f-image-url">آدرس عکس مقاله روی سایت (اختیاری اگه فایل آپلود کنی)</label>
+    <input type="text" id="f-image-url" placeholder="/assets/gallery/photo.jpg">
+  </div>
+
+  <div class="field">
+    <label for="f-image-file">یا آپلود عکس از روی گوشی/کامپیوتر</label>
+    <input type="file" id="f-image-file" accept="image/*">
+  </div>
+
+  <div class="field">
+    <label for="f-cta">جمله‌ی زیر CTA (اختیاری، مثلاً معرفی کلاس مرتبط)</label>
+    <input type="text" id="f-cta" placeholder="مثلاً کلاس دویدن مبتدی ایران رانرز دقیقا برای همین طراحی شده.">
+  </div>
+
+  <div id="points-container"></div>
+  <button type="button" id="add-point">+ افزودن نکته</button>
+
+  <button type="button" class="btn-main" id="generate-btn">ساخت و دانلود (Zip)</button>
+  <div id="status"></div>
+
+  <div id="preview"></div>
+</div>
+
+<div id="stage"></div>
+
+<script>
+(function () {
+  var PASSWORD_HASH = "742899ee53572f331d4445524ba7c2b246ba65b34ae93db500b28562e991d6e6";
+  // sha-256 hash of the admin password, checked client-side. This is a light
+  // deterrent, not real security: this page is unlinked from nav/sitemap,
+  // but anyone with the URL and a browser console could bypass it. Don't
+  // put anything here you wouldn't be okay with a determined visitor seeing.
+
+  async function sha256(text) {
+    var enc = new TextEncoder().encode(text);
+    var buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+
+  var gate = document.getElementById('gate');
+  var app = document.getElementById('app');
+
+  async function tryUnlock(pw) {
+    var hash = await sha256(pw);
+    if (hash === PASSWORD_HASH) {
+      sessionStorage.setItem('ig-admin-ok', '1');
+      gate.style.display = 'none';
+      app.style.display = 'block';
+      return true;
+    }
+    return false;
+  }
+
+  if (sessionStorage.getItem('ig-admin-ok') === '1') {
+    gate.style.display = 'none';
+    app.style.display = 'block';
+  }
+
+  document.getElementById('pw-submit').addEventListener('click', submitPw);
+  document.getElementById('pw-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') submitPw();
+  });
+  async function submitPw() {
+    var pw = document.getElementById('pw-input').value;
+    var ok = await tryUnlock(pw);
+    if (!ok) document.getElementById('pw-error').textContent = 'رمز اشتباهه.';
+  }
+
+  /* ---------- points form ---------- */
+  var pointsContainer = document.getElementById('points-container');
+  function addPointRow(heading, body) {
+    var row = document.createElement('div');
+    row.className = 'point-row';
+    row.innerHTML =
+      '<button type="button" class="remove-point">حذف</button>' +
+      '<div class="field" style="margin-bottom:10px;"><label>تیتر نکته</label><input type="text" class="p-heading" value="' + (heading || '').replace(/"/g, '&quot;') + '"></div>' +
+      '<div class="field" style="margin-bottom:0;"><label>توضیح کوتاه</label><textarea class="p-body">' + (body || '') + '</textarea></div>';
+    row.querySelector('.remove-point').addEventListener('click', function () { row.remove(); });
+    pointsContainer.appendChild(row);
+  }
+  addPointRow('', '');
+  addPointRow('', '');
+  addPointRow('', '');
+  document.getElementById('add-point').addEventListener('click', function () { addPointRow('', ''); });
+
+  /* ---------- image source ---------- */
+  function readFileAsDataURL(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () { resolve(reader.result); };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* ---------- slide builders ---------- */
+  var LOGO_URL = "{{ '/assets/logo-transparent.png' | relative_url }}";
+  var LOGO_WHITE_URL = "{{ '/assets/logo-white.png' | relative_url }}";
+
+  function el(tag, className, styleText) {
+    var e = document.createElement(tag);
+    if (className) e.className = className;
+    if (styleText) e.style.cssText = styleText;
+    return e;
+  }
+
+  function buildCoverSlide(w, h, title, category, imgSrc, isStory) {
+    var slide = el('div', 'slide', 'width:' + w + 'px;height:' + h + 'px;background:#111111;');
+    var imgRatio = isStory ? '78%' : '100%';
+    var photo = el('div', 'cover-photo', 'height:' + imgRatio + ';background-image:url(' + JSON.stringify(imgSrc) + ');');
+    var overlay = el('div', 'cover-overlay', 'height:' + imgRatio + ';');
+    slide.appendChild(photo);
+    slide.appendChild(overlay);
+    if (isStory) {
+      var base = el('div', 'cover-base', 'top:' + imgRatio + ';');
+      slide.appendChild(base);
+    }
+    var top = el('div', 'cover-top', 'padding:' + (isStory ? '150px' : '56px') + ' 56px 0;');
+    top.innerHTML = '<span class="brand-lockup mono">IRAN RUNNERS</span><span class="pill">' + category + '</span>';
+    slide.appendChild(top);
+    var bottom = el('div', 'cover-bottom', 'padding:0 56px ' + (isStory ? '210px' : '64px') + ';');
+    var titleEl = el('div', 'cover-title', 'font-size:' + (isStory ? '76px' : '64px') + ';');
+    titleEl.textContent = title;
+    bottom.appendChild(el('div', 'accent-bar'));
+    bottom.appendChild(titleEl);
+    var hint = el('div', 'swipe-hint');
+    hint.innerHTML = 'برای ادامه بکش &#8592;';
+    bottom.appendChild(hint);
+    slide.appendChild(bottom);
+    return slide;
+  }
+
+  function buildPointSlide(w, h, index, total, heading, body, isStory) {
+    var slide = el('div', 'slide', 'width:' + w + 'px;height:' + h + 'px;');
+    var wrap = el('div', 'point-wrap', 'padding:' + (isStory ? '170px' : '72px') + ' 72px ' + (isStory ? '230px' : '160px') + ';');
+    var header = el('div', '', 'flex-shrink:0;');
+    var pill = el('span', 'pill', 'align-self:flex-start;');
+    pill.textContent = 'نکته ' + index + ' از ' + total;
+    header.appendChild(pill);
+    wrap.appendChild(header);
+    var content = el('div', 'point-content');
+    content.appendChild(el('div', 'accent-bar'));
+    var h1 = el('div', 'point-heading', 'font-size:' + (isStory ? '62px' : '54px') + ';');
+    h1.textContent = heading;
+    var b1 = el('div', 'point-body', 'font-size:' + (isStory ? '34px' : '31px') + ';');
+    b1.textContent = body;
+    content.appendChild(h1);
+    content.appendChild(b1);
+    wrap.appendChild(content);
+    slide.appendChild(wrap);
+    var footer = el('div', 'point-footer', 'bottom:' + (isStory ? '110px' : '44px') + ';');
+    var logo = el('img', '', 'height:52px;width:auto;');
+    logo.src = LOGO_URL;
+    var dots = el('div', 'dots');
+    for (var i = 1; i <= total; i++) {
+      dots.appendChild(el('span', 'dot' + (i === index ? ' active' : '')));
+    }
+    footer.appendChild(logo);
+    footer.appendChild(dots);
+    slide.appendChild(footer);
+    return slide;
+  }
+
+  function buildCtaSlide(w, h, articleTitle, ctaText, isStory) {
+    var slide = el('div', 'slide cta-slide', 'width:' + w + 'px;height:' + h + 'px;padding:80px;');
+    var logo = el('img', '', 'height:120px;width:auto;');
+    logo.src = LOGO_WHITE_URL;
+    var text = el('div', 'cta-text', 'font-size:' + (isStory ? '56px' : '48px') + ';');
+    text.innerHTML = 'برای دیدن متن کامل مقاله<br>به سایت ایران رانرز برید';
+    var sub = el('div', 'cta-sub');
+    sub.textContent = ctaText || articleTitle;
+    var url = el('div', 'cta-url mono');
+    url.textContent = 'iranrunners.com';
+    slide.appendChild(logo);
+    slide.appendChild(text);
+    slide.appendChild(sub);
+    slide.appendChild(url);
+    return slide;
+  }
+
+  function buildSlides(article, fmt) {
+    var w = 1080, h = fmt === 'story' ? 1920 : 1080;
+    var isStory = fmt === 'story';
+    var slides = [];
+    slides.push({ name: '00-cover', node: buildCoverSlide(w, h, article.title, article.category, article.imgSrc, isStory) });
+    var total = article.points.length;
+    article.points.forEach(function (p, idx) {
+      slides.push({ name: (idx + 1) + '-point', node: buildPointSlide(w, h, idx + 1, total, p.heading, p.body, isStory) });
+    });
+    slides.push({ name: (total + 1) + '-cta', node: buildCtaSlide(w, h, article.title, article.ctaText, isStory) });
+    return { w: w, h: h, slides: slides };
+  }
+
+  /* ---------- generation ---------- */
+  var stage = document.getElementById('stage');
+  var statusEl = document.getElementById('status');
+  var previewEl = document.getElementById('preview');
+
+  function setStatus(text) { statusEl.textContent = text; }
+
+  document.getElementById('generate-btn').addEventListener('click', function () {
+    generateAndDownload().catch(function (err) {
+      console.error(err);
+      setStatus('خطا: ' + err.message);
+    });
+  });
+
+  async function generateAndDownload() {
+    var title = document.getElementById('f-title').value.trim();
+    var category = document.getElementById('f-category').value.trim();
+    var ctaText = document.getElementById('f-cta').value.trim();
+    var imageUrl = document.getElementById('f-image-url').value.trim();
+    var imageFile = document.getElementById('f-image-file').files[0];
+    var points = [];
+    document.querySelectorAll('.point-row').forEach(function (row) {
+      var heading = row.querySelector('.p-heading').value.trim();
+      var body = row.querySelector('.p-body').value.trim();
+      if (heading && body) points.push({ heading: heading, body: body });
+    });
+
+    if (!title || !category) { setStatus('عنوان و دسته‌بندی رو پر کن.'); return; }
+    if (points.length === 0) { setStatus('حداقل یه نکته اضافه کن.'); return; }
+    if (!imageUrl && !imageFile) { setStatus('یه عکس (آدرس یا آپلود) مشخص کن.'); return; }
+
+    setStatus('در حال آماده‌سازی...');
+    var imgSrc = imageFile ? await readFileAsDataURL(imageFile) : imageUrl;
+    var article = { title: title, category: category, ctaText: ctaText, imgSrc: imgSrc, points: points };
+
+    await document.fonts.ready;
+
+    var zip = new JSZip();
+    previewEl.innerHTML = '<h2>پیش‌نمایش</h2>';
+
+    for (var f = 0; f < 2; f++) {
+      var fmt = f === 0 ? 'post' : 'story';
+      var built = buildSlides(article, fmt);
+      var folder = zip.folder(fmt);
+      var group = el('div', 'preview-group');
+      var groupTitle = document.createElement('h3');
+      groupTitle.textContent = fmt === 'post' ? 'پست (1080×1080)' : 'استوری (1080×1920)';
+      group.appendChild(groupTitle);
+      var thumbRow = el('div', 'thumb-row');
+      group.appendChild(thumbRow);
+      previewEl.appendChild(group);
+
+      for (var i = 0; i < built.slides.length; i++) {
+        var s = built.slides[i];
+        setStatus('در حال ساخت ' + fmt + ' — اسلاید ' + (i + 1) + ' از ' + built.slides.length + '...');
+        stage.appendChild(s.node);
+        await new Promise(function (r) { requestAnimationFrame(function () { requestAnimationFrame(r); }); });
+        var canvas = await html2canvas(s.node, {
+          width: built.w, height: built.h, scale: 1, useCORS: true, backgroundColor: '#ffffff'
+        });
+        stage.removeChild(s.node);
+        var blob = await new Promise(function (res) { canvas.toBlob(res, 'image/png'); });
+        folder.file(s.name + '.png', blob);
+        var thumb = document.createElement('img');
+        thumb.src = URL.createObjectURL(blob);
+        thumbRow.appendChild(thumb);
+      }
+    }
+
+    setStatus('در حال ساخت فایل zip...');
+    var content = await zip.generateAsync({ type: 'blob' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(content);
+    a.download = 'instagram-' + Date.now() + '.zip';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setStatus('آماده شد — دانلود شروع شد.');
+  }
+})();
+</script>
+</body>
+</html>
