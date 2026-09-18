@@ -158,6 +158,8 @@ nav.main-nav a.active { color: var(--text-primary); }
   stroke-linecap: round;
   opacity: 0.55;
   stroke-dasharray: 6 500;
+}
+.route-divider.in-view path {
   animation: trace 3.2s ease-out forwards;
 }
 @keyframes trace {
