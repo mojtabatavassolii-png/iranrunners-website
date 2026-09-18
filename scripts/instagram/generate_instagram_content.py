@@ -126,7 +126,7 @@ def cover_slide(w, h, title, category, is_story, lang):
     img_h_ratio = "78%" if is_story else "100%"
     title_size = "76px" if is_story else "64px"
     top_pad = "150px" if is_story else "56px"
-    bottom_pad = "210px" if is_story else "64px"
+    bottom_pad = "260px" if is_story else "64px"
     swipe_hint = STRINGS[lang]["swipe_hint"]
     return f"""<!DOCTYPE html><html><head><meta charset="utf-8">{FONT_LINK}
     <style>{base_css(lang)}
@@ -161,8 +161,8 @@ def point_slide(w, h, index, total, heading, body, logo_path, is_story, lang):
     heading_size = "62px" if is_story else "54px"
     body_size = "34px" if is_story else "31px"
     pad_top = "170px" if is_story else "72px"
-    pad_bottom = "230px" if is_story else "160px"
-    footer_bottom = "110px" if is_story else "44px"
+    pad_bottom = "260px" if is_story else "160px"
+    footer_bottom = "180px" if is_story else "44px"
     body_lines = [line.strip() for line in body.split("\n") if line.strip()]
     body_html = "".join(f"<li>{line}</li>" for line in body_lines)
     counter = STRINGS[lang]["counter"].format(i=index, n=total)
