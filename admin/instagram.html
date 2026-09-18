@@ -9,7 +9,7 @@ sitemap: false
 <meta name="robots" content="noindex, nofollow">
 <title>ابزار محتوای اینستاگرام | ایران رانرز</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;700;800&family=Vazirmatn:wght@400;500;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;700;800&family=Baloo+2:wght@400;700;800&family=Vazirmatn:wght@400;500;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 <script src="{{ '/assets/vendor/html2canvas.min.js' | relative_url }}"></script>
 <script src="{{ '/assets/vendor/jszip.min.js' | relative_url }}"></script>
 <style>
@@ -84,8 +84,8 @@ sitemap: false
 
   /* ---------- offscreen render stage (real 1080-based slides, captured by html2canvas) ---------- */
   #stage { position: absolute; top: 0; left: -100000px; }
-  .slide { position: relative; overflow: hidden; background: #ffffff; display: flex; flex-direction: column; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
-  .pill { display: inline-flex; align-items: center; background: var(--red); color: #fff; font-weight: 700; font-size: 28px; padding: 10px 28px; border-radius: 999px; white-space: nowrap; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .slide { position: relative; overflow: hidden; background: #ffffff; display: flex; flex-direction: column; }
+  .pill { display: inline-flex; align-items: center; background: var(--red); color: #fff; font-weight: 700; font-size: 28px; padding: 10px 28px; border-radius: 999px; white-space: nowrap; }
   .dots { display: flex; gap: 12px; align-items: center; }
   .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--faint); }
   .dot.active { background: var(--red); width: 34px; border-radius: 8px; }
@@ -96,20 +96,20 @@ sitemap: false
   .cover-base { position: absolute; left: 0; right: 0; bottom: 0; background: var(--black); }
   .cover-top { position: relative; display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; }
   .cover-bottom { position: absolute; bottom: 0; right: 0; left: 0; z-index: 2; }
-  .cover-title { color: #fff; font-weight: 800; line-height: 1.35; margin-top: 26px; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .cover-title { color: #fff; font-weight: 800; line-height: 1.35; margin-top: 26px; }
   .swipe-hint { color: rgba(255,255,255,0.75); font-size: 26px; font-weight: 600; margin-top: 28px; display: flex; align-items: center; gap: 10px; }
 
   .point-wrap { display: flex; flex-direction: column; flex: 1; }
   .point-content { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 32px; }
-  .point-heading { font-weight: 800; line-height: 1.4; color: var(--black); font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
-  .point-body-list { list-style: none; font-weight: 400; line-height: 1.7; color: var(--muted); font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; display: flex; flex-direction: column; gap: 20px; }
-  .point-body-list li { position: relative; padding-right: 32px; }
-  .point-body-list li::before { content: ""; position: absolute; right: 0; top: 0.55em; width: 12px; height: 12px; border-radius: 50%; background: var(--red); }
+  .point-heading { font-weight: 800; line-height: 1.4; color: var(--black); }
+  .point-body-list { list-style: none; margin: 0; padding: 0; font-weight: 400; line-height: 1.7; color: var(--muted); display: flex; flex-direction: column; gap: 20px; }
+  .point-body-list li { position: relative; padding-inline-start: 32px; }
+  .point-body-list li::before { content: ""; position: absolute; inset-inline-start: 0; top: 0.55em; width: 12px; height: 12px; border-radius: 50%; background: var(--red); }
   .point-footer { position: absolute; right: 56px; left: 56px; display: flex; justify-content: space-between; align-items: center; }
 
   .cta-slide { background: var(--red); align-items: center; justify-content: center; text-align: center; gap: 44px; }
-  .cta-text { color: #fff; font-weight: 800; line-height: 1.5; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
-  .cta-sub { color: rgba(255,255,255,0.85); font-weight: 400; font-size: 28px; line-height: 1.8; max-width: 80%; font-family: "Baloo Bhaijaan 2", "Tahoma", sans-serif; }
+  .cta-text { color: #fff; font-weight: 800; line-height: 1.5; }
+  .cta-sub { color: rgba(255,255,255,0.85); font-weight: 400; font-size: 28px; line-height: 1.8; max-width: 80%; }
   .cta-url { background: #fff; color: var(--red); font-weight: 700; font-size: 30px; padding: 18px 44px; border-radius: 999px; }
 </style>
 </head>
@@ -239,6 +239,36 @@ sitemap: false
   var LOGO_MARK_URL = "{{ '/assets/logo-mark.png' | relative_url }}";
   var LOGO_MARK_WHITE_URL = "{{ '/assets/logo-mark-white.png' | relative_url }}";
 
+  // Boilerplate strings the tool itself writes (not the user's own title/
+  // heading/body text, which is used exactly as typed). Direction for
+  // these follows the detected language via CSS logical properties, so no
+  // per-string left/right flipping is needed.
+  var STRINGS = {
+    fa: {
+      swipeHint: 'ورق بزنید',
+      counter: function (i, n) { return i + ' از ' + n; },
+      ctaText: 'برای دیدن متن کامل مقاله<br>به سایت ایران رانرز برید'
+    },
+    en: {
+      swipeHint: 'Swipe to see more',
+      counter: function (i, n) { return i + ' of ' + n; },
+      ctaText: 'Read the full article<br>on the Iran Runners website'
+    }
+  };
+
+  function detectLang(text) {
+    return /[؀-ۿ]/.test(text) ? 'fa' : 'en';
+  }
+
+  function fontFamily(lang) {
+    return lang === 'fa' ? 'Baloo Bhaijaan 2' : 'Baloo 2';
+  }
+
+  function slideBaseStyle(w, h, lang) {
+    return 'width:' + w + 'px;height:' + h + 'px;direction:' + (lang === 'fa' ? 'rtl' : 'ltr') +
+      ';font-family:"' + fontFamily(lang) + '","Tahoma",sans-serif;';
+  }
+
   function el(tag, className, styleText) {
     var e = document.createElement(tag);
     if (className) e.className = className;
@@ -246,8 +276,8 @@ sitemap: false
     return e;
   }
 
-  function buildCoverSlide(w, h, title, category, imgSrc, isStory) {
-    var slide = el('div', 'slide', 'width:' + w + 'px;height:' + h + 'px;background:#111111;');
+  function buildCoverSlide(w, h, title, category, imgSrc, isStory, lang) {
+    var slide = el('div', 'slide', slideBaseStyle(w, h, lang) + 'background:#111111;');
     var imgRatio = isStory ? '78%' : '100%';
     var photo = el('div', 'cover-photo', 'height:' + imgRatio + ';background-image:url(' + JSON.stringify(imgSrc) + ');');
     var overlay = el('div', 'cover-overlay', 'height:' + imgRatio + ';');
@@ -271,19 +301,19 @@ sitemap: false
     bottom.appendChild(el('div', 'accent-bar'));
     bottom.appendChild(titleEl);
     var hint = el('div', 'swipe-hint');
-    hint.innerHTML = 'برای ادامه بکش &#8592;';
+    hint.innerHTML = STRINGS[lang].swipeHint + ' &#8592;';
     bottom.appendChild(hint);
     slide.appendChild(bottom);
     return slide;
   }
 
-  function buildPointSlide(w, h, index, total, heading, body, isStory) {
-    var slide = el('div', 'slide', 'width:' + w + 'px;height:' + h + 'px;');
+  function buildPointSlide(w, h, index, total, heading, body, isStory, lang) {
+    var slide = el('div', 'slide', slideBaseStyle(w, h, lang));
     var wrap = el('div', 'point-wrap', 'padding:' + (isStory ? '170px' : '72px') + ' 72px ' + (isStory ? '230px' : '160px') + ';');
     if (total > 1) {
       var header = el('div', '', 'flex-shrink:0;');
       var pill = el('span', 'pill', 'align-self:flex-start;');
-      pill.textContent = index + ' از ' + total;
+      pill.textContent = STRINGS[lang].counter(index, total);
       header.appendChild(pill);
       wrap.appendChild(header);
     }
@@ -314,12 +344,12 @@ sitemap: false
     return slide;
   }
 
-  function buildCtaSlide(w, h, articleTitle, ctaText, isStory) {
-    var slide = el('div', 'slide cta-slide', 'width:' + w + 'px;height:' + h + 'px;padding:80px;');
+  function buildCtaSlide(w, h, articleTitle, ctaText, isStory, lang) {
+    var slide = el('div', 'slide cta-slide', slideBaseStyle(w, h, lang) + 'padding:80px;');
     var logo = el('img', '', 'height:90px;width:auto;');
     logo.src = LOGO_MARK_WHITE_URL;
     var text = el('div', 'cta-text', 'font-size:' + (isStory ? '56px' : '48px') + ';');
-    text.innerHTML = 'برای دیدن متن کامل مقاله<br>به سایت ایران رانرز برید';
+    text.innerHTML = STRINGS[lang].ctaText;
     var sub = el('div', 'cta-sub');
     sub.textContent = ctaText || articleTitle;
     var url = el('div', 'cta-url mono');
@@ -334,13 +364,14 @@ sitemap: false
   function buildSlides(article, fmt) {
     var w = 1080, h = fmt === 'story' ? 1920 : 1080;
     var isStory = fmt === 'story';
+    var lang = article.lang;
     var slides = [];
-    slides.push({ name: '00-cover', node: buildCoverSlide(w, h, article.title, article.category, article.imgSrc, isStory) });
+    slides.push({ name: '00-cover', node: buildCoverSlide(w, h, article.title, article.category, article.imgSrc, isStory, lang) });
     var total = article.points.length;
     article.points.forEach(function (p, idx) {
-      slides.push({ name: (idx + 1) + '-point', node: buildPointSlide(w, h, idx + 1, total, p.heading, p.body, isStory) });
+      slides.push({ name: (idx + 1) + '-point', node: buildPointSlide(w, h, idx + 1, total, p.heading, p.body, isStory, lang) });
     });
-    slides.push({ name: (total + 1) + '-cta', node: buildCtaSlide(w, h, article.title, article.ctaText, isStory) });
+    slides.push({ name: (total + 1) + '-cta', node: buildCtaSlide(w, h, article.title, article.ctaText, isStory, lang) });
     return { w: w, h: h, slides: slides };
   }
 
@@ -377,7 +408,8 @@ sitemap: false
 
     setStatus('در حال آماده‌سازی...');
     var imgSrc = imageFile ? await readFileAsDataURL(imageFile) : imageUrl;
-    var article = { title: title, category: category, ctaText: ctaText, imgSrc: imgSrc, points: points };
+    var lang = detectLang([title, category, ctaText].concat(points.map(function (p) { return p.heading + ' ' + p.body; })).join(' '));
+    var article = { title: title, category: category, ctaText: ctaText, imgSrc: imgSrc, points: points, lang: lang };
 
     await document.fonts.ready;
 

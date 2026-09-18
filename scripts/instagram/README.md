@@ -15,8 +15,20 @@ For one article, two image sets:
   for Instagram Stories, with extra top/bottom margin so text clears
   Instagram's own UI (profile bar, reply bar)
 
-Every point slide and the cover end with "برای دیدن متن کامل مقاله به سایت
-ایران رانرز برید" — the CTA slide repeats it full-size with the site URL.
+Every point slide and the cover end with a "swipe to continue" hint, and the
+CTA slide closes with a full-size call to action back to the site.
+
+## Language
+
+The tool auto-detects Persian vs. English from the article's own text (title,
+category, headings, bodies, CTA line) — if any Persian/Arabic-script
+character appears anywhere, the whole set renders RTL in Persian; otherwise
+it renders LTR in English. This flips per-slide alignment (logo/category
+pill positions, bullet side, text alignment), switches the boilerplate
+strings the tool itself writes (swipe hint, "X of Y" counter, CTA heading)
+to match, and swaps the display font (Baloo Bhaijaan 2 for Persian, its
+Latin sibling Baloo 2 for English) — the user's own title/heading/body text
+is never translated, only used exactly as typed.
 
 ## Usage
 
@@ -50,8 +62,8 @@ slides themselves and asks for wording changes.
 
 ## How it renders
 
-Each slide is plain HTML/CSS (the site's own Vazirmatn font + brand colors)
-screenshotted with Playwright/Chromium at the exact target pixel size — the
+Each slide is plain HTML/CSS (brand colors + the Baloo font pair) screenshotted
+with Playwright/Chromium at the exact target pixel size — the
 same approach used throughout this repo's local testing, chosen because
 Chromium's native RTL/Persian text shaping is far more reliable than
 hand-rolling it with a raster library. Local images must be loaded via a
