@@ -940,11 +940,11 @@ footer.site-footer {
   object-fit: contain;
 }
 .partner-logo.featured {
-  height: 68px;
+  height: 90px;
 }
 .partner-logo.featured img {
-  height: 68px;
-  max-width: 220px;
+  height: 90px;
+  max-width: 260px;
 }
 .partner-logo.text-only {
   font-family: "JetBrains Mono", monospace;
@@ -959,8 +959,8 @@ footer.site-footer {
   .partners-grid { gap: 32px; }
   .partner-logo, .partner-logo img { height: 32px; }
   .partner-logo img { max-width: 110px; }
-  .partner-logo.featured, .partner-logo.featured img { height: 48px; }
-  .partner-logo.featured img { max-width: 150px; }
+  .partner-logo.featured, .partner-logo.featured img { height: 64px; }
+  .partner-logo.featured img { max-width: 180px; }
 }
 
 /* ---------- team grid (about page) ---------- */
