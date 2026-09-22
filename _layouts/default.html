@@ -39,6 +39,15 @@
 {% if page.nav == "home" and site.data.home.hero_photos.first.file %}
 <link rel="preload" as="image" href="{{ site.data.home.hero_photos.first.file | relative_url }}">
 {% endif %}
+{% if site.google_analytics_id %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_id }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.google_analytics_id }}');
+</script>
+{% endif %}
 </head>
 <body>
 
