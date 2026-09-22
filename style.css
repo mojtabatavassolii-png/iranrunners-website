@@ -1186,9 +1186,17 @@ footer.site-footer {
   padding: 60px 20px;
 }
 .lightbox-overlay[hidden] { display: none; }
+.lightbox-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  max-width: 96vw;
+}
 .lightbox-img {
-  max-width: 90vw;
+  max-width: min(80vw, 900px);
   max-height: 78vh;
+  min-width: 0;
   border-radius: 10px;
   box-shadow: 0 30px 70px -20px rgba(0,0,0,0.6);
 }
@@ -1209,9 +1217,7 @@ footer.site-footer {
 }
 .lightbox-close:hover { background: rgba(255,255,255,0.22); }
 .lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -1224,12 +1230,9 @@ footer.site-footer {
   transition: background 0.2s ease;
 }
 .lightbox-nav:hover { background: rgba(255,255,255,0.22); }
-.lightbox-prev { left: 18px; }
-.lightbox-next { right: 18px; }
 @media (max-width: 700px) {
-  .lightbox-nav { width: 40px; height: 40px; font-size: 1.5rem; }
-  .lightbox-prev { left: 8px; }
-  .lightbox-next { right: 8px; }
+  .lightbox-nav { width: 36px; height: 36px; font-size: 1.4rem; }
+  .lightbox-stage { gap: 6px; }
 }
 .lightbox-download {
   background: var(--accent-sunrise);
