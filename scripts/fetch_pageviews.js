@@ -1,4 +1,4 @@
-// Pulls all-time pageview counts for /blog/* posts from the GA4 Data API
+// Pulls all-time pageview counts for blog posts from the GA4 Data API
 // and writes them to _data/pageviews.json, keyed by post slug.
 //
 // Required env vars:
@@ -35,12 +35,6 @@ async function main() {
         dateRanges: [{ startDate: "2020-01-01", endDate: "today" }],
         dimensions: [{ name: "pagePath" }],
         metrics: [{ name: "screenPageViews" }],
-        dimensionFilter: {
-          filter: {
-            fieldName: "pagePath",
-            stringFilter: { matchType: "BEGINS_WITH", value: "/blog/" },
-          },
-        },
         limit: 10000,
       }),
     }
@@ -56,7 +50,9 @@ async function main() {
   for (const row of data.rows || []) {
     const pagePath = row.dimensionValues[0].value;
     const views = parseInt(row.metricValues[0].value, 10);
-    const match = pagePath.match(/^\/blog\/(.+)\.html/);
+    // matches both the current Persian blog folder and the old English
+    // one, encoded or not, since GA may still hold historical rows
+    const match = pagePath.match(/^\/(?:blog|%D9%88%D8%A8%D9%84%D8%A7%DA%AF|وبلاگ)\/(.+)\.html/);
     if (!match) continue;
     let slug;
     try {

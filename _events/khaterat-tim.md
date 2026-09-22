@@ -1,5 +1,7 @@
 ---
 title: خاطرات تیم
+slug: "خاطرات-تیم"
+redirect_from: /events/khaterat-tim
 date: 2026-01-01
 description: لحظه‌های تمرین و جمع‌های تیمی
 photos:

@@ -1,5 +1,7 @@
 ---
 title: کلاس های غیرحضوری (خارج از ایران)
+slug: "کلاس-های-غیرحضوری-خارج-از-ایران"
+redirect_from: /classes/aanlayn-kharj-az-ayran
 level_tag: Forign
 order: 3
 description: "مخصوص ایرانیان خارج از کشور "

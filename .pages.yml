@@ -102,6 +102,10 @@ content:
         type: string
         required: true
 
+      - name: slug
+        label: "آدرس صفحه (اختیاری — به فارسی و با خط تیره بین کلمات بنویس، مثلاً: کلاس-دویدن-مبتدی. اگه خالی بذاری، آدرس از روی اسم فایل ساخته می‌شه)"
+        type: string
+
       - name: level_tag
         label: "برچسب سطح (انگلیسی کوتاه، مثل BEGINNER)"
         type: string
@@ -249,6 +253,10 @@ content:
         label: "نام رویداد"
         type: string
         required: true
+
+      - name: slug
+        label: "آدرس صفحه (اختیاری — به فارسی و با خط تیره بین کلمات بنویس، مثلاً: مسابقه-پاییز. اگه خالی بذاری، آدرس از روی اسم فایل ساخته می‌شه)"
+        type: string
 
       - name: date
         label: "تاریخ رویداد"

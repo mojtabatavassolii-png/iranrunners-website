@@ -1,7 +1,9 @@
 ---
 title: راهنمای کامل شروع دویدن برای مبتدیان
 slug: "راهنمای-کامل-شروع-دویدن-برای-مبتدیان"
-redirect_from: "/blog/shoru-doidan-mobtadi.html"
+redirect_from:
+  - "/blog/shoru-doidan-mobtadi.html"
+  - "/blog/راهنمای-کامل-شروع-دویدن-برای-مبتدیان.html"
 description: "راهنمای اصولی شروع دویدن برای مبتدیان: از انتخاب تجهیزات تا برنامه
   هفتگی و پیشگیری از رایج‌ترین اشتباهات."
 category: علم دویدن
