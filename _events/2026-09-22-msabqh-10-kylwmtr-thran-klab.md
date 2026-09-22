@@ -2,7 +2,6 @@
 title: مسابقه ۱۰ کیلومتر تهران کلاب
 date: 2026-09-25
 photos:
-  - /assets/gallery/IMG_0243.jpeg
   - /assets/gallery/IMG_0232.jpeg
   - /assets/gallery/IMG_0233.jpeg
   - /assets/gallery/IMG_0234.jpeg
