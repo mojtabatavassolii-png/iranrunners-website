@@ -6,7 +6,7 @@ nav: blog
 {% assign icon_paths = icons[page.icon] | default: icons["beginner"] %}
 
 <div class="wrap" style="padding-top:36px;">
-  <div class="breadcrumb"><a href="{{ '/index.html' | relative_url }}">خانه</a> / <a href="{{ '/blog.html' | relative_url }}">وبلاگ</a> / {{ page.category }}</div>
+  <div class="breadcrumb"><a href="{{ '/index.html' | relative_url }}">خانه</a> / <a href="{{ '/وبلاگ.html' | relative_url }}">وبلاگ</a> / {{ page.category }}</div>
 
   {% if page.image and page.image != "" %}
   <div class="article-hero-media">
@@ -67,7 +67,7 @@ nav: blog
   <div class="article-cta">
     <h3>{{ page.cta_title }}</h3>
     <p>{{ page.cta_text }}</p>
-    <a href="{{ '/classes.html' | relative_url }}#register" class="btn-primary">ثبت‌نام در کلاس</a>
+    <a href="{{ '/کلاس-ها.html' | relative_url }}#register" class="btn-primary">ثبت‌نام در کلاس</a>
   </div>
   {% endif %}
 </article>
