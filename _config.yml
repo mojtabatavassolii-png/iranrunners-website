@@ -11,7 +11,7 @@ url: "https://iranrunners.com"
 google_analytics_id: "G-V1RD1YG8S0"
 
 markdown: kramdown
-permalink: /blog/:title.html
+permalink: /وبلاگ/:title.html
 
 # سایت فقط موقع push جدید build می‌شه (نه به‌صورت زمان‌بندی‌شده)، پس اگه این
 # false بمونه، مقاله یا رویدادی که تاریخش امروز نیست (مثلاً یه روز جلوتره)
@@ -41,11 +41,13 @@ defaults:
       type: "classes"
     values:
       layout: "class"
+      permalink: "/کلاس-ها/:title.html"
   - scope:
       path: ""
       type: "events"
     values:
       layout: "event"
+      permalink: "/گالری/:title.html"
 
 
 exclude:

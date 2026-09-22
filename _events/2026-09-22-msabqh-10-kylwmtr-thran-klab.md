@@ -1,5 +1,7 @@
 ---
 title: مسابقه ۱۰ کیلومتر تهران کلاب
+slug: "مسابقه-10-کیلومتر-تهران-کلاب"
+redirect_from: /events/2026-09-22-msabqh-10-kylwmtr-thran-klab
 date: 2026-09-25
 description: لحظه‌های تیم ایران رانرز در مسابقه ۱۰ کیلومتر تهران کلاب
 photos:

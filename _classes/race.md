@@ -1,5 +1,7 @@
 ---
 title: کلاس های غیرحضوری (داخل ایران)
+slug: "کلاس-های-غیرحضوری-داخل-ایران"
+redirect_from: /classes/race
 level_tag: All
 order: 2
 description: "از هر شهر ایران که هستید می‌توانید در این کلاس شرکت کنید "

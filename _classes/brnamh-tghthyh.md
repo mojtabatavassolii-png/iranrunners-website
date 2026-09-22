@@ -1,5 +1,7 @@
 ---
 title: برنامه تغذیه
+slug: "برنامه-تغذیه"
+redirect_from: /classes/brnamh-tghthyh
 level_tag: "Nutrition "
 order: 6
 description: "برنامه تغذیه ورزشی "

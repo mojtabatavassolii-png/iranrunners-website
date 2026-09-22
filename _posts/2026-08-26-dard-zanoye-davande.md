@@ -1,7 +1,9 @@
 ---
 title: "درد زانوی دونده: علت‌ها و تمرین‌های اصلاحی"
 slug: "درد-زانوی-دونده-علت-ها-و-تمرین-های-اصلاحی"
-redirect_from: "/blog/dard-zanoye-davande.html"
+redirect_from:
+  - "/blog/dard-zanoye-davande.html"
+  - "/blog/درد-زانوی-دونده-علت-ها-و-تمرین-های-اصلاحی.html"
 description: بررسی علمی درد زانوی دونده (Runner's Knee)، علت‌های شایع آن و
   تمرین‌های اصلاحی برای پیشگیری و درمان.
 category: پیشگیری از آسیب

@@ -1,7 +1,9 @@
 ---
 title: راهنمای انتخاب کفش دویدن مناسب پا و سبک دویدن
 slug: "راهنمای-انتخاب-کفش-دویدن-مناسب-پا-و-سبک-دویدن"
-redirect_from: "/blog/entekhab-kafshe-doidan.html"
+redirect_from:
+  - "/blog/entekhab-kafshe-doidan.html"
+  - "/blog/راهنمای-انتخاب-کفش-دویدن-مناسب-پا-و-سبک-دویدن.html"
 description: چطور کفش دویدن مناسب انتخاب کنیم؟ راهنمای کامل انتخاب کفش بر اساس
   نوع قوس کف پا، سبک دویدن و هدف تمرینی.
 category: تجهیزات

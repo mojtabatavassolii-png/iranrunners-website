@@ -1,5 +1,7 @@
 ---
 title: کلاس های حضوری پارک پردیسان
+slug: "کلاس-های-حضوری-پارک-پردیسان"
+redirect_from: /classes/beginner
 level_tag: All
 order: 1
 description: |-
