@@ -1237,7 +1237,8 @@ footer.site-footer {
 .lightbox-download {
   background: var(--accent-sunrise);
   color: #ffffff;
-  padding: 13px 28px;
+  padding: 8px 18px;
+  font-size: 0.82rem;
   border-radius: 999px;
   font-weight: 700;
   transition: background 0.2s ease, transform 0.2s ease;
