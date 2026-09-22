@@ -1,6 +1,8 @@
 <div class="lightbox-overlay" id="lightbox-overlay" hidden>
   <button type="button" class="lightbox-close" id="lightbox-close" aria-label="بستن">&times;</button>
+  <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="عکس قبلی">&#8249;</button>
   <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="عکس بعدی">&#8250;</button>
   <a class="lightbox-download" id="lightbox-download" href="" download>دانلود عکس</a>
 </div>
 <script>
@@ -9,18 +11,35 @@
     var imgEl = document.getElementById('lightbox-img');
     var downloadLink = document.getElementById('lightbox-download');
     var closeBtn = document.getElementById('lightbox-close');
-    if (!overlay || !imgEl || !downloadLink || !closeBtn) { return; }
+    var prevBtn = document.getElementById('lightbox-prev');
+    var nextBtn = document.getElementById('lightbox-next');
+    if (!overlay || !imgEl || !downloadLink || !closeBtn || !prevBtn || !nextBtn) { return; }
 
-    function openLightbox(url, alt) {
-      imgEl.src = url;
-      imgEl.alt = alt || '';
-      downloadLink.href = url;
+    var items = [];
+    var currentIndex = -1;
+
+    function showAt(index) {
+      if (items.length === 0) { return; }
+      currentIndex = (index + items.length) % items.length;
+      var trigger = items[currentIndex];
+      imgEl.src = trigger.getAttribute('data-lightbox');
+      imgEl.alt = trigger.getAttribute('data-lightbox-alt') || '';
+      downloadLink.href = trigger.getAttribute('data-lightbox');
+      var showNav = items.length > 1;
+      prevBtn.hidden = !showNav;
+      nextBtn.hidden = !showNav;
+    }
+    function openLightbox(trigger) {
+      items = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
+      showAt(items.indexOf(trigger));
       overlay.hidden = false;
       document.body.style.overflow = 'hidden';
     }
     function closeLightbox() {
       overlay.hidden = true;
       imgEl.src = '';
+      items = [];
+      currentIndex = -1;
       document.body.style.overflow = '';
     }
 
@@ -28,15 +47,19 @@
       var trigger = e.target.closest('[data-lightbox]');
       if (trigger) {
         e.preventDefault();
-        openLightbox(trigger.getAttribute('data-lightbox'), trigger.getAttribute('data-lightbox-alt'));
+        openLightbox(trigger);
         return;
       }
-      if (!overlay.hidden && (e.target === overlay || e.target === closeBtn)) {
-        closeLightbox();
-      }
+      if (overlay.hidden) { return; }
+      if (e.target === nextBtn) { showAt(currentIndex + 1); return; }
+      if (e.target === prevBtn) { showAt(currentIndex - 1); return; }
+      if (e.target === overlay || e.target === closeBtn) { closeLightbox(); }
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !overlay.hidden) { closeLightbox(); }
+      if (overlay.hidden) { return; }
+      if (e.key === 'Escape') { closeLightbox(); }
+      else if (e.key === 'ArrowRight') { showAt(currentIndex + 1); }
+      else if (e.key === 'ArrowLeft') { showAt(currentIndex - 1); }
     });
   });
 </script>
