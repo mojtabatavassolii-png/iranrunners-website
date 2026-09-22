@@ -8,6 +8,8 @@ lang: fa
 baseurl: ""
 url: "https://iranrunners.com"
 
+google_analytics_id: "G-V1RD1YG8S0"
+
 markdown: kramdown
 permalink: /blog/:title.html
 
