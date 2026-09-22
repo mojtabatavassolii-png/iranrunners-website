@@ -1,6 +1,7 @@
 ---
 title: مسابقه ۱۰ کیلومتر تهران کلاب
 date: 2026-09-25
+description: لحظه‌های تیم ایران رانرز در مسابقه ۱۰ کیلومتر تهران کلاب
 photos:
   - /assets/gallery/IMG_0243.jpeg
   - /assets/gallery/IMG_0232.jpeg
