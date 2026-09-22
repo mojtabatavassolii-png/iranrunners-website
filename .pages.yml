@@ -53,6 +53,14 @@ content:
             media: gallery
             required: true
 
+      - name: gallery_album
+        label: "آلبوم گالری صفحه اول (خالی بذار تا خودکار و چرخشی از همه آلبوم‌ها انتخاب بشه)"
+        type: reference
+        options:
+          collection: events
+          value: "{path}"
+          label: "{title}"
+
       - name: partner_list
         label: "شرکای ما"
         type: object

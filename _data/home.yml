@@ -1,6 +1,7 @@
 hero_lead: ""
 hero_photos:
   - file: /assets/gallery/D7C0E1E8-7A53-4B20-A243-E66319C7F6C5-1.png
+gallery_album: ""
 partner_list:
   - name: "Loncin"
     logo: /assets/partners/loncin-white.png

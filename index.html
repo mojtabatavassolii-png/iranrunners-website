@@ -115,13 +115,25 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
   </div>
 </section>
 
+{% assign selected_album = nil %}
+{% if site.data.home.gallery_album and site.data.home.gallery_album != "" %}
+  {% for event in site.events %}
+    {% if event.path == site.data.home.gallery_album %}{% assign selected_album = event %}{% endif %}
+  {% endfor %}
+{% endif %}
 <script>
   (function () {
+    var grid = document.getElementById('gallery-preview-grid');
+    if (!grid) { return; }
+    var picked;
+    {% if selected_album %}
+    picked = [
+      {% for photo in selected_album.photos limit: 9 %}"{{ photo | relative_url }}",{% endfor %}
+    ];
+    {% else %}
     var allPhotos = [
       {% for event in site.events %}{% for photo in event.photos %}"{{ photo | relative_url }}",{% endfor %}{% endfor %}
     ];
-    if (allPhotos.length === 0) { return; }
-
     function seededRandom(seed) {
       var x = Math.sin(seed) * 10000;
       return x - Math.floor(x);
@@ -132,9 +144,9 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
       var j = Math.floor(seededRandom(bucket + i) * (i + 1));
       var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
     }
-    var picked = shuffled.slice(0, Math.min(9, shuffled.length));
-    var grid = document.getElementById('gallery-preview-grid');
-    if (!grid) { return; }
+    picked = shuffled.slice(0, Math.min(9, shuffled.length));
+    {% endif %}
+    if (!picked || picked.length === 0) { return; }
     picked.forEach(function (url) {
       var item = document.createElement('div');
       item.className = 'g-item';
