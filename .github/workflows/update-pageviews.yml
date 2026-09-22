@@ -1,0 +1,40 @@
+name: Update article pageviews
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-pageviews:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install --no-save google-auth-library
+
+      - name: Fetch pageviews from GA4
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+          GA4_PROPERTY_ID: "555311601"
+        run: node scripts/fetch_pageviews.js
+
+      - name: Commit updated pageviews
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- _data/pageviews.json; then
+            echo "No pageview changes."
+            exit 0
+          fi
+          git add _data/pageviews.json
+          git commit -m "Update article pageviews"
+          git push
