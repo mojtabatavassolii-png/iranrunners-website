@@ -34,7 +34,8 @@ description: مقالات علمی و تجربی ایران رانرز دربا�
           <span class="post-cat">{{ post.category }}</span>
           <h3>{{ post.title }}</h3>
           <p>{{ post.description }}</p>
-          <span class="post-meta">{{ post.read_time }}</span>
+          {% assign views = site.data.pageviews[post.slug] | default: 0 %}
+          <span class="post-meta">{{ post.read_time }} · {{ views }} VIEWS</span>
         </div>
       </a>
       {% endfor %}

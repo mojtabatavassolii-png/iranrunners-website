@@ -33,9 +33,11 @@ nav: blog
   </div>
   {% endif %}
 
+  {% assign views = site.data.pageviews[page.slug] | default: 0 %}
   <div class="article-meta-row">
     <span class="cat-pill">{{ page.category }}</span>
     <span>{{ page.read_time }}</span>
+    <span>{{ views }} VIEWS</span>
   </div>
 
   {% assign page_full_url = site.url | append: page.url %}
