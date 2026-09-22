@@ -1,15 +1,13 @@
-hero_lead: ""
 hero_photos:
   - file: /assets/gallery/D7C0E1E8-7A53-4B20-A243-E66319C7F6C5-1.png
-gallery_album: ""
+gallery_album: _events/2026-09-22-msabqh-10-kylwmtr-thran-klab.md
 partner_list:
-  - name: "Loncin"
+  - name: Loncin
     logo: /assets/partners/loncin-white.png
-    link: ""
-  - name: "TBS Power Solutions"
+    featured: false
+  - name: TBS Power Solutions
     logo: /assets/partners/tbs-power-solutions-white.png
-    link: ""
     featured: true
-  - name: "KOOP"
+  - name: KOOP
     logo: /assets/partners/koop-white.png
-    link: ""
+    featured: false
