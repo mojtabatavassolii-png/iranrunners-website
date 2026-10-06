@@ -83,6 +83,30 @@ sitemap: false
   table th { color: var(--muted); font-weight: 600; }
   td.ltr, th.ltr { direction: ltr; text-align: left; font-family: "JetBrains Mono", monospace; font-size: 0.8rem; }
 
+  .task-summary { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+  .pill-count { border-radius: 999px; padding: 6px 14px; font-size: 0.82rem; font-weight: 700; }
+  .pill-count.review { background: #fdeaea; color: var(--red); }
+  .pill-count.progress { background: #fdf3e0; color: var(--warn); }
+  .pill-count.done { background: #e7f7ee; color: var(--good); }
+
+  .task-list { display: flex; flex-direction: column; gap: 14px; }
+  .task-item { border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .task-item.sev-error { border-right: 4px solid var(--red); }
+  .task-item.sev-warning { border-right: 4px solid var(--warn); }
+  .task-item.sev-info { border-right: 4px solid var(--faint); }
+  .task-item.sev-ok { border-right: 4px solid var(--good); }
+  .task-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .task-url { font-family: "JetBrains Mono", monospace; direction: ltr; text-align: left; font-size: 0.82rem; }
+  .status-badge { border-radius: 999px; padding: 3px 12px; font-size: 0.76rem; font-weight: 700; white-space: nowrap; }
+  .status-badge.review { background: #fdeaea; color: var(--red); }
+  .status-badge.progress { background: #fdf3e0; color: var(--warn); }
+  .status-badge.done { background: #e7f7ee; color: var(--good); }
+  .task-reason { color: var(--black); font-size: 0.88rem; margin-bottom: 6px; }
+  .task-action { color: var(--muted); font-size: 0.85rem; }
+  .task-action b { color: var(--black); }
+  .task-note { color: var(--muted); font-size: 0.82rem; margin-top: 6px; font-style: italic; }
+  .task-coverage { color: var(--faint); font-size: 0.75rem; margin-top: 6px; }
+
   @media (max-width: 560px) {
     .chart-wrap { height: 220px; }
   }
@@ -130,6 +154,13 @@ sitemap: false
     <h2>علاقه‌مندی به کلاس‌ها (تعداد کلیک «ارسال درخواست ثبت‌نام»)</h2>
     <div class="chart-wrap"><canvas id="chart-classes"></canvas></div>
     <p class="note" id="classes-note"></p>
+  </div>
+
+  <div class="panel">
+    <h2>تسک‌های ایندکس</h2>
+    <div class="task-summary" id="task-summary"></div>
+    <div class="task-list" id="task-list"></div>
+    <p class="note">برای علامت زدن یه صفحه به‌عنوان «در حال رفع»، از پیجز سی‌ام‌اس بخش «تسک‌های ایندکس (داشبورد سئو)» آدرسش رو اضافه کن — فردا که گزارش دوباره اجرا بشه وضعیتش اینجا به‌روز می‌شه.</p>
   </div>
 
   <div class="panel">
@@ -314,6 +345,40 @@ sitemap: false
         },
         options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
       });
+    }
+
+    // --- index tasks ---
+    var STATUS_CLASS = { 'نیاز به بررسی': 'review', 'در حال رفع': 'progress', 'حل‌شده': 'done' };
+    var tasks = data.indexTasks || [];
+    var counts = { 'نیاز به بررسی': 0, 'در حال رفع': 0, 'حل‌شده': 0 };
+    tasks.forEach(function (t) { if (counts[t.status] !== undefined) counts[t.status]++; });
+    var summaryEl = document.getElementById('task-summary');
+    summaryEl.innerHTML =
+      '<span class="pill-count review">' + fa(counts['نیاز به بررسی']) + ' نیاز به بررسی</span>' +
+      '<span class="pill-count progress">' + fa(counts['در حال رفع']) + ' در حال رفع</span>' +
+      '<span class="pill-count done">' + fa(counts['حل‌شده']) + ' حل‌شده</span>';
+
+    var order = { 'نیاز به بررسی': 0, 'در حال رفع': 1, 'حل‌شده': 2 };
+    var sortedTasks = tasks.slice().sort(function (a, b) { return order[a.status] - order[b.status]; });
+    var listEl = document.getElementById('task-list');
+    if (sortedTasks.length === 0) {
+      listEl.innerHTML = '<p class="note">هیچ صفحه‌ای مشکل ایندکس نداره. 🎉</p>';
+    } else {
+      listEl.innerHTML = sortedTasks.map(function (t) {
+        var sev = (t.issue && t.issue.severity) || 'warning';
+        var cls = STATUS_CLASS[t.status] || 'review';
+        var actionHtml = (t.issue && t.issue.action) ? '<div class="task-action"><b>اقدام پیشنهادی:</b> ' + t.issue.action + '</div>' : '';
+        var noteHtml = t.note ? '<div class="task-note">یادداشت: ' + t.note + '</div>' : '';
+        return '<div class="task-item sev-' + sev + '">' +
+          '<div class="task-head">' +
+            '<span class="task-url">' + t.url + '</span>' +
+            '<span class="status-badge ' + cls + '">' + t.status + '</span>' +
+          '</div>' +
+          '<div class="task-reason">' + (t.issue ? t.issue.simple : '') + '</div>' +
+          actionHtml + noteHtml +
+          '<div class="task-coverage">وضعیت خام Search Console: ' + t.coverageState + '</div>' +
+        '</div>';
+      }).join('');
     }
 
     // --- pages table ---
