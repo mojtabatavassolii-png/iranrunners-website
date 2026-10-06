@@ -48,7 +48,7 @@
     },
     {
       "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C/%D8%AE%D8%A7%D8%B7%D8%B1%D8%A7%D8%AA-%D8%AA%DB%8C%D9%85.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -56,7 +56,7 @@
     },
     {
       "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C/%D8%AA%D9%BE%D9%87-%D9%87%D8%A7%DB%8C-%D8%B1%D9%86%DA%AF%DB%8C%D9%86-%DA%A9%D9%85%D8%A7%D9%86.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -266,6 +266,80 @@
       {
         "channel": "Unassigned",
         "sessions": "1"
+      }
+    ],
+    "daily": [
+      {
+        "date": "20260922",
+        "sessions": 31,
+        "activeUsers": 26,
+        "pageViews": 174
+      },
+      {
+        "date": "20260923",
+        "sessions": 16,
+        "activeUsers": 15,
+        "pageViews": 28
+      },
+      {
+        "date": "20260924",
+        "sessions": 1,
+        "activeUsers": 0,
+        "pageViews": 1
+      },
+      {
+        "date": "20260925",
+        "sessions": 8,
+        "activeUsers": 4,
+        "pageViews": 46
+      },
+      {
+        "date": "20260926",
+        "sessions": 11,
+        "activeUsers": 6,
+        "pageViews": 42
+      },
+      {
+        "date": "20260927",
+        "sessions": 8,
+        "activeUsers": 4,
+        "pageViews": 23
+      },
+      {
+        "date": "20260928",
+        "sessions": 3,
+        "activeUsers": 1,
+        "pageViews": 9
+      },
+      {
+        "date": "20260929",
+        "sessions": 7,
+        "activeUsers": 4,
+        "pageViews": 9
+      },
+      {
+        "date": "20260930",
+        "sessions": 3,
+        "activeUsers": 3,
+        "pageViews": 5
+      },
+      {
+        "date": "20261001",
+        "sessions": 14,
+        "activeUsers": 11,
+        "pageViews": 24
+      },
+      {
+        "date": "20261002",
+        "sessions": 7,
+        "activeUsers": 5,
+        "pageViews": 13
+      },
+      {
+        "date": "20261003",
+        "sessions": 2,
+        "activeUsers": 2,
+        "pageViews": 4
       }
     ]
   },

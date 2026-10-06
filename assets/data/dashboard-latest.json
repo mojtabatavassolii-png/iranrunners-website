@@ -1,0 +1,342 @@
+{
+  "generatedAt": "2026-10-06T08:21:16.426Z",
+  "startDate": "2026-09-06",
+  "endDate": "2026-10-03",
+  "indexStatus": {
+    "indexed": 8,
+    "pending": 16,
+    "total": 24
+  },
+  "pages": [
+    {
+      "url": "/کلاس-ها/مربیگری-اختصاصی.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6.5
+    },
+    {
+      "url": "/کلاس-ها/برنامه-تغذیه.html",
+      "coverageState": "Discovered - currently not indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
+      "coverageState": "Discovered - currently not indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/گالری/خاطرات-تیم.html",
+      "coverageState": "Discovered - currently not indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/گالری/تپه-های-رنگین-کمان.html",
+      "coverageState": "Discovered - currently not indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
+      "coverageState": "Discovered - currently not indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ/آماده-سازی-ماراتن.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ/درد-زانوی-دونده.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ/انتخاب-کفش-دویدن.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ/قانون-10-درصد.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ/ریکاوری-فعال-یا-استراحت-کامل.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ/شروع-دویدن-برای-مبتدیان.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ/تغذیه-دوندگان.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ/دویدن-در-هوای-آلوده.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/درباره-ما.html",
+      "coverageState": "Discovered - currently not indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/کلاس-ها.html",
+      "coverageState": "Discovered - currently not indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/مربیان.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 6.933333333333334
+    },
+    {
+      "url": "/گالری.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "url": "/",
+      "coverageState": "Submitted and indexed",
+      "clicks": 18,
+      "impressions": 57,
+      "ctr": 0.3157894736842105,
+      "position": 1.1228070175438596
+    },
+    {
+      "url": "/محاسبه-گر-پیس.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "url": "/scripts/instagram/",
+      "coverageState": "Discovered - currently not indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    }
+  ],
+  "daily": [
+    {
+      "date": "20260922",
+      "sessions": 31,
+      "activeUsers": 26,
+      "pageViews": 174
+    },
+    {
+      "date": "20260923",
+      "sessions": 16,
+      "activeUsers": 15,
+      "pageViews": 28
+    },
+    {
+      "date": "20260924",
+      "sessions": 1,
+      "activeUsers": 0,
+      "pageViews": 1
+    },
+    {
+      "date": "20260925",
+      "sessions": 8,
+      "activeUsers": 4,
+      "pageViews": 46
+    },
+    {
+      "date": "20260926",
+      "sessions": 11,
+      "activeUsers": 6,
+      "pageViews": 42
+    },
+    {
+      "date": "20260927",
+      "sessions": 8,
+      "activeUsers": 4,
+      "pageViews": 23
+    },
+    {
+      "date": "20260928",
+      "sessions": 3,
+      "activeUsers": 1,
+      "pageViews": 9
+    },
+    {
+      "date": "20260929",
+      "sessions": 7,
+      "activeUsers": 4,
+      "pageViews": 9
+    },
+    {
+      "date": "20260930",
+      "sessions": 3,
+      "activeUsers": 3,
+      "pageViews": 5
+    },
+    {
+      "date": "20261001",
+      "sessions": 14,
+      "activeUsers": 11,
+      "pageViews": 24
+    },
+    {
+      "date": "20261002",
+      "sessions": 7,
+      "activeUsers": 5,
+      "pageViews": 13
+    },
+    {
+      "date": "20261003",
+      "sessions": 2,
+      "activeUsers": 2,
+      "pageViews": 4
+    }
+  ],
+  "topPages": [
+    {
+      "path": "/index.html",
+      "views": "78"
+    },
+    {
+      "path": "/",
+      "views": "73"
+    },
+    {
+      "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
+      "views": "34"
+    },
+    {
+      "path": "/کلاس-ها.html",
+      "views": "23"
+    },
+    {
+      "path": "/gallery.html",
+      "views": "22"
+    },
+    {
+      "path": "/گالری.html",
+      "views": "16"
+    },
+    {
+      "path": "/محاسبه-گر-پیس.html",
+      "views": "14"
+    },
+    {
+      "path": "/وبلاگ.html",
+      "views": "12"
+    },
+    {
+      "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "views": "11"
+    },
+    {
+      "path": "/blog/دویدن-در-هوای-آلوده-راهنمای-ایمنی-برای-دوندگان-شهرهای-پرترافیک.html",
+      "views": "10"
+    }
+  ],
+  "channels": [
+    {
+      "channel": "Direct",
+      "sessions": "72"
+    },
+    {
+      "channel": "Organic Search",
+      "sessions": "24"
+    },
+    {
+      "channel": "Organic Social",
+      "sessions": "14"
+    },
+    {
+      "channel": "Unassigned",
+      "sessions": "1"
+    }
+  ],
+  "classInterest": [],
+  "classInterestError": "GA4 class-interest query failed: 400 {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Did you mean cm360AdvertiserName? Field customEvent:class_name is not a valid dimension. For a list of valid dimensions and metrics, see https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema \",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n",
+  "gscError": null,
+  "ga4Error": null
+}
