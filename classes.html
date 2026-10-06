@@ -160,6 +160,10 @@ redirect_from: /classes.html
         var message = lines.join('\n');
         var telegramUsername = classCoachMap[className];
 
+        if (className && typeof gtag === 'function') {
+          gtag('event', 'class_signup_click', { class_name: className, transport_type: 'beacon' });
+        }
+
         if (telegramUsername && telegramUsername !== '') {
           var vpnNotice = document.getElementById('vpn-notice');
           if (vpnNotice) { vpnNotice.hidden = false; }
