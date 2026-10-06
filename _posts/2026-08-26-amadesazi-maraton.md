@@ -1,7 +1,11 @@
 ---
 title: راهنمای کامل آماده‌سازی ماراتن و نیم‌ماراتن برای مبتدیان
-focus_keyword: آماده‌سازی ماراتن
 slug: آماده-سازی-ماراتن
+redirect_from:
+  - "/blog/amadesazi-maraton.html"
+  - "/blog/چطور-برای-اولین-ماراتن-یا-نیم-ماراتن-خودت-آماده-شوی.html"
+  - "/وبلاگ/چطور-برای-اولین-ماراتن-یا-نیم-ماراتن-خودت-آماده-شوی.html"
+focus_keyword: آماده‌سازی ماراتن
 description: راهنمای گامبه‌گام آماده‌سازی برای اولین ماراتن یا نیم‌ماراتن — از
   انتخاب برنامه تمرینی تا استراتژی روز مسابقه.
 meta_title: "آماده‌سازی ماراتن و نیم‌ماراتن: راهنمای کامل | ایران رانرز"
@@ -11,11 +15,11 @@ category: برنامه تمرینی
 icon: marathon
 image: /assets/gallery/WhatsApp Image 2026-09-09 at 2.33.39 PM.jpg
 image_alt: دونده‌ای در حال تمرین برای آماده‌سازی ماراتن
-image_webp: /assets/gallery/IMG_0309.jpeg
+image_webp: /assets/gallery/WhatsApp Image 2026-09-09 at 2.33.39 PM.webp
 inline_images:
   - file: /assets/gallery/IMG_0310.jpeg
-    alt: " جمعیت دوندگان در حال دویدن کنار هم در روز مسابقه ماراتن "
-    position: 0
+    alt: "جمعیت دوندگان در حال دویدن کنار هم در روز مسابقه ماراتن"
+    position: 3
 read_time: 11 MIN READ
 date: 2026-10-06
 lead: آماده‌سازی ماراتن یا نیم‌ماراتن، چه اولین باری که می‌دوی چه بار دهم، نیاز

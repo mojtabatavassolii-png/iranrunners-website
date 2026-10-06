@@ -69,6 +69,14 @@ nav: blog
   {% if page.lead %}<p class="lead-p">{{ page.lead }}</p>{% endif %}
 
   {% if page.inline_images and page.inline_images.size > 0 %}
+    {% for img in page.inline_images %}
+      {% if img.position == 0 %}
+      <picture class="article-inline-image">
+        {% if img.file_webp and img.file_webp != "" %}<source srcset="{{ img.file_webp | relative_url }}" type="image/webp">{% endif %}
+        <img src="{{ img.file | relative_url }}" alt="{{ img.alt }}" loading="lazy">
+      </picture>
+      {% endif %}
+    {% endfor %}
     {% assign content_parts = content | split: "</h2>" %}
     {% assign last_part_index = content_parts.size | minus: 1 %}
     {% for part in content_parts %}
