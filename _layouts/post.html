@@ -10,7 +10,14 @@ nav: blog
 
   {% if page.image and page.image != "" %}
   <div class="article-hero-media">
-    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" style="width:100%;height:auto;display:block;">
+    {% if page.image_webp and page.image_webp != "" %}
+    <picture>
+      <source srcset="{{ page.image_webp | relative_url }}" type="image/webp">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" style="width:100%;height:auto;display:block;">
+    </picture>
+    {% else %}
+    <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" style="width:100%;height:auto;display:block;">
+    {% endif %}
   </div>
   {% else %}
   <div class="article-hero-media">
