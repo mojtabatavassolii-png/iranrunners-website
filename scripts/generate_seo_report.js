@@ -212,7 +212,7 @@ async function main() {
     for (const url of sitemapUrls) {
       const status = await inspectUrl(gscToken, gscSiteUrl, url);
       const a = analytics[url] || { clicks: 0, impressions: 0, ctr: 0, position: null };
-      const shortUrl = url.replace(SITE_URL, "");
+      const shortUrl = decodeURIComponent(url.replace(SITE_URL, ""));
       report.pages.push({ url, ...status, ...a });
       lines.push(
         `| ${shortUrl} | ${formatCoverage(status.coverageState)} | ${a.clicks} | ${a.impressions} | ${(a.ctr * 100).toFixed(1)}% | ${a.position ? a.position.toFixed(1) : "-"} |`
