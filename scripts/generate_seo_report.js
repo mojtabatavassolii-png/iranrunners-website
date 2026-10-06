@@ -6,7 +6,10 @@
 //     session/user totals, top pages, traffic source breakdown.
 //
 // Output: reports/report-YYYY-MM-DD.md (plus the same data as JSON next
-// to it, for anything that wants to read it programmatically).
+// to it, for anything that wants to read it programmatically), and
+// assets/data/dashboard-latest.json - a chart-ready snapshot consumed by
+// the live admin/dashboard.html page (unlike reports/, assets/ is not
+// excluded from the Jekyll build, so this file is actually servable).
 //
 // Required env vars:
 //   GOOGLE_SERVICE_ACCOUNT_JSON - full contents of the shared service
@@ -152,6 +155,13 @@ async function runGa4Report(token, startDate, endDate) {
     orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
   });
 
+  const daily = await runReport({
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: "date" }],
+    metrics: [{ name: "sessions" }, { name: "activeUsers" }, { name: "screenPageViews" }],
+    orderBys: [{ dimension: { dimensionName: "date" } }],
+  });
+
   return {
     sessions: totalsRow ? totalsRow.metricValues[0].value : "0",
     activeUsers: totalsRow ? totalsRow.metricValues[1].value : "0",
@@ -164,7 +174,47 @@ async function runGa4Report(token, startDate, endDate) {
       channel: r.dimensionValues[0].value,
       sessions: r.metricValues[0].value,
     })),
+    daily: (daily.rows || []).map((r) => ({
+      date: r.dimensionValues[0].value, // YYYYMMDD
+      sessions: Number(r.metricValues[0].value),
+      activeUsers: Number(r.metricValues[1].value),
+      pageViews: Number(r.metricValues[2].value),
+    })),
   };
+}
+
+// Breakdown of "class_signup_click" events by class name. Requires a
+// one-time manual setup step in GA4: Admin -> Custom definitions ->
+// Create custom dimension, scope "Event", event parameter "class_name".
+// Until that's done, the customEvent:class_name dimension doesn't exist
+// yet and this throws - callers should catch and degrade gracefully.
+async function fetchClassInterest(token, startDate, endDate) {
+  const res = await fetch(
+    `https://analyticsdata.googleapis.com/v1beta/properties/${GA4_PROPERTY_ID}:runReport`,
+    {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        dateRanges: [{ startDate, endDate }],
+        dimensions: [{ name: "customEvent:class_name" }],
+        metrics: [{ name: "eventCount" }],
+        dimensionFilter: {
+          filter: {
+            fieldName: "eventName",
+            stringFilter: { value: "class_signup_click" },
+          },
+        },
+        orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
+      }),
+    }
+  );
+  if (!res.ok) {
+    throw new Error(`GA4 class-interest query failed: ${res.status} ${await res.text()}`);
+  }
+  const data = await res.json();
+  return (data.rows || [])
+    .map((r) => ({ className: r.dimensionValues[0].value, clicks: Number(r.metricValues[0].value) }))
+    .filter((r) => r.className);
 }
 
 function formatCoverage(state) {
@@ -194,6 +244,20 @@ async function main() {
   lines.push("");
 
   const report = { date, startDate, endDate, pages: [], ga4: null, gscError: null };
+  const dashboard = {
+    generatedAt: new Date().toISOString(),
+    startDate,
+    endDate,
+    indexStatus: { indexed: 0, pending: 0, total: 0 },
+    pages: [],
+    daily: [],
+    topPages: [],
+    channels: [],
+    classInterest: [],
+    classInterestError: null,
+    gscError: null,
+    ga4Error: null,
+  };
 
   // --- Search Console section ---
   try {
@@ -225,8 +289,19 @@ async function main() {
     const pending = report.pages.length - indexed;
     lines.push(`**خلاصه:** ${indexed} صفحه ایندکس‌شده، ${pending} صفحه در انتظار/نامشخص.`);
     lines.push("");
+
+    dashboard.indexStatus = { indexed, pending, total: report.pages.length };
+    dashboard.pages = report.pages.map((p) => ({
+      url: decodeURIComponent(p.url.replace(SITE_URL, "")),
+      coverageState: p.coverageState,
+      clicks: p.clicks,
+      impressions: p.impressions,
+      ctr: p.ctr,
+      position: p.position,
+    }));
   } catch (err) {
     report.gscError = String(err.message || err);
+    dashboard.gscError = report.gscError;
     lines.push("## Search Console");
     lines.push("");
     lines.push(`⚠️ نتونستم به Search Console وصل بشم: ${report.gscError}`);
@@ -264,7 +339,18 @@ async function main() {
       lines.push("|---|---|");
       for (const c of ga4.channels) lines.push(`| ${c.channel} | ${c.sessions} |`);
       lines.push("");
+
+      dashboard.daily = ga4.daily;
+      dashboard.topPages = ga4.topPages;
+      dashboard.channels = ga4.channels;
+
+      try {
+        dashboard.classInterest = await fetchClassInterest(gaToken, startDate, endDate);
+      } catch (err) {
+        dashboard.classInterestError = String(err.message || err);
+      }
     } catch (err) {
+      dashboard.ga4Error = String(err.message || err);
       lines.push("## گوگل آنالیتیکس");
       lines.push("");
       lines.push(`⚠️ نتونستم به GA4 وصل بشم: ${err.message || err}`);
@@ -284,6 +370,12 @@ async function main() {
   fs.writeFileSync(mdPath, lines.join("\n") + "\n");
   fs.writeFileSync(jsonPath, JSON.stringify(report, null, 2) + "\n");
   console.log(`Wrote ${mdPath}`);
+
+  const dataDir = path.join(__dirname, "..", "assets", "data");
+  fs.mkdirSync(dataDir, { recursive: true });
+  const dashboardPath = path.join(dataDir, "dashboard-latest.json");
+  fs.writeFileSync(dashboardPath, JSON.stringify(dashboard, null, 2) + "\n");
+  console.log(`Wrote ${dashboardPath}`);
 }
 
 main().catch((err) => {

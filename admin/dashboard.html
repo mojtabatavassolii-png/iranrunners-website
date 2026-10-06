@@ -1,0 +1,343 @@
+---
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>داشبورد سئو و آنالیتیکس | ایران رانرز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<script src="{{ '/assets/vendor/chart.min.js' | relative_url }}"></script>
+<style>
+  :root {
+    --red: #e8121a;
+    --black: #111111;
+    --muted: #555555;
+    --faint: #8a8a8a;
+    --panel: #f6f6f6;
+    --border: #e6e6e6;
+    --good: #1a9e4e;
+    --warn: #c98a06;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #ffffff; color: var(--black);
+    font-family: "Vazirmatn", "Tahoma", sans-serif;
+    direction: rtl;
+  }
+  .mono { font-family: "JetBrains Mono", monospace; direction: ltr; display: inline-block; letter-spacing: -0.02em; }
+
+  /* ---------- gate ---------- */
+  #gate {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  #gate .box { max-width: 360px; width: 100%; text-align: center; }
+  #gate h1 { font-size: 1.3rem; margin-bottom: 10px; }
+  #gate p { color: var(--muted); font-size: 0.9rem; margin-bottom: 22px; }
+  #gate input {
+    width: 100%; padding: 14px 16px; border-radius: 12px;
+    border: 1px solid #ddd; font-size: 1rem; font-family: inherit;
+    margin-bottom: 14px; text-align: center;
+  }
+  #gate button {
+    width: 100%; padding: 14px 16px; border-radius: 999px; border: none;
+    background: var(--red); color: #fff; font-weight: 700; font-size: 1rem;
+    font-family: inherit; cursor: pointer;
+  }
+  #gate .error { color: var(--red); font-size: 0.85rem; margin-top: 10px; min-height: 1.2em; }
+
+  /* ---------- app ---------- */
+  #app { display: none; max-width: 1080px; margin: 0 auto; padding: 32px 16px 100px; }
+  #app h1 { font-size: 1.5rem; margin-bottom: 4px; }
+  #app .sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
+  #app .sub.err { color: var(--red); }
+
+  .cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin-bottom: 30px;
+  }
+  .card {
+    border: 1px solid var(--border); border-radius: 14px; padding: 16px;
+    background: var(--panel); text-align: center;
+  }
+  .card .num { font-size: 1.6rem; font-weight: 800; font-family: "JetBrains Mono", monospace; }
+  .card .label { color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
+  .card.indexed .num { color: var(--good); }
+  .card.pending .num { color: var(--warn); }
+
+  .panel {
+    border: 1px solid var(--border); border-radius: 16px; padding: 20px;
+    margin-bottom: 24px; background: #fff;
+  }
+  .panel h2 { font-size: 1.05rem; margin: 0 0 16px; }
+  .panel .note { color: var(--muted); font-size: 0.85rem; margin-top: 10px; }
+  .panel .note.err { color: var(--red); }
+  .chart-wrap { position: relative; height: 280px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  table th, table td { padding: 8px 6px; border-bottom: 1px solid var(--border); text-align: right; }
+  table th { color: var(--muted); font-weight: 600; }
+  td.ltr, th.ltr { direction: ltr; text-align: left; font-family: "JetBrains Mono", monospace; font-size: 0.8rem; }
+
+  @media (max-width: 560px) {
+    .chart-wrap { height: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="box">
+    <h1>داشبورد سئو و آنالیتیکس</h1>
+    <p>این صفحه فقط برای مدیر سایته. رمز رو وارد کن.</p>
+    <input type="password" id="pw-input" placeholder="رمز عبور" autocomplete="off">
+    <button id="pw-submit">ورود</button>
+    <div class="error" id="pw-error"></div>
+  </div>
+</div>
+
+<div id="app">
+  <h1>داشبورد سئو و آنالیتیکس</h1>
+  <p class="sub" id="updated-at">در حال بارگذاری...</p>
+
+  <div class="cards" id="summary-cards"></div>
+
+  <div class="panel">
+    <h2>روند بازدید سایت (روزانه)</h2>
+    <div class="chart-wrap"><canvas id="chart-trend"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>وضعیت ایندکس صفحات</h2>
+    <div class="chart-wrap"><canvas id="chart-index"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>پربازدیدترین صفحات</h2>
+    <div class="chart-wrap"><canvas id="chart-pages"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>منبع ترافیک</h2>
+    <div class="chart-wrap"><canvas id="chart-channels"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>علاقه‌مندی به کلاس‌ها (تعداد کلیک «ارسال درخواست ثبت‌نام»)</h2>
+    <div class="chart-wrap"><canvas id="chart-classes"></canvas></div>
+    <p class="note" id="classes-note"></p>
+  </div>
+
+  <div class="panel">
+    <h2>جزئیات صفحات (Search Console)</h2>
+    <div style="overflow-x:auto;">
+      <table id="pages-table">
+        <thead>
+          <tr><th>آدرس</th><th>وضعیت</th><th>کلیک</th><th>نمایش</th><th>CTR</th><th>رتبه</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var PASSWORD_HASH = "8ad62be4e76b6a5d584e6231a0edfa394f7fdbee8e3ebed4cd6ef9b1e1782c6f";
+  // sha-256 hash of the admin password, checked client-side. This is a light
+  // deterrent, not real security: this page is unlinked from nav/sitemap,
+  // but anyone with the URL and a browser console could bypass it, and the
+  // underlying JSON file itself is fetchable directly regardless of this
+  // gate. Don't put anything here beyond aggregate traffic/SEO numbers.
+
+  async function sha256(text) {
+    var enc = new TextEncoder().encode(text);
+    var buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+
+  var gate = document.getElementById('gate');
+  var app = document.getElementById('app');
+
+  async function tryUnlock(pw) {
+    var hash = await sha256(pw);
+    if (hash === PASSWORD_HASH) {
+      sessionStorage.setItem('dash-admin-ok', '1');
+      gate.style.display = 'none';
+      app.style.display = 'block';
+      loadDashboard();
+      return true;
+    }
+    return false;
+  }
+
+  if (sessionStorage.getItem('dash-admin-ok') === '1') {
+    gate.style.display = 'none';
+    app.style.display = 'block';
+    loadDashboard();
+  }
+
+  document.getElementById('pw-submit').addEventListener('click', submitPw);
+  document.getElementById('pw-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') submitPw();
+  });
+  async function submitPw() {
+    var pw = document.getElementById('pw-input').value;
+    var ok = await tryUnlock(pw);
+    if (!ok) document.getElementById('pw-error').textContent = 'رمز اشتباهه.';
+  }
+
+  var PERSIAN_DIGITS = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+  function fa(n) {
+    return String(n).replace(/[0-9]/g, function (d) { return PERSIAN_DIGITS[d]; });
+  }
+  function formatDashDate(yyyymmdd) {
+    // "20261006" -> "1405/07/14"-style is overkill here; just show as-is grouped.
+    if (!yyyymmdd || yyyymmdd.length !== 8) return yyyymmdd;
+    return yyyymmdd.slice(0,4) + '-' + yyyymmdd.slice(4,6) + '-' + yyyymmdd.slice(6,8);
+  }
+
+  var COVERAGE_LABEL = {
+    'Submitted and indexed': 'ایندکس‌شده',
+    'Indexed, not submitted in sitemap': 'ایندکس‌شده',
+    'Crawled - currently not indexed': 'خزیده، ایندکس نشده',
+    'Discovered - currently not indexed': 'کشف‌شده، ایندکس نشده',
+    'URL is unknown to Google': 'ناشناخته برای گوگل',
+  };
+  function coverageLabel(state) { return COVERAGE_LABEL[state] || state; }
+
+  async function loadDashboard() {
+    var updatedEl = document.getElementById('updated-at');
+    try {
+      var res = await fetch('{{ "/assets/data/dashboard-latest.json" | relative_url }}', { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      render(data);
+    } catch (err) {
+      updatedEl.textContent = 'نتونستم داده گزارش رو بخونم: ' + (err.message || err) + ' — هنوز گزارشی اجرا نشده یا فایل در دسترس نیست.';
+      updatedEl.className = 'sub err';
+    }
+  }
+
+  function render(data) {
+    var updatedEl = document.getElementById('updated-at');
+    var dt = data.generatedAt ? new Date(data.generatedAt) : null;
+    updatedEl.textContent = 'آخرین به‌روزرسانی: ' + (dt ? dt.toLocaleString('fa-IR') : 'نامشخص') +
+      ' — این گزارش هر روز خودکار از طریق GitHub Actions به‌روز می‌شه.';
+
+    // --- summary cards ---
+    var cardsEl = document.getElementById('summary-cards');
+    var idx = data.indexStatus || { indexed: 0, pending: 0, total: 0 };
+    var totalSessions = (data.daily || []).reduce(function (s, d) { return s + (d.sessions || 0); }, 0);
+    var totalViews = (data.daily || []).reduce(function (s, d) { return s + (d.pageViews || 0); }, 0);
+    cardsEl.innerHTML =
+      card('indexed', idx.indexed, 'صفحه ایندکس‌شده') +
+      card('pending', idx.pending, 'در انتظار/نامشخص') +
+      card('', idx.total, 'کل آدرس‌های سایت') +
+      card('', totalSessions, 'Session (۲۸ روز اخیر)') +
+      card('', totalViews, 'بازدید صفحه (۲۸ روز اخیر)');
+
+    function card(cls, num, label) {
+      return '<div class="card ' + cls + '"><div class="num">' + fa(num) + '</div><div class="label">' + label + '</div></div>';
+    }
+
+    // --- trend chart ---
+    var daily = data.daily || [];
+    new Chart(document.getElementById('chart-trend'), {
+      type: 'line',
+      data: {
+        labels: daily.map(function (d) { return formatDashDate(d.date); }),
+        datasets: [
+          { label: 'Session', data: daily.map(function (d) { return d.sessions; }), borderColor: '#e8121a', backgroundColor: 'rgba(232,18,26,0.08)', tension: 0.3, fill: true },
+          { label: 'بازدید صفحه', data: daily.map(function (d) { return d.pageViews; }), borderColor: '#111111', backgroundColor: 'rgba(17,17,17,0.05)', tension: 0.3, fill: true },
+        ],
+      },
+      options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { maxRotation: 70, minRotation: 45 } } } },
+    });
+
+    // --- index status chart ---
+    new Chart(document.getElementById('chart-index'), {
+      type: 'doughnut',
+      data: {
+        labels: ['ایندکس‌شده', 'در انتظار/نامشخص'],
+        datasets: [{ data: [idx.indexed, idx.pending], backgroundColor: ['#1a9e4e', '#c98a06'] }],
+      },
+      options: { responsive: true, maintainAspectRatio: false },
+    });
+
+    // --- top pages chart ---
+    var topPages = (data.topPages || []).slice(0, 10);
+    new Chart(document.getElementById('chart-pages'), {
+      type: 'bar',
+      data: {
+        labels: topPages.map(function (p) { return p.path; }),
+        datasets: [{ label: 'بازدید', data: topPages.map(function (p) { return Number(p.views); }), backgroundColor: '#e8121a' }],
+      },
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
+    });
+
+    // --- channels chart ---
+    var channels = data.channels || [];
+    new Chart(document.getElementById('chart-channels'), {
+      type: 'doughnut',
+      data: {
+        labels: channels.map(function (c) { return c.channel; }),
+        datasets: [{ data: channels.map(function (c) { return Number(c.sessions); }), backgroundColor: ['#e8121a', '#111111', '#c98a06', '#1a9e4e', '#8a8a8a', '#4a6cf7'] }],
+      },
+      options: { responsive: true, maintainAspectRatio: false },
+    });
+
+    // --- class interest chart ---
+    var classNote = document.getElementById('classes-note');
+    var classes = data.classInterest || [];
+    if (classes.length === 0) {
+      document.getElementById('chart-classes').style.display = 'none';
+      if (data.classInterestError) {
+        classNote.textContent = 'این بخش هنوز راه‌اندازی نشده: باید در GA4 یک Custom Dimension (رویداد class_signup_click، پارامتر class_name) بسازی. تا وقتی این کار نشه، این نمودار خالی می‌مونه.';
+        classNote.className = 'note err';
+      } else {
+        classNote.textContent = 'هنوز هیچ کلیکی روی دکمه ثبت‌نام ثبت نشده.';
+        classNote.className = 'note';
+      }
+    } else {
+      document.getElementById('chart-classes').style.display = 'block';
+      classNote.textContent = '';
+      new Chart(document.getElementById('chart-classes'), {
+        type: 'bar',
+        data: {
+          labels: classes.map(function (c) { return c.className; }),
+          datasets: [{ label: 'کلیک', data: classes.map(function (c) { return c.clicks; }), backgroundColor: '#1a9e4e' }],
+        },
+        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
+      });
+    }
+
+    // --- pages table ---
+    var tbody = document.querySelector('#pages-table tbody');
+    var pages = (data.pages || []).slice().sort(function (a, b) { return (b.clicks + b.impressions) - (a.clicks + a.impressions); });
+    tbody.innerHTML = pages.map(function (p) {
+      return '<tr>' +
+        '<td class="ltr">' + p.url + '</td>' +
+        '<td>' + coverageLabel(p.coverageState) + '</td>' +
+        '<td>' + fa(p.clicks) + '</td>' +
+        '<td>' + fa(p.impressions) + '</td>' +
+        '<td>' + fa(((p.ctr || 0) * 100).toFixed(1)) + '٪</td>' +
+        '<td>' + (p.position ? fa(p.position.toFixed(1)) : '-') + '</td>' +
+      '</tr>';
+    }).join('');
+
+    if (data.gscError) {
+      var gscNote = document.createElement('p');
+      gscNote.className = 'note err';
+      gscNote.textContent = 'هشدار: آخرین اتصال به Search Console ناموفق بود: ' + data.gscError;
+      document.querySelector('#pages-table').parentNode.appendChild(gscNote);
+    }
+  }
+})();
+</script>
+</body>
+</html>

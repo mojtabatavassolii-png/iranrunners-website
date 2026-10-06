@@ -30,16 +30,18 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/
+          git add reports/ assets/data/dashboard-latest.json
           if git diff --cached --quiet; then
             echo "No report changes."
             exit 0
           fi
-          git commit -m "Add SEO report $(date +%Y-%m-%d)"
+          git commit -m "Update SEO report and dashboard data $(date +%Y-%m-%d)"
           git push
 
       - name: Upload report as workflow artifact
         uses: actions/upload-artifact@v4
         with:
           name: seo-report
-          path: reports/report-*.md
+          path: |
+            reports/report-*.md
+            assets/data/dashboard-latest.json
