@@ -18,7 +18,6 @@ image_alt: دونده‌ای در حال تمرین برای آماده‌ساز
 image_webp: /assets/gallery/WhatsApp Image 2026-09-09 at 2.33.39 PM.webp
 inline_images:
   - file: /assets/gallery/IMG_0309-1.jpeg
-    file_webp: /assets/gallery/IMG_0309-1.webp
     alt: دونده‌ای در حال دویدن سرعتی و تمرین تمپو
     position: 2
   - file: /assets/gallery/IMG_0310.jpeg
