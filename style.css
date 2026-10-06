@@ -928,10 +928,14 @@ footer.site-footer {
   border-top: 1px solid var(--line-hair);
 }
 .article-body h2:first-of-type { border-top: none; margin-top: 30px; }
+.article-body h3 { font-size: 1.12rem; font-weight: 800; margin: 28px 0 12px; }
 .article-body p { color: var(--text-primary); font-size: 1.02rem; line-height: 2; margin: 0 0 18px; direction: rtl; text-align: justify; text-align-last: right; }
 .article-body ul, .article-body ol { margin: 0 0 20px; padding-inline-start: 24px; color: var(--text-primary); line-height: 2; }
 .article-body li { margin-bottom: 8px; }
 .article-body strong { color: var(--accent-sunrise-dim); }
+.article-body a { color: var(--accent-sunrise-dim); text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: var(--accent-sunrise); }
+.article-body img { max-width: 100%; height: auto; border-radius: var(--radius-card); display: block; margin: 0 auto 20px; }
 .article-body blockquote {
   margin: 26px 0;
   padding: 18px 22px;
