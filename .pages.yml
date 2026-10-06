@@ -253,6 +253,32 @@ content:
         type: image
         media: blog
 
+      - name: inline_images
+        label: "عکس‌های داخل متن (اختیاری — هر عکس بعد از چندمین زیرعنوان ## در متن مقاله قرار می‌گیره رو با «بعد از کدوم زیرعنوان» مشخص کن)"
+        type: object
+        list: true
+        fields:
+          - name: file
+            label: "عکس"
+            type: image
+            media: blog
+            required: true
+
+          - name: file_webp
+            label: "نسخه WebP عکس (اختیاری، پیشرفته — برای سرعت بیشتر سایت. اگه نمی‌دونی چیه، خالی بذار)"
+            type: image
+            media: blog
+
+          - name: alt
+            label: "توضیح کوتاه عکس برای نابینایان و گوگل (Alt Text) — توصیف واقعی عکس باشه"
+            type: string
+            required: true
+
+          - name: position
+            label: "بعد از کدوم زیرعنوان ## قرار بگیره؟ (عدد بزن: 1 یعنی بعد از اولین ##، 2 یعنی بعد از دومین ## و همین‌طور الی آخر)"
+            type: number
+            required: true
+
       - name: read_time
         label: "زمان مطالعه (مثلاً 6 MIN READ)"
         type: string
