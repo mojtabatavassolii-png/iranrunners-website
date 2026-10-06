@@ -55,6 +55,8 @@ exclude:
   - README.md
   - CLAUDE.md
   - CONTENT_GUIDELINES.md
+  - SEO_REPORTING.md
+  - reports/
   - "*.py"
 
 kramdown:
