@@ -26,6 +26,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const yaml = require("js-yaml");
 const { GoogleAuth } = require("google-auth-library");
 
 const SITE_URL = (process.env.SITE_URL || "https://iranrunners.com").replace(/\/$/, "");
@@ -228,6 +229,112 @@ function formatCoverage(state) {
   return map[state] || `❓ ${state}`;
 }
 
+function isIndexedState(state) {
+  return state.startsWith("Submitted") || state.startsWith("Indexed");
+}
+
+// Plain-Persian explanation + a concrete suggested fix for every
+// coverageState the URL Inspection API can return. Keyed on the state
+// string Google itself returns (there's no separate reason code - this
+// field already encodes the specific cause).
+const INDEX_ISSUE_MAP = {
+  "Discovered - currently not indexed": {
+    simple: "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+    action: "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+    severity: "warning",
+  },
+  "Crawled - currently not indexed": {
+    simple: "این صفحه خزیده شده ولی گوگل هنوز تصمیم نگرفته ایندکسش کنه — معمولاً یعنی محتوا رو به‌اندازه کافی باارزش یا منحصربه‌فرد تشخیص نداده.",
+    action: "محتوای صفحه رو طولانی‌تر و تخصصی‌تر کن، یا اگه خیلی شبیه یه مقاله دیگه‌ست، دوتا رو با هم ادغام کن.",
+    severity: "warning",
+  },
+  "Duplicate without user-selected canonical": {
+    simple: "گوگل این صفحه رو شبیه یه صفحه دیگه از سایت تشخیص داده و نمی‌دونه کدوم نسخه اصلیه.",
+    action: "یک تگ canonical مشخص به نسخه اصلی اضافه کن، یا اگه محتوا واقعاً تکراریه یکی‌شون رو حذف/ریدایرکت کن.",
+    severity: "error",
+  },
+  "Duplicate, Google chose different canonical than user": {
+    simple: "گوگل یه نسخه دیگه از این صفحه رو به‌عنوان نسخه اصلی انتخاب کرده، نه اونی که خودت canonical کردی.",
+    action: "بررسی کن کدوم نسخه باید اصلی باشه؛ اگه انتخاب گوگل درسته، لینک‌های داخلی رو به همون نسخه هدایت کن.",
+    severity: "error",
+  },
+  "Alternate page with proper canonical tag": {
+    simple: "این صفحه به‌عنوان نسخه جایگزین یک صفحه دیگه علامت خورده و canonical درست تنظیم شده — طبیعیه و مشکلی نیست.",
+    action: "",
+    severity: "ok",
+  },
+  "Excluded by 'noindex' tag": {
+    simple: "این صفحه تگ noindex داره که به گوگل می‌گه ایندکسش نکنه.",
+    action: "اگه عمدی نبوده، تگ noindex رو از فایل مربوطه بردار.",
+    severity: "error",
+  },
+  "Blocked by robots.txt": {
+    simple: "فایل robots.txt سایت به گوگل اجازه خزیدن این صفحه رو نمی‌ده.",
+    action: "robots.txt رو چک کن و مطمئن شو این آدرس بلاک نشده.",
+    severity: "error",
+  },
+  "Page with redirect": {
+    simple: "این آدرس داره به یه آدرس دیگه ریدایرکت می‌شه، پس خودش جداگانه ایندکس نمی‌شه.",
+    action: "اگه این ریدایرکت عمدیه (مثلاً از یه آدرس قدیمی) مشکلی نیست؛ اگه نه، مسیر redirect_from رو بررسی کن.",
+    severity: "info",
+  },
+  "Not found (404)": {
+    simple: "گوگل موقع خزیدن این آدرس به خطای ۴۰۴ خورده.",
+    action: "یا صفحه رو بساز/برگردون، یا اگه واقعاً حذف شده این آدرس رو از sitemap و لینک‌های داخلی حذف کن.",
+    severity: "error",
+  },
+  "Soft 404": {
+    simple: "صفحه بار می‌شه ولی گوگل محتواش رو شبیه یه صفحه خطا/خالی تشخیص داده.",
+    action: "مطمئن شو صفحه محتوای واقعی و کامل داره، نه یه پیام خالی یا placeholder.",
+    severity: "error",
+  },
+  "Server error (5xx)": {
+    simple: "سرور هنگام خزیدن این صفحه خطا برگردونده.",
+    action: "هاستینگ/GitHub Pages رو چک کن ببین اون لحظه مشکلی داشته یا نه؛ اگه تکرار شد، بیشتر بررسی لازمه.",
+    severity: "error",
+  },
+  "Blocked due to access forbidden (403)": {
+    simple: "گوگل موقع خزیدن این صفحه با خطای دسترسی ممنوع (403) روبه‌رو شده.",
+    action: "مطمئن شو این صفحه برای بازدیدکننده‌های عمومی (و رباتها) قابل‌دسترسیه.",
+    severity: "error",
+  },
+  "Blocked due to unauthorized request (401)": {
+    simple: "این صفحه نیاز به ورود/احراز هویت داره، پس گوگل نمی‌تونه ببینتش.",
+    action: "اگه این صفحه قراره عمومی باشه، محدودیت دسترسیش رو بردار؛ اگه نه (مثل صفحات ادمین) طبیعیه و نیازی به کاری نیست.",
+    severity: "info",
+  },
+  "URL is unknown to Google": {
+    simple: "گوگل هنوز اصلاً این آدرس رو ندیده.",
+    action: "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+    severity: "warning",
+  },
+};
+
+function explainIndexIssue(coverageState) {
+  return (
+    INDEX_ISSUE_MAP[coverageState] || {
+      simple: `دلیل مشخصی برای این وضعیت («${coverageState}») توی این گزارش نگاشت نشده.`,
+      action: "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
+      severity: "warning",
+    }
+  );
+}
+
+function loadInProgressUrls() {
+  try {
+    const filePath = path.join(__dirname, "..", "_data", "index_task_status.yml");
+    const parsed = yaml.load(fs.readFileSync(filePath, "utf8")) || {};
+    const list = parsed.in_progress || [];
+    const map = new Map();
+    for (const item of list) {
+      if (item && item.url) map.set(item.url.trim(), item.note || "");
+    }
+    return map;
+  } catch (err) {
+    return new Map();
+  }
+}
+
 async function main() {
   const rawCredentials = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
   if (!rawCredentials) throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON is not set");
@@ -250,6 +357,7 @@ async function main() {
     endDate,
     indexStatus: { indexed: 0, pending: 0, total: 0 },
     pages: [],
+    indexTasks: [],
     daily: [],
     topPages: [],
     channels: [],
@@ -285,7 +393,7 @@ async function main() {
     }
     lines.push("");
 
-    const indexed = report.pages.filter((p) => p.coverageState.startsWith("Submitted") || p.coverageState.startsWith("Indexed")).length;
+    const indexed = report.pages.filter((p) => isIndexedState(p.coverageState)).length;
     const pending = report.pages.length - indexed;
     lines.push(`**خلاصه:** ${indexed} صفحه ایندکس‌شده، ${pending} صفحه در انتظار/نامشخص.`);
     lines.push("");
@@ -299,6 +407,30 @@ async function main() {
       ctr: p.ctr,
       position: p.position,
     }));
+
+    const inProgress = loadInProgressUrls();
+    for (const p of dashboard.pages) {
+      const indexedNow = isIndexedState(p.coverageState);
+      const marked = inProgress.has(p.url);
+      if (!indexedNow) {
+        const issue = explainIndexIssue(p.coverageState);
+        dashboard.indexTasks.push({
+          url: p.url,
+          coverageState: p.coverageState,
+          status: marked ? "در حال رفع" : "نیاز به بررسی",
+          note: marked ? inProgress.get(p.url) : "",
+          issue,
+        });
+      } else if (marked) {
+        dashboard.indexTasks.push({
+          url: p.url,
+          coverageState: p.coverageState,
+          status: "حل‌شده",
+          note: inProgress.get(p.url),
+          issue: { simple: "این صفحه الان ایندکس شده — می‌تونی از لیست «در حال رفع» (در داشبورد Pages CMS) پاکش کنی.", action: "", severity: "ok" },
+        });
+      }
+    }
   } catch (err) {
     report.gscError = String(err.message || err);
     dashboard.gscError = report.gscError;
