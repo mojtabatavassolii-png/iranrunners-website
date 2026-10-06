@@ -2,6 +2,9 @@ name: Generate SEO report
 
 on:
   workflow_dispatch: {}
+  schedule:
+    # 19:30 UTC = 23:00 Iran Standard Time (UTC+3:30, no DST since 2022) — end of day.
+    - cron: "30 19 * * *"
 
 permissions:
   contents: write
