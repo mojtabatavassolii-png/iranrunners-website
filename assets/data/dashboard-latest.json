@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-06T11:03:36.716Z",
+  "generatedAt": "2026-10-06T23:11:14.582Z",
   "startDate": "2026-09-06",
   "endDate": "2026-10-03",
   "indexStatus": {
-    "indexed": 8,
-    "pending": 16,
+    "indexed": 16,
+    "pending": 8,
     "total": 24
   },
   "pages": [
@@ -50,7 +50,7 @@
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -58,7 +58,7 @@
     },
     {
       "url": "/گالری/تپه-های-رنگین-کمان.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -73,16 +73,8 @@
       "position": null
     },
     {
-      "url": "/وبلاگ/آماده-سازی-ماراتن.html",
-      "coverageState": "URL is unknown to Google",
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": null
-    },
-    {
       "url": "/وبلاگ/درد-زانوی-دونده.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -90,7 +82,7 @@
     },
     {
       "url": "/وبلاگ/انتخاب-کفش-دویدن.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -98,7 +90,7 @@
     },
     {
       "url": "/وبلاگ/قانون-10-درصد.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -106,7 +98,7 @@
     },
     {
       "url": "/وبلاگ/ریکاوری-فعال-یا-استراحت-کامل.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -114,7 +106,7 @@
     },
     {
       "url": "/وبلاگ/شروع-دویدن-برای-مبتدیان.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -122,7 +114,7 @@
     },
     {
       "url": "/وبلاگ/تغذیه-دوندگان.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -130,7 +122,15 @@
     },
     {
       "url": "/وبلاگ/دویدن-در-هوای-آلوده.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "/وبلاگ/آماده-سازی-ماراتن.html",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -194,7 +194,7 @@
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -226,23 +226,23 @@
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
-      "coverageState": "Discovered - currently not indexed",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/گالری/تپه-های-رنگین-کمان.html",
       "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
         "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
         "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/گالری/تپه-های-رنگین-کمان.html",
+      "coverageState": "Discovered - currently not indexed",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
@@ -254,94 +254,6 @@
       "issue": {
         "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
         "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/آماده-سازی-ماراتن.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/درد-زانوی-دونده.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/انتخاب-کفش-دویدن.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/قانون-10-درصد.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/ریکاوری-فعال-یا-استراحت-کامل.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/شروع-دویدن-برای-مبتدیان.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/تغذیه-دوندگان.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/دویدن-در-هوای-آلوده.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -369,12 +281,12 @@
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     }
