@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-06T23:11:14.582Z",
-  "startDate": "2026-09-06",
-  "endDate": "2026-10-03",
+  "generatedAt": "2026-10-07T23:40:44.589Z",
+  "startDate": "2026-09-07",
+  "endDate": "2026-10-04",
   "indexStatus": {
     "indexed": 16,
     "pending": 8,
@@ -42,7 +42,7 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -50,7 +50,7 @@
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -180,9 +180,9 @@
       "url": "/",
       "coverageState": "Submitted and indexed",
       "clicks": 18,
-      "impressions": 57,
-      "ctr": 0.3157894736842105,
-      "position": 1.1228070175438596
+      "impressions": 58,
+      "ctr": 0.3103448275862069,
+      "position": 1.1724137931034484
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -194,7 +194,7 @@
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -215,23 +215,23 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
@@ -281,12 +281,12 @@
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     }
@@ -363,6 +363,12 @@
       "sessions": 2,
       "activeUsers": 2,
       "pageViews": 4
+    },
+    {
+      "date": "20261004",
+      "sessions": 3,
+      "activeUsers": 2,
+      "pageViews": 3
     }
   ],
   "topPages": [
@@ -372,7 +378,7 @@
     },
     {
       "path": "/",
-      "views": "73"
+      "views": "74"
     },
     {
       "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
@@ -380,7 +386,7 @@
     },
     {
       "path": "/کلاس-ها.html",
-      "views": "23"
+      "views": "24"
     },
     {
       "path": "/gallery.html",
@@ -410,7 +416,7 @@
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "72"
+      "sessions": "74"
     },
     {
       "channel": "Organic Search",
@@ -418,7 +424,7 @@
     },
     {
       "channel": "Organic Social",
-      "sessions": "14"
+      "sessions": "15"
     },
     {
       "channel": "Unassigned",
