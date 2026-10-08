@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-07T23:40:44.589Z",
-  "startDate": "2026-09-07",
-  "endDate": "2026-10-04",
+  "generatedAt": "2026-10-08T23:51:07.747Z",
+  "startDate": "2026-09-08",
+  "endDate": "2026-10-05",
   "indexStatus": {
     "indexed": 16,
     "pending": 8,
@@ -66,7 +66,7 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -172,17 +172,17 @@
       "url": "/گالری.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 9
+      "position": 9.5
     },
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
       "clicks": 18,
-      "impressions": 58,
-      "ctr": 0.3103448275862069,
-      "position": 1.1724137931034484
+      "impressions": 59,
+      "ctr": 0.3050847457627119,
+      "position": 1.1864406779661016
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -248,12 +248,12 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -369,24 +369,30 @@
       "sessions": 3,
       "activeUsers": 2,
       "pageViews": 3
+    },
+    {
+      "date": "20261005",
+      "sessions": 4,
+      "activeUsers": 3,
+      "pageViews": 19
     }
   ],
   "topPages": [
+    {
+      "path": "/",
+      "views": "79"
+    },
     {
       "path": "/index.html",
       "views": "78"
     },
     {
-      "path": "/",
-      "views": "74"
-    },
-    {
       "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "views": "34"
+      "views": "35"
     },
     {
       "path": "/کلاس-ها.html",
-      "views": "24"
+      "views": "28"
     },
     {
       "path": "/gallery.html",
@@ -394,7 +400,7 @@
     },
     {
       "path": "/گالری.html",
-      "views": "16"
+      "views": "19"
     },
     {
       "path": "/محاسبه-گر-پیس.html",
@@ -406,7 +412,7 @@
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": "11"
+      "views": "12"
     },
     {
       "path": "/blog/دویدن-در-هوای-آلوده-راهنمای-ایمنی-برای-دوندگان-شهرهای-پرترافیک.html",
@@ -424,7 +430,7 @@
     },
     {
       "channel": "Organic Social",
-      "sessions": "15"
+      "sessions": "19"
     },
     {
       "channel": "Unassigned",
