@@ -144,29 +144,13 @@ nav.main-nav a.active { color: var(--text-primary); }
   }
 }
 
-/* ---------- route-line signature divider ---------- */
-.route-divider {
-  width: 100%;
-  height: 64px;
-  display: block;
-  margin: 0;
-}
-.route-divider path {
-  fill: none;
-  stroke: var(--accent-sunrise);
-  stroke-width: 2;
-  stroke-linecap: round;
-  opacity: 0.55;
-  stroke-dasharray: 6 500;
-}
-.route-divider.in-view path {
-  animation: trace 3.2s ease-out forwards;
-}
-@keyframes trace {
-  to { stroke-dasharray: 1400 0; }
-}
-.route-divider circle {
-  fill: var(--accent-sunrise);
+/* ---------- section divider: static white -> red -> black gradient line ---------- */
+.section-divider {
+  height: 4px;
+  border-radius: 2px;
+  margin: 36px auto;
+  max-width: 1200px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--accent-sunrise) 50%, var(--accent-teal) 100%);
 }
 
 /* ---------- hero ---------- */
