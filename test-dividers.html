@@ -53,15 +53,10 @@ sitemap: false
   .divider-studio .line { flex: 1 1 auto; max-width: 420px; height: 1px; background: var(--line-hair); }
   .divider-studio .mark { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-sunrise); flex: 0 0 auto; }
 
-  /* ---------- Option 4: static white -> red -> black gradient line ---------- */
-  /* Direction follows text flow (start -> end), not a fixed left-to-right:
-     in RTL, start is the right edge, so the gradient runs "to left";
-     a page with dir="ltr" gets the mirrored rule below and runs "to right". */
+  /* ---------- Option 4 (APPROVED - matches .section-divider in style.css) ---------- */
+  /* Fixed left-to-right regardless of page direction, per explicit direction. */
   .divider-gradient {
     height: 4px; border-radius: 2px; margin: 36px 0;
-    background: linear-gradient(to left, rgba(255,255,255,0) 0%, var(--accent-sunrise) 50%, var(--accent-teal) 100%);
-  }
-  html[dir="ltr"] .divider-gradient {
     background: linear-gradient(to right, rgba(255,255,255,0) 0%, var(--accent-sunrise) 50%, var(--accent-teal) 100%);
   }
 </style>
@@ -126,7 +121,7 @@ sitemap: false
 <div class="option-block">
   <div class="option-label">
     <span class="num">۴</span><h2>خط گرادیان ثابت: سفید → قرمز → مشکی</h2>
-    <p>یه خط نازک (۴ پیکسل) با گرادیان نرم و کاملاً ثابت — از شفاف/سفید شروع می‌شه، وسط به قرمز برند می‌رسه، و به مشکی محو می‌شه. جهتش بر اساس «ابتدا به انتهای متن» تنظیم شده (نه چپ‌به‌راست ثابت)، پس روی صفحه‌ی RTL فارسی از راست (سفید) به چپ (مشکی) می‌ره.</p>
+    <p>یه خط نازک (۴ پیکسل) با گرادیان نرم و کاملاً ثابت — از چپ با شفاف/سفید شروع می‌شه، وسط به قرمز برند می‌رسه، و سمت راست به مشکی محو می‌شه. ✅ تایید شده — همین نسخه الان جایگزین divider اصلی سایت شده.</p>
   </div>
   <div class="fake-section">— بخش بالا —</div>
   <div class="preview-wrap">
