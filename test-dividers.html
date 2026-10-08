@@ -7,126 +7,133 @@ sitemap: false
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>پیش‌نمایش Divider ترکیبی | ایران رانرز</title>
+<title>پیش‌نمایش Divider های ثابت | ایران رانرز</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
 <style>
   .preview-wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-  .preview-intro { padding: 48px 0 32px; text-align: center; }
+  .preview-intro { padding: 48px 0 8px; text-align: center; }
   .preview-intro h1 { font-size: 1.6rem; margin-bottom: 10px; }
   .preview-intro p { color: var(--text-muted); font-size: 0.95rem; max-width: 640px; margin: 0 auto; }
-  .preview-intro p + p { margin-top: 8px; }
+
+  .option-block { padding: 56px 0; }
+  .option-label { max-width: 1000px; margin: 0 auto 32px; padding: 0 20px; }
+  .option-label .num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-sunrise); color: #fff; font-weight: 800; font-size: 0.9rem; margin-inline-end: 10px; }
+  .option-label h2 { display: inline; font-size: 1.2rem; vertical-align: middle; }
+  .option-label p { color: var(--text-muted); font-size: 0.88rem; margin: 10px 0 0 40px; }
 
   .fake-section { max-width: 1000px; margin: 0 auto; padding: 0 20px; text-align: center; color: var(--text-faint); font-size: 0.82rem; }
-  .scroll-filler { height: 100vh; display: flex; align-items: center; justify-content: center; color: var(--text-faint); font-size: 0.85rem; }
 
-  /* ---------- GPS route divider, drawn on scroll, with a glowing comet-trail head ---------- */
-  .gps-divider-block {
-    background: var(--accent-teal); /* #111111 - dark band, like a route card in a running app */
-    padding: 36px 0;
+  /* ---------- Option 1: minimal checkered flag segment ---------- */
+  .divider-checker {
+    display: flex; align-items: center; justify-content: center; gap: 18px;
+    margin: 36px 0;
   }
-  .gps-divider-wrap { width: 100%; height: 150px; display: block; }
-  .gps-divider path.track { fill: none; stroke: rgba(255,255,255,0.12); stroke-width: 2; }
-  .gps-divider path.route { fill: none; stroke: var(--accent-sunrise); stroke-width: 2.5; stroke-linecap: round; }
-  .gps-divider path.trail { fill: none; stroke: var(--accent-sunrise); stroke-width: 4; stroke-linecap: round; opacity: 0.45; }
-  .gps-divider circle.glow { fill: var(--accent-sunrise); filter: url(#gps-blur); opacity: 0.75; }
-  .gps-divider circle.head { fill: #fff; }
-  .gps-divider .finish-flag { opacity: 0; transition: opacity 0.4s ease-out; }
-  .gps-divider .finish-flag.lit { opacity: 1; }
+  .divider-checker .line { flex: 1 1 auto; max-width: 300px; height: 1px; background: var(--line-hair); }
+  .divider-checker .flag {
+    width: 140px; height: 10px; border-radius: 2px; flex: 0 0 auto;
+    background-image: conic-gradient(
+      var(--text-primary) 90deg, var(--accent-sunrise) 90deg 180deg,
+      var(--text-primary) 180deg 270deg, var(--accent-sunrise) 270deg
+    );
+    background-size: 10px 10px;
+  }
+
+  /* ---------- Option 2: torn-paper edge strip ---------- */
+  .divider-torn-wrap { margin: 36px 0; }
+  .divider-torn { width: 100%; height: 22px; display: block; }
+  .divider-torn polygon { fill: var(--accent-sunrise); }
+
+  /* ---------- Option 3: thin studio line with centered mark ---------- */
+  .divider-studio {
+    display: flex; align-items: center; justify-content: center; gap: 22px;
+    margin: 36px 0;
+  }
+  .divider-studio .line { flex: 1 1 auto; max-width: 420px; height: 1px; background: var(--line-hair); }
+  .divider-studio .mark { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-sunrise); flex: 0 0 auto; }
 </style>
 </head>
 <body>
 
 <div class="preview-intro">
-  <h1>پیش‌نمایش ترکیبی: مسیر GPS + نور دنباله‌دار</h1>
-  <p>نسخه نهایی‌شده بر اساس انتخابت — پایه از «خط مسیر با نشانگر» (گزینه ۳ قبلی)، با افکت نور دنباله‌دار از «خط نبض» (گزینه ۱ قبلی، که خودش حذف شد).</p>
-  <p>یه مسیر با پیچ‌وخم طبیعی شبیه ردیابی GPS اپ‌های دویدن، روی یه نوار تیره؛ با اسکرول‌کردن رسم می‌شه و سرش یه نقطه قرمز درخشان با دنباله محو داره. این صفحه فقط برای تست داخلیه (noindex).</p>
+  <h1>پیش‌نمایش ۳ طرح ثابت برای Divider بین سکشن‌ها</h1>
+  <p>این صفحه فقط برای تست داخلیه (noindex). هر سه کاملاً ثابتن — بدون انیمیشن یا اسکرول‌محرک، مخصوص پس‌زمینه سفید سایت.</p>
 </div>
 
-<div class="scroll-filler">↓ برای دیدن کامل جلوه، از همین‌جا به آرومی اسکرول کن ↓</div>
-
-<div class="gps-divider-block">
-  <div class="preview-wrap">
-    <svg class="gps-divider gps-divider-wrap" id="gps-divider" viewBox="0 0 1200 150" preserveAspectRatio="none">
-      <defs>
-        <filter id="gps-blur" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="5" />
-        </filter>
-      </defs>
-      <path class="track" d="M20,90 C120,30 200,135 320,80 C420,35 480,130 580,75 C690,15 760,120 870,65 C960,20 1040,100 1100,55 C1140,30 1160,45 1180,40" />
-      <path class="route" id="gps-route" d="M20,90 C120,30 200,135 320,80 C420,35 480,130 580,75 C690,15 760,120 870,65 C960,20 1040,100 1100,55 C1140,30 1160,45 1180,40" />
-      <path class="trail" id="gps-trail" d="M20,90 C120,30 200,135 320,80 C420,35 480,130 580,75 C690,15 760,120 870,65 C960,20 1040,100 1100,55 C1140,30 1160,45 1180,40" />
-      <circle class="glow" id="gps-glow" r="9" cx="20" cy="90" />
-      <circle class="head" id="gps-head" r="3.5" cx="20" cy="90" />
-      <g class="finish-flag" id="gps-flag" transform="translate(1180,40)">
-        <line x1="0" y1="-26" x2="0" y2="4" stroke="#fff" stroke-width="2" stroke-linecap="round" />
-        <path d="M0,-26 L16,-20 L0,-14 Z" fill="var(--accent-sunrise)" />
-      </g>
-    </svg>
+<!-- ============ OPTION 1 ============ -->
+<div class="option-block">
+  <div class="option-label">
+    <span class="num">۱</span><h2>نوار شطرنجی مینیمال (پرچم خط پایان)</h2>
+    <p>یه قطعه کوتاه با الگوی شطرنجی قرمز/مشکی ریز (مربع‌های ۱۰×۱۰ پیکسل)، وسط دو تا خط نازک — یادآور پرچم فینیش مسابقه، ولی ظریف.</p>
   </div>
+  <div class="fake-section">— بخش بالا —</div>
+  <div class="preview-wrap">
+    <div class="divider-checker">
+      <div class="line"></div>
+      <div class="flag"></div>
+      <div class="line"></div>
+    </div>
+  </div>
+  <div class="fake-section">— بخش پایین —</div>
 </div>
 
-<div class="scroll-filler">— ادامه صفحه —</div>
+<!-- ============ OPTION 2 ============ -->
+<div class="option-block">
+  <div class="option-label">
+    <span class="num">۲</span><h2>نوار پاره‌شده با لبه‌های دست‌ساز (torn paper)</h2>
+    <p>یه نوار قرمز باریک با لبه‌های بالا و پایین نامنظم، شبیه کاغذ پاره‌شده — حس دستی و طبیعی، نه یه خط هندسی صاف.</p>
+  </div>
+  <div class="fake-section">— بخش بالا —</div>
+  <div class="preview-wrap">
+    <div class="divider-torn-wrap">
+      <svg class="divider-torn" id="torn-divider" viewBox="0 0 1200 22" preserveAspectRatio="none"></svg>
+    </div>
+  </div>
+  <div class="fake-section">— بخش پایین —</div>
+</div>
+
+<!-- ============ OPTION 3 ============ -->
+<div class="option-block">
+  <div class="option-label">
+    <span class="num">۳</span><h2>خط نازک استودیویی با نشانه مرکزی</h2>
+    <p>یه خط خاکستری خیلی نازک با یه دایره کوچک توپر قرمز دقیقاً وسطش، فاصله‌ی متقارن از دو طرف — سبک مینیمال مدرن.</p>
+  </div>
+  <div class="fake-section">— بخش بالا —</div>
+  <div class="preview-wrap">
+    <div class="divider-studio">
+      <div class="line"></div>
+      <div class="mark"></div>
+      <div class="line"></div>
+    </div>
+  </div>
+  <div class="fake-section">— بخش پایین —</div>
+</div>
 
 <script>
 (function () {
-  var route = document.getElementById("gps-route");
-  var trail = document.getElementById("gps-trail");
-  var glow = document.getElementById("gps-glow");
-  var head = document.getElementById("gps-head");
-  var flag = document.getElementById("gps-flag");
-  var wrap = document.getElementById("gps-divider");
-  if (!route || !("IntersectionObserver" in window)) return;
-
-  var total = route.getTotalLength();
-  var TRAIL = 70; // length of the glowing trail segment, in path units
-
-  route.setAttribute("stroke-dasharray", total);
-  route.setAttribute("stroke-dashoffset", total);
-  trail.setAttribute("stroke-dasharray", "0 " + total);
-
-  var ticking = false;
-
-  function update() {
-    ticking = false;
-    var rect = wrap.getBoundingClientRect();
-    var vh = window.innerHeight || document.documentElement.clientHeight;
-    var progress = (vh - rect.top) / (vh + rect.height);
-    progress = Math.max(0, Math.min(1, progress));
-
-    var drawn = total * progress;
-    route.setAttribute("stroke-dashoffset", total - drawn);
-    // Trail length shrinks near the start so the "on" window never goes
-    // negative and wraps around to falsely light up the path's tail end.
-    var effectiveTrail = Math.min(TRAIL, drawn);
-    trail.setAttribute("stroke-dasharray", effectiveTrail + " " + (total - effectiveTrail));
-    trail.setAttribute("stroke-dashoffset", total - drawn + effectiveTrail);
-
-    var pt = route.getPointAtLength(drawn);
-    glow.setAttribute("cx", pt.x);
-    glow.setAttribute("cy", pt.y);
-    head.setAttribute("cx", pt.x);
-    head.setAttribute("cy", pt.y);
-
-    flag.classList.toggle("lit", progress >= 0.98);
+  // Deterministic pseudo-random (fixed seed) so the torn edge is
+  // irregular but reproducible on every load - generated once, no
+  // ongoing animation or per-frame cost.
+  function mulberry32(seed) {
+    return function () {
+      seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+      var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
   }
-
-  function onScroll() {
-    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  var rand = mulberry32(42);
+  var width = 1200, step = 22, topBase = 7, botBase = 15, amp = 4;
+  var topPts = [], botPts = [];
+  for (var x = 0; x <= width; x += step) {
+    topPts.push([x, topBase + (rand() - 0.5) * amp * 2]);
+    botPts.push([x, botBase + (rand() - 0.5) * amp * 2]);
   }
-
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        window.addEventListener("scroll", onScroll, { passive: true });
-        update();
-      } else {
-        window.removeEventListener("scroll", onScroll);
-      }
-    });
-  }, { rootMargin: "50% 0px 50% 0px" });
-  observer.observe(wrap);
+  var pts = topPts.map(function (p) { return p.join(","); })
+    .concat(botPts.reverse().map(function (p) { return p.join(","); }));
+  document.getElementById("torn-divider").innerHTML =
+    '<polygon points="' + pts.join(" ") + '" />';
 })();
 </script>
 
