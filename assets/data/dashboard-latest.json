@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-08T23:51:07.747Z",
-  "startDate": "2026-09-08",
-  "endDate": "2026-10-05",
+  "generatedAt": "2026-10-09T23:24:04.130Z",
+  "startDate": "2026-09-09",
+  "endDate": "2026-10-06",
   "indexStatus": {
     "indexed": 16,
     "pending": 8,
@@ -66,7 +66,7 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -76,9 +76,9 @@
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 0,
+      "impressions": 1,
       "ctr": 0,
-      "position": null
+      "position": 39
     },
     {
       "url": "/وبلاگ/انتخاب-کفش-دویدن.html",
@@ -148,9 +148,9 @@
       "url": "/وبلاگ.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 0,
+      "impressions": 1,
       "ctr": 0,
-      "position": null
+      "position": 4
     },
     {
       "url": "/کلاس-ها.html",
@@ -164,33 +164,33 @@
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 15,
+      "impressions": 16,
       "ctr": 0,
-      "position": 6.933333333333334
+      "position": 6.875
     },
     {
       "url": "/گالری.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 7,
       "ctr": 0,
-      "position": 9.5
+      "position": 6.857142857142857
     },
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
-      "clicks": 18,
-      "impressions": 59,
-      "ctr": 0.3050847457627119,
-      "position": 1.1864406779661016
+      "clicks": 20,
+      "impressions": 64,
+      "ctr": 0.3125,
+      "position": 1.171875
     },
     {
       "url": "/محاسبه-گر-پیس.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 6
+      "position": 8
     },
     {
       "url": "/scripts/instagram/",
@@ -248,12 +248,12 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
@@ -375,62 +375,68 @@
       "sessions": 4,
       "activeUsers": 3,
       "pageViews": 19
+    },
+    {
+      "date": "20261006",
+      "sessions": 13,
+      "activeUsers": 7,
+      "pageViews": 69
     }
   ],
   "topPages": [
     {
-      "path": "/",
-      "views": "79"
+      "path": "/index.html",
+      "views": "89"
     },
     {
-      "path": "/index.html",
-      "views": "78"
+      "path": "/",
+      "views": "86"
+    },
+    {
+      "path": "/کلاس-ها.html",
+      "views": "35"
     },
     {
       "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
       "views": "35"
     },
     {
-      "path": "/کلاس-ها.html",
-      "views": "28"
-    },
-    {
       "path": "/gallery.html",
       "views": "22"
     },
     {
+      "path": "/وبلاگ.html",
+      "views": "22"
+    },
+    {
+      "path": "/وبلاگ/آماده-سازی-ماراتن.html",
+      "views": "22"
+    },
+    {
       "path": "/گالری.html",
-      "views": "19"
+      "views": "21"
     },
     {
       "path": "/محاسبه-گر-پیس.html",
-      "views": "14"
-    },
-    {
-      "path": "/وبلاگ.html",
-      "views": "12"
+      "views": "16"
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": "12"
-    },
-    {
-      "path": "/blog/دویدن-در-هوای-آلوده-راهنمای-ایمنی-برای-دوندگان-شهرهای-پرترافیک.html",
-      "views": "10"
+      "views": "14"
     }
   ],
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "74"
+      "sessions": "79"
     },
     {
       "channel": "Organic Search",
-      "sessions": "24"
+      "sessions": "28"
     },
     {
       "channel": "Organic Social",
-      "sessions": "19"
+      "sessions": "23"
     },
     {
       "channel": "Unassigned",
