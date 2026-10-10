@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-09T23:24:04.130Z",
-  "startDate": "2026-09-09",
-  "endDate": "2026-10-06",
+  "generatedAt": "2026-10-10T22:49:19.220Z",
+  "startDate": "2026-09-10",
+  "endDate": "2026-10-07",
   "indexStatus": {
     "indexed": 16,
     "pending": 8,
@@ -194,7 +194,7 @@
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -281,12 +281,12 @@
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     }
@@ -381,24 +381,34 @@
       "sessions": 13,
       "activeUsers": 7,
       "pageViews": 69
+    },
+    {
+      "date": "20261007",
+      "sessions": 6,
+      "activeUsers": 4,
+      "pageViews": 15
     }
   ],
   "topPages": [
     {
       "path": "/index.html",
-      "views": "89"
+      "views": "94"
     },
     {
       "path": "/",
-      "views": "86"
+      "views": "89"
     },
     {
       "path": "/کلاس-ها.html",
-      "views": "35"
+      "views": "36"
     },
     {
       "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
       "views": "35"
+    },
+    {
+      "path": "/وبلاگ/آماده-سازی-ماراتن.html",
+      "views": "26"
     },
     {
       "path": "/gallery.html",
@@ -406,10 +416,6 @@
     },
     {
       "path": "/وبلاگ.html",
-      "views": "22"
-    },
-    {
-      "path": "/وبلاگ/آماده-سازی-ماراتن.html",
       "views": "22"
     },
     {
@@ -422,21 +428,21 @@
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": "14"
+      "views": "15"
     }
   ],
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "79"
+      "sessions": "81"
     },
     {
       "channel": "Organic Search",
-      "sessions": "28"
+      "sessions": "31"
     },
     {
       "channel": "Organic Social",
-      "sessions": "23"
+      "sessions": "24"
     },
     {
       "channel": "Unassigned",
