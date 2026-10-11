@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-10T22:49:19.220Z",
-  "startDate": "2026-09-10",
-  "endDate": "2026-10-07",
+  "generatedAt": "2026-10-11T23:03:22.294Z",
+  "startDate": "2026-09-11",
+  "endDate": "2026-10-08",
   "indexStatus": {
     "indexed": 16,
     "pending": 8,
@@ -20,9 +20,9 @@
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 0,
+      "impressions": 2,
       "ctr": 0,
-      "position": null
+      "position": 9
     },
     {
       "url": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
@@ -34,7 +34,7 @@
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -42,7 +42,7 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -76,17 +76,17 @@
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 4,
       "ctr": 0,
-      "position": 39
+      "position": 41
     },
     {
       "url": "/وبلاگ/انتخاب-کفش-دویدن.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": null
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 1
     },
     {
       "url": "/وبلاگ/قانون-10-درصد.html",
@@ -116,9 +116,9 @@
       "url": "/وبلاگ/تغذیه-دوندگان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 0,
+      "impressions": 2,
       "ctr": 0,
-      "position": null
+      "position": 7.5
     },
     {
       "url": "/وبلاگ/دویدن-در-هوای-آلوده.html",
@@ -131,10 +131,10 @@
     {
       "url": "/وبلاگ/آماده-سازی-ماراتن.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": null
+      "clicks": 2,
+      "impressions": 2,
+      "ctr": 1,
+      "position": 2.5
     },
     {
       "url": "/درباره-ما.html",
@@ -148,13 +148,13 @@
       "url": "/وبلاگ.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 4,
       "ctr": 0,
-      "position": 4
+      "position": 4.5
     },
     {
       "url": "/کلاس-ها.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -164,25 +164,25 @@
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 16,
+      "impressions": 17,
       "ctr": 0,
-      "position": 6.875
+      "position": 6.823529411764706
     },
     {
       "url": "/گالری.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 6.857142857142857
+      "clicks": 1,
+      "impressions": 13,
+      "ctr": 0.07692307692307693,
+      "position": 6.076923076923077
     },
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
-      "clicks": 20,
-      "impressions": 64,
-      "ctr": 0.3125,
-      "position": 1.171875
+      "clicks": 23,
+      "impressions": 73,
+      "ctr": 0.3150684931506849,
+      "position": 1.2328767123287672
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -194,7 +194,7 @@
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -204,23 +204,23 @@
   "indexTasks": [
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -270,23 +270,23 @@
     },
     {
       "url": "/کلاس-ها.html",
-      "coverageState": "Discovered - currently not indexed",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/scripts/instagram/",
       "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
         "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
         "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/scripts/instagram/",
+      "coverageState": "Discovered - currently not indexed",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     }
@@ -387,20 +387,26 @@
       "sessions": 6,
       "activeUsers": 4,
       "pageViews": 15
+    },
+    {
+      "date": "20261008",
+      "sessions": 19,
+      "activeUsers": 13,
+      "pageViews": 54
     }
   ],
   "topPages": [
     {
-      "path": "/index.html",
-      "views": "94"
+      "path": "/",
+      "views": "116"
     },
     {
-      "path": "/",
-      "views": "89"
+      "path": "/index.html",
+      "views": "96"
     },
     {
       "path": "/کلاس-ها.html",
-      "views": "36"
+      "views": "42"
     },
     {
       "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
@@ -408,7 +414,11 @@
     },
     {
       "path": "/وبلاگ/آماده-سازی-ماراتن.html",
-      "views": "26"
+      "views": "27"
+    },
+    {
+      "path": "/گالری.html",
+      "views": "23"
     },
     {
       "path": "/gallery.html",
@@ -419,30 +429,26 @@
       "views": "22"
     },
     {
-      "path": "/گالری.html",
-      "views": "21"
+      "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "views": "18"
     },
     {
       "path": "/محاسبه-گر-پیس.html",
       "views": "16"
-    },
-    {
-      "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": "15"
     }
   ],
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "81"
+      "sessions": "87"
     },
     {
       "channel": "Organic Search",
-      "sessions": "31"
+      "sessions": "42"
     },
     {
       "channel": "Organic Social",
-      "sessions": "24"
+      "sessions": "26"
     },
     {
       "channel": "Unassigned",
