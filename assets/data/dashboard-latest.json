@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T01:32:41.510Z",
+  "generatedAt": "2026-10-13T23:22:44.481Z",
   "startDate": "2026-09-13",
   "endDate": "2026-10-10",
   "indexStatus": {
@@ -154,7 +154,7 @@
     },
     {
       "url": "/کلاس-ها.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -194,7 +194,7 @@
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -270,23 +270,23 @@
     },
     {
       "url": "/کلاس-ها.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     }
