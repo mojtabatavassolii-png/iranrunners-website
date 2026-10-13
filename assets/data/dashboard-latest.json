@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-11T23:03:22.294Z",
-  "startDate": "2026-09-11",
-  "endDate": "2026-10-08",
+  "generatedAt": "2026-10-13T01:32:41.510Z",
+  "startDate": "2026-09-13",
+  "endDate": "2026-10-10",
   "indexStatus": {
     "indexed": 16,
     "pending": 8,
@@ -34,7 +34,7 @@
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -42,7 +42,7 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -76,9 +76,9 @@
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 7,
       "ctr": 0,
-      "position": 41
+      "position": 41.42857142857143
     },
     {
       "url": "/وبلاگ/انتخاب-کفش-دویدن.html",
@@ -92,9 +92,9 @@
       "url": "/وبلاگ/قانون-10-درصد.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 0,
+      "impressions": 1,
       "ctr": 0,
-      "position": null
+      "position": 2
     },
     {
       "url": "/وبلاگ/ریکاوری-فعال-یا-استراحت-کامل.html",
@@ -172,29 +172,29 @@
       "url": "/گالری.html",
       "coverageState": "Submitted and indexed",
       "clicks": 1,
-      "impressions": 13,
-      "ctr": 0.07692307692307693,
-      "position": 6.076923076923077
+      "impressions": 14,
+      "ctr": 0.07142857142857142,
+      "position": 6
     },
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
-      "clicks": 23,
-      "impressions": 73,
-      "ctr": 0.3150684931506849,
-      "position": 1.2328767123287672
+      "clicks": 25,
+      "impressions": 75,
+      "ctr": 0.3333333333333333,
+      "position": 1.2266666666666666
     },
     {
       "url": "/محاسبه-گر-پیس.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
+      "clicks": 1,
+      "impressions": 4,
+      "ctr": 0.25,
+      "position": 6.75
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -204,23 +204,23 @@
   "indexTasks": [
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
@@ -281,12 +281,12 @@
     },
     {
       "url": "/scripts/instagram/",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     }
@@ -393,12 +393,18 @@
       "sessions": 19,
       "activeUsers": 13,
       "pageViews": 54
+    },
+    {
+      "date": "20261009",
+      "sessions": 11,
+      "activeUsers": 10,
+      "pageViews": 54
     }
   ],
   "topPages": [
     {
       "path": "/",
-      "views": "116"
+      "views": "132"
     },
     {
       "path": "/index.html",
@@ -406,7 +412,7 @@
     },
     {
       "path": "/کلاس-ها.html",
-      "views": "42"
+      "views": "63"
     },
     {
       "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
@@ -417,6 +423,14 @@
       "views": "27"
     },
     {
+      "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "views": "25"
+    },
+    {
+      "path": "/وبلاگ.html",
+      "views": "23"
+    },
+    {
       "path": "/گالری.html",
       "views": "23"
     },
@@ -425,37 +439,34 @@
       "views": "22"
     },
     {
-      "path": "/وبلاگ.html",
-      "views": "22"
-    },
-    {
-      "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": "18"
-    },
-    {
-      "path": "/محاسبه-گر-پیس.html",
-      "views": "16"
+      "path": "/مربیان.html",
+      "views": "19"
     }
   ],
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "87"
+      "sessions": "88"
     },
     {
       "channel": "Organic Search",
-      "sessions": "42"
+      "sessions": "46"
     },
     {
       "channel": "Organic Social",
-      "sessions": "26"
+      "sessions": "32"
     },
     {
       "channel": "Unassigned",
       "sessions": "1"
     }
   ],
-  "classInterest": [],
+  "classInterest": [
+    {
+      "className": "کلاس های حضوری پارک پردیسان",
+      "clicks": 1
+    }
+  ],
   "classInterestError": null,
   "gscError": null,
   "ga4Error": null
