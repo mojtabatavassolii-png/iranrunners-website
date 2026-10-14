@@ -18,17 +18,20 @@ redirect_from: /classes.html
   <div class="wrap">
     <div class="card-grid">
       {% for c in sorted_classes %}
-      <div class="class-card">
+      <a href="{{ c.url | relative_url }}" class="class-card">
         <h3>{{ c.title }}</h3>
         <p class="desc">{{ c.description }}</p>
         <p class="desc" style="font-size:0.85rem;color:var(--text-faint);">{{ c.schedule }}</p>
+        <div class="price" style="text-align:center;">
+          {% if c.currency == "TOMAN" %}{% if c.price_toman %}{{ c.price_toman }} تومان / ماه{% endif %}{% else %}{% if c.price and c.price != 0 %}{{ c.price }}€ / ماه{% endif %}{% endif %}
+        </div>
         <div class="meta" style="flex-direction:column;align-items:center;gap:12px;text-align:center;">
           {% if c.coach and c.coach != "" %}
           <span style="color:var(--accent-sunrise);font-weight:700;font-size:0.9rem;">مربی: {{ c.coach }}</span>
           {% endif %}
-          <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
+          <span class="enroll">جزئیات</span>
         </div>
-      </div>
+      </a>
       {% endfor %}
     </div>
   </div>
@@ -66,18 +69,19 @@ redirect_from: /classes.html
             <option value="{{ c.title }}">{{ c.title }}</option>
             {% endfor %}
           </select>
+          <p class="vpn-notice" id="no-telegram-notice" style="margin-top:4px;" hidden>برای این کلاس هنوز آیدی تلگرام مربی ثبت نشده. لطفاً از طریق صفحه «درباره ما» با ما تماس بگیر.</p>
         </div>
         <div class="field">
           <label for="age">سن *</label>
           <input type="number" id="age" name="age" min="1" required>
         </div>
         <div class="field">
-          <label for="height">قد (سانتی‌متر) *</label>
-          <input type="number" id="height" name="height" required>
+          <label for="height">قد (سانتی‌متر)</label>
+          <input type="number" id="height" name="height">
         </div>
         <div class="field">
-          <label for="weight">وزن (کیلوگرم) *</label>
-          <input type="number" id="weight" name="weight" required>
+          <label for="weight">وزن (کیلوگرم)</label>
+          <input type="number" id="weight" name="weight">
         </div>
         <div class="field">
           <label for="rhr">ضربان استراحت</label>
@@ -130,6 +134,19 @@ redirect_from: /classes.html
       }
     }
 
+    var submitBtn = document.querySelector('#register-form .submit-btn');
+    var noTelegramNotice = document.getElementById('no-telegram-notice');
+
+    function updateTelegramAvailability() {
+      var className = classSelect ? classSelect.value : '';
+      var missingTelegram = !!className && !classCoachMap[className];
+      if (noTelegramNotice) { noTelegramNotice.hidden = !missingTelegram; }
+      if (submitBtn) { submitBtn.disabled = missingTelegram; }
+    }
+
+    if (classSelect) { classSelect.addEventListener('change', updateTelegramAvailability); }
+    updateTelegramAvailability();
+
     var form = document.getElementById('register-form');
     if (form) {
       form.addEventListener('submit', function (e) {
@@ -139,6 +156,11 @@ redirect_from: /classes.html
           return el ? el.value : '';
         }
         var className = classSelect ? classSelect.value : '';
+        var telegramUsername = classCoachMap[className];
+        if (!telegramUsername || telegramUsername === '') {
+          updateTelegramAvailability();
+          return;
+        }
         var lines = [
           'درخواست ثبت‌نام کلاس جدید — ایران رانرز',
           'کلاس: ' + className,
@@ -146,8 +168,8 @@ redirect_from: /classes.html
           'تلفن: ' + get('phone'),
           'ایمیل: ' + get('email'),
           'سن: ' + get('age'),
-          'قد: ' + get('height') + ' سانتی‌متر',
-          'وزن: ' + get('weight') + ' کیلوگرم',
+          'قد: ' + (get('height') ? get('height') + ' سانتی‌متر' : '-'),
+          'وزن: ' + (get('weight') ? get('weight') + ' کیلوگرم' : '-'),
           'ضربان استراحت: ' + (get('rhr') || '-'),
           'سابقه بیماری: ' + (get('history') || '-'),
           'سابقه ورزشی: ' + (get('sport-history') || '-'),
@@ -155,21 +177,16 @@ redirect_from: /classes.html
           'مورد ویژه: ' + (get('msg') || '-')
         ];
         var message = lines.join('\n');
-        var telegramUsername = classCoachMap[className];
 
         if (className && typeof gtag === 'function') {
           gtag('event', 'class_signup_click', { class_name: className, transport_type: 'beacon' });
         }
 
-        if (telegramUsername && telegramUsername !== '') {
-          var vpnNotice = document.getElementById('vpn-notice');
-          if (vpnNotice) { vpnNotice.hidden = false; }
-          setTimeout(function () {
-            window.location.href = 'https://t.me/' + telegramUsername + '?text=' + encodeURIComponent(message);
-          }, 2000);
-        } else {
-          alert('برای این کلاس هنوز آیدی تلگرام مربی ثبت نشده. لطفاً از طریق صفحه «درباره ما» با ما تماس بگیر.');
-        }
+        var vpnNotice = document.getElementById('vpn-notice');
+        if (vpnNotice) { vpnNotice.hidden = false; }
+        setTimeout(function () {
+          window.location.href = 'https://t.me/' + telegramUsername + '?text=' + encodeURIComponent(message);
+        }, 2000);
       });
     }
   });
