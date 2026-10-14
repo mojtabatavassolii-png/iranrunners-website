@@ -57,7 +57,7 @@ exclude:
   - CONTENT_GUIDELINES.md
   - SEO_REPORTING.md
   - reports/
-  - "*.py"
+  - scripts/
 
 kramdown:
   input: GFM
