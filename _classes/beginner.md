@@ -5,7 +5,7 @@ redirect_from: /classes/beginner
 level_tag: All
 order: 1
 description: |-
-  روزهای یکشنبه و سه شنبه هر هفته
+  یکشنبه‌ها و سه‌شنبه‌ها، ساعت ۵ صبح — پارک پردیسان، درب جنوبی
   مناسب همه سطوح
 coach: شهاب ذی فهم
 currency: TOMAN
