@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-13T23:22:44.481Z",
-  "startDate": "2026-09-13",
-  "endDate": "2026-10-10",
+  "generatedAt": "2026-10-14T11:03:05.072Z",
+  "startDate": "2026-09-14",
+  "endDate": "2026-10-11",
   "indexStatus": {
     "indexed": 16,
     "pending": 8,
@@ -42,7 +42,7 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -66,19 +66,35 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
       "position": null
     },
     {
+      "url": "/وبلاگ/آماده-سازی-ماراتن.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 2,
+      "impressions": 2,
+      "ctr": 1,
+      "position": 2.5
+    },
+    {
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 7,
+      "impressions": 9,
       "ctr": 0,
-      "position": 41.42857142857143
+      "position": 41.55555555555556
+    },
+    {
+      "url": "/وبلاگ/دویدن-در-هوای-آلوده.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
     },
     {
       "url": "/وبلاگ/انتخاب-کفش-دویدن.html",
@@ -121,24 +137,8 @@
       "position": 7.5
     },
     {
-      "url": "/وبلاگ/دویدن-در-هوای-آلوده.html",
-      "coverageState": "Submitted and indexed",
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": null
-    },
-    {
-      "url": "/وبلاگ/آماده-سازی-ماراتن.html",
-      "coverageState": "Submitted and indexed",
-      "clicks": 2,
-      "impressions": 2,
-      "ctr": 1,
-      "position": 2.5
-    },
-    {
       "url": "/درباره-ما.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -172,9 +172,9 @@
       "url": "/گالری.html",
       "coverageState": "Submitted and indexed",
       "clicks": 1,
-      "impressions": 14,
-      "ctr": 0.07142857142857142,
-      "position": 6
+      "impressions": 15,
+      "ctr": 0.06666666666666667,
+      "position": 6.2
     },
     {
       "url": "/",
@@ -215,12 +215,12 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -248,23 +248,23 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
     {
       "url": "/درباره-ما.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -399,12 +399,18 @@
       "sessions": 11,
       "activeUsers": 10,
       "pageViews": 54
+    },
+    {
+      "date": "20261011",
+      "sessions": 4,
+      "activeUsers": 4,
+      "pageViews": 15
     }
   ],
   "topPages": [
     {
       "path": "/",
-      "views": "132"
+      "views": "136"
     },
     {
       "path": "/index.html",
@@ -424,14 +430,14 @@
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "views": "26"
+    },
+    {
+      "path": "/گالری.html",
       "views": "25"
     },
     {
       "path": "/وبلاگ.html",
-      "views": "23"
-    },
-    {
-      "path": "/گالری.html",
       "views": "23"
     },
     {
@@ -440,13 +446,13 @@
     },
     {
       "path": "/مربیان.html",
-      "views": "19"
+      "views": "21"
     }
   ],
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "88"
+      "sessions": "90"
     },
     {
       "channel": "Organic Search",
@@ -454,7 +460,7 @@
     },
     {
       "channel": "Organic Social",
-      "sessions": "32"
+      "sessions": "34"
     },
     {
       "channel": "Unassigned",
