@@ -39,16 +39,19 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
     </div>
     <div class="preview-scroll-row">
       {% for c in sorted_classes %}
-      <div class="class-card">
+      <a href="{{ c.url | relative_url }}" class="class-card">
         <h3>{{ c.title }}</h3>
         <p class="desc">{{ c.description }}</p>
+        <div class="price" style="text-align:center;">
+          {% if c.currency == "TOMAN" %}{% if c.price_toman %}{{ c.price_toman }} تومان / ماه{% endif %}{% else %}{% if c.price and c.price != 0 %}{{ c.price }}€ / ماه{% endif %}{% endif %}
+        </div>
         <div class="meta" style="flex-direction:column;align-items:center;gap:12px;text-align:center;">
           {% if c.coach and c.coach != "" %}
           <span style="color:var(--accent-sunrise);font-weight:700;font-size:0.9rem;">مربی: {{ c.coach }}</span>
           {% endif %}
-          <a href="{{ c.url | relative_url }}" class="enroll">جزئیات</a>
+          <span class="enroll">جزئیات</span>
         </div>
-      </div>
+      </a>
       {% endfor %}
     </div>
     <div style="margin-top:26px;text-align:center;"><a href="{{ '/کلاس-ها.html' | relative_url }}" class="btn-ghost">مشاهده کلاس‌ها</a></div>
@@ -101,7 +104,9 @@ description: "ایران رانرز — کلاس‌های دویدن، مربی�
       <h2>لحظه‌های ایران رانرز</h2>
       <p>تمرین‌ها، مسابقه‌ها و لحظه‌های تیمی.</p>
     </div>
-    <div class="preview-scroll-row" id="gallery-preview-grid"></div>
+    <div class="preview-scroll-row" id="gallery-preview-grid">
+      <noscript><p style="color:var(--text-muted);padding:20px 0;">برای مشاهده‌ی تصاویر، گالری کامل رو ببین.</p></noscript>
+    </div>
     <div style="margin-top:26px;text-align:center;"><a href="{{ '/گالری.html' | relative_url }}" class="btn-ghost">مشاهده گالری کامل</a></div>
   </div>
 </section>

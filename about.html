@@ -14,7 +14,7 @@ redirect_from: /about.html
 
 <section class="about-text-section">
   <div class="wrap" style="max-width:760px;">
-    <p style="font-size:1.05rem;color:var(--text-muted);line-height:2;">{{ site.data.about.body }}</p>
+    <p style="font-size:1.05rem;color:var(--text-muted);">{{ site.data.about.body }}</p>
   </div>
 </section>
 
@@ -60,6 +60,13 @@ redirect_from: /about.html
         <span class="c-label">INSTAGRAM</span>
         <span class="c-value">{{ site.data.about.contact_info.instagram }}</span>
       </a>
+      {% assign founder = site.data.coaches | where: "name", "مجتبی توسلی" | first %}
+      {% if founder.telegram %}
+      <a href="https://t.me/{{ founder.telegram }}" class="contact-item" target="_blank" rel="noopener noreferrer" style="grid-column:1 / -1;">
+        <span class="c-label">TELEGRAM</span>
+        <span class="c-value" style="direction:ltr;display:inline-block;">@{{ founder.telegram }}</span>
+      </a>
+      {% endif %}
     </div>
   </div>
 </section>
