@@ -515,7 +515,7 @@ section { padding: 74px 0; }
   margin-bottom: 10px;
 }
 .pace-result-card .dist-time {
-  font-size: 1.6rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--accent-sunrise);
 }
