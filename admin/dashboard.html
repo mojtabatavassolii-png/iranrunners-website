@@ -151,6 +151,34 @@ sitemap: false
   </div>
 
   <div class="panel">
+    <h2>منبع/رسانه ورود دقیق (از کدام سایت یا لینک)</h2>
+    <div style="overflow-x:auto;">
+      <table id="sources-table">
+        <thead><tr><th>منبع / رسانه</th><th>جلسات</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note" id="sources-note"></p>
+  </div>
+
+  <div class="panel">
+    <h2>موقعیت جغرافیایی بازدیدکنندگان — کشورها</h2>
+    <div class="chart-wrap"><canvas id="chart-countries"></canvas></div>
+    <p class="note" id="countries-note"></p>
+  </div>
+
+  <div class="panel">
+    <h2>موقعیت جغرافیایی بازدیدکنندگان — شهرها</h2>
+    <div style="overflow-x:auto;">
+      <table id="cities-table">
+        <thead><tr><th>شهر</th><th>کشور</th><th>کاربران فعال</th><th>جلسات</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note" id="cities-note"></p>
+  </div>
+
+  <div class="panel">
     <h2>علاقه‌مندی به کلاس‌ها (تعداد کلیک «ارسال درخواست ثبت‌نام»)</h2>
     <div class="chart-wrap"><canvas id="chart-classes"></canvas></div>
     <p class="note" id="classes-note"></p>
@@ -164,11 +192,11 @@ sitemap: false
   </div>
 
   <div class="panel">
-    <h2>جزئیات صفحات (Search Console)</h2>
+    <h2>جزئیات صفحات (Search Console + بازدید GA4)</h2>
     <div style="overflow-x:auto;">
       <table id="pages-table">
         <thead>
-          <tr><th>آدرس</th><th>وضعیت</th><th>کلیک</th><th>نمایش</th><th>CTR</th><th>رتبه</th></tr>
+          <tr><th>آدرس</th><th>وضعیت</th><th>بازدید</th><th>کلیک</th><th>نمایش</th><th>CTR</th><th>رتبه</th></tr>
         </thead>
         <tbody></tbody>
       </table>
@@ -383,11 +411,12 @@ sitemap: false
 
     // --- pages table ---
     var tbody = document.querySelector('#pages-table tbody');
-    var pages = (data.pages || []).slice().sort(function (a, b) { return (b.clicks + b.impressions) - (a.clicks + a.impressions); });
+    var pages = (data.pages || []).slice().sort(function (a, b) { return ((b.views || 0) + b.clicks + b.impressions) - ((a.views || 0) + a.clicks + a.impressions); });
     tbody.innerHTML = pages.map(function (p) {
       return '<tr>' +
         '<td class="ltr">' + p.url + '</td>' +
         '<td>' + coverageLabel(p.coverageState) + '</td>' +
+        '<td>' + fa(p.views || 0) + '</td>' +
         '<td>' + fa(p.clicks) + '</td>' +
         '<td>' + fa(p.impressions) + '</td>' +
         '<td>' + fa(((p.ctr || 0) * 100).toFixed(1)) + '٪</td>' +
@@ -400,6 +429,60 @@ sitemap: false
       gscNote.className = 'note err';
       gscNote.textContent = 'هشدار: آخرین اتصال به Search Console ناموفق بود: ' + data.gscError;
       document.querySelector('#pages-table').parentNode.appendChild(gscNote);
+    }
+
+    // --- traffic sources (source/medium) table ---
+    var sources = data.trafficSources || [];
+    var sourcesNote = document.getElementById('sources-note');
+    document.querySelector('#sources-table tbody').innerHTML = sources.map(function (s) {
+      return '<tr><td class="ltr">' + s.sourceMedium + '</td><td>' + fa(s.sessions) + '</td></tr>';
+    }).join('');
+    if (data.trafficSourcesError) {
+      sourcesNote.textContent = 'نتونستم این بخش رو بگیرم: ' + data.trafficSourcesError;
+      sourcesNote.className = 'note err';
+    } else if (sources.length === 0) {
+      sourcesNote.textContent = 'داده‌ای برای این بازه موجود نیست.';
+      sourcesNote.className = 'note';
+    } else {
+      sourcesNote.textContent = '';
+    }
+
+    // --- geography: countries chart + cities table ---
+    var geo = data.geography || { countries: [], cities: [] };
+    var countriesNote = document.getElementById('countries-note');
+    if (data.geographyError) {
+      document.getElementById('chart-countries').style.display = 'none';
+      countriesNote.textContent = 'نتونستم این بخش رو بگیرم: ' + data.geographyError;
+      countriesNote.className = 'note err';
+    } else if ((geo.countries || []).length === 0) {
+      document.getElementById('chart-countries').style.display = 'none';
+      countriesNote.textContent = 'داده‌ای برای این بازه موجود نیست.';
+      countriesNote.className = 'note';
+    } else {
+      document.getElementById('chart-countries').style.display = 'block';
+      countriesNote.textContent = '';
+      new Chart(document.getElementById('chart-countries'), {
+        type: 'bar',
+        data: {
+          labels: geo.countries.map(function (c) { return c.country; }),
+          datasets: [{ label: 'کاربران فعال', data: geo.countries.map(function (c) { return c.activeUsers; }), backgroundColor: '#4a6cf7' }],
+        },
+        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
+      });
+    }
+
+    var citiesNote = document.getElementById('cities-note');
+    document.querySelector('#cities-table tbody').innerHTML = (geo.cities || []).map(function (c) {
+      return '<tr><td>' + c.city + '</td><td>' + c.country + '</td><td>' + fa(c.activeUsers) + '</td><td>' + fa(c.sessions) + '</td></tr>';
+    }).join('');
+    if (data.geographyError) {
+      citiesNote.textContent = 'نتونستم این بخش رو بگیرم: ' + data.geographyError;
+      citiesNote.className = 'note err';
+    } else if ((geo.cities || []).length === 0) {
+      citiesNote.textContent = 'داده‌ای برای این بازه موجود نیست.';
+      citiesNote.className = 'note';
+    } else {
+      citiesNote.textContent = '';
     }
   }
 })();
