@@ -293,10 +293,16 @@ sitemap: false
     var idx = data.indexStatus || { indexed: 0, pending: 0, total: 0 };
     var totalSessions = (data.daily || []).reduce(function (s, d) { return s + (d.sessions || 0); }, 0);
     var totalViews = (data.daily || []).reduce(function (s, d) { return s + (d.pageViews || 0); }, 0);
+    // activeUsers/totalUsers come from a single period-total GA4 query
+    // (not summed per-day — GA4 already deduplicates users by its
+    // reporting identity, the _ga client-ID cookie per browser/device;
+    // summing each day's count would double-count repeat visitors).
     cardsEl.innerHTML =
       card('indexed', idx.indexed, 'صفحه ایندکس‌شده') +
       card('pending', idx.pending, 'در انتظار/نامشخص') +
       card('', idx.total, 'کل آدرس‌های سایت') +
+      (data.activeUsers != null ? card('', data.activeUsers, 'کاربران یکتا (۲۸ روز اخیر)') : '') +
+      (data.totalUsers != null ? card('', data.totalUsers, 'کل کاربران شامل غیرفعال') : '') +
       card('', totalSessions, 'Session (۲۸ روز اخیر)') +
       card('', totalViews, 'بازدید صفحه (۲۸ روز اخیر)');
 
@@ -313,6 +319,7 @@ sitemap: false
         datasets: [
           { label: 'Session', data: daily.map(function (d) { return d.sessions; }), borderColor: '#e8121a', backgroundColor: 'rgba(232,18,26,0.08)', tension: 0.3, fill: true },
           { label: 'بازدید صفحه', data: daily.map(function (d) { return d.pageViews; }), borderColor: '#111111', backgroundColor: 'rgba(17,17,17,0.05)', tension: 0.3, fill: true },
+          { label: 'کاربران یکتا (همون روز)', data: daily.map(function (d) { return d.activeUsers; }), borderColor: '#4a6cf7', backgroundColor: 'rgba(74,108,247,0.06)', tension: 0.3, fill: true },
         ],
       },
       options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { maxRotation: 70, minRotation: 45 } } } },
