@@ -58,8 +58,14 @@ sitemap: false
 
   .cards {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px; margin-bottom: 30px;
+    gap: 12px; margin-bottom: 14px;
   }
+  .users-note {
+    color: var(--muted); font-size: 0.83rem; line-height: 1.9;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; margin-bottom: 30px;
+  }
+  .users-note b { color: var(--black); }
   .card {
     border: 1px solid var(--border); border-radius: 14px; padding: 16px;
     background: var(--panel); text-align: center;
@@ -129,6 +135,16 @@ sitemap: false
   <p class="sub" id="updated-at">در حال بارگذاری...</p>
 
   <div class="cards" id="summary-cards"></div>
+
+  <p class="users-note">
+    <b>«کاربران یکتا» چطور شمرده می‌شه؟</b> گوگل آنالیتیکس هر کاربر یکتا رو بر اساس <b>دستگاه/مرورگر</b>
+    شناسایی می‌کنه (یه کوکی به اسم Client ID روی هر مرورگر)، نه بر اساس شخص. یعنی اگه یه نفر هم از
+    گوشی و هم از لپ‌تاپ وارد سایت بشه، الان <b>به‌عنوان ۲ کاربر جدا</b> شمرده می‌شه، نه ۱ نفر —
+    چون این سایت سیستم ورود/عضویت نداره (که بشه با User-ID دستگاه‌ها رو به هم وصل کرد) و
+    Google Signals هم فعال نیست (که برای کاربرهایی که با حساب گوگل‌شون وارد بودن، بین دستگاه‌ها
+    یکی‌سازی می‌کنه). پس عددهای «کاربران یکتا»/«کل کاربران» بالا، شمارش دقیق و استاندارد خود
+    گوگل آنالیتیکسه (نه شمارش ساده بازدید یا درخواست) ولی واحدش «دستگاه یکتا»ست، نه لزوماً «انسان یکتا».
+  </p>
 
   <div class="panel">
     <h2>روند بازدید سایت (روزانه)</h2>
