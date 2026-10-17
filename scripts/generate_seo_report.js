@@ -51,6 +51,173 @@ async function getAccessToken(credentials, scopes) {
   return token;
 }
 
+// Shared GA4 Data API report runner, used by the per-page/geography/source
+// breakdowns below (runGa4Report further down keeps its own copy for the
+// totals/topPages/channels/daily report, left untouched to minimize risk).
+async function ga4Report(token, body) {
+  const res = await fetch(
+    `https://analyticsdata.googleapis.com/v1beta/properties/${GA4_PROPERTY_ID}:runReport`,
+    {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }
+  );
+  if (!res.ok) throw new Error(`GA4 Data API request failed: ${res.status} ${await res.text()}`);
+  return res.json();
+}
+
+// --- canonical URL resolution -------------------------------------------
+// GA4 tracks raw request paths, which fragments real per-page totals across
+// known-duplicate paths: "/" and "/index.html" are the same homepage (both
+// live, both linked from different places), and old pre-redirect paths like
+// "/gallery.html" still carry historical pageviews for what is now
+// "/گالری.html". Without collapsing these, "top pages" and per-page view
+// counts under-count real pages and list stale duplicates as if they were
+// separate pages. This builds an alias -> canonical map from the site's own
+// redirect_from front matter (the same data jekyll-redirect-from uses to
+// generate the redirect stubs) plus the "/" -> "/index.html" GitHub Pages
+// special case.
+function parseFrontMatter(content) {
+  const m = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!m) return {};
+  try {
+    return yaml.load(m[1]) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function loadSiteConfig() {
+  const configPath = path.join(__dirname, "..", "_config.yml");
+  return yaml.load(fs.readFileSync(configPath, "utf8"));
+}
+
+function permalinkPatternFor(config, collectionType) {
+  if (collectionType === "posts") return config.permalink;
+  const def = (config.defaults || []).find(
+    (d) => d.scope && d.scope.type === collectionType && d.values && d.values.permalink
+  );
+  return def ? def.values.permalink : null;
+}
+
+function slugFor(frontMatter, filePath, stripDatePrefix) {
+  if (frontMatter.slug) return frontMatter.slug;
+  let base = path.basename(filePath, path.extname(filePath));
+  if (stripDatePrefix) base = base.replace(/^\d{4}-\d{2}-\d{2}-/, "");
+  return base;
+}
+
+function collectAliasMap() {
+  const repoRoot = path.join(__dirname, "..");
+  const config = loadSiteConfig();
+  const aliasToCanonical = new Map();
+  aliasToCanonical.set("/", "/index.html");
+
+  function processCollection(dir, collectionType, stripDatePrefix) {
+    const pattern = permalinkPatternFor(config, collectionType);
+    const fullDir = path.join(repoRoot, dir);
+    if (!pattern || !fs.existsSync(fullDir)) return;
+    for (const fname of fs.readdirSync(fullDir)) {
+      if (!fname.endsWith(".md") && !fname.endsWith(".html")) continue;
+      const fpath = path.join(fullDir, fname);
+      const fm = parseFrontMatter(fs.readFileSync(fpath, "utf8"));
+      if (!fm.redirect_from) continue;
+      const canonical = fm.permalink || pattern.replace(":title", slugFor(fm, fpath, stripDatePrefix));
+      const redirects = Array.isArray(fm.redirect_from) ? fm.redirect_from : [fm.redirect_from];
+      redirects.forEach((r) => aliasToCanonical.set(r, canonical));
+    }
+  }
+
+  processCollection("_posts", "posts", true);
+  processCollection("_classes", "classes", false);
+  processCollection("_events", "events", false);
+
+  // root-level static pages set their own explicit `permalink:` front matter
+  for (const fname of fs.readdirSync(repoRoot)) {
+    if (!fname.endsWith(".html")) continue;
+    const fpath = path.join(repoRoot, fname);
+    if (!fs.statSync(fpath).isFile()) continue;
+    const fm = parseFrontMatter(fs.readFileSync(fpath, "utf8"));
+    if (!fm.redirect_from || !fm.permalink) continue;
+    const redirects = Array.isArray(fm.redirect_from) ? fm.redirect_from : [fm.redirect_from];
+    redirects.forEach((r) => aliasToCanonical.set(r, fm.permalink));
+  }
+
+  return aliasToCanonical;
+}
+
+function canonicalizePath(rawPath, aliasMap) {
+  let p = rawPath.split("?")[0].split("#")[0];
+  try {
+    p = decodeURIComponent(p);
+  } catch (e) {
+    // leave as-is if it's not validly percent-encoded
+  }
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+  return aliasMap.has(p) ? aliasMap.get(p) : p;
+}
+
+// --- new breakdowns: per-page views, geography, traffic source/medium ---
+async function fetchAllPageViews(token, startDate, endDate) {
+  const data = await ga4Report(token, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: "pagePath" }],
+    metrics: [{ name: "screenPageViews" }],
+    limit: 10000,
+  });
+  return (data.rows || []).map((r) => ({
+    pagePath: r.dimensionValues[0].value,
+    views: Number(r.metricValues[0].value),
+  }));
+}
+
+async function fetchGeography(token, startDate, endDate) {
+  const countries = await ga4Report(token, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: "country" }],
+    metrics: [{ name: "activeUsers" }, { name: "sessions" }],
+    orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+    limit: 15,
+  });
+  const cities = await ga4Report(token, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: "country" }, { name: "city" }],
+    metrics: [{ name: "activeUsers" }, { name: "sessions" }],
+    orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+    limit: 15,
+  });
+  return {
+    countries: (countries.rows || []).map((r) => ({
+      country: r.dimensionValues[0].value,
+      activeUsers: Number(r.metricValues[0].value),
+      sessions: Number(r.metricValues[1].value),
+    })),
+    cities: (cities.rows || [])
+      .map((r) => ({
+        country: r.dimensionValues[0].value,
+        city: r.dimensionValues[1].value,
+        activeUsers: Number(r.metricValues[0].value),
+        sessions: Number(r.metricValues[1].value),
+      }))
+      .filter((r) => r.city && r.city !== "(not set)"),
+  };
+}
+
+async function fetchTrafficSources(token, startDate, endDate) {
+  const data = await ga4Report(token, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: "sessionSourceMedium" }],
+    metrics: [{ name: "sessions" }],
+    orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+    limit: 20,
+  });
+  return (data.rows || []).map((r) => ({
+    sourceMedium: r.dimensionValues[0].value,
+    sessions: Number(r.metricValues[0].value),
+  }));
+}
+
 async function fetchSitemapUrls() {
   const res = await fetch(`${SITE_URL}/sitemap.xml`);
   if (!res.ok) throw new Error(`Failed to fetch sitemap.xml: ${res.status}`);
@@ -361,6 +528,10 @@ async function main() {
     daily: [],
     topPages: [],
     channels: [],
+    geography: { countries: [], cities: [] },
+    geographyError: null,
+    trafficSources: [],
+    trafficSourcesError: null,
     classInterest: [],
     classInterestError: null,
     gscError: null,
@@ -459,11 +630,41 @@ async function main() {
       lines.push(`- کاربران فعال: ${ga4.activeUsers}`);
       lines.push(`- بازدید صفحات: ${ga4.pageViews}`);
       lines.push("");
-      lines.push("### پربازدیدترین صفحات");
+
+      dashboard.daily = ga4.daily;
+      dashboard.channels = ga4.channels;
+
+      // Per-page views, deduplicated against known URL aliases ("/" vs
+      // "/index.html", old pre-redirect paths vs their canonical Persian
+      // URL) so a single real page isn't reported as several.
+      try {
+        const aliasMap = collectAliasMap();
+        const rawPageViews = await fetchAllPageViews(gaToken, startDate, endDate);
+        const viewsByCanonical = new Map();
+        for (const row of rawPageViews) {
+          const canon = canonicalizePath(row.pagePath, aliasMap);
+          viewsByCanonical.set(canon, (viewsByCanonical.get(canon) || 0) + row.views);
+        }
+
+        dashboard.pages.forEach((p) => {
+          p.views = viewsByCanonical.get(canonicalizePath(p.url, aliasMap)) || 0;
+        });
+
+        dashboard.topPages = Array.from(viewsByCanonical.entries())
+          .map(([path, views]) => ({ path, views }))
+          .sort((a, b) => b.views - a.views)
+          .slice(0, 10);
+      } catch (err) {
+        // fall back to GA4's own (non-deduplicated) top-pages ordering
+        // rather than losing the panel entirely
+        dashboard.topPages = ga4.topPages;
+      }
+
+      lines.push("### پربازدیدترین صفحات (آدرس‌های تکراری/قدیمی با نسخه اصلی ادغام شدن)");
       lines.push("");
       lines.push("| صفحه | بازدید |");
       lines.push("|---|---|");
-      for (const p of ga4.topPages) lines.push(`| ${p.path} | ${p.views} |`);
+      for (const p of dashboard.topPages) lines.push(`| ${p.path} | ${p.views} |`);
       lines.push("");
       lines.push("### منبع ترافیک");
       lines.push("");
@@ -472,14 +673,34 @@ async function main() {
       for (const c of ga4.channels) lines.push(`| ${c.channel} | ${c.sessions} |`);
       lines.push("");
 
-      dashboard.daily = ga4.daily;
-      dashboard.topPages = ga4.topPages;
-      dashboard.channels = ga4.channels;
-
       try {
         dashboard.classInterest = await fetchClassInterest(gaToken, startDate, endDate);
       } catch (err) {
         dashboard.classInterestError = String(err.message || err);
+      }
+
+      try {
+        dashboard.geography = await fetchGeography(gaToken, startDate, endDate);
+        lines.push("### موقعیت جغرافیایی بازدیدکنندگان (کشورها)");
+        lines.push("");
+        lines.push("| کشور | کاربران فعال | جلسات |");
+        lines.push("|---|---|---|");
+        for (const c of dashboard.geography.countries) lines.push(`| ${c.country} | ${c.activeUsers} | ${c.sessions} |`);
+        lines.push("");
+      } catch (err) {
+        dashboard.geographyError = String(err.message || err);
+      }
+
+      try {
+        dashboard.trafficSources = await fetchTrafficSources(gaToken, startDate, endDate);
+        lines.push("### منبع/رسانه ورود دقیق");
+        lines.push("");
+        lines.push("| منبع / رسانه | جلسات |");
+        lines.push("|---|---|");
+        for (const s of dashboard.trafficSources) lines.push(`| ${s.sourceMedium} | ${s.sessions} |`);
+        lines.push("");
+      } catch (err) {
+        dashboard.trafficSourcesError = String(err.message || err);
       }
     } catch (err) {
       dashboard.ga4Error = String(err.message || err);
