@@ -302,9 +302,21 @@ async function runGa4Report(token, startDate, endDate) {
     return res.json();
   }
 
+  // Single no-dimension query -> one row for the whole date range. This is
+  // the only mathematically correct way to get a period-total unique-user
+  // count: activeUsers/totalUsers are already deduplicated by GA4's
+  // reporting identity (the _ga client-ID cookie per browser/device, unless
+  // Google Signals or a User-ID is configured to stitch devices together -
+  // see SEO_REPORTING.md). Summing each day's activeUsers instead would
+  // double-count anyone who returns on more than one day within the range.
   const totals = await runReport({
     dateRanges: [{ startDate, endDate }],
-    metrics: [{ name: "sessions" }, { name: "activeUsers" }, { name: "screenPageViews" }],
+    metrics: [
+      { name: "sessions" },
+      { name: "activeUsers" },
+      { name: "totalUsers" },
+      { name: "screenPageViews" },
+    ],
   });
   const totalsRow = (totals.rows || [])[0];
 
@@ -333,7 +345,8 @@ async function runGa4Report(token, startDate, endDate) {
   return {
     sessions: totalsRow ? totalsRow.metricValues[0].value : "0",
     activeUsers: totalsRow ? totalsRow.metricValues[1].value : "0",
-    pageViews: totalsRow ? totalsRow.metricValues[2].value : "0",
+    totalUsers: totalsRow ? totalsRow.metricValues[2].value : "0",
+    pageViews: totalsRow ? totalsRow.metricValues[3].value : "0",
     topPages: (topPages.rows || []).map((r) => ({
       path: r.dimensionValues[0].value,
       views: r.metricValues[0].value,
@@ -528,6 +541,8 @@ async function main() {
     daily: [],
     topPages: [],
     channels: [],
+    activeUsers: null,
+    totalUsers: null,
     geography: { countries: [], cities: [] },
     geographyError: null,
     trafficSources: [],
@@ -627,12 +642,21 @@ async function main() {
       lines.push(`## گوگل آنالیتیکس (${startDate} تا ${endDate})`);
       lines.push("");
       lines.push(`- جلسات (Sessions): ${ga4.sessions}`);
-      lines.push(`- کاربران فعال: ${ga4.activeUsers}`);
+      lines.push(`- کاربران یکتا/فعال (Active Users — افراد منحصربه‌فرد، نه تعداد اتصال یا بازدید): ${ga4.activeUsers}`);
+      lines.push(`- کل کاربران شامل غیرفعال (Total Users): ${ga4.totalUsers}`);
       lines.push(`- بازدید صفحات: ${ga4.pageViews}`);
       lines.push("");
 
       dashboard.daily = ga4.daily;
       dashboard.channels = ga4.channels;
+      // Period-total unique-user counts, from a single no-dimension GA4
+      // query (see the comment above runGa4Report's `totals` query) — the
+      // correct way to report "unique visitors" for the whole date range.
+      // Do NOT derive this by summing dashboard.daily[].activeUsers: GA4
+      // dedupes per query, so a visitor active on two different days would
+      // be counted twice that way.
+      dashboard.activeUsers = Number(ga4.activeUsers);
+      dashboard.totalUsers = Number(ga4.totalUsers);
 
       // Per-page views, deduplicated against known URL aliases ("/" vs
       // "/index.html", old pre-redirect paths vs their canonical Persian
