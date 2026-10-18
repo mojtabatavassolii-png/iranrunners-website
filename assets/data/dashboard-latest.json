@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-17T21:36:01.196Z",
-  "startDate": "2026-09-17",
-  "endDate": "2026-10-14",
+  "generatedAt": "2026-10-18T21:40:05.406Z",
+  "startDate": "2026-09-18",
+  "endDate": "2026-10-15",
   "indexStatus": {
     "indexed": 16,
     "pending": 7,
@@ -24,7 +24,7 @@
       "impressions": 2,
       "ctr": 0,
       "position": 9,
-      "views": 7
+      "views": 9
     },
     {
       "url": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
@@ -33,7 +33,7 @@
       "impressions": 4,
       "ctr": 0,
       "position": 8,
-      "views": 36
+      "views": 38
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
@@ -55,7 +55,7 @@
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -64,7 +64,7 @@
     },
     {
       "url": "/گالری/تپه-های-رنگین-کمان.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -73,7 +73,7 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -93,10 +93,10 @@
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 15,
+      "impressions": 17,
       "ctr": 0,
-      "position": 43.666666666666664,
-      "views": 4
+      "position": 43.8235294117647,
+      "views": 5
     },
     {
       "url": "/وبلاگ/دویدن-در-هوای-آلوده.html",
@@ -150,16 +150,16 @@
       "impressions": 2,
       "ctr": 0,
       "position": 7.5,
-      "views": 15
+      "views": 16
     },
     {
       "url": "/درباره-ما.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 10
+      "views": 15
     },
     {
       "url": "/وبلاگ.html",
@@ -168,7 +168,7 @@
       "impressions": 5,
       "ctr": 0,
       "position": 5.4,
-      "views": 32
+      "views": 33
     },
     {
       "url": "/کلاس-ها.html",
@@ -177,15 +177,15 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 72
+      "views": 76
     },
     {
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 19,
+      "impressions": 20,
       "ctr": 0,
-      "position": 6.7894736842105265,
+      "position": 6.8,
       "views": 31
     },
     {
@@ -195,16 +195,16 @@
       "impressions": 21,
       "ctr": 0.09523809523809523,
       "position": 6.142857142857143,
-      "views": 50
+      "views": 51
     },
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
-      "clicks": 27,
-      "impressions": 75,
-      "ctr": 0.36,
-      "position": 1.2266666666666666,
-      "views": 262
+      "clicks": 25,
+      "impressions": 59,
+      "ctr": 0.423728813559322,
+      "position": 1.288135593220339,
+      "views": 270
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -241,28 +241,6 @@
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
-      "coverageState": "Discovered - currently not indexed",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/گالری/تپه-های-رنگین-کمان.html",
-      "coverageState": "Discovered - currently not indexed",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
       "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
@@ -273,13 +251,35 @@
       }
     },
     {
-      "url": "/درباره-ما.html",
+      "url": "/گالری/تپه-های-رنگین-کمان.html",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
       "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
         "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
         "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/درباره-ما.html",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -427,20 +427,26 @@
       "sessions": 8,
       "activeUsers": 3,
       "pageViews": 71
+    },
+    {
+      "date": "20261015",
+      "sessions": 12,
+      "activeUsers": 5,
+      "pageViews": 25
     }
   ],
   "topPages": [
     {
       "path": "/index.html",
-      "views": 262
+      "views": 270
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 72
+      "views": 76
     },
     {
       "path": "/گالری.html",
-      "views": 50
+      "views": 51
     },
     {
       "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
@@ -448,11 +454,11 @@
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": 36
+      "views": 38
     },
     {
       "path": "/وبلاگ.html",
-      "views": 32
+      "views": 33
     },
     {
       "path": "/وبلاگ/آماده-سازی-ماراتن.html",
@@ -474,11 +480,11 @@
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "93"
+      "sessions": "100"
     },
     {
       "channel": "Organic Search",
-      "sessions": "56"
+      "sessions": "61"
     },
     {
       "channel": "Organic Social",
@@ -489,8 +495,8 @@
       "sessions": "1"
     }
   ],
-  "activeUsers": 110,
-  "totalUsers": 110,
+  "activeUsers": 113,
+  "totalUsers": 113,
   "geography": {
     "countries": [
       {
@@ -500,8 +506,8 @@
       },
       {
         "country": "Germany",
-        "activeUsers": 32,
-        "sessions": 95
+        "activeUsers": 35,
+        "sessions": 107
       },
       {
         "country": "United States",
@@ -591,8 +597,8 @@
       {
         "country": "Germany",
         "city": "Frankfurt am Main",
-        "activeUsers": 4,
-        "sessions": 5
+        "activeUsers": 6,
+        "sessions": 9
       },
       {
         "country": "Sweden",
@@ -642,11 +648,11 @@
   "trafficSources": [
     {
       "sourceMedium": "(direct) / (none)",
-      "sessions": 93
+      "sessions": 100
     },
     {
       "sourceMedium": "google / organic",
-      "sessions": 56
+      "sessions": 61
     },
     {
       "sourceMedium": "ig / social",
