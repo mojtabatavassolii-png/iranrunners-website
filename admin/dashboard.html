@@ -66,6 +66,23 @@ sitemap: false
     padding: 12px 16px; margin-bottom: 30px;
   }
   .users-note b { color: var(--black); }
+  .freshness-note {
+    color: var(--muted); font-size: 0.83rem; line-height: 1.9;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; margin-bottom: 20px;
+  }
+  .freshness-note b { color: var(--black); }
+  .live-panel {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+    border: 1px solid var(--red); border-radius: 14px; padding: 14px 20px;
+    background: #fff5f5; margin-bottom: 20px;
+  }
+  .live-panel .live-label { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--red); font-weight: 700; }
+  .live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--red); animation: live-pulse 1.5s ease-in-out infinite; }
+  @keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+  .live-panel .live-num { font-size: 1.7rem; font-weight: 800; font-family: "JetBrains Mono", monospace; color: var(--red); }
+  .live-panel .live-sub { color: var(--muted); font-size: 0.82rem; }
+  @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
   .card {
     border: 1px solid var(--border); border-radius: 14px; padding: 16px;
     background: var(--panel); text-align: center;
@@ -133,6 +150,14 @@ sitemap: false
 <div id="app">
   <h1>داشبورد سئو و آنالیتیکس</h1>
   <p class="sub" id="updated-at">در حال بارگذاری...</p>
+
+  <div class="live-panel" id="live-panel" style="display:none;">
+    <div class="live-label"><span class="live-dot"></span>همین الان آنلاین (۳۰ دقیقه اخیر)</div>
+    <div class="live-num" id="live-num">—</div>
+    <div class="live-sub" id="live-sub"></div>
+  </div>
+
+  <p class="freshness-note" id="freshness-note"></p>
 
   <div class="cards" id="summary-cards"></div>
 
@@ -302,7 +327,32 @@ sitemap: false
     var updatedEl = document.getElementById('updated-at');
     var dt = data.generatedAt ? new Date(data.generatedAt) : null;
     updatedEl.textContent = 'آخرین به‌روزرسانی: ' + (dt ? dt.toLocaleString('fa-IR') : 'نامشخص') +
-      ' — این گزارش هر روز خودکار از طریق GitHub Actions به‌روز می‌شه.';
+      ' — این گزارش هر ۶ ساعت خودکار از طریق GitHub Actions به‌روز می‌شه.';
+
+    // --- live panel (genuinely real-time, GA4 Realtime API, last 30 min) ---
+    var livePanel = document.getElementById('live-panel');
+    var liveNum = document.getElementById('live-num');
+    var liveSub = document.getElementById('live-sub');
+    if (data.realtimeError) {
+      livePanel.style.display = 'flex';
+      liveNum.textContent = '—';
+      liveSub.textContent = 'نتونستم بگیرم: ' + data.realtimeError;
+    } else if (data.realtime) {
+      livePanel.style.display = 'flex';
+      liveNum.textContent = fa(data.realtime.activeUsers || 0);
+      var topCountry = (data.realtime.byCountry || [])[0];
+      liveSub.textContent = topCountry ? ('بیشترین از: ' + topCountry.country) : 'کاربر فعال';
+    }
+
+    // --- data-freshness note: explains the ~2-3 day Google processing lag ---
+    var freshnessEl = document.getElementById('freshness-note');
+    if (data.endDate) {
+      freshnessEl.innerHTML = '<b>چرا این گزارش «امروز» رو نشون نمی‌ده؟</b> خود گزارش هر ۶ ساعت ' +
+        'خودکار اجرا می‌شه (نه یه‌بار در روز)، ولی داده‌های Search Console و Google Analytics ' +
+        '(غیر از پنل «همین الان آنلاین» بالا) همیشه حدود ۲ تا ۳ روز با امروز فاصله دارن — این ' +
+        'محدودیت خود گوگله (داده رو هنوز کامل پردازش نکرده)، نه مشکل این سایت یا این گزارش. ' +
+        'بازه داده همین گزارش: <b class="mono">' + data.startDate + '</b> تا <b class="mono">' + data.endDate + '</b>.';
+    }
 
     // --- summary cards ---
     var cardsEl = document.getElementById('summary-cards');

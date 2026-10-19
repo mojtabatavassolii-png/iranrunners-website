@@ -218,6 +218,41 @@ async function fetchTrafficSources(token, startDate, endDate) {
   }));
 }
 
+// GA4's Realtime Reporting API is a genuinely different endpoint from the
+// standard runReport one used everywhere else in this file: it has no
+// dateRanges (it always covers the last ~30 minutes, a rolling window GA4
+// manages itself) and only supports a small separate set of dimensions.
+// This is the only data in the whole dashboard that isn't subject to
+// Google's 2-3 day Search Console/GA4 processing lag - everything else
+// (pages, geography, sources, index status) physically cannot be made
+// real-time, so this section exists specifically to give the dashboard one
+// genuinely live number rather than pretending the rest can be too.
+async function fetchRealtimeActiveUsers(token) {
+  const res = await fetch(
+    `https://analyticsdata.googleapis.com/v1beta/properties/${GA4_PROPERTY_ID}:runRealtimeReport`,
+    {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        metrics: [{ name: "activeUsers" }],
+        dimensions: [{ name: "country" }],
+        orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+        limit: 10,
+      }),
+    }
+  );
+  if (!res.ok) throw new Error(`GA4 Realtime Data API request failed: ${res.status} ${await res.text()}`);
+  const data = await res.json();
+  const byCountry = (data.rows || []).map((r) => ({
+    country: r.dimensionValues[0].value,
+    activeUsers: Number(r.metricValues[0].value),
+  }));
+  return {
+    activeUsers: byCountry.reduce((sum, r) => sum + r.activeUsers, 0),
+    byCountry,
+  };
+}
+
 async function fetchSitemapUrls() {
   const res = await fetch(`${SITE_URL}/sitemap.xml`);
   if (!res.ok) throw new Error(`Failed to fetch sitemap.xml: ${res.status}`);
@@ -547,6 +582,8 @@ async function main() {
     geographyError: null,
     trafficSources: [],
     trafficSourcesError: null,
+    realtime: { activeUsers: 0, byCountry: [] },
+    realtimeError: null,
     classInterest: [],
     classInterestError: null,
     gscError: null,
@@ -725,6 +762,14 @@ async function main() {
         lines.push("");
       } catch (err) {
         dashboard.trafficSourcesError = String(err.message || err);
+      }
+
+      try {
+        dashboard.realtime = await fetchRealtimeActiveUsers(gaToken);
+        lines.push(`### کاربران آنلاین همین الان (۳۰ دقیقه اخیر): ${dashboard.realtime.activeUsers}`);
+        lines.push("");
+      } catch (err) {
+        dashboard.realtimeError = String(err.message || err);
       }
     } catch (err) {
       dashboard.ga4Error = String(err.message || err);
