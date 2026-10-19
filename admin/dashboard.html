@@ -59,18 +59,20 @@ sitemap: false
 
   .cards {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px; margin-bottom: 14px;
+    gap: 12px; margin-bottom: 24px;
   }
   .users-note {
     color: var(--muted); font-size: 0.83rem; line-height: 1.9;
     background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
     padding: 12px 16px; margin-bottom: 30px;
+    text-align: justify; text-align-last: right;
   }
   .users-note b { color: var(--black); }
   .freshness-note {
     color: var(--muted); font-size: 0.83rem; line-height: 1.9;
     background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
     padding: 12px 16px; margin-bottom: 20px;
+    text-align: justify; text-align-last: right;
   }
   .freshness-note b { color: var(--black); }
   .live-panel {
@@ -104,7 +106,7 @@ sitemap: false
     margin-bottom: 24px; background: #fff;
   }
   .panel h2 { font-size: 1.05rem; margin: 0 0 16px; }
-  .panel .note { color: var(--muted); font-size: 0.85rem; margin-top: 10px; }
+  .panel .note { color: var(--muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.8; text-align: justify; text-align-last: right; }
   .panel .note.err { color: var(--red); }
   .chart-wrap { position: relative; height: 280px; }
 
@@ -131,8 +133,8 @@ sitemap: false
   .status-badge.review { background: #fdeaea; color: var(--red-text); }
   .status-badge.progress { background: #fdf3e0; color: var(--warn); }
   .status-badge.done { background: #e7f7ee; color: var(--good); }
-  .task-reason { color: var(--black); font-size: 0.88rem; margin-bottom: 6px; }
-  .task-action { color: var(--muted); font-size: 0.85rem; }
+  .task-reason { color: var(--black); font-size: 0.88rem; margin-bottom: 6px; line-height: 1.8; text-align: justify; text-align-last: right; }
+  .task-action { color: var(--muted); font-size: 0.85rem; line-height: 1.8; text-align: justify; text-align-last: right; }
   .task-action b { color: var(--black); }
   .task-note { color: var(--muted); font-size: 0.82rem; margin-top: 6px; font-style: italic; }
   .task-coverage { color: var(--faint); font-size: 0.75rem; margin-top: 6px; }
@@ -305,6 +307,26 @@ sitemap: false
 
 <script>
 (function () {
+  // Page-wide Chart.js defaults so every chart below (built-in legend/
+  // tooltip) reads right-to-left like the rest of the page, and chart text
+  // uses the same Persian webfont as everything else instead of Chart.js's
+  // own hardcoded sans-serif default. Scale direction (which side category
+  // labels/bars sit on) is still set per chart below, since that's a
+  // layout decision per chart type, not a text-direction one.
+  if (window.Chart) {
+    Chart.defaults.font.family = "Vazirmatn, Tahoma, sans-serif";
+    Chart.defaults.plugins.legend.rtl = true;
+    Chart.defaults.plugins.legend.textDirection = 'rtl';
+    Chart.defaults.plugins.tooltip.rtl = true;
+    Chart.defaults.plugins.tooltip.textDirection = 'rtl';
+  }
+
+  // Shared chart color palette so every chart draws from the same set
+  // instead of each `new Chart(...)` call hardcoding its own hex values
+  // (which is exactly how the channels donut below ended up quietly stuck
+  // on colors from before the contrast fixes a few commits back).
+  var CHART_PALETTE = ['#e8121a', '#111111', '#8a5400', '#147a3d', '#6b6b6b', '#4a6cf7', '#8a2be2', '#0aa39e'];
+
   var PASSWORD_HASH = "ec305cadce0f3ed00f38c606485b336bad334d486d57585aae7640b1d904afc9";
   // sha-256 hash of the admin password, checked client-side. This is a light
   // deterrent, not real security: this page is unlinked from nav/sitemap,
@@ -454,7 +476,7 @@ sitemap: false
       type: 'doughnut',
       data: {
         labels: ['ایندکس‌شده', 'در انتظار/نامشخص'],
-        datasets: [{ data: [idx.indexed, idx.pending], backgroundColor: ['#1a9e4e', '#c98a06'] }],
+        datasets: [{ data: [idx.indexed, idx.pending], backgroundColor: [CHART_PALETTE[3], CHART_PALETTE[2]] }],
       },
       options: { responsive: true, maintainAspectRatio: false },
     });
@@ -467,7 +489,7 @@ sitemap: false
         labels: topPages.map(function (p) { return p.path; }),
         datasets: [{ label: 'بازدید', data: topPages.map(function (p) { return Number(p.views); }), backgroundColor: '#e8121a' }],
       },
-      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { reverse: true }, y: { position: 'right' } } },
     });
 
     // --- channels chart ---
@@ -476,7 +498,7 @@ sitemap: false
       type: 'doughnut',
       data: {
         labels: channels.map(function (c) { return c.channel; }),
-        datasets: [{ data: channels.map(function (c) { return Number(c.sessions); }), backgroundColor: ['#e8121a', '#111111', '#c98a06', '#1a9e4e', '#8a8a8a', '#4a6cf7'] }],
+        datasets: [{ data: channels.map(function (c) { return Number(c.sessions); }), backgroundColor: CHART_PALETTE }],
       },
       options: { responsive: true, maintainAspectRatio: false },
     });
@@ -502,7 +524,7 @@ sitemap: false
           labels: classes.map(function (c) { return c.className; }),
           datasets: [{ label: 'کلیک', data: classes.map(function (c) { return c.clicks; }), backgroundColor: '#147a3d' }],
         },
-        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
+        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { reverse: true }, y: { position: 'right' } } },
       });
     }
 
@@ -520,14 +542,13 @@ sitemap: false
       classDailyNote.textContent = '';
       var allDates = Array.from(new Set(classDaily.map(function (d) { return d.date; }))).sort();
       var classNames = Array.from(new Set(classDaily.map(function (d) { return d.className; })));
-      var palette = ['#e8121a', '#111111', '#147a3d', '#4a6cf7', '#8a5400', '#8a2be2', '#0aa39e'];
       var classDatasets = classNames.map(function (cn, i) {
         var byDate = {};
         classDaily.filter(function (d) { return d.className === cn; }).forEach(function (d) { byDate[d.date] = d.clicks; });
         return {
           label: cn,
           data: allDates.map(function (dt) { return byDate[dt] || 0; }),
-          borderColor: palette[i % palette.length],
+          borderColor: CHART_PALETTE[i % CHART_PALETTE.length],
           backgroundColor: 'transparent',
           tension: 0.3,
         };
@@ -557,7 +578,7 @@ sitemap: false
           labels: classByType.map(function (t) { return t.type; }),
           datasets: [{ label: 'کلیک', data: classByType.map(function (t) { return t.clicks; }), backgroundColor: '#4a6cf7' }],
         },
-        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
+        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { reverse: true }, y: { position: 'right' } } },
       });
     }
 
@@ -673,7 +694,7 @@ sitemap: false
           labels: geo.countries.map(function (c) { return c.country; }),
           datasets: [{ label: 'کاربران فعال', data: geo.countries.map(function (c) { return c.activeUsers; }), backgroundColor: '#4a6cf7' }],
         },
-        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
+        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { reverse: true }, y: { position: 'right' } } },
       });
     }
 
