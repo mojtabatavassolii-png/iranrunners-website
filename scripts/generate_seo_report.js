@@ -429,34 +429,77 @@ async function runGa4Report(token, startDate, endDate) {
 // one-time manual setup step in GA4: Admin -> Custom definitions ->
 // Create custom dimension, scope "Event", event parameter "class_name".
 // Until that's done, the customEvent:class_name dimension doesn't exist
-// yet and this throws - callers should catch and degrade gracefully.
-async function fetchClassInterest(token, startDate, endDate) {
-  const res = await fetch(
-    `https://analyticsdata.googleapis.com/v1beta/properties/${GA4_PROPERTY_ID}:runReport`,
-    {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        dateRanges: [{ startDate, endDate }],
-        dimensions: [{ name: "customEvent:class_name" }],
-        metrics: [{ name: "eventCount" }],
-        dimensionFilter: {
-          filter: {
-            fieldName: "eventName",
-            stringFilter: { value: "class_signup_click" },
-          },
-        },
-        orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
-      }),
-    }
-  );
-  if (!res.ok) {
-    throw new Error(`GA4 class-interest query failed: ${res.status} ${await res.text()}`);
-  }
-  const data = await res.json();
+// yet and these throw - callers should catch and degrade gracefully.
+//
+// IMPORTANT: these intentionally do NOT use the report's rolling
+// startDate/endDate (30 days ago -> 3 days ago, which shifts forward every
+// run). That was the original bug behind "click count stuck at 1": with
+// low absolute click volume, a click aging out of the back of a 27-day
+// rolling window happens about as often as a new one arrives, so the
+// number never visibly grows even though real clicks keep happening. These
+// use a fixed "since 2020" start date instead (same convention already
+// used by scripts/fetch_pageviews.js for all-time totals), so the count
+// only ever goes up.
+const CLASS_INTEREST_START_DATE = "2020-01-01";
+
+async function fetchClassInterestCumulative(token) {
+  const data = await ga4Report(token, {
+    dateRanges: [{ startDate: CLASS_INTEREST_START_DATE, endDate: "today" }],
+    dimensions: [{ name: "customEvent:class_name" }],
+    metrics: [{ name: "eventCount" }],
+    dimensionFilter: {
+      filter: { fieldName: "eventName", stringFilter: { value: "class_signup_click" } },
+    },
+    orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
+  });
   return (data.rows || [])
     .map((r) => ({ className: r.dimensionValues[0].value, clicks: Number(r.metricValues[0].value) }))
-    .filter((r) => r.className);
+    .filter((r) => r.className && r.className !== "(not set)");
+}
+
+async function fetchClassInterestDaily(token) {
+  const data = await ga4Report(token, {
+    dateRanges: [{ startDate: CLASS_INTEREST_START_DATE, endDate: "today" }],
+    dimensions: [{ name: "date" }, { name: "customEvent:class_name" }],
+    metrics: [{ name: "eventCount" }],
+    dimensionFilter: {
+      filter: { fieldName: "eventName", stringFilter: { value: "class_signup_click" } },
+    },
+    orderBys: [{ dimension: { dimensionName: "date" } }],
+    limit: 10000,
+  });
+  return (data.rows || [])
+    .map((r) => ({
+      date: r.dimensionValues[0].value,
+      className: r.dimensionValues[1].value,
+      clicks: Number(r.metricValues[0].value),
+    }))
+    .filter((r) => r.className && r.className !== "(not set)");
+}
+
+// Groups class names into the same coarse types visible on the site
+// (حضوری / غیرحضوری / تغذیه / مربیگری اختصاصی) by matching the class
+// collection's own title wording - no extra GA4 setup needed, and it
+// applies retroactively to data already collected, unlike adding a new
+// custom dimension would.
+function classifyClassType(className) {
+  if (!className) return "سایر";
+  if (className.includes("غیرحضوری")) return "غیرحضوری";
+  if (className.includes("حضوری")) return "حضوری";
+  if (className.includes("تغذیه")) return "تغذیه";
+  if (className.includes("مربیگری اختصاصی")) return "مربیگری اختصاصی";
+  return "سایر";
+}
+
+function aggregateClassInterestByType(cumulativeRows) {
+  const byType = new Map();
+  for (const row of cumulativeRows) {
+    const type = classifyClassType(row.className);
+    byType.set(type, (byType.get(type) || 0) + row.clicks);
+  }
+  return Array.from(byType.entries())
+    .map(([type, clicks]) => ({ type, clicks }))
+    .sort((a, b) => b.clicks - a.clicks);
 }
 
 function formatCoverage(state) {
@@ -613,6 +656,8 @@ async function main() {
     entryPages: [],
     entryPagesError: null,
     classInterest: [],
+    classInterestDaily: [],
+    classInterestByType: [],
     classInterestError: null,
     gscError: null,
     ga4Error: null,
@@ -763,7 +808,20 @@ async function main() {
       lines.push("");
 
       try {
-        dashboard.classInterest = await fetchClassInterest(gaToken, startDate, endDate);
+        dashboard.classInterest = await fetchClassInterestCumulative(gaToken);
+        dashboard.classInterestByType = aggregateClassInterestByType(dashboard.classInterest);
+        dashboard.classInterestDaily = await fetchClassInterestDaily(gaToken);
+
+        lines.push("### علاقه‌مندی به کلاس‌ها (کلیک تجمعی از ابتدا، نه فقط بازه گزارش)");
+        lines.push("");
+        lines.push("| کلاس | کلیک تجمعی |");
+        lines.push("|---|---|");
+        for (const c of dashboard.classInterest) lines.push(`| ${c.className} | ${c.clicks} |`);
+        lines.push("");
+        lines.push("| نوع کلاس | کلیک تجمعی |");
+        lines.push("|---|---|");
+        for (const t of dashboard.classInterestByType) lines.push(`| ${t.type} | ${t.clicks} |`);
+        lines.push("");
       } catch (err) {
         dashboard.classInterestError = String(err.message || err);
       }
