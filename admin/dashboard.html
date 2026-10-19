@@ -14,13 +14,14 @@ sitemap: false
 <style>
   :root {
     --red: #e8121a;
+    --red-text: #b80e14; /* darker variant for red text on light-red backgrounds (#fdeaea) - the brighter --red fails contrast there */
     --black: #111111;
     --muted: #555555;
-    --faint: #8a8a8a;
+    --faint: #6b6b6b; /* was #8a8a8a - failed WCAG AA at small sizes (~3.45:1); matches the same fix on the main site */
     --panel: #f6f6f6;
     --border: #e6e6e6;
-    --good: #1a9e4e;
-    --warn: #c98a06;
+    --good: #147a3d; /* was #1a9e4e - failed contrast against its own badge backgrounds */
+    --warn: #8a5400; /* was #c98a06 - failed contrast against its own badge backgrounds */
   }
   * { box-sizing: border-box; }
   body {
@@ -92,6 +93,12 @@ sitemap: false
   .card.indexed .num { color: var(--good); }
   .card.pending .num { color: var(--warn); }
 
+  .section-title {
+    font-size: 1.05rem; font-weight: 800; color: var(--black);
+    margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--black);
+  }
+  .section-title:first-of-type { margin-top: 8px; }
+
   .panel {
     border: 1px solid var(--border); border-radius: 16px; padding: 20px;
     margin-bottom: 24px; background: #fff;
@@ -108,7 +115,7 @@ sitemap: false
 
   .task-summary { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
   .pill-count { border-radius: 999px; padding: 6px 14px; font-size: 0.82rem; font-weight: 700; }
-  .pill-count.review { background: #fdeaea; color: var(--red); }
+  .pill-count.review { background: #fdeaea; color: var(--red-text); }
   .pill-count.progress { background: #fdf3e0; color: var(--warn); }
   .pill-count.done { background: #e7f7ee; color: var(--good); }
 
@@ -121,7 +128,7 @@ sitemap: false
   .task-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
   .task-url { font-family: "JetBrains Mono", monospace; direction: ltr; text-align: left; font-size: 0.82rem; }
   .status-badge { border-radius: 999px; padding: 3px 12px; font-size: 0.76rem; font-weight: 700; white-space: nowrap; }
-  .status-badge.review { background: #fdeaea; color: var(--red); }
+  .status-badge.review { background: #fdeaea; color: var(--red-text); }
   .status-badge.progress { background: #fdf3e0; color: var(--warn); }
   .status-badge.done { background: #e7f7ee; color: var(--good); }
   .task-reason { color: var(--black); font-size: 0.88rem; margin-bottom: 6px; }
@@ -159,6 +166,8 @@ sitemap: false
 
   <p class="freshness-note" id="freshness-note"></p>
 
+  <h2 class="section-title">نمای کلی</h2>
+
   <div class="cards" id="summary-cards"></div>
 
   <p class="users-note">
@@ -176,10 +185,7 @@ sitemap: false
     <div class="chart-wrap"><canvas id="chart-trend"></canvas></div>
   </div>
 
-  <div class="panel">
-    <h2>وضعیت ایندکس صفحات</h2>
-    <div class="chart-wrap"><canvas id="chart-index"></canvas></div>
-  </div>
+  <h2 class="section-title">ترافیک و بازدیدکنندگان</h2>
 
   <div class="panel">
     <h2>پربازدیدترین صفحات</h2>
@@ -203,57 +209,6 @@ sitemap: false
   </div>
 
   <div class="panel">
-    <h2>موقعیت جغرافیایی بازدیدکنندگان — کشورها</h2>
-    <div class="chart-wrap"><canvas id="chart-countries"></canvas></div>
-    <p class="note" id="countries-note"></p>
-  </div>
-
-  <div class="panel">
-    <h2>موقعیت جغرافیایی بازدیدکنندگان — شهرها</h2>
-    <div style="overflow-x:auto;">
-      <table id="cities-table">
-        <thead><tr><th>شهر</th><th>کشور</th><th>کاربران فعال</th><th>جلسات</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-    <p class="note" id="cities-note"></p>
-  </div>
-
-  <div class="panel">
-    <h2>علاقه‌مندی به کلاس‌ها (تعداد کلیک «ارسال درخواست ثبت‌نام»)</h2>
-    <div class="chart-wrap"><canvas id="chart-classes"></canvas></div>
-    <p class="note" id="classes-note"></p>
-  </div>
-
-  <div class="panel">
-    <h2>تسک‌های ایندکس</h2>
-    <div class="task-summary" id="task-summary"></div>
-    <div class="task-list" id="task-list"></div>
-    <p class="note">برای علامت زدن یه صفحه به‌عنوان «در حال رفع»، از پیجز سی‌ام‌اس بخش «تسک‌های ایندکس (داشبورد سئو)» آدرسش رو اضافه کن — فردا که گزارش دوباره اجرا بشه وضعیتش اینجا به‌روز می‌شه.</p>
-  </div>
-
-  <div class="panel">
-    <h2>جزئیات صفحات (Search Console + بازدید GA4)</h2>
-    <p class="users-note">
-      <b>«کلیک» یعنی چی؟</b> ستون «کلیک از جستجوی گوگل» فقط تعداد دفعاتیه که کسی توی نتایج جستجوی
-      گوگل روی این آدرس کلیک کرده — یه زیرمجموعه کوچیک از کل بازدیدها، نه همه‌ی ترافیک سایت.
-      بیشتر بازدیدکننده‌های این سایت مستقیم یا از اینستاگرام میان (توی پنل «منبع/رسانه ورود دقیق»
-      بالا مشخصه)، نه از جستجوی گوگل — پس عدد پایین این ستون طبیعیه، باگ نیست. برای کل بازدید واقعی
-      هر صفحه، به ستون «بازدید» (از گوگل آنالیتیکس) نگاه کن. یه دلیل دیگه برای عدد کم: ۷ تا از ۲۳
-      آدرس سایت هنوز توسط گوگل ایندکس نشدن (پایین‌تر، بخش «تسک‌های ایندکس» رو ببین) — صفحه‌ای که
-      ایندکس نشده، اصلاً توی نتایج جستجو نمایش داده نمی‌شه، پس نه نمایش داره نه کلیک.
-    </p>
-    <div style="overflow-x:auto;">
-      <table id="pages-table">
-        <thead>
-          <tr><th>آدرس</th><th>وضعیت</th><th>بازدید</th><th>کلیک از جستجوی گوگل</th><th>نمایش در جستجو</th><th>CTR</th><th>رتبه</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="panel">
     <h2>مسیر حرکت کاربر — صفحات ورودی و خروج سریع (Bounce)</h2>
     <p class="users-note">
       <b>این دقیقاً چیه؟</b> «صفحه ورودی» یعنی کاربر اول از کجا وارد سایت شده. «نرخ خروج سریع
@@ -270,6 +225,68 @@ sitemap: false
       </table>
     </div>
     <p class="note" id="entry-pages-note"></p>
+  </div>
+
+  <h2 class="section-title">موقعیت جغرافیایی بازدیدکنندگان</h2>
+
+  <div class="panel">
+    <h2>کشورها</h2>
+    <div class="chart-wrap"><canvas id="chart-countries"></canvas></div>
+    <p class="note" id="countries-note"></p>
+  </div>
+
+  <div class="panel">
+    <h2>شهرها</h2>
+    <div style="overflow-x:auto;">
+      <table id="cities-table">
+        <thead><tr><th>شهر</th><th>کشور</th><th>کاربران فعال</th><th>جلسات</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note" id="cities-note"></p>
+  </div>
+
+  <h2 class="section-title">سئو و جستجوی گوگل</h2>
+
+  <div class="panel">
+    <h2>وضعیت ایندکس صفحات</h2>
+    <div class="chart-wrap"><canvas id="chart-index"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <h2>تسک‌های ایندکس</h2>
+    <div class="task-summary" id="task-summary"></div>
+    <div class="task-list" id="task-list"></div>
+    <p class="note">برای علامت زدن یه صفحه به‌عنوان «در حال رفع»، از پیجز سی‌ام‌اس بخش «تسک‌های ایندکس (داشبورد سئو)» آدرسش رو اضافه کن — فردا که گزارش دوباره اجرا بشه وضعیتش اینجا به‌روز می‌شه.</p>
+  </div>
+
+  <div class="panel">
+    <h2>جزئیات صفحات (Search Console + بازدید GA4)</h2>
+    <p class="users-note">
+      <b>«کلیک» یعنی چی؟</b> ستون «کلیک از جستجوی گوگل» فقط تعداد دفعاتیه که کسی توی نتایج جستجوی
+      گوگل روی این آدرس کلیک کرده — یه زیرمجموعه کوچیک از کل بازدیدها، نه همه‌ی ترافیک سایت.
+      بیشتر بازدیدکننده‌های این سایت مستقیم یا از اینستاگرام میان (توی پنل «منبع/رسانه ورود دقیق»
+      بالاتر مشخصه)، نه از جستجوی گوگل — پس عدد پایین این ستون طبیعیه، باگ نیست. برای کل بازدید واقعی
+      هر صفحه، به ستون «بازدید» (از گوگل آنالیتیکس) نگاه کن. یه دلیل دیگه برای عدد کم: ۷ تا از ۲۳
+      آدرس سایت هنوز توسط گوگل ایندکس نشدن (بالاتر، بخش «تسک‌های ایندکس» رو ببین) — صفحه‌ای که
+      ایندکس نشده، اصلاً توی نتایج جستجو نمایش داده نمی‌شه، پس نه نمایش داره نه کلیک.
+    </p>
+    <div style="overflow-x:auto;">
+      <table id="pages-table">
+        <thead>
+          <tr><th>آدرس</th><th>وضعیت</th><th>بازدید</th><th>کلیک از جستجوی گوگل</th><th>نمایش در جستجو</th><th>CTR</th><th>رتبه</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2 class="section-title">کلاس‌ها</h2>
+
+  <div class="panel">
+    <h2>علاقه‌مندی به کلاس‌ها (تعداد کلیک «ارسال درخواست ثبت‌نام»)</h2>
+    <div class="chart-wrap"><canvas id="chart-classes"></canvas></div>
+    <p class="note" id="classes-note"></p>
   </div>
 </div>
 
