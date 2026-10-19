@@ -284,9 +284,22 @@ sitemap: false
   <h2 class="section-title">کلاس‌ها</h2>
 
   <div class="panel">
-    <h2>علاقه‌مندی به کلاس‌ها (تعداد کلیک «ارسال درخواست ثبت‌نام»)</h2>
+    <h2>علاقه‌مندی به کلاس‌ها (کلیک تجمعی «ارسال درخواست ثبت‌نام» از ابتدا)</h2>
+    <p class="note">این عدد از ابتدا تجمعیه و فقط افزایش پیدا می‌کنه — برخلاف قبل که فقط بازه ۲۸ روز اخیر رو نشون می‌داد و با قدیمی‌شدن کلیک‌های همون بازه، دوباره صفر می‌شد.</p>
     <div class="chart-wrap"><canvas id="chart-classes"></canvas></div>
     <p class="note" id="classes-note"></p>
+  </div>
+
+  <div class="panel">
+    <h2>روند زمانی علاقه‌مندی به کلاس‌ها (روزانه)</h2>
+    <div class="chart-wrap"><canvas id="chart-classes-daily"></canvas></div>
+    <p class="note" id="classes-daily-note"></p>
+  </div>
+
+  <div class="panel">
+    <h2>علاقه‌مندی به تفکیک نوع کلاس</h2>
+    <div class="chart-wrap"><canvas id="chart-classes-type"></canvas></div>
+    <p class="note" id="classes-type-note"></p>
   </div>
 </div>
 
@@ -487,7 +500,62 @@ sitemap: false
         type: 'bar',
         data: {
           labels: classes.map(function (c) { return c.className; }),
-          datasets: [{ label: 'کلیک', data: classes.map(function (c) { return c.clicks; }), backgroundColor: '#1a9e4e' }],
+          datasets: [{ label: 'کلیک', data: classes.map(function (c) { return c.clicks; }), backgroundColor: '#147a3d' }],
+        },
+        options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
+      });
+    }
+
+    // --- class interest: daily trend (one line per class) ---
+    var classDailyNote = document.getElementById('classes-daily-note');
+    var classDaily = data.classInterestDaily || [];
+    if (classDaily.length === 0) {
+      document.getElementById('chart-classes-daily').style.display = 'none';
+      classDailyNote.textContent = data.classInterestError
+        ? 'این بخش هنوز راه‌اندازی نشده (همون Custom Dimension بالا لازمه).'
+        : 'هنوز هیچ کلیکی ثبت نشده که روند روزانه نشون بده.';
+      classDailyNote.className = data.classInterestError ? 'note err' : 'note';
+    } else {
+      document.getElementById('chart-classes-daily').style.display = 'block';
+      classDailyNote.textContent = '';
+      var allDates = Array.from(new Set(classDaily.map(function (d) { return d.date; }))).sort();
+      var classNames = Array.from(new Set(classDaily.map(function (d) { return d.className; })));
+      var palette = ['#e8121a', '#111111', '#147a3d', '#4a6cf7', '#8a5400', '#8a2be2', '#0aa39e'];
+      var classDatasets = classNames.map(function (cn, i) {
+        var byDate = {};
+        classDaily.filter(function (d) { return d.className === cn; }).forEach(function (d) { byDate[d.date] = d.clicks; });
+        return {
+          label: cn,
+          data: allDates.map(function (dt) { return byDate[dt] || 0; }),
+          borderColor: palette[i % palette.length],
+          backgroundColor: 'transparent',
+          tension: 0.3,
+        };
+      });
+      new Chart(document.getElementById('chart-classes-daily'), {
+        type: 'line',
+        data: { labels: allDates.map(formatDashDate), datasets: classDatasets },
+        options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { maxRotation: 70, minRotation: 45 } }, y: { ticks: { precision: 0 } } } },
+      });
+    }
+
+    // --- class interest: by class type (حضوری/غیرحضوری/تغذیه/...) ---
+    var classTypeNote = document.getElementById('classes-type-note');
+    var classByType = data.classInterestByType || [];
+    if (classByType.length === 0) {
+      document.getElementById('chart-classes-type').style.display = 'none';
+      classTypeNote.textContent = data.classInterestError
+        ? 'این بخش هنوز راه‌اندازی نشده (همون Custom Dimension بالا لازمه).'
+        : 'هنوز هیچ کلیکی ثبت نشده که به تفکیک نوع کلاس نشون بده.';
+      classTypeNote.className = data.classInterestError ? 'note err' : 'note';
+    } else {
+      document.getElementById('chart-classes-type').style.display = 'block';
+      classTypeNote.textContent = '';
+      new Chart(document.getElementById('chart-classes-type'), {
+        type: 'bar',
+        data: {
+          labels: classByType.map(function (t) { return t.type; }),
+          datasets: [{ label: 'کلیک', data: classByType.map(function (t) { return t.clicks; }), backgroundColor: '#4a6cf7' }],
         },
         options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' },
       });
