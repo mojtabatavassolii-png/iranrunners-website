@@ -234,14 +234,42 @@ sitemap: false
 
   <div class="panel">
     <h2>جزئیات صفحات (Search Console + بازدید GA4)</h2>
+    <p class="users-note">
+      <b>«کلیک» یعنی چی؟</b> ستون «کلیک از جستجوی گوگل» فقط تعداد دفعاتیه که کسی توی نتایج جستجوی
+      گوگل روی این آدرس کلیک کرده — یه زیرمجموعه کوچیک از کل بازدیدها، نه همه‌ی ترافیک سایت.
+      بیشتر بازدیدکننده‌های این سایت مستقیم یا از اینستاگرام میان (توی پنل «منبع/رسانه ورود دقیق»
+      بالا مشخصه)، نه از جستجوی گوگل — پس عدد پایین این ستون طبیعیه، باگ نیست. برای کل بازدید واقعی
+      هر صفحه، به ستون «بازدید» (از گوگل آنالیتیکس) نگاه کن. یه دلیل دیگه برای عدد کم: ۷ تا از ۲۳
+      آدرس سایت هنوز توسط گوگل ایندکس نشدن (پایین‌تر، بخش «تسک‌های ایندکس» رو ببین) — صفحه‌ای که
+      ایندکس نشده، اصلاً توی نتایج جستجو نمایش داده نمی‌شه، پس نه نمایش داره نه کلیک.
+    </p>
     <div style="overflow-x:auto;">
       <table id="pages-table">
         <thead>
-          <tr><th>آدرس</th><th>وضعیت</th><th>بازدید</th><th>کلیک</th><th>نمایش</th><th>CTR</th><th>رتبه</th></tr>
+          <tr><th>آدرس</th><th>وضعیت</th><th>بازدید</th><th>کلیک از جستجوی گوگل</th><th>نمایش در جستجو</th><th>CTR</th><th>رتبه</th></tr>
         </thead>
         <tbody></tbody>
       </table>
     </div>
+  </div>
+
+  <div class="panel">
+    <h2>مسیر حرکت کاربر — صفحات ورودی و خروج سریع (Bounce)</h2>
+    <p class="users-note">
+      <b>این دقیقاً چیه؟</b> «صفحه ورودی» یعنی کاربر اول از کجا وارد سایت شده. «نرخ خروج سریع
+      (Bounce)» یعنی از کسایی که از همون صفحه وارد شدن، چند درصد بدون هیچ تعامل بیشتری (بدون رفتن
+      به صفحه دیگه) سایت رو ترک کردن. <b>این API سبک گوگل آنالیتیکس، مسیر دقیق صفحه‌به‌صفحه (مثلاً
+      «کاربر از صفحه A به B رفت، بعد از C خارج شد») رو نمی‌ده</b> — اون سطح از جزئیات فقط توی خود
+      Google Analytics، بخش <b>Explore ← Path exploration</b> در دسترسه (رایگانه، نیازی به تنظیم
+      اضافه نداره، مستقیم از پنل GA4 خودتون قابل‌دیدنه).
+    </p>
+    <div style="overflow-x:auto;">
+      <table id="entry-pages-table">
+        <thead><tr><th>صفحه ورودی</th><th>Session</th><th>نرخ خروج سریع</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note" id="entry-pages-note"></p>
   </div>
 </div>
 
@@ -502,6 +530,26 @@ sitemap: false
       gscNote.className = 'note err';
       gscNote.textContent = 'هشدار: آخرین اتصال به Search Console ناموفق بود: ' + data.gscError;
       document.querySelector('#pages-table').parentNode.appendChild(gscNote);
+    }
+
+    // --- entry pages (landing page + bounce rate) ---
+    var entryPages = data.entryPages || [];
+    var entryNote = document.getElementById('entry-pages-note');
+    document.querySelector('#entry-pages-table tbody').innerHTML = entryPages.map(function (p) {
+      return '<tr>' +
+        '<td class="ltr">' + p.landingPage + '</td>' +
+        '<td>' + fa(p.sessions) + '</td>' +
+        '<td>' + fa((p.bounceRate * 100).toFixed(0)) + '٪</td>' +
+      '</tr>';
+    }).join('');
+    if (data.entryPagesError) {
+      entryNote.textContent = 'نتونستم این بخش رو بگیرم: ' + data.entryPagesError;
+      entryNote.className = 'note err';
+    } else if (entryPages.length === 0) {
+      entryNote.textContent = 'داده‌ای برای این بازه موجود نیست.';
+      entryNote.className = 'note';
+    } else {
+      entryNote.textContent = '';
     }
 
     // --- traffic sources (source/medium) table ---

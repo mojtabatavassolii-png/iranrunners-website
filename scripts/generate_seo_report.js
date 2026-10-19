@@ -253,6 +253,32 @@ async function fetchRealtimeActiveUsers(token) {
   };
 }
 
+// Entry pages + bounce rate, the closest thing to "user journey" data this
+// lightweight REST API actually exposes. GA4's Data API (confirmed via its
+// own docs and standard client samples) has a well-established `landingPage`
+// dimension and `bounceRate` metric, but - unlike old Universal Analytics -
+// it has NO dimension for "exit page" or page-to-page sequence/path; that
+// level of detail only exists in GA4's own UI under Explore -> Path
+// exploration, not through this API. bounceRate per landing page is a real,
+// useful partial signal ("people who left right after landing here") but it
+// is NOT the same as a true exit-page report across multi-page sessions -
+// the dashboard note next to this table says so explicitly, so it isn't
+// read as more than it is.
+async function fetchEntryPages(token, startDate, endDate) {
+  const data = await ga4Report(token, {
+    dateRanges: [{ startDate, endDate }],
+    dimensions: [{ name: "landingPage" }],
+    metrics: [{ name: "sessions" }, { name: "bounceRate" }],
+    orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+    limit: 20,
+  });
+  return (data.rows || []).map((r) => ({
+    landingPage: r.dimensionValues[0].value,
+    sessions: Number(r.metricValues[0].value),
+    bounceRate: Number(r.metricValues[1].value),
+  }));
+}
+
 async function fetchSitemapUrls() {
   const res = await fetch(`${SITE_URL}/sitemap.xml`);
   if (!res.ok) throw new Error(`Failed to fetch sitemap.xml: ${res.status}`);
@@ -584,6 +610,8 @@ async function main() {
     trafficSourcesError: null,
     realtime: { activeUsers: 0, byCountry: [] },
     realtimeError: null,
+    entryPages: [],
+    entryPagesError: null,
     classInterest: [],
     classInterestError: null,
     gscError: null,
@@ -770,6 +798,45 @@ async function main() {
         lines.push("");
       } catch (err) {
         dashboard.realtimeError = String(err.message || err);
+      }
+
+      // Entry pages, deduplicated through the same alias map as per-page
+      // views ("/" vs "/index.html" etc.) and merged with a sessions-weighted
+      // average bounce rate rather than a naive average of the two rows.
+      try {
+        const aliasMap = collectAliasMap();
+        const rawEntryRows = await fetchEntryPages(gaToken, startDate, endDate);
+        const merged = new Map();
+        for (const row of rawEntryRows) {
+          const canon = canonicalizePath(row.landingPage, aliasMap);
+          const prev = merged.get(canon) || { sessions: 0, bounceWeighted: 0 };
+          merged.set(canon, {
+            sessions: prev.sessions + row.sessions,
+            bounceWeighted: prev.bounceWeighted + row.bounceRate * row.sessions,
+          });
+        }
+        dashboard.entryPages = Array.from(merged.entries())
+          .map(([landingPage, v]) => ({
+            landingPage,
+            sessions: v.sessions,
+            bounceRate: v.sessions > 0 ? v.bounceWeighted / v.sessions : 0,
+          }))
+          .sort((a, b) => b.sessions - a.sessions)
+          .slice(0, 15);
+
+        lines.push("### صفحات ورودی (Entry Pages) و نرخ خروج سریع (Bounce)");
+        lines.push("");
+        lines.push("| صفحه ورودی | Session | نرخ خروج سریع |");
+        lines.push("|---|---|---|");
+        for (const p of dashboard.entryPages) lines.push(`| ${p.landingPage} | ${p.sessions} | ${(p.bounceRate * 100).toFixed(0)}% |`);
+        lines.push("");
+        lines.push(
+          "توجه: GA4 Data API دیدی از «صفحه خروج» یا مسیر دقیق صفحه‌به‌صفحه (A→B→C) نمی‌ده؛ " +
+            "برای اون سطح جزئیات باید مستقیم توی GA4، بخش Explore → Path exploration نگاه کرد."
+        );
+        lines.push("");
+      } catch (err) {
+        dashboard.entryPagesError = String(err.message || err);
       }
     } catch (err) {
       dashboard.ga4Error = String(err.message || err);
