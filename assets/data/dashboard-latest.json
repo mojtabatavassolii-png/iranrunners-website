@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T13:40:42.753Z",
+  "generatedAt": "2026-10-19T13:56:21.047Z",
   "startDate": "2026-09-19",
   "endDate": "2026-10-16",
   "indexStatus": {
@@ -37,7 +37,7 @@
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -46,7 +46,7 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -55,7 +55,7 @@
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -73,7 +73,7 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -154,7 +154,7 @@
     },
     {
       "url": "/درباره-ما.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -172,7 +172,7 @@
     },
     {
       "url": "/کلاس-ها.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -219,17 +219,6 @@
   "indexTasks": [
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
-      "coverageState": "Discovered - currently not indexed",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
       "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
@@ -240,13 +229,24 @@
       }
     },
     {
-      "url": "/گالری/خاطرات-تیم.html",
+      "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
       "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
         "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
         "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/گالری/خاطرات-تیم.html",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -263,34 +263,34 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "Discovered - currently not indexed",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/درباره-ما.html",
-      "coverageState": "Discovered - currently not indexed",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/کلاس-ها.html",
       "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
         "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
         "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/درباره-ما.html",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/کلاس-ها.html",
+      "coverageState": "Discovered - currently not indexed",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     }
@@ -687,10 +687,93 @@
   ],
   "trafficSourcesError": null,
   "realtime": {
-    "activeUsers": 0,
-    "byCountry": []
+    "activeUsers": 1,
+    "byCountry": [
+      {
+        "country": "Germany",
+        "activeUsers": 1
+      }
+    ]
   },
   "realtimeError": null,
+  "entryPages": [
+    {
+      "landingPage": "/index.html",
+      "sessions": 116,
+      "bounceRate": 0.29310344827586204
+    },
+    {
+      "landingPage": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
+      "sessions": 28,
+      "bounceRate": 0.5
+    },
+    {
+      "landingPage": "/کلاس-ها.html",
+      "sessions": 15,
+      "bounceRate": 0.5333333333333333
+    },
+    {
+      "landingPage": "/درباره-ما.html",
+      "sessions": 8,
+      "bounceRate": 0.75
+    },
+    {
+      "landingPage": "/محاسبه-گر-پیس.html",
+      "sessions": 7,
+      "bounceRate": 0.5714285714285714
+    },
+    {
+      "landingPage": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "sessions": 5,
+      "bounceRate": 0.2
+    },
+    {
+      "landingPage": "/وبلاگ/آماده-سازی-ماراتن.html",
+      "sessions": 4,
+      "bounceRate": 0.25
+    },
+    {
+      "landingPage": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
+      "sessions": 4,
+      "bounceRate": 0.75
+    },
+    {
+      "landingPage": "/وبلاگ/تغذیه-دوندگان.html",
+      "sessions": 4,
+      "bounceRate": 0.25
+    },
+    {
+      "landingPage": "/مربیان.html",
+      "sessions": 3,
+      "bounceRate": 0
+    },
+    {
+      "landingPage": "(not set)",
+      "sessions": 2,
+      "bounceRate": 1
+    },
+    {
+      "landingPage": "/وبلاگ.html",
+      "sessions": 2,
+      "bounceRate": 0.5
+    },
+    {
+      "landingPage": "/وبلاگ/انتخاب-کفش-دویدن.html",
+      "sessions": 2,
+      "bounceRate": 1
+    },
+    {
+      "landingPage": "/وبلاگ/دویدن-در-هوای-آلوده.html",
+      "sessions": 1,
+      "bounceRate": 0
+    },
+    {
+      "landingPage": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
+      "sessions": 1,
+      "bounceRate": 0
+    }
+  ],
+  "entryPagesError": null,
   "classInterest": [
     {
       "className": "کلاس های حضوری پارک پردیسان",
