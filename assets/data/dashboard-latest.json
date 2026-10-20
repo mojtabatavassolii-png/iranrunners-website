@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-19T22:53:21.972Z",
-  "startDate": "2026-09-19",
-  "endDate": "2026-10-16",
+  "generatedAt": "2026-10-20T05:58:34.859Z",
+  "startDate": "2026-09-20",
+  "endDate": "2026-10-17",
   "indexStatus": {
     "indexed": 16,
     "pending": 7,
@@ -29,29 +29,29 @@
     {
       "url": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 8,
-      "views": 38
+      "clicks": 1,
+      "impressions": 7,
+      "ctr": 0.14285714285714285,
+      "position": 7.285714285714286,
+      "views": 41
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
-      "coverageState": "URL is unknown to Google",
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": null,
-      "views": 5
-    },
-    {
-      "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
       "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 12
+      "views": 6
+    },
+    {
+      "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null,
+      "views": 13
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
@@ -73,7 +73,7 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -84,18 +84,18 @@
       "url": "/وبلاگ/آماده-سازی-ماراتن.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
-      "impressions": 4,
-      "ctr": 0.5,
-      "position": 4,
+      "impressions": 5,
+      "ctr": 0.4,
+      "position": 3.8,
       "views": 32
     },
     {
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 19,
+      "impressions": 21,
       "ctr": 0,
-      "position": 44.1578947368421,
+      "position": 43.714285714285715,
       "views": 5
     },
     {
@@ -154,12 +154,12 @@
     },
     {
       "url": "/درباره-ما.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 16
+      "views": 18
     },
     {
       "url": "/وبلاگ.html",
@@ -168,7 +168,7 @@
       "impressions": 5,
       "ctr": 0,
       "position": 5.4,
-      "views": 33
+      "views": 37
     },
     {
       "url": "/کلاس-ها.html",
@@ -177,16 +177,16 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 78
+      "views": 93
     },
     {
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 21,
+      "impressions": 23,
       "ctr": 0,
-      "position": 6.857142857142857,
-      "views": 31
+      "position": 6.826086956521739,
+      "views": 33
     },
     {
       "url": "/گالری.html",
@@ -195,16 +195,16 @@
       "impressions": 21,
       "ctr": 0.09523809523809523,
       "position": 6.142857142857143,
-      "views": 51
+      "views": 52
     },
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
-      "clicks": 22,
-      "impressions": 53,
-      "ctr": 0.41509433962264153,
-      "position": 1.320754716981132,
-      "views": 270
+      "clicks": 21,
+      "impressions": 52,
+      "ctr": 0.40384615384615385,
+      "position": 1.3653846153846154,
+      "views": 292
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -213,29 +213,29 @@
       "impressions": 6,
       "ctr": 0.16666666666666666,
       "position": 7.5,
-      "views": 26
+      "views": 27
     }
   ],
   "indexTasks": [
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
       "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
         "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
         "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -263,23 +263,23 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
     {
       "url": "/درباره-ما.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
@@ -439,20 +439,26 @@
       "sessions": 2,
       "activeUsers": 1,
       "pageViews": 3
+    },
+    {
+      "date": "20261017",
+      "sessions": 20,
+      "activeUsers": 15,
+      "pageViews": 52
     }
   ],
   "topPages": [
     {
       "path": "/index.html",
-      "views": 270
+      "views": 292
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 78
+      "views": 93
     },
     {
       "path": "/گالری.html",
-      "views": 51
+      "views": 52
     },
     {
       "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
@@ -460,10 +466,14 @@
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": 38
+      "views": 41
     },
     {
       "path": "/وبلاگ.html",
+      "views": 37
+    },
+    {
+      "path": "/مربیان.html",
       "views": 33
     },
     {
@@ -471,57 +481,58 @@
       "views": 32
     },
     {
-      "path": "/مربیان.html",
-      "views": 31
-    },
-    {
       "path": "/محاسبه-گر-پیس.html",
-      "views": 26
+      "views": 27
     },
     {
-      "path": "/گالری/خاطرات-تیم.html",
+      "path": "/درباره-ما.html",
       "views": 18
     }
   ],
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "102"
+      "sessions": "108"
     },
     {
       "channel": "Organic Search",
-      "sessions": "61"
+      "sessions": "67"
     },
     {
       "channel": "Organic Social",
-      "sessions": "39"
+      "sessions": "46"
     },
     {
       "channel": "Unassigned",
-      "sessions": "1"
+      "sessions": "2"
     }
   ],
-  "activeUsers": 113,
-  "totalUsers": 113,
+  "activeUsers": 126,
+  "totalUsers": 126,
   "geography": {
     "countries": [
       {
         "country": "Iran",
-        "activeUsers": 38,
-        "sessions": 45
+        "activeUsers": 44,
+        "sessions": 51
       },
       {
         "country": "Germany",
-        "activeUsers": 35,
-        "sessions": 109
+        "activeUsers": 36,
+        "sessions": 117
       },
       {
         "country": "United States",
-        "activeUsers": 20,
-        "sessions": 25
+        "activeUsers": 23,
+        "sessions": 28
       },
       {
         "country": "China",
+        "activeUsers": 5,
+        "sessions": 5
+      },
+      {
+        "country": "Netherlands",
         "activeUsers": 5,
         "sessions": 5
       },
@@ -536,14 +547,9 @@
         "sessions": 3
       },
       {
-        "country": "Netherlands",
+        "country": "France",
         "activeUsers": 3,
         "sessions": 3
-      },
-      {
-        "country": "France",
-        "activeUsers": 2,
-        "sessions": 2
       },
       {
         "country": "Türkiye",
@@ -585,14 +591,14 @@
       {
         "country": "Iran",
         "city": "Tehran",
-        "activeUsers": 33,
-        "sessions": 40
+        "activeUsers": 39,
+        "sessions": 46
       },
       {
         "country": "Germany",
         "city": "Berlin",
-        "activeUsers": 8,
-        "sessions": 13
+        "activeUsers": 9,
+        "sessions": 14
       },
       {
         "country": "Germany",
@@ -605,6 +611,12 @@
         "city": "Frankfurt am Main",
         "activeUsers": 6,
         "sessions": 11
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "activeUsers": 3,
+        "sessions": 3
       },
       {
         "country": "Sweden",
@@ -621,12 +633,6 @@
       {
         "country": "Canada",
         "city": "North Vancouver",
-        "activeUsers": 2,
-        "sessions": 2
-      },
-      {
-        "country": "France",
-        "city": "Paris",
         "activeUsers": 2,
         "sessions": 2
       },
@@ -654,23 +660,27 @@
   "trafficSources": [
     {
       "sourceMedium": "(direct) / (none)",
-      "sessions": 102
+      "sessions": 108
     },
     {
       "sourceMedium": "google / organic",
-      "sessions": 61
+      "sessions": 67
     },
     {
       "sourceMedium": "ig / social",
-      "sessions": 27
+      "sessions": 33
     },
     {
       "sourceMedium": "facebook.com / referral",
-      "sessions": 5
+      "sessions": 6
     },
     {
       "sourceMedium": "l.instagram.com / referral",
       "sessions": 3
+    },
+    {
+      "sourceMedium": "(not set)",
+      "sessions": 2
     },
     {
       "sourceMedium": "instagram.com / referral",
@@ -679,10 +689,6 @@
     {
       "sourceMedium": "m.facebook.com / referral",
       "sessions": 2
-    },
-    {
-      "sourceMedium": "(not set)",
-      "sessions": 1
     }
   ],
   "trafficSourcesError": null,
@@ -694,8 +700,8 @@
   "entryPages": [
     {
       "landingPage": "/index.html",
-      "sessions": 116,
-      "bounceRate": 0.29310344827586204
+      "sessions": 132,
+      "bounceRate": 0.2803030303030303
     },
     {
       "landingPage": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
@@ -704,13 +710,13 @@
     },
     {
       "landingPage": "/کلاس-ها.html",
-      "sessions": 15,
-      "bounceRate": 0.5333333333333333
+      "sessions": 17,
+      "bounceRate": 0.5294117647058824
     },
     {
       "landingPage": "/درباره-ما.html",
-      "sessions": 8,
-      "bounceRate": 0.75
+      "sessions": 9,
+      "bounceRate": 0.6666666666666666
     },
     {
       "landingPage": "/محاسبه-گر-پیس.html",
@@ -738,14 +744,14 @@
       "bounceRate": 0.25
     },
     {
+      "landingPage": "(not set)",
+      "sessions": 3,
+      "bounceRate": 1
+    },
+    {
       "landingPage": "/مربیان.html",
       "sessions": 3,
       "bounceRate": 0
-    },
-    {
-      "landingPage": "(not set)",
-      "sessions": 2,
-      "bounceRate": 1
     },
     {
       "landingPage": "/وبلاگ.html",
