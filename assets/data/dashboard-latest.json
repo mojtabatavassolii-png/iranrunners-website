@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T05:58:34.859Z",
+  "generatedAt": "2026-10-20T12:41:30.967Z",
   "startDate": "2026-09-20",
   "endDate": "2026-10-17",
   "indexStatus": {
@@ -46,7 +46,7 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -154,7 +154,7 @@
     },
     {
       "url": "/درباره-ما.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -230,12 +230,12 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
+        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
         "severity": "warning"
       }
     },
@@ -274,12 +274,12 @@
     },
     {
       "url": "/درباره-ما.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -693,8 +693,17 @@
   ],
   "trafficSourcesError": null,
   "realtime": {
-    "activeUsers": 0,
-    "byCountry": []
+    "activeUsers": 2,
+    "byCountry": [
+      {
+        "country": "Germany",
+        "activeUsers": 1
+      },
+      {
+        "country": "Iran",
+        "activeUsers": 1
+      }
+    ]
   },
   "realtimeError": null,
   "entryPages": [
