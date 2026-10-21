@@ -818,6 +818,15 @@ sitemap: false
       items.push({ type: 'image', dataUrl: trendCanvas.toDataURL('image/png'), naturalW: trendCanvas.width, naturalH: trendCanvas.height });
     }
 
+    // Exact daily numbers behind that chart - a chart image alone can't be
+    // read precisely, so every day gets its own row here too.
+    var daily = (data.daily || []).slice().reverse(); // most recent day first
+    items.push({ type: 'node', el: buildPdfTableBlock(
+      'اعداد دقیق بازدید روزانه',
+      ['تاریخ', 'Session', 'بازدید صفحه', 'کاربران یکتا (همون روز)'],
+      daily.map(function (d) { return [formatDashDate(d.date), fa(d.sessions), fa(d.pageViews), fa(d.activeUsers)]; })
+    ) });
+
     var sources = (data.trafficSources || []).slice().sort(function (a, b) { return b.sessions - a.sessions; });
     items.push({ type: 'node', el: buildPdfTableBlock(
       'منبع/رسانه دقیق ترافیک (از کدام سایت یا لینک)',
@@ -866,6 +875,21 @@ sitemap: false
     return items;
   }
 
+  function loadImageAsDataUrl(url) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.onload = function () {
+        var c = document.createElement('canvas');
+        c.width = img.naturalWidth;
+        c.height = img.naturalHeight;
+        c.getContext('2d').drawImage(img, 0, 0);
+        resolve({ dataUrl: c.toDataURL('image/png'), w: img.naturalWidth, h: img.naturalHeight });
+      };
+      img.onerror = function () { reject(new Error('logo image failed to load')); };
+      img.src = url;
+    });
+  }
+
   async function buildPdfReport() {
     var btn = document.getElementById('pdf-export-btn');
     var statusEl = document.getElementById('pdf-export-status');
@@ -880,6 +904,14 @@ sitemap: false
       var doc = new window.jspdf.jsPDF({ unit: 'px', format: [PDF_PAGE_W, PDF_PAGE_H], hotfixes: ['px_scaling'] });
       var cursorY = PDF_MARGIN;
       if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+      // Logo is loaded once, up-front, so it can be stamped on every page
+      // (not just the first) in one pass after all the content pages are
+      // built below - non-fatal if it fails to load.
+      var logo = null;
+      try {
+        logo = await loadImageAsDataUrl('{{ "/assets/logo-mark.png" | relative_url }}');
+      } catch (e) { /* report still works without the logo */ }
 
       for (var i = 0; i < items.length; i++) {
         var item = items[i];
@@ -903,6 +935,15 @@ sitemap: false
         }
         doc.addImage(imgData, imgFmt, PDF_MARGIN, cursorY, imgWpx, imgHpx);
         cursorY += imgHpx + 16;
+      }
+
+      if (logo) {
+        var logoW = 70, logoH = logoW * (logo.h / logo.w);
+        var totalPages = doc.internal.getNumberOfPages();
+        for (var pg = 1; pg <= totalPages; pg++) {
+          doc.setPage(pg);
+          doc.addImage(logo.dataUrl, 'PNG', PDF_PAGE_W - PDF_MARGIN - logoW, 10, logoW, logoH);
+        }
       }
 
       var todayStr = new Date().toISOString().slice(0, 10);
