@@ -1,20 +1,21 @@
 {
-  "generatedAt": "2026-10-14T11:03:05.072Z",
-  "startDate": "2026-09-14",
-  "endDate": "2026-10-11",
+  "generatedAt": "2026-10-21T11:06:28.082Z",
+  "startDate": "2026-09-21",
+  "endDate": "2026-10-18",
   "indexStatus": {
     "indexed": 16,
-    "pending": 8,
-    "total": 24
+    "pending": 7,
+    "total": 23
   },
   "pages": [
     {
       "url": "/کلاس-ها/مربیگری-اختصاصی.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 0,
+      "impressions": 1,
       "ctr": 0,
-      "position": null
+      "position": 10,
+      "views": 7
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
@@ -22,15 +23,17 @@
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 9
+      "position": 9,
+      "views": 13
     },
     {
       "url": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6.5
+      "clicks": 1,
+      "impressions": 7,
+      "ctr": 0.14285714285714285,
+      "position": 7.285714285714286,
+      "views": 46
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
@@ -38,23 +41,26 @@
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
-      "position": null
+      "position": null,
+      "views": 6
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "URL is unknown to Google",
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": null
-    },
-    {
-      "url": "/گالری/خاطرات-تیم.html",
       "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
-      "position": null
+      "position": null,
+      "views": 14
+    },
+    {
+      "url": "/گالری/خاطرات-تیم.html",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null,
+      "views": 24
     },
     {
       "url": "/گالری/تپه-های-رنگین-کمان.html",
@@ -62,7 +68,8 @@
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
-      "position": null
+      "position": null,
+      "views": 13
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
@@ -70,31 +77,35 @@
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
-      "position": null
+      "position": null,
+      "views": 46
     },
     {
       "url": "/وبلاگ/آماده-سازی-ماراتن.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
-      "impressions": 2,
-      "ctr": 1,
-      "position": 2.5
+      "impressions": 6,
+      "ctr": 0.3333333333333333,
+      "position": 4.833333333333334,
+      "views": 32
     },
     {
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 9,
+      "impressions": 23,
       "ctr": 0,
-      "position": 41.55555555555556
+      "position": 42.82608695652174,
+      "views": 5
     },
     {
       "url": "/وبلاگ/دویدن-در-هوای-آلوده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 0,
+      "impressions": 3,
       "ctr": 0,
-      "position": null
+      "position": 5.333333333333333,
+      "views": 14
     },
     {
       "url": "/وبلاگ/انتخاب-کفش-دویدن.html",
@@ -102,7 +113,8 @@
       "clicks": 1,
       "impressions": 1,
       "ctr": 1,
-      "position": 1
+      "position": 1,
+      "views": 3
     },
     {
       "url": "/وبلاگ/قانون-10-درصد.html",
@@ -110,7 +122,8 @@
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 2
+      "position": 2,
+      "views": 6
     },
     {
       "url": "/وبلاگ/ریکاوری-فعال-یا-استراحت-کامل.html",
@@ -118,39 +131,44 @@
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
-      "position": null
+      "position": null,
+      "views": 2
     },
     {
       "url": "/وبلاگ/شروع-دویدن-برای-مبتدیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 0,
+      "impressions": 2,
       "ctr": 0,
-      "position": null
+      "position": 8.5,
+      "views": 6
     },
     {
       "url": "/وبلاگ/تغذیه-دوندگان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 5,
       "ctr": 0,
-      "position": 7.5
+      "position": 8,
+      "views": 16
     },
     {
       "url": "/درباره-ما.html",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
-      "position": null
+      "position": null,
+      "views": 21
     },
     {
       "url": "/وبلاگ.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 7,
       "ctr": 0,
-      "position": 4.5
+      "position": 5.142857142857143,
+      "views": 39
     },
     {
       "url": "/کلاس-ها.html",
@@ -158,47 +176,44 @@
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
-      "position": null
+      "position": null,
+      "views": 109
     },
     {
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 0,
-      "impressions": 17,
-      "ctr": 0,
-      "position": 6.823529411764706
+      "clicks": 1,
+      "impressions": 31,
+      "ctr": 0.03225806451612903,
+      "position": 6.290322580645161,
+      "views": 40
     },
     {
       "url": "/گالری.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 1,
-      "impressions": 15,
-      "ctr": 0.06666666666666667,
-      "position": 6.2
+      "clicks": 2,
+      "impressions": 26,
+      "ctr": 0.07692307692307693,
+      "position": 6.153846153846154,
+      "views": 57
     },
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
       "clicks": 25,
-      "impressions": 75,
-      "ctr": 0.3333333333333333,
-      "position": 1.2266666666666666
+      "impressions": 62,
+      "ctr": 0.4032258064516129,
+      "position": 1.4838709677419355,
+      "views": 317
     },
     {
       "url": "/محاسبه-گر-پیس.html",
       "coverageState": "Submitted and indexed",
       "clicks": 1,
-      "impressions": 4,
-      "ctr": 0.25,
-      "position": 6.75
-    },
-    {
-      "url": "/scripts/instagram/",
-      "coverageState": "Discovered - currently not indexed",
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": null
+      "impressions": 12,
+      "ctr": 0.08333333333333333,
+      "position": 8.083333333333332,
+      "views": 30
     }
   ],
   "indexTasks": [
@@ -215,23 +230,23 @@
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/گالری/خاطرات-تیم.html",
       "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
       "issue": {
         "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
         "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/گالری/خاطرات-تیم.html",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
         "severity": "warning"
       }
     },
@@ -259,17 +274,6 @@
     },
     {
       "url": "/درباره-ما.html",
-      "coverageState": "URL is unknown to Google",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
-        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/کلاس-ها.html",
       "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
@@ -280,7 +284,7 @@
       }
     },
     {
-      "url": "/scripts/instagram/",
+      "url": "/کلاس-ها.html",
       "coverageState": "Discovered - currently not indexed",
       "status": "نیاز به بررسی",
       "note": "",
@@ -405,71 +409,422 @@
       "sessions": 4,
       "activeUsers": 4,
       "pageViews": 15
+    },
+    {
+      "date": "20261012",
+      "sessions": 3,
+      "activeUsers": 3,
+      "pageViews": 5
+    },
+    {
+      "date": "20261013",
+      "sessions": 7,
+      "activeUsers": 5,
+      "pageViews": 22
+    },
+    {
+      "date": "20261014",
+      "sessions": 8,
+      "activeUsers": 3,
+      "pageViews": 71
+    },
+    {
+      "date": "20261015",
+      "sessions": 12,
+      "activeUsers": 5,
+      "pageViews": 25
+    },
+    {
+      "date": "20261016",
+      "sessions": 2,
+      "activeUsers": 1,
+      "pageViews": 3
+    },
+    {
+      "date": "20261017",
+      "sessions": 20,
+      "activeUsers": 15,
+      "pageViews": 52
+    },
+    {
+      "date": "20261018",
+      "sessions": 24,
+      "activeUsers": 16,
+      "pageViews": 81
     }
   ],
   "topPages": [
     {
-      "path": "/",
-      "views": "136"
-    },
-    {
       "path": "/index.html",
-      "views": "96"
+      "views": 317
     },
     {
       "path": "/کلاس-ها.html",
-      "views": "63"
-    },
-    {
-      "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "views": "35"
-    },
-    {
-      "path": "/وبلاگ/آماده-سازی-ماراتن.html",
-      "views": "27"
-    },
-    {
-      "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": "26"
+      "views": 109
     },
     {
       "path": "/گالری.html",
-      "views": "25"
+      "views": 57
     },
     {
-      "path": "/وبلاگ.html",
-      "views": "23"
+      "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "views": 46
     },
     {
-      "path": "/gallery.html",
-      "views": "22"
+      "path": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
+      "views": 46
     },
     {
       "path": "/مربیان.html",
-      "views": "21"
+      "views": 40
+    },
+    {
+      "path": "/وبلاگ.html",
+      "views": 39
+    },
+    {
+      "path": "/وبلاگ/آماده-سازی-ماراتن.html",
+      "views": 32
+    },
+    {
+      "path": "/محاسبه-گر-پیس.html",
+      "views": 30
+    },
+    {
+      "path": "/گالری/خاطرات-تیم.html",
+      "views": 24
     }
   ],
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "90"
+      "sessions": "120"
     },
     {
       "channel": "Organic Search",
-      "sessions": "46"
+      "sessions": "75"
     },
     {
       "channel": "Organic Social",
-      "sessions": "34"
+      "sessions": "50"
     },
     {
       "channel": "Unassigned",
-      "sessions": "1"
+      "sessions": "2"
     }
   ],
+  "activeUsers": 140,
+  "totalUsers": 140,
+  "geography": {
+    "countries": [
+      {
+        "country": "Iran",
+        "activeUsers": 54,
+        "sessions": 63
+      },
+      {
+        "country": "Germany",
+        "activeUsers": 38,
+        "sessions": 124
+      },
+      {
+        "country": "United States",
+        "activeUsers": 23,
+        "sessions": 28
+      },
+      {
+        "country": "Netherlands",
+        "activeUsers": 6,
+        "sessions": 8
+      },
+      {
+        "country": "China",
+        "activeUsers": 5,
+        "sessions": 5
+      },
+      {
+        "country": "Sweden",
+        "activeUsers": 4,
+        "sessions": 4
+      },
+      {
+        "country": "Canada",
+        "activeUsers": 3,
+        "sessions": 3
+      },
+      {
+        "country": "France",
+        "activeUsers": 3,
+        "sessions": 3
+      },
+      {
+        "country": "Türkiye",
+        "activeUsers": 2,
+        "sessions": 2
+      },
+      {
+        "country": "Bosnia & Herzegovina",
+        "activeUsers": 1,
+        "sessions": 2
+      },
+      {
+        "country": "Czechia",
+        "activeUsers": 1,
+        "sessions": 1
+      },
+      {
+        "country": "Estonia",
+        "activeUsers": 1,
+        "sessions": 2
+      },
+      {
+        "country": "Finland",
+        "activeUsers": 1,
+        "sessions": 1
+      },
+      {
+        "country": "New Zealand",
+        "activeUsers": 1,
+        "sessions": 1
+      },
+      {
+        "country": "Russia",
+        "activeUsers": 1,
+        "sessions": 2
+      }
+    ],
+    "cities": [
+      {
+        "country": "Iran",
+        "city": "Tehran",
+        "activeUsers": 48,
+        "sessions": 57
+      },
+      {
+        "country": "Germany",
+        "city": "Berlin",
+        "activeUsers": 9,
+        "sessions": 14
+      },
+      {
+        "country": "Germany",
+        "city": "Mannheim",
+        "activeUsers": 7,
+        "sessions": 8
+      },
+      {
+        "country": "Germany",
+        "city": "Frankfurt am Main",
+        "activeUsers": 6,
+        "sessions": 13
+      },
+      {
+        "country": "France",
+        "city": "Paris",
+        "activeUsers": 3,
+        "sessions": 3
+      },
+      {
+        "country": "Sweden",
+        "city": "Stockholm",
+        "activeUsers": 3,
+        "sessions": 3
+      },
+      {
+        "country": "United States",
+        "city": "Fort Worth",
+        "activeUsers": 3,
+        "sessions": 3
+      },
+      {
+        "country": "Canada",
+        "city": "North Vancouver",
+        "activeUsers": 2,
+        "sessions": 2
+      },
+      {
+        "country": "Netherlands",
+        "city": "Amsterdam",
+        "activeUsers": 2,
+        "sessions": 3
+      },
+      {
+        "country": "United States",
+        "city": "Forest City",
+        "activeUsers": 2,
+        "sessions": 2
+      },
+      {
+        "country": "United States",
+        "city": "Los Angeles",
+        "activeUsers": 2,
+        "sessions": 2
+      }
+    ]
+  },
+  "geographyError": null,
+  "trafficSources": [
+    {
+      "sourceMedium": "(direct) / (none)",
+      "sessions": 120
+    },
+    {
+      "sourceMedium": "google / organic",
+      "sessions": 75
+    },
+    {
+      "sourceMedium": "ig / social",
+      "sessions": 37
+    },
+    {
+      "sourceMedium": "facebook.com / referral",
+      "sessions": 6
+    },
+    {
+      "sourceMedium": "l.instagram.com / referral",
+      "sessions": 3
+    },
+    {
+      "sourceMedium": "(not set)",
+      "sessions": 2
+    },
+    {
+      "sourceMedium": "instagram.com / referral",
+      "sessions": 2
+    },
+    {
+      "sourceMedium": "m.facebook.com / referral",
+      "sessions": 2
+    }
+  ],
+  "trafficSourcesError": null,
+  "realtime": {
+    "activeUsers": 0,
+    "byCountry": []
+  },
+  "realtimeError": null,
+  "entryPages": [
+    {
+      "landingPage": "/index.html",
+      "sessions": 147,
+      "bounceRate": 0.272108843537415
+    },
+    {
+      "landingPage": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
+      "sessions": 28,
+      "bounceRate": 0.5
+    },
+    {
+      "landingPage": "/کلاس-ها.html",
+      "sessions": 18,
+      "bounceRate": 0.5555555555555556
+    },
+    {
+      "landingPage": "/درباره-ما.html",
+      "sessions": 10,
+      "bounceRate": 0.7
+    },
+    {
+      "landingPage": "/محاسبه-گر-پیس.html",
+      "sessions": 7,
+      "bounceRate": 0.5714285714285714
+    },
+    {
+      "landingPage": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "sessions": 5,
+      "bounceRate": 0.2
+    },
+    {
+      "landingPage": "(not set)",
+      "sessions": 4,
+      "bounceRate": 1
+    },
+    {
+      "landingPage": "/وبلاگ/آماده-سازی-ماراتن.html",
+      "sessions": 4,
+      "bounceRate": 0.25
+    },
+    {
+      "landingPage": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
+      "sessions": 4,
+      "bounceRate": 0.25
+    },
+    {
+      "landingPage": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
+      "sessions": 4,
+      "bounceRate": 0.75
+    },
+    {
+      "landingPage": "/مربیان.html",
+      "sessions": 4,
+      "bounceRate": 0
+    },
+    {
+      "landingPage": "/وبلاگ/تغذیه-دوندگان.html",
+      "sessions": 4,
+      "bounceRate": 0.25
+    },
+    {
+      "landingPage": "/وبلاگ.html",
+      "sessions": 2,
+      "bounceRate": 0.5
+    },
+    {
+      "landingPage": "/گالری.html",
+      "sessions": 2,
+      "bounceRate": 0
+    },
+    {
+      "landingPage": "/وبلاگ/دویدن-در-هوای-آلوده.html",
+      "sessions": 1,
+      "bounceRate": 0
+    }
+  ],
+  "entryPagesError": null,
   "classInterest": [
     {
       "className": "کلاس های حضوری پارک پردیسان",
+      "clicks": 7
+    },
+    {
+      "className": "کلاس های غیرحضوری (خارج از ایران)",
+      "clicks": 1
+    }
+  ],
+  "classInterestDaily": [
+    {
+      "date": "20261009",
+      "className": "کلاس های حضوری پارک پردیسان",
+      "clicks": 1
+    },
+    {
+      "date": "20261016",
+      "className": "کلاس های غیرحضوری (خارج از ایران)",
+      "clicks": 1
+    },
+    {
+      "date": "20261017",
+      "className": "کلاس های حضوری پارک پردیسان",
+      "clicks": 3
+    },
+    {
+      "date": "20261018",
+      "className": "کلاس های حضوری پارک پردیسان",
+      "clicks": 2
+    },
+    {
+      "date": "20261020",
+      "className": "کلاس های حضوری پارک پردیسان",
+      "clicks": 1
+    }
+  ],
+  "classInterestByType": [
+    {
+      "type": "حضوری",
+      "clicks": 7
+    },
+    {
+      "type": "غیرحضوری",
       "clicks": 1
     }
   ],
