@@ -11,6 +11,8 @@ sitemap: false
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 <script src="{{ '/assets/vendor/chart.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/vendor/html2canvas.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/vendor/jspdf.umd.min.js' | relative_url }}"></script>
 <style>
   :root {
     --red: #e8121a;
@@ -56,6 +58,34 @@ sitemap: false
   #app h1 { font-size: 1.5rem; margin-bottom: 4px; }
   #app .sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
   #app .sub.err { color: var(--red); }
+
+  .pdf-export-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: -16px 0 28px; }
+  .btn-pdf {
+    padding: 10px 22px; border-radius: 999px; border: 1px solid var(--red);
+    background: #fff; color: var(--red); font-weight: 700; font-size: 0.88rem;
+    font-family: inherit; cursor: pointer; transition: background .15s, color .15s;
+  }
+  .btn-pdf:hover { background: var(--red); color: #fff; }
+  .btn-pdf:disabled { opacity: .55; cursor: default; background: #fff; color: var(--red); }
+  .pdf-export-status { color: var(--muted); font-size: 0.82rem; }
+  .pdf-export-status.err { color: var(--red); }
+
+  /* ---------- offscreen PDF render stage (pages built as real HTML, captured
+     by html2canvas - same technique already used in admin/instagram.html -
+     so Persian/RTL text lays out exactly like the live dashboard instead of
+     being hand-drawn glyph-by-glyph into the PDF) ---------- */
+  #pdf-stage { position: absolute; top: 0; left: -100000px; }
+  .pdf-block {
+    width: 714px; background: #fff; font-family: "Vazirmatn", "Tahoma", sans-serif;
+    direction: rtl; color: var(--black); padding: 2px;
+  }
+  .pdf-block h1 { font-size: 26px; margin: 0 0 6px; }
+  .pdf-block h2 { font-size: 16px; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--black); }
+  .pdf-block .pdf-muted { color: var(--muted); font-size: 12px; margin: 0; }
+  .pdf-block table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .pdf-block th, .pdf-block td { padding: 8px 6px; border-bottom: 1px solid var(--border); text-align: right; }
+  .pdf-block th { background: var(--black); color: #fff; font-weight: 700; }
+  .pdf-block tbody tr:nth-child(even) td { background: var(--panel); }
 
   .cards {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -159,6 +189,11 @@ sitemap: false
 <div id="app">
   <h1>داشبورد سئو و آنالیتیکس</h1>
   <p class="sub" id="updated-at">در حال بارگذاری...</p>
+
+  <div class="pdf-export-row">
+    <button id="pdf-export-btn" class="btn-pdf" disabled>دریافت گزارش PDF</button>
+    <span class="pdf-export-status" id="pdf-export-status"></span>
+  </div>
 
   <div class="live-panel" id="live-panel" style="display:none;">
     <div class="live-label"><span class="live-dot"></span>همین الان آنلاین (۳۰ دقیقه اخیر)</div>
@@ -305,6 +340,8 @@ sitemap: false
   </div>
 </div>
 
+<div id="pdf-stage"></div>
+
 <script>
 (function () {
   // Page-wide Chart.js defaults so every chart below (built-in legend/
@@ -326,6 +363,11 @@ sitemap: false
   // (which is exactly how the channels donut below ended up quietly stuck
   // on colors from before the contrast fixes a few commits back).
   var CHART_PALETTE = ['#e8121a', '#111111', '#8a5400', '#147a3d', '#6b6b6b', '#4a6cf7', '#8a2be2', '#0aa39e'];
+
+  // Stashed here so the "دریافت گزارش PDF" button (wired up further down)
+  // can build the report from the same data already fetched for the charts,
+  // instead of fetching dashboard-latest.json a second time.
+  var DASHBOARD_DATA = null;
 
   var PASSWORD_HASH = "ec305cadce0f3ed00f38c606485b336bad334d486d57585aae7640b1d904afc9";
   // sha-256 hash of the admin password, checked client-side. This is a light
@@ -404,6 +446,10 @@ sitemap: false
   }
 
   function render(data) {
+    DASHBOARD_DATA = data;
+    var pdfBtn = document.getElementById('pdf-export-btn');
+    if (pdfBtn) pdfBtn.disabled = false;
+
     var updatedEl = document.getElementById('updated-at');
     var dt = data.generatedAt ? new Date(data.generatedAt) : null;
     updatedEl.textContent = 'آخرین به‌روزرسانی: ' + (dt ? dt.toLocaleString('fa-IR') : 'نامشخص') +
@@ -712,6 +758,166 @@ sitemap: false
       citiesNote.textContent = '';
     }
   }
+
+  // ------------------------------------------------------------------
+  // "دریافت گزارش PDF" - builds each section as real, live-rendered HTML
+  // off-screen (same technique as admin/instagram.html's render stage),
+  // captures it with html2canvas so Persian/RTL text lays out exactly like
+  // the dashboard itself, then flows the resulting images onto A4 pages
+  // with jsPDF. A simple top-down packer (not a fixed per-page layout) is
+  // used because the row counts here (cities, classes, blog posts) grow
+  // over time - a block only starts a new page when it doesn't fit in the
+  // space left on the current one, so a table row is never split mid-page.
+  var PDF_PAGE_W = 794, PDF_PAGE_H = 1123; // A4 at 96dpi, in px (matches jsPDF's 'px' unit)
+  var PDF_MARGIN = 40;
+  var PDF_CONTENT_W = PDF_PAGE_W - PDF_MARGIN * 2; // must match .pdf-block { width } in CSS
+
+  function buildPdfTableBlock(title, headers, rows, emptyNote) {
+    var wrap = document.createElement('div');
+    wrap.className = 'pdf-block';
+    var html = '<h2>' + title + '</h2>';
+    if (rows.length === 0) {
+      html += '<p class="pdf-muted">' + (emptyNote || 'داده‌ای برای این بازه موجود نیست.') + '</p>';
+    } else {
+      html += '<table><thead><tr>';
+      headers.forEach(function (h) { html += '<th>' + h + '</th>'; });
+      html += '</tr></thead><tbody>';
+      rows.forEach(function (r) {
+        html += '<tr>';
+        r.forEach(function (c) { html += '<td>' + c + '</td>'; });
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+    }
+    wrap.innerHTML = html;
+    return wrap;
+  }
+
+  function buildPdfReportItems(data) {
+    var items = [];
+
+    var genDate = data.generatedAt ? new Date(data.generatedAt).toLocaleString('fa-IR') : 'نامشخص';
+    var header = document.createElement('div');
+    header.className = 'pdf-block';
+    header.innerHTML =
+      '<h1>گزارش سئو و آنالیتیکس</h1>' +
+      '<p class="pdf-muted" style="margin-bottom:10px;">ایران رانرز (iranrunners.com)</p>' +
+      '<p class="pdf-muted">تهیه‌شده: <b class="mono">' + genDate + '</b> — بازه داده Search Console/آنالیتیکس: ' +
+        '<b class="mono">' + (data.startDate || '') + '</b> تا <b class="mono">' + (data.endDate || '') + '</b></p>' +
+      '<hr style="border:none;border-top:2px solid var(--black);margin-top:14px;">';
+    items.push({ type: 'node', el: header });
+
+    // Daily trend chart: reuse the already-rendered live canvas directly
+    // (sharper and cheaper than re-capturing it through html2canvas).
+    var trendCanvas = document.getElementById('chart-trend');
+    if (trendCanvas && trendCanvas.width > 0) {
+      var trendHeading = document.createElement('div');
+      trendHeading.className = 'pdf-block';
+      trendHeading.innerHTML = '<h2>روند بازدید روزانه سایت</h2>';
+      items.push({ type: 'node', el: trendHeading });
+      items.push({ type: 'image', dataUrl: trendCanvas.toDataURL('image/png'), naturalW: trendCanvas.width, naturalH: trendCanvas.height });
+    }
+
+    var sources = (data.trafficSources || []).slice().sort(function (a, b) { return b.sessions - a.sessions; });
+    items.push({ type: 'node', el: buildPdfTableBlock(
+      'منبع/رسانه دقیق ترافیک (از کدام سایت یا لینک)',
+      ['منبع / رسانه', 'جلسات'],
+      sources.map(function (s) { return [s.sourceMedium, fa(s.sessions)]; })
+    ) });
+
+    var countries = ((data.geography && data.geography.countries) || []).slice().sort(function (a, b) { return b.activeUsers - a.activeUsers; });
+    items.push({ type: 'node', el: buildPdfTableBlock(
+      'موقعیت جغرافیایی بازدیدکنندگان — کشورها',
+      ['کشور', 'کاربران فعال', 'جلسات'],
+      countries.map(function (c) { return [c.country, fa(c.activeUsers), fa(c.sessions)]; })
+    ) });
+
+    var cities = ((data.geography && data.geography.cities) || []).slice().sort(function (a, b) { return b.activeUsers - a.activeUsers; });
+    items.push({ type: 'node', el: buildPdfTableBlock(
+      'موقعیت جغرافیایی بازدیدکنندگان — شهرها',
+      ['شهر', 'کشور', 'کاربران فعال', 'جلسات'],
+      cities.map(function (c) { return [c.city, c.country, fa(c.activeUsers), fa(c.sessions)]; })
+    ) });
+
+    var classesByClicks = (data.classInterest || []).slice().sort(function (a, b) { return b.clicks - a.clicks; });
+    items.push({ type: 'node', el: buildPdfTableBlock(
+      'کلاس‌ها به ترتیب بیشترین کلیک (تجمعی از ابتدا)',
+      ['کلاس', 'کلیک تجمعی'],
+      classesByClicks.map(function (c) { return [c.className, fa(c.clicks)]; }),
+      'هنوز هیچ کلیکی روی دکمه ثبت‌نام کلاس‌ها ثبت نشده.'
+    ) });
+
+    // Per-article blog clicks - every sitemap page under /وبلاگ/ except the
+    // blog listing page itself (/وبلاگ.html), sorted by clicks descending.
+    var blogArticles = (data.pages || [])
+      .filter(function (p) { return p.url.indexOf('/وبلاگ/') === 0; })
+      .slice()
+      .sort(function (a, b) { return (b.clicks || 0) - (a.clicks || 0); });
+    items.push({ type: 'node', el: buildPdfTableBlock(
+      'کلیک هر مقاله‌ی وبلاگ (از جستجوی گوگل)',
+      ['مقاله', 'کلیک', 'نمایش در جستجو'],
+      blogArticles.map(function (p) {
+        var name = p.url.replace('/وبلاگ/', '').replace(/\.html$/, '');
+        return [name, fa(p.clicks), fa(p.impressions)];
+      }),
+      'هنوز داده‌ای برای مقالات وبلاگ موجود نیست.'
+    ) });
+
+    return items;
+  }
+
+  async function buildPdfReport() {
+    var btn = document.getElementById('pdf-export-btn');
+    var statusEl = document.getElementById('pdf-export-status');
+    if (!DASHBOARD_DATA) return;
+    btn.disabled = true;
+    statusEl.className = 'pdf-export-status';
+    statusEl.textContent = 'در حال ساخت PDF...';
+    var stage = document.getElementById('pdf-stage');
+    try {
+      if (!window.jspdf || !window.html2canvas) throw new Error('کتابخانه PDF بارگذاری نشد.');
+      var items = buildPdfReportItems(DASHBOARD_DATA);
+      var doc = new window.jspdf.jsPDF({ unit: 'px', format: [PDF_PAGE_W, PDF_PAGE_H], hotfixes: ['px_scaling'] });
+      var cursorY = PDF_MARGIN;
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+        var imgWpx = PDF_CONTENT_W, imgHpx, imgData, imgFmt;
+        if (item.type === 'image') {
+          imgHpx = item.naturalH * (imgWpx / item.naturalW);
+          imgData = item.dataUrl;
+          imgFmt = 'PNG';
+        } else {
+          stage.appendChild(item.el);
+          await new Promise(function (r) { requestAnimationFrame(function () { requestAnimationFrame(r); }); });
+          var canvas = await html2canvas(item.el, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+          stage.removeChild(item.el);
+          imgHpx = canvas.height * (imgWpx / canvas.width);
+          imgData = canvas.toDataURL('image/jpeg', 0.95);
+          imgFmt = 'JPEG';
+        }
+        if (cursorY > PDF_MARGIN && cursorY + imgHpx > PDF_PAGE_H - PDF_MARGIN) {
+          doc.addPage();
+          cursorY = PDF_MARGIN;
+        }
+        doc.addImage(imgData, imgFmt, PDF_MARGIN, cursorY, imgWpx, imgHpx);
+        cursorY += imgHpx + 16;
+      }
+
+      var todayStr = new Date().toISOString().slice(0, 10);
+      doc.save('گزارش-سئو-ایران-رانرز-' + todayStr + '.pdf');
+      statusEl.textContent = 'دانلود شد.';
+    } catch (err) {
+      statusEl.className = 'pdf-export-status err';
+      statusEl.textContent = 'خطا در ساخت PDF: ' + (err.message || err);
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  var pdfExportBtn = document.getElementById('pdf-export-btn');
+  if (pdfExportBtn) pdfExportBtn.addEventListener('click', buildPdfReport);
 })();
 </script>
 </body>
