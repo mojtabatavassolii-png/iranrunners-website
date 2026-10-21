@@ -38,6 +38,12 @@ jobs:
           SITE_URL: "https://iranrunners.com"
         run: node scripts/generate_seo_report.js
 
+      - name: TEMP diagnostic - marathon query check
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+          SITE_URL: "https://iranrunners.com"
+        run: node scripts/_diag_query_check.js
+
       - name: Commit report
         run: |
           git config user.name "github-actions[bot]"
