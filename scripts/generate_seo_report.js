@@ -1,7 +1,10 @@
 // Generates a dated SEO/analytics report for iranrunners.com combining:
 //   - Google Search Console: sitemap URL list, per-URL indexing status
 //     (URL Inspection API), and Search Analytics (clicks/impressions/CTR/
-//     position) for the last ~30 days.
+//     position) for the last ~30 days; whether sitemap.xml is actually
+//     registered with Search Console (submits it if not); and a scan for
+//     leftover/orphaned URLs indexed from outside the site's current
+//     structure (e.g. pages from a previous domain owner).
 //   - GA4 Data API (optional, skipped if GA4_PROPERTY_ID is unset):
 //     session/user totals, top pages, traffic source breakdown.
 //
@@ -347,6 +350,122 @@ async function fetchSearchAnalytics(token, gscSiteUrl, startDate, endDate) {
     };
   }
   return byUrl;
+}
+
+// Checks whether sitemap.xml is registered with Search Console (sites.sitemaps
+// is a separate resource from URL Inspection - a URL can be correctly indexed
+// even if the sitemap itself was never formally submitted, and vice versa).
+// Submits it on the spot if missing. Submitting needs the full (read-write)
+// webmasters scope, not the webmasters.readonly token used elsewhere in this
+// script, so this requests its own token only when it actually needs to write.
+async function checkAndSubmitSitemap(credentials, gscSiteUrl, sitemapUrl) {
+  const readToken = await getAccessToken(credentials, ["https://www.googleapis.com/auth/webmasters.readonly"]);
+  const listRes = await fetch(
+    `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(gscSiteUrl)}/sitemaps`,
+    { headers: { Authorization: `Bearer ${readToken}` } }
+  );
+  if (!listRes.ok) {
+    return { error: `sitemaps.list failed: ${listRes.status} ${await listRes.text()}` };
+  }
+  const listData = await listRes.json();
+  const existing = (listData.sitemap || []).find((s) => s.path === sitemapUrl);
+  if (existing) {
+    return {
+      wasAlreadySubmitted: true,
+      lastSubmitted: existing.lastSubmitted || null,
+      lastDownloaded: existing.lastDownloaded || null,
+      isPending: !!existing.isPending,
+      warnings: Number(existing.warnings || 0),
+      errors: Number(existing.errors || 0),
+    };
+  }
+  const writeToken = await getAccessToken(credentials, ["https://www.googleapis.com/auth/webmasters"]);
+  const submitRes = await fetch(
+    `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(gscSiteUrl)}/sitemaps/${encodeURIComponent(sitemapUrl)}`,
+    { method: "PUT", headers: { Authorization: `Bearer ${writeToken}` } }
+  );
+  if (!submitRes.ok) {
+    return { wasAlreadySubmitted: false, justSubmitted: false, error: `sitemaps.submit failed: ${submitRes.status} ${await submitRes.text()}` };
+  }
+  return { wasAlreadySubmitted: false, justSubmitted: true };
+}
+
+// Looks for URLs Search Console has ever seen data for, or still has
+// indexed, that are NOT part of the site's current, intentional URL set
+// (current sitemap + known old-but-redirected paths from redirect_from).
+// This is how leftover content from a previous owner/version of the domain
+// (e.g. an old WooCommerce shop) would surface years later. A long lookback
+// is used since Search Console keeps up to ~16 months of Search Analytics
+// history, and a handful of classic e-commerce paths are probed directly
+// via URL Inspection even with zero recent clicks, since stale indexed
+// pages can carry no fresh search traffic at all.
+async function auditLegacyUrls(token, gscSiteUrl, sitemapUrls) {
+  const known = new Set(sitemapUrls.map((u) => decodeURIComponent(u.replace(SITE_URL, ""))));
+  known.add("/");
+  known.add("/index.html");
+  try {
+    for (const alias of collectAliasMap().keys()) known.add(alias);
+  } catch (e) {
+    // best-effort; missing alias map just means a slightly noisier result
+  }
+
+  const longStart = daysAgoISO(480); // ~16 months, Search Console's retention limit
+  const longEnd = daysAgoISO(3);
+  const res = await fetch(
+    `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(gscSiteUrl)}/searchAnalytics/query`,
+    {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ startDate: longStart, endDate: longEnd, dimensions: ["page"], rowLimit: 5000 }),
+    }
+  );
+  if (!res.ok) throw new Error(`Legacy URL search analytics failed: ${res.status} ${await res.text()}`);
+  const rows = (await res.json()).rows || [];
+
+  const guessPaths = [
+    "/product/salt-stick/", "/shop/", "/cart/", "/checkout/", "/my-account/",
+    "/product-category/", "/wp-content/", "/wp-admin/", "/wp-login.php",
+  ];
+  const candidateUrls = new Map(); // url -> matching Search Analytics row, if any
+  for (const row of rows) {
+    const decoded = decodeURIComponent(row.keys[0].replace(SITE_URL, ""));
+    if (!known.has(decoded)) candidateUrls.set(row.keys[0], row);
+  }
+  for (const g of guessPaths) {
+    const full = `${SITE_URL}${g}`;
+    if (!candidateUrls.has(full)) candidateUrls.set(full, null);
+  }
+
+  const results = [];
+  for (const [url, row] of candidateUrls) {
+    const status = await inspectUrl(token, gscSiteUrl, url);
+    let liveStatus = "نامشخص";
+    try {
+      const liveRes = await fetch(url, { method: "GET", redirect: "manual" });
+      liveStatus =
+        liveRes.status === 404 ? "۴۰۴ (وجود نداره)" :
+        liveRes.status >= 300 && liveRes.status < 400 ? `ریدایرکت (${liveRes.status})` :
+        liveRes.status === 200 ? "۲۰۰ (هنوز زنده‌ست!)" :
+        `HTTP ${liveRes.status}`;
+    } catch (e) {
+      liveStatus = "خطا در چک کردن";
+    }
+    // Only worth reporting if Google actually has/had something on this URL
+    // (real historical clicks/impressions, a non-"unknown" coverage state,
+    // or - worst case - it unexpectedly still returns 200 live).
+    const worthReporting = !!row || status.coverageState !== "URL is unknown to Google" || liveStatus.includes("۲۰۰");
+    if (worthReporting) {
+      results.push({
+        url: decodeURIComponent(url.replace(SITE_URL, "")),
+        coverageState: status.coverageState,
+        clicks: row ? row.clicks : 0,
+        impressions: row ? row.impressions : 0,
+        liveStatus,
+      });
+    }
+    await sleep(400);
+  }
+  return results.sort((a, b) => b.impressions - a.impressions);
 }
 
 async function runGa4Report(token, startDate, endDate) {
@@ -727,6 +846,41 @@ async function main() {
         });
       }
     }
+
+    // --- sitemap submission status ---
+    const sitemapStatus = await checkAndSubmitSitemap(credentials, gscSiteUrl, `${SITE_URL}/sitemap.xml`);
+    report.sitemapStatus = sitemapStatus;
+    lines.push("## وضعیت ثبت sitemap.xml در Search Console");
+    lines.push("");
+    if (sitemapStatus.error) {
+      lines.push(`⚠️ نتونستم وضعیت ثبت sitemap رو بررسی کنم: ${sitemapStatus.error}`);
+    } else if (sitemapStatus.wasAlreadySubmitted) {
+      lines.push(
+        `✅ sitemap.xml از قبل در Search Console ثبت شده بود. آخرین ارسال: ${sitemapStatus.lastSubmitted || "نامشخص"}، ` +
+          `آخرین باری که گوگل دانلودش کرده: ${sitemapStatus.lastDownloaded || "هنوز دانلود نشده"}.` +
+          (sitemapStatus.warnings ? ` هشدار: ${sitemapStatus.warnings} مورد.` : "") +
+          (sitemapStatus.errors ? ` خطا: ${sitemapStatus.errors} مورد.` : "")
+      );
+    } else if (sitemapStatus.justSubmitted) {
+      lines.push("⚠️ sitemap.xml قبلاً هیچ‌وقت در Search Console ثبت نشده بود — همین الان با موفقیت ثبت شد.");
+    }
+    lines.push("");
+
+    // --- legacy/orphaned URL audit (old domain content still indexed) ---
+    const legacyUrls = await auditLegacyUrls(gscToken, gscSiteUrl, sitemapUrls);
+    report.legacyUrls = legacyUrls;
+    lines.push("## بررسی آدرس‌های قدیمی/یتیم (باقی‌مونده از نسخه قبلی دامنه یا ساختار قدیمی)");
+    lines.push("");
+    if (legacyUrls.length === 0) {
+      lines.push("چیز مشکوکی پیدا نشد: هیچ آدرسی خارج از ساختار فعلی سایت، با سابقه یا وضعیت ایندکس در Search Console، دیده نشد.");
+    } else {
+      lines.push("| آدرس | وضعیت ایندکس | کلیک (۱۶ ماه اخیر) | نمایش (۱۶ ماه اخیر) | وضعیت زنده روی سایت الان |");
+      lines.push("|---|---|---|---|---|");
+      for (const u of legacyUrls) {
+        lines.push(`| ${u.url} | ${formatCoverage(u.coverageState)} | ${u.clicks} | ${u.impressions} | ${u.liveStatus} |`);
+      }
+    }
+    lines.push("");
   } catch (err) {
     report.gscError = String(err.message || err);
     dashboard.gscError = report.gscError;
