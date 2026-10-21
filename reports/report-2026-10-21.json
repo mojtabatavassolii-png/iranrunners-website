@@ -48,14 +48,6 @@
     },
     {
       "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C/%D8%AE%D8%A7%D8%B7%D8%B1%D8%A7%D8%AA-%D8%AA%DB%8C%D9%85.html",
-      "coverageState": "Discovered - currently not indexed",
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": null
-    },
-    {
-      "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C/%D8%AA%D9%BE%D9%87-%D9%87%D8%A7%DB%8C-%D8%B1%D9%86%DA%AF%DB%8C%D9%86-%DA%A9%D9%85%D8%A7%D9%86.html",
       "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
@@ -63,8 +55,16 @@
       "position": null
     },
     {
-      "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C/%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D9%87-10-%DA%A9%DB%8C%D9%84%D9%88%D9%85%D8%AA%D8%B1-%D8%AA%D9%87%D8%B1%D8%A7%D9%86-%DA%A9%D9%84%D8%A7%D8%A8.html",
+      "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C/%D8%AA%D9%BE%D9%87-%D9%87%D8%A7%DB%8C-%D8%B1%D9%86%DA%AF%DB%8C%D9%86-%DA%A9%D9%85%D8%A7%D9%86.html",
       "coverageState": "Discovered - currently not indexed",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
+    },
+    {
+      "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C/%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D9%87-10-%DA%A9%DB%8C%D9%84%D9%88%D9%85%D8%AA%D8%B1-%D8%AA%D9%87%D8%B1%D8%A7%D9%86-%DA%A9%D9%84%D8%A7%D8%A8.html",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -428,5 +428,14 @@
       }
     ]
   },
-  "gscError": null
+  "gscError": null,
+  "sitemapStatus": {
+    "wasAlreadySubmitted": true,
+    "lastSubmitted": "2026-09-15T09:04:08.811Z",
+    "lastDownloaded": "2026-10-18T21:14:53.972Z",
+    "isPending": false,
+    "warnings": 0,
+    "errors": 0
+  },
+  "legacyUrls": []
 }
