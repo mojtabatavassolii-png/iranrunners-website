@@ -68,7 +68,11 @@ async function main() {
     .sort((a, b) => b.impressions - a.impressions);
 
   // 2) The marathon-prep article's own top queries (whatever little it gets).
-  const articleUrl = `${SITE_URL}/وبلاگ/آماده-سازی-ماراتن.html`;
+  // NB: Search Console stores/matches the percent-encoded form (confirmed
+  // against the live sitemap.xml - a raw Persian-text URL silently matches
+  // zero rows via the "equals" filter), so this must be encoded the same
+  // way Jekyll's sitemap generator encodes it.
+  const articleUrl = `${SITE_URL}${encodeURI("/وبلاگ/آماده-سازی-ماراتن.html")}`;
   const articleQ = await query(token, gscSiteUrl, {
     startDate,
     endDate,
