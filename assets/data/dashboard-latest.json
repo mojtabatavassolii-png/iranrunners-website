@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-21T11:40:17.593Z",
+  "generatedAt": "2026-10-21T14:25:58.901Z",
   "startDate": "2026-09-21",
   "endDate": "2026-10-18",
   "indexStatus": {
-    "indexed": 22,
-    "pending": 1,
+    "indexed": 23,
+    "pending": 0,
     "total": 23
   },
   "pages": [
@@ -64,7 +64,7 @@
     },
     {
       "url": "/گالری/تپه-های-رنگین-کمان.html",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -216,19 +216,7 @@
       "views": 30
     }
   ],
-  "indexTasks": [
-    {
-      "url": "/گالری/تپه-های-رنگین-کمان.html",
-      "coverageState": "Discovered - currently not indexed",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "این صفحه دیده شده ولی گوگل هنوز وقت نکرده بخزدش.",
-        "action": "از Search Console (URL Inspection → Request Indexing) درخواست خزش دستی بده، یا چند لینک داخلی بیشتر از صفحات پربازدید به این صفحه اضافه کن.",
-        "severity": "warning"
-      }
-    }
-  ],
+  "indexTasks": [],
   "daily": [
     {
       "date": "20260922",
@@ -633,13 +621,8 @@
   ],
   "trafficSourcesError": null,
   "realtime": {
-    "activeUsers": 1,
-    "byCountry": [
-      {
-        "country": "Germany",
-        "activeUsers": 1
-      }
-    ]
+    "activeUsers": 0,
+    "byCountry": []
   },
   "realtimeError": null,
   "entryPages": [
