@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-24T21:34:32.698Z",
-  "startDate": "2026-09-24",
-  "endDate": "2026-10-21",
+  "generatedAt": "2026-10-25T06:02:11.091Z",
+  "startDate": "2026-09-25",
+  "endDate": "2026-10-22",
   "indexStatus": {
     "indexed": 23,
     "pending": 0,
@@ -30,10 +30,10 @@
       "url": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 1,
-      "impressions": 7,
-      "ctr": 0.14285714285714285,
-      "position": 7.285714285714286,
-      "views": 48
+      "impressions": 8,
+      "ctr": 0.125,
+      "position": 7.5,
+      "views": 49
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
@@ -42,7 +42,7 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 7
+      "views": 8
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
@@ -69,7 +69,7 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 8
+      "views": 9
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
@@ -78,15 +78,15 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 10
+      "views": 9
     },
     {
       "url": "/وبلاگ/آماده-سازی-ماراتن.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
-      "impressions": 9,
-      "ctr": 0.2222222222222222,
-      "position": 6,
+      "impressions": 12,
+      "ctr": 0.16666666666666666,
+      "position": 7.583333333333333,
       "views": 33
     },
     {
@@ -165,10 +165,10 @@
       "url": "/وبلاگ.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 7,
+      "impressions": 8,
       "ctr": 0,
-      "position": 5.142857142857143,
-      "views": 44
+      "position": 5.875,
+      "views": 48
     },
     {
       "url": "/کلاس-ها.html",
@@ -177,16 +177,16 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 154
+      "views": 156
     },
     {
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 1,
-      "impressions": 33,
-      "ctr": 0.030303030303030304,
-      "position": 6.636363636363637,
-      "views": 40
+      "clicks": 2,
+      "impressions": 34,
+      "ctr": 0.058823529411764705,
+      "position": 7.205882352941177,
+      "views": 41
     },
     {
       "url": "/گالری.html",
@@ -200,11 +200,11 @@
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
-      "clicks": 27,
-      "impressions": 65,
-      "ctr": 0.4153846153846154,
-      "position": 1.5538461538461539,
-      "views": 326
+      "clicks": 29,
+      "impressions": 69,
+      "ctr": 0.42028985507246375,
+      "position": 1.5217391304347827,
+      "views": 335
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -218,12 +218,6 @@
   ],
   "indexTasks": [],
   "daily": [
-    {
-      "date": "20260924",
-      "sessions": 1,
-      "activeUsers": 0,
-      "pageViews": 1
-    },
     {
       "date": "20260925",
       "sessions": 8,
@@ -379,28 +373,34 @@
       "sessions": 7,
       "activeUsers": 5,
       "pageViews": 28
+    },
+    {
+      "date": "20261022",
+      "sessions": 7,
+      "activeUsers": 4,
+      "pageViews": 19
     }
   ],
   "topPages": [
     {
       "path": "/index.html",
-      "views": 326
+      "views": 335
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 154
+      "views": 156
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": 48
+      "views": 49
     },
     {
       "path": "/وبلاگ.html",
-      "views": 44
+      "views": 48
     },
     {
       "path": "/مربیان.html",
-      "views": 40
+      "views": 41
     },
     {
       "path": "/محاسبه-گر-پیس.html",
@@ -426,34 +426,34 @@
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "105"
+      "sessions": "106"
     },
     {
       "channel": "Organic Search",
-      "sessions": "89"
+      "sessions": "93"
     },
     {
       "channel": "Organic Social",
-      "sessions": "68"
+      "sessions": "69"
     },
     {
       "channel": "Unassigned",
       "sessions": "1"
     }
   ],
-  "activeUsers": 150,
-  "totalUsers": 152,
+  "activeUsers": 152,
+  "totalUsers": 154,
   "geography": {
     "countries": [
       {
         "country": "Iran",
-        "activeUsers": 56,
-        "sessions": 68
+        "activeUsers": 58,
+        "sessions": 71
       },
       {
         "country": "Germany",
         "activeUsers": 48,
-        "sessions": 136
+        "sessions": 139
       },
       {
         "country": "United States",
@@ -525,14 +525,14 @@
       {
         "country": "Iran",
         "city": "Tehran",
-        "activeUsers": 47,
-        "sessions": 59
+        "activeUsers": 49,
+        "sessions": 62
       },
       {
         "country": "Germany",
         "city": "Berlin",
         "activeUsers": 12,
-        "sessions": 18
+        "sessions": 20
       },
       {
         "country": "Germany",
@@ -594,15 +594,15 @@
   "trafficSources": [
     {
       "sourceMedium": "(direct) / (none)",
-      "sessions": 105
+      "sessions": 106
     },
     {
       "sourceMedium": "google / organic",
-      "sessions": 89
+      "sessions": 93
     },
     {
       "sourceMedium": "ig / social",
-      "sessions": 46
+      "sessions": 47
     },
     {
       "sourceMedium": "t.co / referral",
@@ -638,8 +638,8 @@
   "entryPages": [
     {
       "landingPage": "/index.html",
-      "sessions": 183,
-      "bounceRate": 0.24043715846994534
+      "sessions": 187,
+      "bounceRate": 0.23529411764705882
     },
     {
       "landingPage": "/کلاس-ها.html",
@@ -658,8 +658,8 @@
     },
     {
       "landingPage": "(not set)",
-      "sessions": 5,
-      "bounceRate": 0.8
+      "sessions": 6,
+      "bounceRate": 0.8333333333333334
     },
     {
       "landingPage": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
@@ -688,18 +688,13 @@
     },
     {
       "landingPage": "/وبلاگ.html",
-      "sessions": 2,
-      "bounceRate": 0.5
+      "sessions": 3,
+      "bounceRate": 0.6666666666666666
     },
     {
       "landingPage": "/وبلاگ/تغذیه-دوندگان.html",
       "sessions": 2,
       "bounceRate": 0.5
-    },
-    {
-      "landingPage": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "sessions": 2,
-      "bounceRate": 1
     },
     {
       "landingPage": "/وبلاگ/انتخاب-کفش-دویدن.html",
@@ -708,6 +703,11 @@
     },
     {
       "landingPage": "/وبلاگ/ریکاوری-فعال-یا-استراحت-کامل.html",
+      "sessions": 1,
+      "bounceRate": 0
+    },
+    {
+      "landingPage": "/گالری.html",
       "sessions": 1,
       "bounceRate": 0
     }
