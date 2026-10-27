@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-26T23:06:05.908Z",
-  "startDate": "2026-09-26",
-  "endDate": "2026-10-23",
+  "generatedAt": "2026-10-27T06:13:47.152Z",
+  "startDate": "2026-09-27",
+  "endDate": "2026-10-24",
   "indexStatus": {
     "indexed": 23,
     "pending": 0,
@@ -15,7 +15,7 @@
       "impressions": 1,
       "ctr": 0,
       "position": 10,
-      "views": 8
+      "views": 5
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
@@ -33,7 +33,7 @@
       "impressions": 8,
       "ctr": 0.125,
       "position": 7.5,
-      "views": 49
+      "views": 48
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
@@ -42,7 +42,7 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 7
+      "views": 6
     },
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
@@ -51,7 +51,7 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 21
+      "views": 20
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
@@ -87,7 +87,7 @@
       "impressions": 13,
       "ctr": 0.15384615384615385,
       "position": 7.538461538461538,
-      "views": 33
+      "views": 32
     },
     {
       "url": "/وبلاگ/درد-زانوی-دونده.html",
@@ -141,7 +141,7 @@
       "impressions": 2,
       "ctr": 0,
       "position": 8.5,
-      "views": 6
+      "views": 5
     },
     {
       "url": "/وبلاگ/تغذیه-دوندگان.html",
@@ -168,7 +168,7 @@
       "impressions": 8,
       "ctr": 0,
       "position": 5.875,
-      "views": 43
+      "views": 39
     },
     {
       "url": "/کلاس-ها.html",
@@ -177,7 +177,7 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 158
+      "views": 154
     },
     {
       "url": "/مربیان.html",
@@ -192,19 +192,19 @@
       "url": "/گالری.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
-      "impressions": 28,
-      "ctr": 0.07142857142857142,
-      "position": 6.142857142857143,
+      "impressions": 27,
+      "ctr": 0.07407407407407407,
+      "position": 6.037037037037037,
       "views": 32
     },
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
       "clicks": 26,
-      "impressions": 65,
-      "ctr": 0.4,
-      "position": 1.5538461538461539,
-      "views": 315
+      "impressions": 64,
+      "ctr": 0.40625,
+      "position": 1.5625,
+      "views": 291
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -218,12 +218,6 @@
   ],
   "indexTasks": [],
   "daily": [
-    {
-      "date": "20260926",
-      "sessions": 11,
-      "activeUsers": 6,
-      "pageViews": 42
-    },
     {
       "date": "20260927",
       "sessions": 8,
@@ -379,28 +373,34 @@
       "sessions": 5,
       "activeUsers": 3,
       "pageViews": 13
+    },
+    {
+      "date": "20261024",
+      "sessions": 2,
+      "activeUsers": 1,
+      "pageViews": 2
     }
   ],
   "topPages": [
     {
       "path": "/index.html",
-      "views": 315
+      "views": 291
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 158
+      "views": 154
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": 49
-    },
-    {
-      "path": "/وبلاگ.html",
-      "views": 43
+      "views": 48
     },
     {
       "path": "/مربیان.html",
       "views": 42
+    },
+    {
+      "path": "/وبلاگ.html",
+      "views": 39
     },
     {
       "path": "/محاسبه-گر-پیس.html",
@@ -408,7 +408,7 @@
     },
     {
       "path": "/وبلاگ/آماده-سازی-ماراتن.html",
-      "views": 33
+      "views": 32
     },
     {
       "path": "/گالری.html",
@@ -426,39 +426,39 @@
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "106"
+      "sessions": "102"
     },
     {
       "channel": "Organic Search",
-      "sessions": "90"
+      "sessions": "84"
     },
     {
       "channel": "Organic Social",
-      "sessions": "69"
+      "sessions": "70"
     },
     {
       "channel": "Unassigned",
       "sessions": "1"
     }
   ],
-  "activeUsers": 152,
-  "totalUsers": 154,
+  "activeUsers": 149,
+  "totalUsers": 152,
   "geography": {
     "countries": [
       {
         "country": "Iran",
-        "activeUsers": 58,
-        "sessions": 71
+        "activeUsers": 59,
+        "sessions": 73
       },
       {
         "country": "Germany",
-        "activeUsers": 48,
-        "sessions": 135
+        "activeUsers": 45,
+        "sessions": 126
       },
       {
         "country": "United States",
-        "activeUsers": 23,
-        "sessions": 30
+        "activeUsers": 22,
+        "sessions": 29
       },
       {
         "country": "Netherlands",
@@ -525,14 +525,14 @@
       {
         "country": "Iran",
         "city": "Tehran",
-        "activeUsers": 49,
-        "sessions": 62
+        "activeUsers": 50,
+        "sessions": 64
       },
       {
         "country": "Germany",
         "city": "Berlin",
-        "activeUsers": 12,
-        "sessions": 19
+        "activeUsers": 10,
+        "sessions": 17
       },
       {
         "country": "Germany",
@@ -541,16 +541,16 @@
         "sessions": 9
       },
       {
-        "country": "Germany",
-        "city": "Frankfurt am Main",
-        "activeUsers": 6,
-        "sessions": 15
-      },
-      {
         "country": "France",
         "city": "Paris",
         "activeUsers": 4,
         "sessions": 4
+      },
+      {
+        "country": "Germany",
+        "city": "Frankfurt am Main",
+        "activeUsers": 4,
+        "sessions": 12
       },
       {
         "country": "United States",
@@ -594,15 +594,15 @@
   "trafficSources": [
     {
       "sourceMedium": "(direct) / (none)",
-      "sessions": 106
+      "sessions": 102
     },
     {
       "sourceMedium": "google / organic",
-      "sessions": 90
+      "sessions": 84
     },
     {
       "sourceMedium": "ig / social",
-      "sessions": 47
+      "sessions": 48
     },
     {
       "sourceMedium": "t.co / referral",
@@ -638,8 +638,8 @@
   "entryPages": [
     {
       "landingPage": "/index.html",
-      "sessions": 183,
-      "bounceRate": 0.24043715846994534
+      "sessions": 174,
+      "bounceRate": 0.22988505747126436
     },
     {
       "landingPage": "/کلاس-ها.html",
@@ -652,14 +652,14 @@
       "bounceRate": 0.7
     },
     {
+      "landingPage": "(not set)",
+      "sessions": 7,
+      "bounceRate": 0.8571428571428571
+    },
+    {
       "landingPage": "/محاسبه-گر-پیس.html",
       "sessions": 7,
       "bounceRate": 0.5714285714285714
-    },
-    {
-      "landingPage": "(not set)",
-      "sessions": 6,
-      "bounceRate": 0.8333333333333334
     },
     {
       "landingPage": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
@@ -677,11 +677,6 @@
       "bounceRate": 0.8
     },
     {
-      "landingPage": "/وبلاگ.html",
-      "sessions": 4,
-      "bounceRate": 0.5
-    },
-    {
       "landingPage": "/وبلاگ/آماده-سازی-ماراتن.html",
       "sessions": 4,
       "bounceRate": 0.25
@@ -690,6 +685,11 @@
       "landingPage": "/مربیان.html",
       "sessions": 3,
       "bounceRate": 0
+    },
+    {
+      "landingPage": "/وبلاگ.html",
+      "sessions": 3,
+      "bounceRate": 0.6666666666666666
     },
     {
       "landingPage": "/وبلاگ/تغذیه-دوندگان.html",
