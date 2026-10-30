@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-29T23:15:22.280Z",
-  "startDate": "2026-09-29",
-  "endDate": "2026-10-26",
+  "generatedAt": "2026-10-30T07:03:15.174Z",
+  "startDate": "2026-09-30",
+  "endDate": "2026-10-27",
   "indexStatus": {
     "indexed": 23,
     "pending": 0,
@@ -33,7 +33,7 @@
       "impressions": 8,
       "ctr": 0.125,
       "position": 7.25,
-      "views": 49
+      "views": 48
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
@@ -93,9 +93,9 @@
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 36,
+      "impressions": 37,
       "ctr": 0,
-      "position": 38.94444444444444,
+      "position": 39.054054054054056,
       "views": 4
     },
     {
@@ -177,15 +177,15 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3,
-      "views": 160
+      "views": 159
     },
     {
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
-      "impressions": 32,
-      "ctr": 0.0625,
-      "position": 7.28125,
+      "impressions": 31,
+      "ctr": 0.06451612903225806,
+      "position": 7.290322580645161,
       "views": 45
     },
     {
@@ -201,10 +201,10 @@
       "url": "/",
       "coverageState": "Submitted and indexed",
       "clicks": 28,
-      "impressions": 64,
-      "ctr": 0.4375,
-      "position": 1.609375,
-      "views": 286
+      "impressions": 65,
+      "ctr": 0.4307692307692308,
+      "position": 1.6615384615384614,
+      "views": 282
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -218,12 +218,6 @@
   ],
   "indexTasks": [],
   "daily": [
-    {
-      "date": "20260929",
-      "sessions": 7,
-      "activeUsers": 4,
-      "pageViews": 9
-    },
     {
       "date": "20260930",
       "sessions": 3,
@@ -379,20 +373,26 @@
       "sessions": 5,
       "activeUsers": 3,
       "pageViews": 11
+    },
+    {
+      "date": "20261027",
+      "sessions": 3,
+      "activeUsers": 3,
+      "pageViews": 3
     }
   ],
   "topPages": [
     {
       "path": "/index.html",
-      "views": 286
+      "views": 282
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 160
+      "views": 159
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": 49
+      "views": 48
     },
     {
       "path": "/مربیان.html",
@@ -426,11 +426,11 @@
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "99"
+      "sessions": "97"
     },
     {
       "channel": "Organic Search",
-      "sessions": "88"
+      "sessions": "86"
     },
     {
       "channel": "Organic Social",
@@ -448,17 +448,17 @@
       {
         "country": "Iran",
         "activeUsers": 60,
-        "sessions": 73
+        "sessions": 72
       },
       {
         "country": "Germany",
         "activeUsers": 47,
-        "sessions": 125
+        "sessions": 122
       },
       {
         "country": "United States",
         "activeUsers": 21,
-        "sessions": 28
+        "sessions": 27
       },
       {
         "country": "China",
@@ -532,7 +532,7 @@
         "country": "Germany",
         "city": "Berlin",
         "activeUsers": 10,
-        "sessions": 18
+        "sessions": 15
       },
       {
         "country": "Germany",
@@ -594,15 +594,15 @@
   "trafficSources": [
     {
       "sourceMedium": "(direct) / (none)",
-      "sessions": 99
+      "sessions": 97
     },
     {
       "sourceMedium": "google / organic",
-      "sessions": 88
+      "sessions": 86
     },
     {
       "sourceMedium": "ig / social",
-      "sessions": 48
+      "sessions": 46
     },
     {
       "sourceMedium": "t.co / referral",
@@ -610,14 +610,14 @@
     },
     {
       "sourceMedium": "facebook.com / referral",
-      "sessions": 5
-    },
-    {
-      "sourceMedium": "instagram.com / referral",
-      "sessions": 3
+      "sessions": 6
     },
     {
       "sourceMedium": "m.facebook.com / referral",
+      "sessions": 4
+    },
+    {
+      "sourceMedium": "instagram.com / referral",
       "sessions": 3
     },
     {
@@ -638,13 +638,13 @@
   "entryPages": [
     {
       "landingPage": "/index.html",
-      "sessions": 176,
-      "bounceRate": 0.22727272727272727
+      "sessions": 174,
+      "bounceRate": 0.21839080459770116
     },
     {
       "landingPage": "/کلاس-ها.html",
-      "sessions": 27,
-      "bounceRate": 0.5925925925925926
+      "sessions": 26,
+      "bounceRate": 0.6153846153846154
     },
     {
       "landingPage": "/درباره-ما.html",
@@ -653,8 +653,8 @@
     },
     {
       "landingPage": "(not set)",
-      "sessions": 7,
-      "bounceRate": 0.8571428571428571
+      "sessions": 6,
+      "bounceRate": 0.8333333333333334
     },
     {
       "landingPage": "/محاسبه-گر-پیس.html",
