@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T13:36:05.990Z",
+  "generatedAt": "2026-10-31T22:26:10.367Z",
   "startDate": "2026-10-01",
   "endDate": "2026-10-28",
   "indexStatus": {
@@ -631,13 +631,8 @@
   ],
   "trafficSourcesError": null,
   "realtime": {
-    "activeUsers": 1,
-    "byCountry": [
-      {
-        "country": "Iran",
-        "activeUsers": 1
-      }
-    ]
+    "activeUsers": 0,
+    "byCountry": []
   },
   "realtimeError": null,
   "entryPages": [
