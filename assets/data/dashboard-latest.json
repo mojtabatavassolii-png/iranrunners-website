@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-30T22:56:32.326Z",
-  "startDate": "2026-09-30",
-  "endDate": "2026-10-27",
+  "generatedAt": "2026-10-31T06:56:40.010Z",
+  "startDate": "2026-10-01",
+  "endDate": "2026-10-28",
   "indexStatus": {
-    "indexed": 20,
-    "pending": 3,
+    "indexed": 23,
+    "pending": 0,
     "total": 23
   },
   "pages": [
@@ -55,7 +55,7 @@
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
-      "coverageState": "خطا در بررسی (500)",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 0,
       "ctr": 0,
@@ -78,7 +78,7 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 8
+      "views": 7
     },
     {
       "url": "/وبلاگ/آماده-سازی-ماراتن.html",
@@ -91,11 +91,11 @@
     },
     {
       "url": "/وبلاگ/درد-زانوی-دونده.html",
-      "coverageState": "خطا در بررسی (500)",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 37,
+      "impressions": 39,
       "ctr": 0,
-      "position": 39.054054054054056,
+      "position": 39.07692307692308,
       "views": 4
     },
     {
@@ -118,7 +118,7 @@
     },
     {
       "url": "/وبلاگ/قانون-10-درصد.html",
-      "coverageState": "خطا در بررسی (500)",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -138,9 +138,9 @@
       "url": "/وبلاگ/شروع-دویدن-برای-مبتدیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
-      "position": 8.5,
+      "position": 8.333333333333332,
       "views": 5
     },
     {
@@ -177,16 +177,16 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3,
-      "views": 159
+      "views": 158
     },
     {
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
-      "impressions": 31,
-      "ctr": 0.06451612903225806,
-      "position": 7.290322580645161,
-      "views": 45
+      "impressions": 32,
+      "ctr": 0.0625,
+      "position": 7.09375,
+      "views": 44
     },
     {
       "url": "/گالری.html",
@@ -200,10 +200,10 @@
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
-      "clicks": 28,
-      "impressions": 65,
-      "ctr": 0.4307692307692308,
-      "position": 1.6615384615384614,
+      "clicks": 27,
+      "impressions": 64,
+      "ctr": 0.421875,
+      "position": 1.921875,
       "views": 282
     },
     {
@@ -213,51 +213,11 @@
       "impressions": 14,
       "ctr": 0.14285714285714285,
       "position": 7.642857142857143,
-      "views": 28
+      "views": 27
     }
   ],
-  "indexTasks": [
-    {
-      "url": "/گالری/خاطرات-تیم.html",
-      "coverageState": "خطا در بررسی (500)",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (500)») توی این گزارش نگاشت نشده.",
-        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/درد-زانوی-دونده.html",
-      "coverageState": "خطا در بررسی (500)",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (500)») توی این گزارش نگاشت نشده.",
-        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/وبلاگ/قانون-10-درصد.html",
-      "coverageState": "خطا در بررسی (500)",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (500)») توی این گزارش نگاشت نشده.",
-        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
-        "severity": "warning"
-      }
-    }
-  ],
+  "indexTasks": [],
   "daily": [
-    {
-      "date": "20260930",
-      "sessions": 3,
-      "activeUsers": 3,
-      "pageViews": 5
-    },
     {
       "date": "20261001",
       "sessions": 14,
@@ -413,6 +373,12 @@
       "sessions": 3,
       "activeUsers": 3,
       "pageViews": 3
+    },
+    {
+      "date": "20261028",
+      "sessions": 1,
+      "activeUsers": 1,
+      "pageViews": 1
     }
   ],
   "topPages": [
@@ -422,7 +388,7 @@
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 159
+      "views": 158
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
@@ -430,7 +396,7 @@
     },
     {
       "path": "/مربیان.html",
-      "views": 45
+      "views": 44
     },
     {
       "path": "/وبلاگ.html",
@@ -446,7 +412,7 @@
     },
     {
       "path": "/محاسبه-گر-پیس.html",
-      "views": 28
+      "views": 27
     },
     {
       "path": "/درباره-ما.html",
@@ -460,7 +426,7 @@
   "channels": [
     {
       "channel": "Direct",
-      "sessions": "97"
+      "sessions": "94"
     },
     {
       "channel": "Organic Search",
@@ -468,21 +434,21 @@
     },
     {
       "channel": "Organic Social",
-      "sessions": "69"
+      "sessions": "70"
     },
     {
       "channel": "Unassigned",
       "sessions": "1"
     }
   ],
-  "activeUsers": 153,
-  "totalUsers": 154,
+  "activeUsers": 151,
+  "totalUsers": 152,
   "geography": {
     "countries": [
       {
         "country": "Iran",
-        "activeUsers": 60,
-        "sessions": 72
+        "activeUsers": 58,
+        "sessions": 70
       },
       {
         "country": "Germany",
@@ -495,14 +461,14 @@
         "sessions": 27
       },
       {
-        "country": "China",
-        "activeUsers": 6,
-        "sessions": 6
-      },
-      {
         "country": "Netherlands",
         "activeUsers": 6,
         "sessions": 8
+      },
+      {
+        "country": "China",
+        "activeUsers": 5,
+        "sessions": 5
       },
       {
         "country": "France",
@@ -515,12 +481,12 @@
         "sessions": 3
       },
       {
-        "country": "Türkiye",
-        "activeUsers": 2,
-        "sessions": 2
+        "country": "United Kingdom",
+        "activeUsers": 3,
+        "sessions": 3
       },
       {
-        "country": "United Kingdom",
+        "country": "Türkiye",
         "activeUsers": 2,
         "sessions": 2
       },
@@ -559,8 +525,8 @@
       {
         "country": "Iran",
         "city": "Tehran",
-        "activeUsers": 51,
-        "sessions": 64
+        "activeUsers": 49,
+        "sessions": 62
       },
       {
         "country": "Germany",
@@ -628,7 +594,7 @@
   "trafficSources": [
     {
       "sourceMedium": "(direct) / (none)",
-      "sessions": 97
+      "sessions": 94
     },
     {
       "sourceMedium": "google / organic",
@@ -636,7 +602,7 @@
     },
     {
       "sourceMedium": "ig / social",
-      "sessions": 46
+      "sessions": 47
     },
     {
       "sourceMedium": "t.co / referral",
@@ -692,8 +658,8 @@
     },
     {
       "landingPage": "/محاسبه-گر-پیس.html",
-      "sessions": 6,
-      "bounceRate": 0.6666666666666666
+      "sessions": 5,
+      "bounceRate": 0.6
     },
     {
       "landingPage": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
@@ -721,11 +687,6 @@
       "bounceRate": 0.6666666666666666
     },
     {
-      "landingPage": "/مربیان.html",
-      "sessions": 2,
-      "bounceRate": 0
-    },
-    {
       "landingPage": "/وبلاگ/تغذیه-دوندگان.html",
       "sessions": 2,
       "bounceRate": 0.5
@@ -734,6 +695,11 @@
       "landingPage": "/وبلاگ/انتخاب-کفش-دویدن.html",
       "sessions": 2,
       "bounceRate": 1
+    },
+    {
+      "landingPage": "/مربیان.html",
+      "sessions": 1,
+      "bounceRate": 0
     },
     {
       "landingPage": "/وبلاگ/ریکاوری-فعال-یا-استراحت-کامل.html",
