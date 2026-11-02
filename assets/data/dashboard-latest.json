@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T07:37:18.486Z",
+  "generatedAt": "2026-11-02T22:17:44.805Z",
   "startDate": "2026-10-03",
   "endDate": "2026-10-30",
   "indexStatus": {
@@ -716,7 +716,7 @@
     },
     {
       "className": "کلاس های غیرحضوری (خارج از ایران)",
-      "clicks": 1
+      "clicks": 2
     }
   ],
   "classInterestDaily": [
@@ -744,6 +744,11 @@
       "date": "20261020",
       "className": "کلاس های حضوری پارک پردیسان",
       "clicks": 1
+    },
+    {
+      "date": "20261102",
+      "className": "کلاس های غیرحضوری (خارج از ایران)",
+      "clicks": 1
     }
   ],
   "classInterestByType": [
@@ -753,7 +758,7 @@
     },
     {
       "type": "غیرحضوری",
-      "clicks": 1
+      "clicks": 2
     }
   ],
   "classInterestError": null,
