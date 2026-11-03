@@ -807,6 +807,22 @@ footer.site-footer {
 @media (max-width: 700px) {
   .rotating-header { min-height: 560px; }
 }
+@media (max-width: 480px) {
+  /* Hero CTA buttons only (.hero .cta-row) - .btn-primary/.btn-ghost are
+     reused elsewhere (coaches page, class/post register CTAs) and must stay
+     at their normal size there; min-height keeps the touch target readable
+     even though the padding/font-size shrink. */
+  .hero .cta-row { gap: 10px; }
+  .hero .cta-row a {
+    padding: 9px 16px;
+    font-size: 0.85rem;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
 
 /* ---------- article / blog post page ---------- */
 .breadcrumb {
