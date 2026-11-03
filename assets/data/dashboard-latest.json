@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-02T22:17:44.805Z",
-  "startDate": "2026-10-03",
-  "endDate": "2026-10-30",
+  "generatedAt": "2026-11-03T07:51:52.716Z",
+  "startDate": "2026-10-04",
+  "endDate": "2026-10-31",
   "indexStatus": {
     "indexed": 23,
     "pending": 0,
@@ -30,10 +30,10 @@
       "url": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 1,
-      "impressions": 9,
-      "ctr": 0.1111111111111111,
-      "position": 7.333333333333333,
-      "views": 41
+      "impressions": 8,
+      "ctr": 0.125,
+      "position": 7.625,
+      "views": 42
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
@@ -51,7 +51,7 @@
       "impressions": 1,
       "ctr": 0,
       "position": 9,
-      "views": 17
+      "views": 18
     },
     {
       "url": "/گالری/خاطرات-تیم.html",
@@ -93,9 +93,9 @@
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 42,
+      "impressions": 44,
       "ctr": 0,
-      "position": 39.07142857142857,
+      "position": 39.11363636363637,
       "views": 4
     },
     {
@@ -132,7 +132,7 @@
       "impressions": 0,
       "ctr": 0,
       "position": null,
-      "views": 3
+      "views": 4
     },
     {
       "url": "/وبلاگ/شروع-دویدن-برای-مبتدیان.html",
@@ -177,15 +177,15 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3,
-      "views": 151
+      "views": 152
     },
     {
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
-      "impressions": 30,
-      "ctr": 0.06666666666666667,
-      "position": 7.266666666666667,
+      "impressions": 31,
+      "ctr": 0.06451612903225806,
+      "position": 7.419354838709677,
       "views": 45
     },
     {
@@ -200,30 +200,24 @@
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
-      "clicks": 27,
-      "impressions": 62,
-      "ctr": 0.43548387096774194,
-      "position": 2.096774193548387,
-      "views": 273
+      "clicks": 28,
+      "impressions": 63,
+      "ctr": 0.4444444444444444,
+      "position": 2.079365079365079,
+      "views": 272
     },
     {
       "url": "/محاسبه-گر-پیس.html",
       "coverageState": "Submitted and indexed",
       "clicks": 3,
-      "impressions": 15,
-      "ctr": 0.2,
-      "position": 7.2,
+      "impressions": 17,
+      "ctr": 0.17647058823529413,
+      "position": 7.235294117647059,
       "views": 27
     }
   ],
   "indexTasks": [],
   "daily": [
-    {
-      "date": "20261003",
-      "sessions": 2,
-      "activeUsers": 2,
-      "pageViews": 4
-    },
     {
       "date": "20261004",
       "sessions": 3,
@@ -379,27 +373,33 @@
       "sessions": 3,
       "activeUsers": 3,
       "pageViews": 4
+    },
+    {
+      "date": "20261031",
+      "sessions": 2,
+      "activeUsers": 2,
+      "pageViews": 7
     }
   ],
   "topPages": [
     {
       "path": "/index.html",
-      "views": 273
+      "views": 272
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 151
+      "views": 152
     },
     {
       "path": "/مربیان.html",
       "views": 45
     },
     {
-      "path": "/وبلاگ.html",
-      "views": 41
+      "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "views": 42
     },
     {
-      "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
+      "path": "/وبلاگ.html",
       "views": 41
     },
     {
@@ -425,12 +425,12 @@
   ],
   "channels": [
     {
-      "channel": "Direct",
-      "sessions": "86"
+      "channel": "Organic Search",
+      "sessions": "87"
     },
     {
-      "channel": "Organic Search",
-      "sessions": "85"
+      "channel": "Direct",
+      "sessions": "84"
     },
     {
       "channel": "Organic Social",
@@ -441,7 +441,7 @@
       "sessions": "1"
     }
   ],
-  "activeUsers": 141,
+  "activeUsers": 140,
   "totalUsers": 143,
   "geography": {
     "countries": [
@@ -452,7 +452,7 @@
       },
       {
         "country": "Germany",
-        "activeUsers": 45,
+        "activeUsers": 44,
         "sessions": 116
       },
       {
@@ -525,14 +525,14 @@
       {
         "country": "Iran",
         "city": "Tehran",
-        "activeUsers": 47,
-        "sessions": 59
+        "activeUsers": 46,
+        "sessions": 58
       },
       {
         "country": "Germany",
         "city": "Berlin",
         "activeUsers": 9,
-        "sessions": 15
+        "sessions": 16
       },
       {
         "country": "Germany",
@@ -593,12 +593,12 @@
   "geographyError": null,
   "trafficSources": [
     {
-      "sourceMedium": "(direct) / (none)",
-      "sessions": 86
+      "sourceMedium": "google / organic",
+      "sessions": 87
     },
     {
-      "sourceMedium": "google / organic",
-      "sessions": 85
+      "sourceMedium": "(direct) / (none)",
+      "sessions": 84
     },
     {
       "sourceMedium": "ig / social",
@@ -639,8 +639,8 @@
     },
     {
       "landingPage": "/کلاس-ها.html",
-      "sessions": 25,
-      "bounceRate": 0.64
+      "sessions": 24,
+      "bounceRate": 0.625
     },
     {
       "landingPage": "/درباره-ما.html",
@@ -678,6 +678,11 @@
       "bounceRate": 0.5
     },
     {
+      "landingPage": "/وبلاگ/ریکاوری-فعال-یا-استراحت-کامل.html",
+      "sessions": 2,
+      "bounceRate": 0
+    },
+    {
       "landingPage": "/کلاس-ها/کلاس-های-غیرحضوری-داخل-ایران.html",
       "sessions": 2,
       "bounceRate": 1
@@ -691,11 +696,6 @@
       "landingPage": "/وبلاگ/انتخاب-کفش-دویدن.html",
       "sessions": 1,
       "bounceRate": 1
-    },
-    {
-      "landingPage": "/وبلاگ/ریکاوری-فعال-یا-استراحت-کامل.html",
-      "sessions": 1,
-      "bounceRate": 0
     },
     {
       "landingPage": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
