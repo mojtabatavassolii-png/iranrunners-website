@@ -1,0 +1,39 @@
+# فهرست رقبا برای بخش «مقایسه با سایت‌های موفق» در داشبورد سئو.
+# هر بار که مقایسه اجرا می‌شه، ایجنت با جست‌وجوی کلیدواژه‌ها سعی می‌کنه
+# این فهرست رو تا ۵ تا ۸ سایت پر کنه؛ سایت‌های pinned همیشه هستن،
+# سایت‌های excluded هیچ‌وقت پیشنهاد نمی‌شن.
+
+pinned:
+  - url: https://runningislove.com
+    name: "دویدن عشق است"
+    reason: "رقیب فارسی مستقیم، اختصاصاً درباره دویدن"
+  - url: https://parsrunning.com
+    name: "پارس رانینگ"
+    reason: "رقیب فارسی مستقیم، اختصاصاً درباره دویدن"
+  - url: https://fitamin.ir
+    name: "فیتامین"
+    reason: "مجله ورزشی فارسی، رتبه بالا برای کلیدواژه‌های اصلی ما"
+  - url: https://mojekooh.com
+    name: "موج کوه"
+    reason: "محتوای کوهنوردی/دویدن فارسی، رتبه بالا برای «آموزش دویدن»"
+  - url: https://marathonhandbook.com
+    name: "Marathon Handbook"
+    reason: "مرجع بین‌المللی شاخص، اختصاصاً درباره دویدن/ماراتن"
+  - url: https://runnersworld.com
+    name: "Runner's World"
+    reason: "شناخته‌شده‌ترین نشریه بین‌المللی دویدن"
+  - url: https://womensrunning.com
+    name: "Women's Running"
+    reason: "نشریه تثبیت‌شده بین‌المللی دویدن"
+
+excluded: []
+
+keywords:
+  - "آموزش دویدن"
+  - "برنامه تمرین ماراتن"
+  - "کلاس دویدن"
+  - "تغذیه دونده"
+  - "آسیب دونده"
+  - "marathon training plan"
+  - "beginner running guide"
+  - "running injury prevention"

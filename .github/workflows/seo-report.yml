@@ -38,6 +38,11 @@ jobs:
           SITE_URL: "https://iranrunners.com"
         run: node scripts/generate_seo_report.js
 
+      - name: TEMP one-off - fetch competitor comparison data
+        env:
+          PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
+        run: node scripts/fetch_competitor_data.js
+
       - name: Commit report
         run: |
           git config user.name "github-actions[bot]"

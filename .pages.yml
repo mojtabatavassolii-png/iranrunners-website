@@ -403,6 +403,43 @@ content:
         type: string
 
   # ===========================================================
+  # رقبا (بخش «مقایسه با سایت‌های موفق» در داشبورد سئو)
+  # ===========================================================
+  - name: competitors
+    label: "رقبا (داشبورد سئو)"
+    type: file
+    path: _data/competitors.yml
+    fields:
+      - name: pinned
+        label: "سایت‌هایی که همیشه در مقایسه باشن"
+        type: object
+        list: true
+        fields:
+          - name: url
+            label: "آدرس سایت (کامل، با https://)"
+            type: string
+            required: true
+
+          - name: name
+            label: "اسم سایت"
+            type: string
+            required: true
+
+          - name: reason
+            label: "چرا این سایت؟"
+            type: string
+
+      - name: excluded
+        label: "سایت‌هایی که هیچ‌وقت پیشنهاد نشن (هر خط یک آدرس)"
+        type: string
+        list: true
+
+      - name: keywords
+        label: "کلیدواژه‌هایی که برای پیدا کردن رقبا جست‌وجو می‌شن (هر خط یکی)"
+        type: string
+        list: true
+
+  # ===========================================================
   # محاسبه‌گر پیس
   # ===========================================================
   - name: pace_calculator
