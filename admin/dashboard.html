@@ -169,6 +169,18 @@ sitemap: false
   .task-note { color: var(--muted); font-size: 0.82rem; margin-top: 6px; font-style: italic; }
   .task-coverage { color: var(--faint); font-size: 0.75rem; margin-top: 6px; }
 
+  .competitor-list { list-style: none; margin: 0 0 4px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .competitor-list li {
+    font-size: 0.9rem; line-height: 1.8; padding: 10px 14px; border-radius: 10px;
+    text-align: justify; text-align-last: right;
+  }
+  .competitor-list.good li { background: #e7f7ee; color: var(--black); border-right: 3px solid var(--good); }
+  .competitor-list.warn li { background: #fdf3e0; color: var(--black); border-right: 3px solid var(--warn); }
+  .competitor-list.speculative li { background: var(--panel); color: var(--muted); border-right: 3px solid var(--faint); font-style: italic; }
+  .competitor-recs { margin: 0; padding-inline-start: 22px; display: flex; flex-direction: column; gap: 10px; }
+  .competitor-recs li { font-size: 0.92rem; line-height: 1.8; text-align: justify; text-align-last: right; }
+  #competitor-table td.site-us { font-weight: 700; color: var(--red-text); }
+
   @media (max-width: 560px) {
     .chart-wrap { height: 220px; }
   }
@@ -338,6 +350,45 @@ sitemap: false
     <div class="chart-wrap"><canvas id="chart-classes-type"></canvas></div>
     <p class="note" id="classes-type-note"></p>
   </div>
+
+  <h2 class="section-title">مقایسه با سایت‌های موفق</h2>
+
+  <div class="panel">
+    <p class="note" id="competitor-status">هنوز هیچ مقایسه‌ای اجرا نشده.</p>
+    <p class="note">
+      این بخش داده‌ش رو از workflow دستی <code class="mono">competitor-comparison.yml</code> می‌گیره
+      (از تب Actions گیت‌هاب، یا با گفتن «مقایسه با رقبا رو اجرا کن» به کلود). رقبا توی
+      <code class="mono">_data/competitors.yml</code> قابل‌ویرایشن (از پنل Pages CMS).
+    </p>
+  </div>
+
+  <div class="panel" id="competitor-table-panel" style="display:none;">
+    <h2>داده‌ی خام (قطعی — مستقیم از صفحه‌ی اصلی هر سایت)</h2>
+    <div style="overflow-x:auto;">
+      <table id="competitor-table">
+        <thead>
+          <tr><th>سایت</th><th>طول عنوان</th><th>طول متا</th><th>H1/H2/H3</th><th>تعداد کلمه</th><th>Schema</th><th>Sitemap</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel" id="competitor-narrative-panel" style="display:none;">
+    <h2>نقاط قوت ما <span style="color:var(--good);font-size:0.8rem;font-weight:400;">(قطعی)</span></h2>
+    <ul class="competitor-list good" id="competitor-strengths"></ul>
+
+    <h2 style="margin-top:22px;">نقاط ضعف نسبت به رقبا <span style="color:var(--warn);font-size:0.8rem;font-weight:400;">(قطعی)</span></h2>
+    <ul class="competitor-list warn" id="competitor-weaknesses"></ul>
+
+    <h2 style="margin-top:22px;">تحلیل و احتمالات <span style="color:var(--faint);font-size:0.8rem;font-weight:400;">(حدسی — از بیرون قابل‌اثبات نیست)</span></h2>
+    <ul class="competitor-list speculative" id="competitor-speculative"></ul>
+  </div>
+
+  <div class="panel" id="competitor-recommendations-panel" style="display:none;">
+    <h2>پیشنهادهای عملی (به ترتیب اولویت)</h2>
+    <ol class="competitor-recs" id="competitor-recommendations"></ol>
+  </div>
 </div>
 
 <div id="pdf-stage"></div>
@@ -368,6 +419,7 @@ sitemap: false
   // can build the report from the same data already fetched for the charts,
   // instead of fetching dashboard-latest.json a second time.
   var DASHBOARD_DATA = null;
+  var DASHBOARD_COMPETITOR_DATA = null;
 
   var PASSWORD_HASH = "ec305cadce0f3ed00f38c606485b336bad334d486d57585aae7640b1d904afc9";
   // sha-256 hash of the admin password, checked client-side. This is a light
@@ -417,6 +469,14 @@ sitemap: false
   function fa(n) {
     return String(n).replace(/[0-9]/g, function (d) { return PERSIAN_DIGITS[d]; });
   }
+  // Narrative text (competitor comparison) is free-form prose that can
+  // legitimately contain "<title>"-style tag names as plain words - without
+  // escaping, the browser parses those as real HTML and swallows the rest
+  // of the sentence.
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
   function formatDashDate(yyyymmdd) {
     // "20261006" -> "1405/07/14"-style is overkill here; just show as-is grouped.
     if (!yyyymmdd || yyyymmdd.length !== 8) return yyyymmdd;
@@ -443,6 +503,63 @@ sitemap: false
       updatedEl.textContent = 'نتونستم داده گزارش رو بخونم: ' + (err.message || err) + ' — هنوز گزارشی اجرا نشده یا فایل در دسترس نیست.';
       updatedEl.className = 'sub err';
     }
+    loadCompetitorComparison();
+  }
+
+  // Separate file, separate cadence (manual, not every 6h) - missing is a
+  // normal "never run yet" state, not an error, so it fails quietly into
+  // the default "هنوز هیچ مقایسه‌ای اجرا نشده" message already in the HTML.
+  async function loadCompetitorComparison() {
+    try {
+      var res = await fetch('{{ "/assets/data/competitor-comparison-latest.json" | relative_url }}', { cache: 'no-store' });
+      if (!res.ok) return;
+      var data = await res.json();
+      renderCompetitorComparison(data);
+      DASHBOARD_COMPETITOR_DATA = data;
+    } catch (err) {
+      // stays on the default "not run yet" message
+    }
+  }
+
+  function renderCompetitorComparison(data) {
+    var statusEl = document.getElementById('competitor-status');
+    var gen = data.generatedAt ? new Date(data.generatedAt).toLocaleString('fa-IR') : data.date;
+    statusEl.textContent = 'آخرین اجرا: ' + gen + ' — ' + fa((data.sites || []).length - 1) + ' رقیب بررسی شد.';
+
+    var tbody = document.querySelector('#competitor-table tbody');
+    tbody.innerHTML = (data.sites || []).map(function (s) {
+      if (s.blockedByRobots) {
+        return '<tr><td class="' + (s.isUs ? 'site-us' : '') + '">' + s.name + '</td><td colspan="6">robots.txt اجازه‌ی بررسی نداد</td></tr>';
+      }
+      if (s.fetchError || !s.httpStatus || s.httpStatus >= 400) {
+        return '<tr><td class="' + (s.isUs ? 'site-us' : '') + '">' + s.name + '</td><td colspan="6">نتونستیم بگیریم (' + (s.fetchError || ('HTTP ' + s.httpStatus)) + ')</td></tr>';
+      }
+      var schema = s.hasJsonLd ? '✅ ' + (s.jsonLdTypes || []).join(', ') : '❌';
+      var sitemap = s.hasSitemap === null ? 'robots.txt مسدود کرد' : s.hasSitemap ? fa(s.sitemapUrlCount) + (s.isSitemapIndex ? ' (index)' : '') : '❌';
+      return '<tr>' +
+        '<td class="' + (s.isUs ? 'site-us' : '') + '">' + s.name + '</td>' +
+        '<td>' + fa(s.titleLength || 0) + '</td>' +
+        '<td>' + fa(s.metaDescriptionLength || 0) + '</td>' +
+        '<td>' + fa(s.h1Count || 0) + '/' + fa(s.h2Count || 0) + '/' + fa(s.h3Count || 0) + '</td>' +
+        '<td>' + fa(s.wordCountHomepage || 0) + '</td>' +
+        '<td>' + schema + '</td>' +
+        '<td>' + sitemap + '</td>' +
+      '</tr>';
+    }).join('');
+    document.getElementById('competitor-table-panel').style.display = 'block';
+
+    var n = data.narrative || {};
+    function fillList(elId, items) {
+      document.getElementById(elId).innerHTML = (items || []).map(function (it) { return '<li>' + escapeHtml(it.text) + '</li>'; }).join('');
+    }
+    fillList('competitor-strengths', n.strengths);
+    fillList('competitor-weaknesses', n.weaknesses);
+    fillList('competitor-speculative', n.speculative);
+    document.getElementById('competitor-narrative-panel').style.display = 'block';
+
+    var recsSorted = (n.recommendations || []).slice().sort(function (a, b) { return a.priority - b.priority; });
+    document.getElementById('competitor-recommendations').innerHTML = recsSorted.map(function (r) { return '<li>' + escapeHtml(r.text) + '</li>'; }).join('');
+    document.getElementById('competitor-recommendations-panel').style.display = 'block';
   }
 
   function render(data) {
@@ -871,6 +988,55 @@ sitemap: false
       }),
       'هنوز داده‌ای برای مقالات وبلاگ موجود نیست.'
     ) });
+
+    // Competitor comparison - separate file, only added if that workflow
+    // has actually been run at least once.
+    if (DASHBOARD_COMPETITOR_DATA) {
+      var cdata = DASHBOARD_COMPETITOR_DATA;
+      var compHeading = document.createElement('div');
+      compHeading.className = 'pdf-block';
+      compHeading.innerHTML = '<h2>مقایسه با سایت‌های موفق</h2><p class="pdf-muted">آخرین اجرا: ' + (cdata.date || '') + '</p>';
+      items.push({ type: 'node', el: compHeading });
+
+      items.push({ type: 'node', el: buildPdfTableBlock(
+        'داده‌ی خام (قطعی)',
+        ['سایت', 'طول عنوان', 'طول متا', 'H1/H2/H3', 'تعداد کلمه', 'Schema', 'Sitemap'],
+        (cdata.sites || []).map(function (s) {
+          if (s.blockedByRobots || s.fetchError || !s.httpStatus || s.httpStatus >= 400) {
+            return [s.name, 'داده‌ای در دسترس نبود', '', '', '', '', ''];
+          }
+          return [
+            s.name, fa(s.titleLength || 0), fa(s.metaDescriptionLength || 0),
+            fa(s.h1Count || 0) + '/' + fa(s.h2Count || 0) + '/' + fa(s.h3Count || 0),
+            fa(s.wordCountHomepage || 0), s.hasJsonLd ? '✅' : '❌',
+            s.hasSitemap ? fa(s.sitemapUrlCount) : '❌',
+          ];
+        })
+      ) });
+
+      var n = cdata.narrative || {};
+      var narrBlock = document.createElement('div');
+      narrBlock.className = 'pdf-block';
+      function narrSection(title, list) {
+        if (!list || !list.length) return '';
+        return '<h2 style="font-size:14px;margin-top:14px;">' + title + '</h2><ul style="margin:0;padding-inline-start:18px;">' +
+          list.map(function (it) { return '<li style="margin-bottom:6px;">' + escapeHtml(it.text) + '</li>'; }).join('') + '</ul>';
+      }
+      narrBlock.innerHTML =
+        narrSection('نقاط قوت (قطعی)', n.strengths) +
+        narrSection('نقاط ضعف (قطعی)', n.weaknesses) +
+        narrSection('تحلیل و احتمالات (حدسی)', n.speculative);
+      items.push({ type: 'node', el: narrBlock });
+
+      // Numbers are written as plain text (not relied on as <ol> markers) -
+      // html2canvas does not reliably paint native list-item counters.
+      var recsSorted = (n.recommendations || []).slice().sort(function (a, b) { return a.priority - b.priority; });
+      var recsBlock = document.createElement('div');
+      recsBlock.className = 'pdf-block';
+      recsBlock.innerHTML = '<h2>پیشنهادهای عملی (اولویت‌بندی‌شده)</h2>' +
+        recsSorted.map(function (r, i) { return '<p style="margin:0 0 8px;">' + fa(i + 1) + '. ' + escapeHtml(r.text) + '</p>'; }).join('');
+      items.push({ type: 'node', el: recsBlock });
+    }
 
     return items;
   }
