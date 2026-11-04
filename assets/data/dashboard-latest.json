@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-04T07:27:42.934Z",
+  "generatedAt": "2026-11-04T09:34:33.612Z",
   "startDate": "2026-10-05",
   "endDate": "2026-11-01",
   "indexStatus": {
@@ -627,8 +627,13 @@
   ],
   "trafficSourcesError": null,
   "realtime": {
-    "activeUsers": 0,
-    "byCountry": []
+    "activeUsers": 1,
+    "byCountry": [
+      {
+        "country": "Germany",
+        "activeUsers": 1
+      }
+    ]
   },
   "realtimeError": null,
   "entryPages": [
