@@ -1,0 +1,451 @@
+---
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>ابزار سئوی صفحه | ایران رانرز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #e8121a;
+    --red-text: #b80e14;
+    --black: #111111;
+    --muted: #555555;
+    --faint: #6b6b6b;
+    --panel: #f6f6f6;
+    --border: #e6e6e6;
+    --good: #147a3d;
+    --warn: #8a5400;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #ffffff; color: var(--black);
+    font-family: "Vazirmatn", "Tahoma", sans-serif;
+    direction: rtl;
+  }
+  .mono { font-family: "JetBrains Mono", monospace; direction: ltr; display: inline-block; letter-spacing: -0.02em; }
+
+  #gate {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  #gate .box { max-width: 360px; width: 100%; text-align: center; }
+  #gate h1 { font-size: 1.3rem; margin-bottom: 10px; }
+  #gate p { color: var(--muted); font-size: 0.9rem; margin-bottom: 22px; }
+  #gate input {
+    width: 100%; padding: 14px 16px; border-radius: 12px;
+    border: 1px solid #ddd; font-size: 1rem; font-family: inherit;
+    margin-bottom: 14px; text-align: center;
+  }
+  #gate button {
+    width: 100%; padding: 14px 16px; border-radius: 999px; border: none;
+    background: var(--red); color: #fff; font-weight: 700; font-size: 1rem;
+    font-family: inherit; cursor: pointer;
+  }
+  #gate .error { color: var(--red); font-size: 0.85rem; margin-top: 10px; min-height: 1.2em; }
+
+  #app { display: none; max-width: 860px; margin: 0 auto; padding: 32px 16px 100px; }
+  #app h1 { font-size: 1.4rem; margin-bottom: 4px; }
+  #app .sub { color: var(--muted); font-size: 0.86rem; margin-bottom: 24px; }
+
+  .panel {
+    border: 1px solid var(--border); border-radius: 16px; padding: 20px;
+    margin-bottom: 20px; background: #fff;
+  }
+  .panel h2 { font-size: 1rem; margin: 0 0 14px; }
+  .panel .note { color: var(--muted); font-size: 0.85rem; margin-top: 10px; line-height: 1.8; text-align: justify; text-align-last: right; }
+  .panel .note.err { color: var(--red); }
+
+  .field-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  select, input[type=text] {
+    flex: 1; min-width: 200px; padding: 10px 14px; border-radius: 10px;
+    border: 1px solid var(--border); font-family: inherit; font-size: 0.9rem;
+  }
+  .btn-analyze {
+    padding: 10px 24px; border-radius: 999px; border: none;
+    background: var(--red); color: #fff; font-weight: 700; font-size: 0.9rem;
+    font-family: inherit; cursor: pointer;
+  }
+  .btn-analyze:disabled { opacity: 0.6; cursor: default; }
+
+  /* google-style live preview */
+  /* content here is Persian, not Latin, so this isn't forced ltr like a
+     real Google SERP card would be for an English site */
+  .serp-preview { padding: 6px 0; }
+  /* direction:ltr (not the .mono monospace class - JetBrains Mono can't
+     shape Persian glyphs, which garbles mixed domain+Persian-path text)
+     keeps the domain anchored first, matching how a URL is actually read. */
+  .serp-url { color: #202124; font-size: 0.8rem; font-family: arial, sans-serif; direction: ltr; text-align: left; }
+  .serp-title {
+    color: #1a0dab; font-size: 1.15rem; font-family: arial, sans-serif;
+    margin: 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .serp-desc { color: #4d5156; font-size: 0.82rem; font-family: arial, sans-serif; line-height: 1.5; }
+
+  .counter { font-size: 0.78rem; margin-top: 4px; }
+  .counter.good { color: var(--good); }
+  .counter.warn { color: var(--warn); }
+  .counter.bad { color: var(--red); }
+
+  .field-box { margin-bottom: 18px; }
+  .field-box label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
+  .field-box .value-box {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 14px; font-size: 0.9rem; min-height: 1.4em; word-break: break-word;
+  }
+
+  .checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px;
+    border-radius: 10px; font-size: 0.88rem; line-height: 1.7;
+    text-align: justify; text-align-last: right;
+  }
+  .checklist li.ok { background: #e7f7ee; color: var(--black); }
+  .checklist li.warn { background: #fdf3e0; color: var(--black); }
+  .checklist li.bad { background: #fdeaea; color: var(--black); }
+  .checklist .dot { flex-shrink: 0; font-size: 1rem; line-height: 1.5; }
+
+  .keyword-row { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+  .keyword-row label { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+
+  @media (max-width: 560px) {
+    .field-row { flex-direction: column; }
+    select, input[type=text] { min-width: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="box">
+    <h1>ابزار سئوی صفحه</h1>
+    <p>این صفحه فقط برای مدیر سایته. رمز رو وارد کن.</p>
+    <input type="password" id="pw-input" placeholder="رمز عبور" autocomplete="off">
+    <button id="pw-submit">ورود</button>
+    <div class="error" id="pw-error"></div>
+  </div>
+</div>
+
+<div id="app">
+  <h1>ابزار سئوی صفحه</h1>
+  <p class="sub">
+    تحلیل زنده‌ی سئوی هر صفحه از روی نسخه‌ی منتشرشده‌ی همون صفحه — مثل Yoast، ولی فقط نمایش و تحلیل.
+    برای تغییر عنوان/توضیح متا/کلیدواژه، از <a href="https://app.pagescms.org" target="_blank" rel="noopener">Pages CMS</a> استفاده کن
+    (این ابزار چیزی رو ذخیره نمی‌کنه — دلیلش رو پایین توضیح دادم).
+  </p>
+
+  <div class="panel">
+    <h2>انتخاب صفحه</h2>
+    <div class="field-row">
+      <select id="page-select"><option value="">در حال بارگذاری فهرست صفحات...</option></select>
+      <input type="text" id="page-url-manual" placeholder="یا آدرس رو دستی بنویس، مثلاً /کلاس-ها.html">
+      <button class="btn-analyze" id="analyze-btn">تحلیل کن</button>
+    </div>
+    <p class="note" id="tool-status"></p>
+  </div>
+
+  <div id="result" style="display:none;">
+    <div class="panel">
+      <h2>پیش‌نمایش نتیجه در گوگل</h2>
+      <div class="serp-preview">
+        <div class="serp-url" id="serp-url"></div>
+        <div class="serp-title" id="serp-title"></div>
+        <div class="serp-desc" id="serp-desc"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>کلیدواژه‌ی اصلی</h2>
+      <div class="keyword-row">
+        <label for="keyword-input">کلیدواژه برای بررسی چک‌لیست:</label>
+        <input type="text" id="keyword-input" placeholder="مثلاً «کلاس دویدن»">
+      </div>
+
+      <div class="field-box">
+        <label>عنوان سئو (title)</label>
+        <div class="value-box" id="field-title"></div>
+        <div class="counter" id="counter-title"></div>
+      </div>
+
+      <div class="field-box">
+        <label>توضیح متا (meta description)</label>
+        <div class="value-box" id="field-desc"></div>
+        <div class="counter" id="counter-desc"></div>
+      </div>
+
+      <div class="field-box">
+        <label>آدرس صفحه</label>
+        <div class="value-box" id="field-url" style="direction:ltr;text-align:left;"></div>
+        <div class="counter" id="counter-url"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>چک‌لیست سئو</h2>
+      <p class="note">
+        چک‌لیست ساختاری و کلیدواژه‌محوره، نه فرمول خوانایی انگلیسی (که برای فارسی بی‌معنیه).
+      </p>
+      <ul class="checklist" id="checklist"></ul>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>چرا این ابزار خودش ذخیره نمی‌کنه</h2>
+    <p class="note">
+      سایت استاتیک روی GitHub Pagesه، بدون سرور. یک دکمه‌ی «ذخیره» که مستقیم از مرورگر با توکن گیت‌هاب
+      کامیت بزنه یعنی اون توکن باید توی جاوااسکریپت همین صفحه باشه — و هر توکنی که توی مرورگر باشه،
+      با یک نگاه به Network tab قابل‌دزدیدنه. به‌جاش، تغییرات از طریق Pages CMS (که توکن رو امن و سمت
+      سرور خودش نگه می‌داره) ذخیره می‌شن؛ این ابزار فقط کمک می‌کنه بفهمی چی رو باید عوض کنی.
+      بعد از ذخیره توی Pages CMS، معمولاً چند دقیقه طول می‌کشه تا GitHub Pages دوباره build کنه و
+      تغییر روی سایت واقعی دیده بشه.
+    </p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var PASSWORD_HASH = "ec305cadce0f3ed00f38c606485b336bad334d486d57585aae7640b1d904afc9";
+
+  async function sha256(text) {
+    var enc = new TextEncoder().encode(text);
+    var buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+
+  var gate = document.getElementById('gate');
+  var app = document.getElementById('app');
+
+  async function tryUnlock(pw) {
+    var hash = await sha256(pw);
+    if (hash === PASSWORD_HASH) {
+      sessionStorage.setItem('seo-tool-admin-ok', '1');
+      gate.style.display = 'none';
+      app.style.display = 'block';
+      init();
+      return true;
+    }
+    return false;
+  }
+
+  if (sessionStorage.getItem('seo-tool-admin-ok') === '1') {
+    gate.style.display = 'none';
+    app.style.display = 'block';
+    init();
+  }
+
+  document.getElementById('pw-submit').addEventListener('click', submitPw);
+  document.getElementById('pw-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') submitPw();
+  });
+  async function submitPw() {
+    var pw = document.getElementById('pw-input').value;
+    var ok = await tryUnlock(pw);
+    if (!ok) document.getElementById('pw-error').textContent = 'رمز اشتباهه.';
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function init() {
+    loadPageList();
+    document.getElementById('analyze-btn').addEventListener('click', runAnalysis);
+    document.getElementById('keyword-input').addEventListener('input', renderChecklistFromCache);
+  }
+
+  async function loadPageList() {
+    var select = document.getElementById('page-select');
+    try {
+      var res = await fetch('{{ "/assets/data/dashboard-latest.json" | relative_url }}', { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      var pages = (data.pages || []).slice().sort(function (a, b) { return a.url.localeCompare(b.url); });
+      select.innerHTML = '<option value="">— یک صفحه انتخاب کن —</option>' +
+        pages.map(function (p) { return '<option value="' + escapeHtml(p.url) + '">' + escapeHtml(p.url) + '</option>'; }).join('');
+    } catch (err) {
+      select.innerHTML = '<option value="">نتونستم فهرست صفحات رو بگیرم — از فیلد آدرس دستی استفاده کن</option>';
+    }
+  }
+
+  var LAST_ANALYSIS = null;
+
+  async function runAnalysis() {
+    var statusEl = document.getElementById('tool-status');
+    var select = document.getElementById('page-select');
+    var manual = document.getElementById('page-url-manual').value.trim();
+    var path = manual || select.value;
+    if (!path) {
+      statusEl.textContent = 'یک صفحه انتخاب کن یا آدرسش رو بنویس.';
+      statusEl.className = 'note err';
+      return;
+    }
+    if (path.indexOf('http') !== 0) {
+      if (path.charAt(0) !== '/') path = '/' + path;
+      path = window.location.origin + path;
+    }
+
+    statusEl.textContent = 'در حال خوندن صفحه...';
+    statusEl.className = 'note';
+    document.getElementById('analyze-btn').disabled = true;
+    try {
+      var res = await fetch(path, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var html = await res.text();
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var analysis = analyzePage(doc, path);
+      LAST_ANALYSIS = analysis;
+      renderResult(analysis);
+      statusEl.textContent = '';
+    } catch (err) {
+      statusEl.textContent = 'نتونستم این صفحه رو بخونم: ' + (err.message || err);
+      statusEl.className = 'note err';
+      document.getElementById('result').style.display = 'none';
+    } finally {
+      document.getElementById('analyze-btn').disabled = false;
+    }
+  }
+
+  function textOf(el) { return el ? el.textContent.trim().replace(/\s+/g, ' ') : ''; }
+
+  function analyzePage(doc, url) {
+    var title = textOf(doc.querySelector('title'));
+    var descEl = doc.querySelector('meta[name="description"]');
+    var description = descEl ? (descEl.getAttribute('content') || '').trim() : '';
+    var kwEl = doc.querySelector('meta[name="focus-keyword"]');
+    var presetKeyword = kwEl ? (kwEl.getAttribute('content') || '').trim() : '';
+
+    var h1s = Array.prototype.map.call(doc.querySelectorAll('h1'), textOf);
+    var h2s = Array.prototype.map.call(doc.querySelectorAll('h2'), textOf);
+    var h3s = Array.prototype.map.call(doc.querySelectorAll('h3'), textOf);
+
+    var bodyClone = doc.body ? doc.body.cloneNode(true) : null;
+    if (bodyClone) {
+      Array.prototype.forEach.call(bodyClone.querySelectorAll('script, style, nav, header, footer'), function (n) { n.remove(); });
+    }
+    var bodyText = bodyClone ? bodyClone.textContent.replace(/\s+/g, ' ').trim() : '';
+    var wordCount = bodyText ? bodyText.split(' ').filter(Boolean).length : 0;
+    var firstParagraph = (doc.querySelector('p') ? textOf(doc.querySelector('p')) : bodyText.slice(0, 400));
+
+    // An <img> with no src (e.g. the lightbox gallery's placeholder <img>,
+    // filled in by JS only after a click) isn't real rendered content and
+    // shouldn't need alt text - counting it would be a permanent, unfixable
+    // false positive on every page that uses that feature.
+    var images = Array.prototype.slice.call(doc.querySelectorAll('img')).filter(function (img) {
+      return (img.getAttribute('src') || '').trim() !== '';
+    });
+    var imagesMissingAlt = images.filter(function (img) { return !img.getAttribute('alt') || !img.getAttribute('alt').trim(); }).length;
+
+    var links = Array.prototype.slice.call(doc.querySelectorAll('a[href]'));
+    var origin = window.location.origin;
+    var internalLinks = 0, externalLinks = 0;
+    links.forEach(function (a) {
+      var href = a.getAttribute('href') || '';
+      if (/^https?:\/\//i.test(href)) {
+        if (href.indexOf(origin) === 0) internalLinks++; else externalLinks++;
+      } else if (href.charAt(0) === '/' || href.charAt(0) === '#' || href.indexOf('.html') !== -1) {
+        internalLinks++;
+      }
+    });
+
+    var hasJsonLd = doc.querySelectorAll('script[type="application/ld+json"]').length > 0;
+
+    var urlPath;
+    try { urlPath = decodeURIComponent(new URL(url).pathname); } catch (e) { urlPath = url; }
+
+    return {
+      url: url, urlPath: urlPath, title: title, description: description,
+      presetKeyword: presetKeyword, h1s: h1s, h2s: h2s, h3s: h3s,
+      wordCount: wordCount, firstParagraph: firstParagraph,
+      imageCount: images.length, imagesMissingAlt: imagesMissingAlt,
+      internalLinks: internalLinks, externalLinks: externalLinks, hasJsonLd: hasJsonLd,
+    };
+  }
+
+  function counterClass(len, min, max) {
+    if (len === 0) return 'bad';
+    if (len >= min && len <= max) return 'good';
+    if (len < min) return len >= min * 0.6 ? 'warn' : 'bad';
+    return len <= max * 1.15 ? 'warn' : 'bad';
+  }
+
+  function renderResult(a) {
+    document.getElementById('result').style.display = 'block';
+
+    document.getElementById('serp-url').textContent = a.url;
+    document.getElementById('serp-title').textContent = a.title || '(بدون عنوان)';
+    document.getElementById('serp-desc').textContent = a.description || '(بدون توضیح متا)';
+
+    document.getElementById('field-title').textContent = a.title || '(خالی)';
+    var tc = counterClass(a.title.length, 50, 60);
+    document.getElementById('counter-title').className = 'counter ' + tc;
+    document.getElementById('counter-title').textContent = a.title.length + ' کاراکتر (بازه‌ی مناسب: ۵۰ تا ۶۰)';
+
+    document.getElementById('field-desc').textContent = a.description || '(خالی)';
+    var dc = counterClass(a.description.length, 150, 160);
+    document.getElementById('counter-desc').className = 'counter ' + dc;
+    document.getElementById('counter-desc').textContent = a.description.length + ' کاراکتر (بازه‌ی مناسب: ۱۵۰ تا ۱۶۰)';
+
+    document.getElementById('field-url').textContent = a.urlPath;
+    var uc = a.urlPath.length <= 75 ? 'good' : (a.urlPath.length <= 100 ? 'warn' : 'bad');
+    document.getElementById('counter-url').className = 'counter ' + uc;
+    document.getElementById('counter-url').textContent = a.urlPath.length + ' کاراکتر';
+
+    var kwInput = document.getElementById('keyword-input');
+    if (!kwInput.value) kwInput.value = a.presetKeyword || '';
+
+    renderChecklistFromCache();
+  }
+
+  function renderChecklistFromCache() {
+    if (!LAST_ANALYSIS) return;
+    var a = LAST_ANALYSIS;
+    var kw = document.getElementById('keyword-input').value.trim();
+    var items = [];
+
+    function has(haystack) { return kw && haystack && haystack.indexOf(kw) !== -1; }
+
+    if (kw) {
+      items.push(mk(has(a.title), 'کلیدواژه در عنوان سئو', !has(a.title)));
+      items.push(mk(has(a.description), 'کلیدواژه در توضیح متا', !has(a.description)));
+      items.push(mk(has(a.firstParagraph), 'کلیدواژه در پاراگراف اول', !has(a.firstParagraph)));
+      var inHeading = a.h2s.concat(a.h3s).some(function (h) { return h.indexOf(kw) !== -1; });
+      items.push(mk(inHeading, 'کلیدواژه در حداقل یکی از تیترها (H2/H3)', !inHeading));
+    } else {
+      items.push({ cls: 'warn', dot: '⚪', text: 'برای بررسی تطبیق با کلیدواژه، یه کلیدواژه بالا وارد کن.' });
+    }
+
+    items.push(mk(a.h1s.length === 1, 'دقیقاً یک H1 داره' + (a.h1s.length !== 1 ? ' (الان ' + a.h1s.length + ' تا)' : ''), a.h1s.length === 0));
+    items.push(mk(a.h2s.length > 0, 'ساختار H2 داره (' + a.h2s.length + ' تا)', a.h2s.length === 0 && a.h3s.length === 0));
+    items.push(mkRange(a.title.length, 50, 60, 'طول عنوان سئو'));
+    items.push(mkRange(a.description.length, 150, 160, 'طول توضیح متا'));
+    items.push(mk(a.wordCount >= 300, 'طول متن کافیه (' + a.wordCount + ' کلمه)', a.wordCount < 150));
+    var altText = a.imageCount === 0 ? 'تصویری توی صفحه نیست' :
+      (a.imagesMissingAlt === 0 ? 'همه‌ی ' + a.imageCount + ' تصویر alt دارن' : a.imagesMissingAlt + ' از ' + a.imageCount + ' تصویر alt ندارن');
+    items.push(mk(a.imageCount === 0 || a.imagesMissingAlt === 0, altText, a.imagesMissingAlt > 0));
+    items.push(mk(a.internalLinks > 0, 'لینک داخلی داره (' + a.internalLinks + ' تا)', a.internalLinks === 0));
+    items.push(mk(a.externalLinks > 0, 'لینک خارجی داره (' + a.externalLinks + ' تا)', false));
+    items.push(mk(a.urlPath.length <= 75, 'طول آدرس مناسبه (' + a.urlPath.length + ' کاراکتر)', a.urlPath.length > 100));
+
+    document.getElementById('checklist').innerHTML = items.map(function (it) {
+      return '<li class="' + it.cls + '"><span class="dot">' + it.dot + '</span><span>' + escapeHtml(it.text) + '</span></li>';
+    }).join('');
+  }
+
+  function mk(ok, text, isBad) {
+    if (ok) return { cls: 'ok', dot: '✅', text: text };
+    return isBad ? { cls: 'bad', dot: '❌', text: text } : { cls: 'warn', dot: '🟡', text: text };
+  }
+  function mkRange(len, min, max, label) {
+    if (len === 0) return { cls: 'bad', dot: '❌', text: label + ' — خالیه' };
+    if (len >= min && len <= max) return { cls: 'ok', dot: '✅', text: label + ' مناسبه (' + len + ' کاراکتر)' };
+    return { cls: 'warn', dot: '🟡', text: label + ' خارج از بازه‌ست (' + len + ' کاراکتر، بازه‌ی مناسب ' + min + ' تا ' + max + ')' };
+  }
+})();
+</script>
+</body>
+</html>

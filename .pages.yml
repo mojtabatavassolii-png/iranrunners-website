@@ -168,9 +168,90 @@ content:
         label: "قیمت ماهانه (تومان — با کاما بنویس، مثلاً 2,500,000)"
         type: string
 
+      - name: focus_keyword
+        label: "کلیدواژه اصلی سئو (اختیاری — عبارتی که انتظار داری خواننده توی گوگل سرچ کنه)"
+        type: string
+
+      - name: meta_title
+        label: "عنوان متا برای گوگل (اختیاری — بین ۵۰ تا ۶۰ کاراکتر. اگه خالی بذاری، همون «عنوان کلاس» بالا به‌علاوه «| ایران رانرز» استفاده می‌شه)"
+        type: string
+
+      - name: meta_description
+        label: "توضیح متا برای گوگل (اختیاری — بین ۱۲۰ تا ۱۶۰ کاراکتر. اگه خالی بذاری، همون «توضیح کوتاه» بالا استفاده می‌شه)"
+        type: text
+
+      - name: image
+        label: "عکس اشتراک‌گذاری (Open Graph — اختیاری)"
+        type: image
+        media: gallery
+
+      - name: image_alt
+        label: "توضیح کوتاه عکس برای نابینایان و گوگل (Alt Text — اختیاری)"
+        type: string
+
       - name: body
         label: "توضیحات کامل (این متن توی صفحه جزئیات کلاس نشون داده می‌شه)"
         type: rich-text
+
+  # ===========================================================
+  # صفحات ثابت (اصلی، کلاس‌ها، مربیان، گالری، محاسبه‌گر پیس، درباره ما)
+  # فقط برای ویرایش فیلدهای سئو - محتوای اصلی هرکدوم جای دیگه‌ایه
+  # ===========================================================
+  - name: seo_home
+    label: "سئو › صفحه اصلی"
+    type: file
+    path: index.html
+    fields: &seo_fields
+      - name: meta_title
+        label: "عنوان متا برای گوگل (اختیاری — بین ۵۰ تا ۶۰ کاراکتر)"
+        type: string
+
+      - name: meta_description
+        label: "توضیح متا برای گوگل (اختیاری — بین ۱۲۰ تا ۱۶۰ کاراکتر)"
+        type: text
+
+      - name: focus_keyword
+        label: "کلیدواژه اصلی سئو (اختیاری)"
+        type: string
+
+      - name: image
+        label: "عکس اشتراک‌گذاری (Open Graph — اختیاری)"
+        type: image
+        media: gallery
+
+      - name: image_alt
+        label: "توضیح کوتاه عکس برای نابینایان و گوگل (Alt Text — اختیاری)"
+        type: string
+
+  - name: seo_classes
+    label: "سئو › صفحه کلاس‌ها"
+    type: file
+    path: classes.html
+    fields: *seo_fields
+
+  - name: seo_coaches
+    label: "سئو › صفحه مربیان"
+    type: file
+    path: coaches.html
+    fields: *seo_fields
+
+  - name: seo_gallery
+    label: "سئو › صفحه گالری"
+    type: file
+    path: gallery.html
+    fields: *seo_fields
+
+  - name: seo_pace_calculator
+    label: "سئو › صفحه محاسبه‌گر پیس"
+    type: file
+    path: pace-calculator.html
+    fields: *seo_fields
+
+  - name: seo_about
+    label: "سئو › صفحه درباره ما"
+    type: file
+    path: about.html
+    fields: *seo_fields
 
   # ===========================================================
   # وبلاگ
