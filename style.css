@@ -1090,6 +1090,13 @@ footer.site-footer {
   white-space: nowrap;
   font-size: clamp(0.78rem, 3.8vw, 1.9rem);
 }
+@media (max-width: 700px) {
+  .home-about-section .section-head h2 {
+    margin-left: -26px;
+    margin-right: -26px;
+    font-size: clamp(0.95rem, 4.9vw, 1.9rem);
+  }
+}
 .home-about-text p {
   margin: 0 0 16px;
   font-size: 1.02rem;
