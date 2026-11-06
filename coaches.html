@@ -1,7 +1,90 @@
 ---
+layout: default
+nav: coaches
+title: مربیان
+description: با مربیان ایران رانرز آشنا شو — سوابق، مدارک و رکوردهای تیم مربیگری.
+permalink: /مربیان.html
+redirect_from: /coaches.html
 meta_title: " مربیان دویدن ایران رانرز | آشنایی با مربیان تیم ما "
 meta_description: با مربیان ایران رانرز آشنا شوید؛ مربیان باتجربه‌ی دویدن که شما
   را از تمرین‌های ابتدایی تا مسابقات ۱۰ کیلومتر و ماراتن همراهی می‌کنند.
 focus_keyword: مربی دویدن
 image: /assets/gallery/IMG_0217.jpeg
 ---
+<section class="page-hero">
+  <div class="wrap">
+    <h1>مربیان</h1>
+    <p>هر مربی سوابق و تخصص خودش رو داره — با هرکدوم که راحت‌تری شروع کن.</p>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="wrap">
+    {% for coach in site.data.coaches %}
+    <div class="about-grid" {% unless forloop.first %}style="margin-top:60px;"{% endunless %}>
+      {% if coach.photo and coach.photo != "" %}
+      <div class="coach-photo" style="padding:0;overflow:hidden;">
+        <img src="{{ coach.photo | relative_url }}" alt="{{ coach.name }}" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      {% else %}
+      <div class="coach-photo">عکس مربی<br>(جایگزین شود)</div>
+      {% endif %}
+      <div>
+        <h2 style="font-size:1.8rem;font-weight:800;margin:0 0 6px;">{{ coach.name }}</h2>
+        {% if coach.role %}<p style="color:var(--accent-sunrise);font-weight:700;margin:0 0 14px;">{{ coach.role }}</p>{% endif %}
+
+        {% if coach.instagram or coach.strava %}
+        <div class="coach-social">
+          {% if coach.instagram %}
+          <a class="coach-social-btn" href="https://instagram.com/{{ coach.instagram | remove: '@' }}" target="_blank" rel="noopener" aria-label="اینستاگرام {{ coach.name }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.2" cy="6.8" r="0.7" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          {% endif %}
+          {% if coach.strava %}
+          <a class="coach-social-btn" href="{{ coach.strava }}" target="_blank" rel="noopener" aria-label="استراوا {{ coach.name }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6,4 12,15 16,8 20,20"/>
+            </svg>
+          </a>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        <p class="coach-bio" style="color:var(--text-muted);">{{ coach.bio }}</p>
+
+        {% if coach.credentials %}
+        <ul class="credential-list">
+          {% for item in coach.credentials %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if coach.pr_5k or coach.pr_half or coach.pr_marathon %}
+        <div class="pr-strip">
+          {% if coach.pr_5k %}<div class="pr-item"><span class="num">{{ coach.pr_5k }}</span><span class="lbl">۵ کیلومتر</span></div>{% endif %}
+          {% if coach.pr_half %}<div class="pr-item"><span class="num">{{ coach.pr_half }}</span><span class="lbl">نیم‌ماراتن</span></div>{% endif %}
+          {% if coach.pr_marathon %}<div class="pr-item"><span class="num">{{ coach.pr_marathon }}</span><span class="lbl">ماراتن</span></div>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="cta-final">
+  <div class="wrap" style="text-align:center;">
+    <div class="section-head" style="margin:0 auto 30px;text-align:center;">
+      <h2>آماده‌ای با یکی از مربیان شروع کنی؟</h2>
+      <p style="margin:0 auto;">کلاس‌ها رو ببین و کلاس مناسب خودت رو انتخاب کن.</p>
+    </div>
+    <a href="{{ '/کلاس-ها.html' | relative_url }}" class="btn-primary">مشاهده کلاس‌ها</a>
+  </div>
+</section>

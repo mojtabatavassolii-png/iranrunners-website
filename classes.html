@@ -1,7 +1,198 @@
 ---
+layout: default
+nav: classes
+title: کلاس‌ها و ثبت‌نام
+description: کلاس‌ها و برنامه‌های تمرینی ایران رانرز — دویدن مبتدی، آماده‌سازی مسابقه، دویدن گروهی و مربیگری اختصاصی.
+permalink: /کلاس-ها.html
+redirect_from: /classes.html
 meta_title: " کلاس‌های دویدن ایران رانرز | ثبت‌نام با مربی حرفه‌ای "
 meta_description: با کلاس‌های دویدن ایران رانرز، زیر نظر مربیان باتجربه، از
   اولین قدم تا ماراتن پیش بروید. برنامه‌ی کلاس‌ها را ببینید و ثبت‌نام کنید.
 focus_keyword: کلاس دویدن
 image: /assets/gallery/IMG_1760.jpeg
 ---
+{% assign sorted_classes = site.classes | sort: 'order' %}
+<section class="page-hero">
+  <div class="wrap">
+    <h1>کلاس‌ها و برنامه‌های تمرینی</h1>
+    <p>هر کلاس با هدف مشخص طراحی شده — سطحت رو انتخاب کن و شروع کن.</p>
+  </div>
+</section>
+
+<section class="classes-list">
+  <div class="wrap">
+    <div class="card-grid">
+      {% for c in sorted_classes %}
+      <a href="{{ c.url | relative_url }}" class="class-card">
+        <h3>{{ c.title }}</h3>
+        <p class="desc">{{ c.description }}</p>
+        <p class="desc" style="font-size:0.85rem;color:var(--text-faint);">{{ c.schedule }}</p>
+        <div class="price" style="text-align:center;">
+          {% if c.currency == "TOMAN" %}{% if c.price_toman %}{{ c.price_toman }} تومان / ماه{% endif %}{% else %}{% if c.price and c.price != 0 %}{{ c.price }}€ / ماه{% endif %}{% endif %}
+        </div>
+        <div class="meta" style="flex-direction:column;align-items:center;gap:12px;text-align:center;">
+          {% if c.coach and c.coach != "" %}
+          <span style="color:var(--accent-sunrise);font-weight:700;font-size:0.9rem;">مربی: {{ c.coach }}</span>
+          {% endif %}
+          <span class="enroll">جزئیات</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="register-section" id="register">
+  <div class="wrap" style="max-width:720px;">
+    <div class="section-head">
+      <h2>فرم ثبت‌نام</h2>
+      <p>اطلاعاتت رو وارد کن — درخواستت مستقیم برای مربی همون کلاس ارسال می‌شه (از طریق تلگرام).</p>
+    </div>
+    <form class="form-panel" id="register-form">
+      <h3>ثبت‌نام در کلاس</h3>
+      <p class="form-sub">همه فیلدها با ستاره الزامی هستن.</p>
+      <div class="form-grid">
+        <div class="field full">
+          <label for="fname">نام و نام‌خانوادگی *</label>
+          <input type="text" id="fname" name="fname" required>
+        </div>
+        <div class="field">
+          <label for="phone">شماره تماس *</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="field">
+          <label for="email">ایمیل *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="class">کلاس موردنظر *</label>
+          <select id="class" name="class" required>
+            <option value="">انتخاب کن</option>
+            {% for c in sorted_classes %}
+            <option value="{{ c.title }}">{{ c.title }}</option>
+            {% endfor %}
+          </select>
+          <p class="vpn-notice" id="no-telegram-notice" style="margin-top:4px;" hidden>برای این کلاس هنوز آیدی تلگرام مربی ثبت نشده. لطفاً از طریق صفحه «درباره ما» با ما تماس بگیر.</p>
+        </div>
+        <div class="field">
+          <label for="age">سن *</label>
+          <input type="number" id="age" name="age" min="1" required>
+        </div>
+        <div class="field">
+          <label for="height">قد (سانتی‌متر)</label>
+          <input type="number" id="height" name="height">
+        </div>
+        <div class="field">
+          <label for="weight">وزن (کیلوگرم)</label>
+          <input type="number" id="weight" name="weight">
+        </div>
+        <div class="field">
+          <label for="rhr">ضربان استراحت</label>
+          <input type="number" id="rhr" name="rhr" placeholder="مثلاً ۶۵">
+        </div>
+        <div class="field full">
+          <label for="history">سابقه بیماری</label>
+          <input type="text" id="history" name="history" placeholder="در صورت وجود بنویس، در غیر این صورت خالی بگذار">
+        </div>
+        <div class="field full">
+          <label for="sport-history">سابقه ورزشی</label>
+          <input type="text" id="sport-history" name="sport-history" placeholder="مثلاً ۲ سال دویدن، سابقه فوتبال و ...">
+        </div>
+        <div class="field full">
+          <label for="max-distance">بیشترین مسافت دویدن</label>
+          <input type="text" id="max-distance" name="max-distance" placeholder="مثلاً ۱۰ کیلومتر">
+        </div>
+        <div class="field full">
+          <label for="msg">مورد ویژه (اختیاری)</label>
+          <textarea id="msg" name="msg" placeholder="اگر مورد خاصی وجود داره (آسیب، محدودیت و ...) اینجا بنویس..."></textarea>
+        </div>
+      </div>
+      <p class="form-note" style="margin-top:18px;">نحوه اندازه‌گیری ضربان استراحت: صبح، بلافاصله بعد از بیدار شدن از خواب، ضربانت رو اندازه بگیر.</p>
+      <button type="submit" class="submit-btn">ارسال درخواست ثبت‌نام</button>
+      <p class="form-note">با زدن دکمه بالا، تلگرام باز می‌شه و اطلاعاتت مستقیم برای مربی همون کلاس ارسال می‌شه.</p>
+      <p class="vpn-notice" id="vpn-notice" hidden>برای باز شدن تلگرام، لطفاً اول VPN رو روشن کن.</p>
+    </form>
+  </div>
+</section>
+
+<script>
+  var classCoachMap = {
+    {% for c in sorted_classes %}
+      {% assign coach_obj = site.data.coaches | where: "name", c.coach | first %}
+      "{{ c.title | escape }}": "{{ coach_obj.telegram | default: '' }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var params = new URLSearchParams(window.location.search);
+    var preselect = params.get('class');
+    var classSelect = document.getElementById('class');
+
+    if (preselect && classSelect) {
+      for (var i = 0; i < classSelect.options.length; i++) {
+        if (classSelect.options[i].value === preselect) {
+          classSelect.options[i].selected = true;
+          break;
+        }
+      }
+    }
+
+    var submitBtn = document.querySelector('#register-form .submit-btn');
+    var noTelegramNotice = document.getElementById('no-telegram-notice');
+
+    function updateTelegramAvailability() {
+      var className = classSelect ? classSelect.value : '';
+      var missingTelegram = !!className && !classCoachMap[className];
+      if (noTelegramNotice) { noTelegramNotice.hidden = !missingTelegram; }
+      if (submitBtn) { submitBtn.disabled = missingTelegram; }
+    }
+
+    if (classSelect) { classSelect.addEventListener('change', updateTelegramAvailability); }
+    updateTelegramAvailability();
+
+    var form = document.getElementById('register-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        function get(id) {
+          var el = document.getElementById(id);
+          return el ? el.value : '';
+        }
+        var className = classSelect ? classSelect.value : '';
+        var telegramUsername = classCoachMap[className];
+        if (!telegramUsername || telegramUsername === '') {
+          updateTelegramAvailability();
+          return;
+        }
+        var lines = [
+          'درخواست ثبت‌نام کلاس جدید — ایران رانرز',
+          'کلاس: ' + className,
+          'نام: ' + get('fname'),
+          'تلفن: ' + get('phone'),
+          'ایمیل: ' + get('email'),
+          'سن: ' + get('age'),
+          'قد: ' + (get('height') ? get('height') + ' سانتی‌متر' : '-'),
+          'وزن: ' + (get('weight') ? get('weight') + ' کیلوگرم' : '-'),
+          'ضربان استراحت: ' + (get('rhr') || '-'),
+          'سابقه بیماری: ' + (get('history') || '-'),
+          'سابقه ورزشی: ' + (get('sport-history') || '-'),
+          'بیشترین مسافت دویدن: ' + (get('max-distance') || '-'),
+          'مورد ویژه: ' + (get('msg') || '-')
+        ];
+        var message = lines.join('\n');
+
+        if (className && typeof gtag === 'function') {
+          gtag('event', 'class_signup_click', { class_name: className, transport_type: 'beacon' });
+        }
+
+        var vpnNotice = document.getElementById('vpn-notice');
+        if (vpnNotice) { vpnNotice.hidden = false; }
+        setTimeout(function () {
+          window.location.href = 'https://t.me/' + telegramUsername + '?text=' + encodeURIComponent(message);
+        }, 2000);
+      });
+    }
+  });
+</script>
