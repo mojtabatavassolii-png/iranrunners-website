@@ -61,6 +61,21 @@ content:
           value: "{path}"
           label: "{title}"
 
+      - name: about_section
+        label: "بخش معرفی (بعد از کلاس‌ها در صفحه اصلی)"
+        type: object
+        fields:
+          - name: title
+            label: "عنوان بخش"
+            type: string
+            required: true
+
+          - name: paragraphs
+            label: "پاراگراف‌ها (روی موبایل فقط پاراگراف اول بدون کلیک نشون داده می‌شه)"
+            type: text
+            list: true
+            required: true
+
       - name: partner_list
         label: "شرکای ما"
         type: object

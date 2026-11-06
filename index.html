@@ -63,6 +63,38 @@ focus_keyword: "کلاس دویدن"
 
 <div class="section-divider"></div>
 
+{% assign about_section = site.data.home.about_section %}
+{% if about_section and about_section.title %}
+<section class="home-about-section">
+  <div class="wrap" style="max-width:760px;">
+    <div class="section-head">
+      <h2>{{ about_section.title }}</h2>
+    </div>
+    <div class="home-about-text" id="home-about-text">
+      {% for p in about_section.paragraphs %}
+      <p{% if forloop.index > 1 %} class="home-about-extra"{% endif %}>{{ p }}</p>
+      {% endfor %}
+    </div>
+    {% if about_section.paragraphs.size > 1 %}
+    <button type="button" class="home-about-toggle" id="home-about-toggle">ادامه‌ی مطلب</button>
+    {% endif %}
+  </div>
+</section>
+<script>
+(function () {
+  var toggle = document.getElementById('home-about-toggle');
+  var text = document.getElementById('home-about-text');
+  if (!toggle || !text) { return; }
+  toggle.addEventListener('click', function () {
+    var expanded = text.classList.toggle('expanded');
+    toggle.textContent = expanded ? 'بستن' : 'ادامه‌ی مطلب';
+  });
+})();
+</script>
+
+<div class="section-divider"></div>
+{% endif %}
+
 <section class="blog-preview">
   <div class="wrap">
     <div class="section-head">
