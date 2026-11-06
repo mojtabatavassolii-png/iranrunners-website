@@ -148,13 +148,12 @@
       "position": 8.555555555555555
     },
     {
-      "url": "https://iranrunners.com/%D8%AF%D8%B1%D8%A8%D8%A7%D8%B1%D9%87-%D9%85%D8%A7.html",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-10-21T11:27:59Z",
+      "url": "https://iranrunners.com/about",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
-      "impressions": 8,
+      "impressions": 0,
       "ctr": 0,
-      "position": 4.625
+      "position": null
     },
     {
       "url": "https://iranrunners.com/%D9%88%D8%A8%D9%84%D8%A7%DA%AF.html",
@@ -166,31 +165,28 @@
       "position": 5.2
     },
     {
-      "url": "https://iranrunners.com/%DA%A9%D9%84%D8%A7%D8%B3-%D9%87%D8%A7.html",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-10-21T11:23:08Z",
+      "url": "https://iranrunners.com/classes",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 0,
       "ctr": 0,
-      "position": 6
+      "position": null
     },
     {
-      "url": "https://iranrunners.com/%D9%85%D8%B1%D8%A8%DB%8C%D8%A7%D9%86.html",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-11-03T08:32:01Z",
-      "clicks": 2,
-      "impressions": 35,
-      "ctr": 0.05714285714285714,
-      "position": 7.171428571428572
+      "url": "https://iranrunners.com/coaches",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
     },
     {
-      "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C.html",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-11-03T09:01:14Z",
-      "clicks": 2,
-      "impressions": 27,
-      "ctr": 0.07407407407407407,
-      "position": 6.111111111111111
+      "url": "https://iranrunners.com/gallery",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
     },
     {
       "url": "https://iranrunners.com/",
@@ -202,13 +198,12 @@
       "position": 2.1875
     },
     {
-      "url": "https://iranrunners.com/%D9%85%D8%AD%D8%A7%D8%B3%D8%A8%D9%87-%DA%AF%D8%B1-%D9%BE%DB%8C%D8%B3.html",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-11-03T08:29:29Z",
-      "clicks": 3,
-      "impressions": 29,
-      "ctr": 0.10344827586206896,
-      "position": 6.551724137931035
+      "url": "https://iranrunners.com/pace-calculator",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null
     }
   ],
   "ga4": {
@@ -450,5 +445,62 @@
     "warnings": 0,
     "errors": 0
   },
-  "legacyUrls": []
+  "legacyUrls": [
+    {
+      "url": "/about.html",
+      "coverageState": "Excluded by ‘noindex’ tag",
+      "clicks": 3,
+      "impressions": 76,
+      "liveStatus": "۲۰۰ (هنوز زنده‌ست!)"
+    },
+    {
+      "url": "/مربیان.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 2,
+      "impressions": 51,
+      "liveStatus": "۴۰۴ (وجود نداره)"
+    },
+    {
+      "url": "/گالری.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 2,
+      "impressions": 34,
+      "liveStatus": "۴۰۴ (وجود نداره)"
+    },
+    {
+      "url": "/محاسبه-گر-پیس.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 3,
+      "impressions": 31,
+      "liveStatus": "۴۰۴ (وجود نداره)"
+    },
+    {
+      "url": "/classes.html",
+      "coverageState": "Excluded by ‘noindex’ tag",
+      "clicks": 3,
+      "impressions": 25,
+      "liveStatus": "۲۰۰ (هنوز زنده‌ست!)"
+    },
+    {
+      "url": "/coaches.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 1,
+      "impressions": 17,
+      "liveStatus": "۲۰۰ (هنوز زنده‌ست!)"
+    },
+    {
+      "url": "/درباره-ما.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 8,
+      "liveStatus": "۴۰۴ (وجود نداره)"
+    },
+    {
+      "url": "/کلاس-ها.html",
+      "coverageState": "Submitted and indexed",
+      "clicks": 0,
+      "impressions": 4,
+      "liveStatus": "۴۰۴ (وجود نداره)"
+    }
+  ]
 }

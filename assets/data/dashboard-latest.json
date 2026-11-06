@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-06T07:53:04.443Z",
+  "generatedAt": "2026-11-06T10:14:47.359Z",
   "startDate": "2026-10-07",
   "endDate": "2026-11-03",
   "indexStatus": {
-    "indexed": 23,
-    "pending": 0,
+    "indexed": 18,
+    "pending": 5,
     "total": 23
   },
   "pages": [
@@ -153,13 +153,13 @@
       "views": 10
     },
     {
-      "url": "/درباره-ما.html",
-      "coverageState": "Submitted and indexed",
+      "url": "/about",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
-      "impressions": 8,
+      "impressions": 0,
       "ctr": 0,
-      "position": 4.625,
-      "views": 25
+      "position": null,
+      "views": 0
     },
     {
       "url": "/وبلاگ.html",
@@ -171,31 +171,31 @@
       "views": 33
     },
     {
-      "url": "/کلاس-ها.html",
-      "coverageState": "Submitted and indexed",
+      "url": "/classes",
+      "coverageState": "URL is unknown to Google",
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 0,
       "ctr": 0,
-      "position": 6,
-      "views": 152
+      "position": null,
+      "views": 0
     },
     {
-      "url": "/مربیان.html",
-      "coverageState": "Submitted and indexed",
-      "clicks": 2,
-      "impressions": 35,
-      "ctr": 0.05714285714285714,
-      "position": 7.171428571428572,
-      "views": 47
+      "url": "/coaches",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null,
+      "views": 0
     },
     {
-      "url": "/گالری.html",
-      "coverageState": "Submitted and indexed",
-      "clicks": 2,
-      "impressions": 27,
-      "ctr": 0.07407407407407407,
-      "position": 6.111111111111111,
-      "views": 29
+      "url": "/gallery",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null,
+      "views": 0
     },
     {
       "url": "/",
@@ -207,16 +207,72 @@
       "views": 299
     },
     {
-      "url": "/محاسبه-گر-پیس.html",
-      "coverageState": "Submitted and indexed",
-      "clicks": 3,
-      "impressions": 29,
-      "ctr": 0.10344827586206896,
-      "position": 6.551724137931035,
-      "views": 28
+      "url": "/pace-calculator",
+      "coverageState": "URL is unknown to Google",
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": null,
+      "views": 0
     }
   ],
-  "indexTasks": [],
+  "indexTasks": [
+    {
+      "url": "/about",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/classes",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/coaches",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/gallery",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/pace-calculator",
+      "coverageState": "URL is unknown to Google",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "گوگل هنوز اصلاً این آدرس رو ندیده.",
+        "action": "مطمئن شو توی sitemap.xml هست و حداقل از یک صفحه دیگه سایت بهش لینک داده شده.",
+        "severity": "warning"
+      }
+    }
+  ],
   "daily": [
     {
       "date": "20261007",
@@ -627,8 +683,13 @@
   ],
   "trafficSourcesError": null,
   "realtime": {
-    "activeUsers": 0,
-    "byCountry": []
+    "activeUsers": 2,
+    "byCountry": [
+      {
+        "country": "Germany",
+        "activeUsers": 2
+      }
+    ]
   },
   "realtimeError": null,
   "entryPages": [
