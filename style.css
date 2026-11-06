@@ -1086,6 +1086,10 @@ footer.site-footer {
 
 /* ---------- homepage about section ---------- */
 .home-about-section { padding-top: 54px; padding-bottom: 54px; }
+.home-about-section .section-head h2 {
+  white-space: nowrap;
+  font-size: clamp(0.78rem, 3.8vw, 1.9rem);
+}
 .home-about-text p {
   margin: 0 0 16px;
   font-size: 1.02rem;
