@@ -210,64 +210,15 @@ content:
 
   # ===========================================================
   # صفحات ثابت (اصلی، کلاس‌ها، مربیان، گالری، محاسبه‌گر پیس، درباره ما)
-  # فقط برای ویرایش فیلدهای سئو - محتوای اصلی هرکدوم جای دیگه‌ایه
-  # ===========================================================
-  - name: seo_home
-    label: "سئو › صفحه اصلی"
-    type: file
-    path: index.html
-    fields: &seo_fields
-      - name: meta_title
-        label: "عنوان متا برای گوگل (اختیاری — بین ۵۰ تا ۶۰ کاراکتر)"
-        type: string
-
-      - name: meta_description
-        label: "توضیح متا برای گوگل (اختیاری — بین ۱۲۰ تا ۱۶۰ کاراکتر)"
-        type: text
-
-      - name: focus_keyword
-        label: "کلیدواژه اصلی سئو (اختیاری)"
-        type: string
-
-      - name: image
-        label: "عکس اشتراک‌گذاری (Open Graph — اختیاری)"
-        type: image
-        media: gallery
-
-      - name: image_alt
-        label: "توضیح کوتاه عکس برای نابینایان و گوگل (Alt Text — اختیاری)"
-        type: string
-
-  - name: seo_classes
-    label: "سئو › صفحه کلاس‌ها"
-    type: file
-    path: classes.html
-    fields: *seo_fields
-
-  - name: seo_coaches
-    label: "سئو › صفحه مربیان"
-    type: file
-    path: coaches.html
-    fields: *seo_fields
-
-  - name: seo_gallery
-    label: "سئو › صفحه گالری"
-    type: file
-    path: gallery.html
-    fields: *seo_fields
-
-  - name: seo_pace_calculator
-    label: "سئو › صفحه محاسبه‌گر پیس"
-    type: file
-    path: pace-calculator.html
-    fields: *seo_fields
-
-  - name: seo_about
-    label: "سئو › صفحه درباره ما"
-    type: file
-    path: about.html
-    fields: *seo_fields
-
+  #
+  # قبلاً اینجا ۶ تا ورودی "سئو › صفحه X" بودن که فقط فیلدهای meta_title/
+  # meta_description/focus_keyword/image رو نشون می‌دادن. حذف شدن چون این
+  # الگو (type: file بدون فیلد body) باعث شد Pages CMS موقع ذخیره کل فایل
+  # (layout/permalink/redirect_from و تمام محتوای صفحه) رو پاک کنه و فقط
+  # همون چند فیلد سئو رو نگه داره — دقیقاً همینی که برای ۵ تا از این صفحات
+  # اتفاق افتاد و باعث شد صفحات‌شون کاملاً خالی بشن روی سایت واقعی.
+  # برای تغییر meta_title/meta_description/focus_keyword/image این صفحات،
+  # مستقیم از Claude بخواه فایل رو ویرایش کنه (امن و فوریه)، نه از این پنل.
   # ===========================================================
   # وبلاگ
   # ===========================================================
