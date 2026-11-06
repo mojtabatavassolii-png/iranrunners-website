@@ -1077,10 +1077,36 @@ footer.site-footer {
 /* ---------- about text justify ---------- */
 .about-text-section p,
 .coach-bio,
-.pace-hero-lead {
+.pace-hero-lead,
+.home-about-text p {
   direction: rtl;
   text-align: justify;
   text-align-last: right;
+}
+
+/* ---------- homepage about section ---------- */
+.home-about-section { padding-top: 54px; padding-bottom: 54px; }
+.home-about-text p {
+  margin: 0 0 16px;
+  font-size: 1.02rem;
+  color: var(--text-muted);
+}
+.home-about-text p:last-child { margin-bottom: 0; }
+.home-about-toggle {
+  display: none;
+  margin-top: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent-sunrise);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  .home-about-text p.home-about-extra { display: none; }
+  .home-about-text.expanded p.home-about-extra { display: block; }
+  .home-about-toggle { display: inline-block; }
 }
 
 /* ---------- mobile menu ---------- */
