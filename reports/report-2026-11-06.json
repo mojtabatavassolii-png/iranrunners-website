@@ -447,13 +447,6 @@
   },
   "legacyUrls": [
     {
-      "url": "/about.html",
-      "coverageState": "Excluded by ‘noindex’ tag",
-      "clicks": 3,
-      "impressions": 76,
-      "liveStatus": "۲۰۰ (هنوز زنده‌ست!)"
-    },
-    {
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
@@ -475,20 +468,6 @@
       "liveStatus": "۴۰۴ (وجود نداره)"
     },
     {
-      "url": "/classes.html",
-      "coverageState": "Excluded by ‘noindex’ tag",
-      "clicks": 3,
-      "impressions": 25,
-      "liveStatus": "۲۰۰ (هنوز زنده‌ست!)"
-    },
-    {
-      "url": "/coaches.html",
-      "coverageState": "Submitted and indexed",
-      "clicks": 1,
-      "impressions": 17,
-      "liveStatus": "۲۰۰ (هنوز زنده‌ست!)"
-    },
-    {
       "url": "/درباره-ما.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
@@ -500,6 +479,13 @@
       "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 4,
+      "liveStatus": "۴۰۴ (وجود نداره)"
+    },
+    {
+      "url": "/checkout/",
+      "coverageState": "خطا در بررسی (500)",
+      "clicks": 0,
+      "impressions": 0,
       "liveStatus": "۴۰۴ (وجود نداره)"
     }
   ]
