@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T07:34:27.185Z",
+  "generatedAt": "2026-11-14T18:43:22.336Z",
   "startDate": "2026-10-15",
   "endDate": "2026-11-11",
   "indexStatus": {
@@ -93,9 +93,9 @@
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 44,
+      "impressions": 46,
       "ctr": 0,
-      "position": 47.06818181818182,
+      "position": 48.02173913043478,
       "views": 1
     },
     {
@@ -138,18 +138,18 @@
       "url": "/وبلاگ/شروع-دویدن-برای-مبتدیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 15,
+      "impressions": 17,
       "ctr": 0,
-      "position": 7.066666666666666,
+      "position": 7.235294117647059,
       "views": 3
     },
     {
       "url": "/وبلاگ/تغذیه-دوندگان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 18,
+      "impressions": 21,
       "ctr": 0,
-      "position": 7.333333333333333,
+      "position": 8.095238095238095,
       "views": 7
     },
     {
@@ -183,9 +183,9 @@
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 4,
-      "impressions": 47,
-      "ctr": 0.0851063829787234,
-      "position": 6.723404255319149,
+      "impressions": 48,
+      "ctr": 0.08333333333333333,
+      "position": 6.75,
       "views": 36
     },
     {
@@ -201,18 +201,18 @@
       "url": "/",
       "coverageState": "Submitted and indexed",
       "clicks": 25,
-      "impressions": 67,
-      "ctr": 0.373134328358209,
-      "position": 3.2388059701492535,
+      "impressions": 71,
+      "ctr": 0.352112676056338,
+      "position": 3.507042253521127,
       "views": 326
     },
     {
       "url": "/محاسبه-گر-پیس.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
-      "impressions": 40,
-      "ctr": 0.05,
-      "position": 6.125,
+      "impressions": 41,
+      "ctr": 0.04878048780487805,
+      "position": 6.073170731707317,
       "views": 21
     }
   ],

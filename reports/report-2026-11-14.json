@@ -89,9 +89,9 @@
       "coverageState": "Submitted and indexed",
       "lastCrawlTime": "2026-11-03T09:47:51Z",
       "clicks": 0,
-      "impressions": 44,
+      "impressions": 46,
       "ctr": 0,
-      "position": 47.06818181818182
+      "position": 48.02173913043478
     },
     {
       "url": "https://iranrunners.com/%D9%88%D8%A8%D9%84%D8%A7%DA%AF/%D8%AF%D9%88%DB%8C%D8%AF%D9%86-%D8%AF%D8%B1-%D9%87%D9%88%D8%A7%DB%8C-%D8%A2%D9%84%D9%88%D8%AF%D9%87.html",
@@ -134,18 +134,18 @@
       "coverageState": "Submitted and indexed",
       "lastCrawlTime": "2026-11-03T10:24:46Z",
       "clicks": 0,
-      "impressions": 15,
+      "impressions": 17,
       "ctr": 0,
-      "position": 7.066666666666666
+      "position": 7.235294117647059
     },
     {
       "url": "https://iranrunners.com/%D9%88%D8%A8%D9%84%D8%A7%DA%AF/%D8%AA%D8%BA%D8%B0%DB%8C%D9%87-%D8%AF%D9%88%D9%86%D8%AF%DA%AF%D8%A7%D9%86.html",
       "coverageState": "Submitted and indexed",
       "lastCrawlTime": "2026-11-12T02:29:22Z",
       "clicks": 0,
-      "impressions": 18,
+      "impressions": 21,
       "ctr": 0,
-      "position": 7.333333333333333
+      "position": 8.095238095238095
     },
     {
       "url": "https://iranrunners.com/%D8%AF%D8%B1%D8%A8%D8%A7%D8%B1%D9%87-%D9%85%D8%A7.html",
@@ -179,9 +179,9 @@
       "coverageState": "Submitted and indexed",
       "lastCrawlTime": "2026-11-03T08:32:01Z",
       "clicks": 4,
-      "impressions": 47,
-      "ctr": 0.0851063829787234,
-      "position": 6.723404255319149
+      "impressions": 48,
+      "ctr": 0.08333333333333333,
+      "position": 6.75
     },
     {
       "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C.html",
@@ -197,18 +197,18 @@
       "coverageState": "Submitted and indexed",
       "lastCrawlTime": "2026-11-11T12:25:17Z",
       "clicks": 25,
-      "impressions": 67,
-      "ctr": 0.373134328358209,
-      "position": 3.2388059701492535
+      "impressions": 71,
+      "ctr": 0.352112676056338,
+      "position": 3.507042253521127
     },
     {
       "url": "https://iranrunners.com/%D9%85%D8%AD%D8%A7%D8%B3%D8%A8%D9%87-%DA%AF%D8%B1-%D9%BE%DB%8C%D8%B3.html",
       "coverageState": "Submitted and indexed",
       "lastCrawlTime": "2026-11-03T08:29:29Z",
       "clicks": 2,
-      "impressions": 40,
-      "ctr": 0.05,
-      "position": 6.125
+      "impressions": 41,
+      "ctr": 0.04878048780487805,
+      "position": 6.073170731707317
     }
   ],
   "ga4": {
