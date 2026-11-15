@@ -212,22 +212,22 @@
     }
   ],
   "ga4": {
-    "sessions": "211",
-    "activeUsers": "119",
-    "totalUsers": "121",
-    "pageViews": "678",
+    "sessions": "215",
+    "activeUsers": "122",
+    "totalUsers": "124",
+    "pageViews": "689",
     "topPages": [
       {
         "path": "/",
-        "views": "203"
+        "views": "208"
       },
       {
         "path": "/کلاس-ها.html",
-        "views": "128"
+        "views": "131"
       },
       {
         "path": "/index.html",
-        "views": "115"
+        "views": "116"
       },
       {
         "path": "/مربیان.html",
@@ -239,7 +239,7 @@
       },
       {
         "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-        "views": "24"
+        "views": "26"
       },
       {
         "path": "/گالری.html",
@@ -261,15 +261,15 @@
     "channels": [
       {
         "channel": "Organic Search",
-        "sessions": "84"
+        "sessions": "85"
       },
       {
         "channel": "Direct",
-        "sessions": "75"
+        "sessions": "76"
       },
       {
         "channel": "Organic Social",
-        "sessions": "49"
+        "sessions": "51"
       },
       {
         "channel": "Unassigned",
@@ -432,6 +432,12 @@
         "sessions": 10,
         "activeUsers": 6,
         "pageViews": 13
+      },
+      {
+        "date": "20261112",
+        "sessions": 5,
+        "activeUsers": 4,
+        "pageViews": 11
       }
     ]
   },
@@ -439,7 +445,7 @@
   "sitemapStatus": {
     "wasAlreadySubmitted": true,
     "lastSubmitted": "2026-09-15T09:04:08.811Z",
-    "lastDownloaded": "2026-11-10T06:32:05.910Z",
+    "lastDownloaded": "2026-11-15T14:00:29.585Z",
     "isPending": false,
     "warnings": 0,
     "errors": 0

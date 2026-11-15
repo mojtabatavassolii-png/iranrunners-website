@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T07:48:24.498Z",
+  "generatedAt": "2026-11-15T19:21:08.702Z",
   "startDate": "2026-10-16",
   "endDate": "2026-11-12",
   "indexStatus": {
@@ -33,7 +33,7 @@
       "impressions": 13,
       "ctr": 0.07692307692307693,
       "position": 9.692307692307692,
-      "views": 24
+      "views": 26
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
@@ -177,7 +177,7 @@
       "impressions": 11,
       "ctr": 0,
       "position": 5.090909090909091,
-      "views": 128
+      "views": 131
     },
     {
       "url": "/مربیان.html",
@@ -204,7 +204,7 @@
       "impressions": 72,
       "ctr": 0.3472222222222222,
       "position": 3.4722222222222223,
-      "views": 318
+      "views": 324
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -373,16 +373,22 @@
       "sessions": 10,
       "activeUsers": 6,
       "pageViews": 13
+    },
+    {
+      "date": "20261112",
+      "sessions": 5,
+      "activeUsers": 4,
+      "pageViews": 11
     }
   ],
   "topPages": [
     {
       "path": "/index.html",
-      "views": 318
+      "views": 324
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 128
+      "views": 131
     },
     {
       "path": "/مربیان.html",
@@ -394,7 +400,7 @@
     },
     {
       "path": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
-      "views": 24
+      "views": 26
     },
     {
       "path": "/گالری.html",
@@ -420,34 +426,34 @@
   "channels": [
     {
       "channel": "Organic Search",
-      "sessions": "84"
+      "sessions": "85"
     },
     {
       "channel": "Direct",
-      "sessions": "75"
+      "sessions": "76"
     },
     {
       "channel": "Organic Social",
-      "sessions": "49"
+      "sessions": "51"
     },
     {
       "channel": "Unassigned",
       "sessions": "3"
     }
   ],
-  "activeUsers": 119,
-  "totalUsers": 121,
+  "activeUsers": 122,
+  "totalUsers": 124,
   "geography": {
     "countries": [
       {
         "country": "Iran",
-        "activeUsers": 53,
-        "sessions": 66
+        "activeUsers": 54,
+        "sessions": 67
       },
       {
         "country": "Germany",
         "activeUsers": 33,
-        "sessions": 102
+        "sessions": 103
       },
       {
         "country": "United States",
@@ -465,12 +471,17 @@
         "sessions": 4
       },
       {
+        "country": "Türkiye",
+        "activeUsers": 4,
+        "sessions": 4
+      },
+      {
         "country": "Canada",
         "activeUsers": 3,
         "sessions": 3
       },
       {
-        "country": "Türkiye",
+        "country": "China",
         "activeUsers": 3,
         "sessions": 3
       },
@@ -478,11 +489,6 @@
         "country": "United Kingdom",
         "activeUsers": 3,
         "sessions": 3
-      },
-      {
-        "country": "China",
-        "activeUsers": 2,
-        "sessions": 2
       },
       {
         "country": "Ireland",
@@ -589,11 +595,11 @@
     },
     {
       "sourceMedium": "(direct) / (none)",
-      "sessions": 75
+      "sessions": 76
     },
     {
       "sourceMedium": "ig / social",
-      "sessions": 32
+      "sessions": 34
     },
     {
       "sourceMedium": "t.co / referral",
@@ -614,6 +620,10 @@
     {
       "sourceMedium": "instagram.com / referral",
       "sessions": 1
+    },
+    {
+      "sourceMedium": "search.google.com / referral",
+      "sessions": 1
     }
   ],
   "trafficSourcesError": null,
@@ -625,8 +635,8 @@
   "entryPages": [
     {
       "landingPage": "/index.html",
-      "sessions": 159,
-      "bounceRate": 0.23270440251572327
+      "sessions": 162,
+      "bounceRate": 0.24074074074074073
     },
     {
       "landingPage": "/کلاس-ها.html",
@@ -635,8 +645,8 @@
     },
     {
       "landingPage": "(not set)",
-      "sessions": 8,
-      "bounceRate": 0.875
+      "sessions": 9,
+      "bounceRate": 0.8888888888888888
     },
     {
       "landingPage": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
