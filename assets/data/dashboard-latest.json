@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T07:55:42.136Z",
+  "generatedAt": "2026-11-16T22:51:48.386Z",
   "startDate": "2026-10-17",
   "endDate": "2026-11-13",
   "indexStatus": {
@@ -717,7 +717,7 @@
     },
     {
       "className": "کلاس های غیرحضوری (خارج از ایران)",
-      "clicks": 2
+      "clicks": 3
     }
   ],
   "classInterestDaily": [
@@ -750,6 +750,11 @@
       "date": "20261102",
       "className": "کلاس های غیرحضوری (خارج از ایران)",
       "clicks": 1
+    },
+    {
+      "date": "20261116",
+      "className": "کلاس های غیرحضوری (خارج از ایران)",
+      "clicks": 1
     }
   ],
   "classInterestByType": [
@@ -759,7 +764,7 @@
     },
     {
       "type": "غیرحضوری",
-      "clicks": 2
+      "clicks": 3
     }
   ],
   "classInterestError": null,
