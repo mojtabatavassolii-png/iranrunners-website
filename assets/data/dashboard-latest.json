@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T08:29:24.765Z",
+  "generatedAt": "2026-11-18T16:08:41.788Z",
   "startDate": "2026-10-19",
   "endDate": "2026-11-15",
   "indexStatus": {
@@ -214,6 +214,50 @@
       "ctr": 0.08333333333333333,
       "position": 5.527777777777778,
       "views": 18
+    }
+  ],
+  "topQueries": [
+    {
+      "query": "iran run",
+      "clicks": 2,
+      "impressions": 3,
+      "ctr": 0.6666666666666666,
+      "position": 2
+    },
+    {
+      "query": "iran running",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "query": "رانرز",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "زانوی دونده",
+      "clicks": 0,
+      "impressions": 64,
+      "ctr": 0,
+      "position": 63.1875
+    },
+    {
+      "query": "قبل دویدن چی بخوریم",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 24
+    },
+    {
+      "query": "مسابقه تهران کلاب",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
     }
   ],
   "indexTasks": [],
