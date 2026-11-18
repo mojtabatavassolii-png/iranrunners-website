@@ -352,6 +352,34 @@ async function fetchSearchAnalytics(token, gscSiteUrl, startDate, endDate) {
   return byUrl;
 }
 
+// Top search queries site-wide (dimension "query" instead of "page"), so a
+// report can show WHICH terms people actually searched to see us, not just
+// which pages got impressions. This is the piece needed to tell "ranking
+// well for our own brand name" apart from "ranking for generic/competitive
+// keywords" — two very different situations that a page-only breakdown
+// blends into one averaged position per page.
+async function fetchTopQueries(token, gscSiteUrl, startDate, endDate) {
+  const res = await fetch(
+    `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(gscSiteUrl)}/searchAnalytics/query`,
+    {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ startDate, endDate, dimensions: ["query"], rowLimit: 50 }),
+    }
+  );
+  if (!res.ok) {
+    throw new Error(`Search Analytics query (query dimension) failed: ${res.status} ${await res.text()}`);
+  }
+  const data = await res.json();
+  return (data.rows || []).map((row) => ({
+    query: row.keys[0],
+    clicks: row.clicks,
+    impressions: row.impressions,
+    ctr: row.ctr,
+    position: row.position,
+  }));
+}
+
 // Checks whether sitemap.xml is registered with Search Console (sites.sitemaps
 // is a separate resource from URL Inspection - a URL can be correctly indexed
 // even if the sitemap itself was never formally submitted, and vice versa).
@@ -760,6 +788,7 @@ async function main() {
     endDate,
     indexStatus: { indexed: 0, pending: 0, total: 0 },
     pages: [],
+    topQueries: [],
     indexTasks: [],
     daily: [],
     topPages: [],
@@ -865,6 +894,35 @@ async function main() {
       lines.push("⚠️ sitemap.xml قبلاً هیچ‌وقت در Search Console ثبت نشده بود — همین الان با موفقیت ثبت شد.");
     }
     lines.push("");
+
+    // --- top search queries (which terms we actually show up for) ---
+    try {
+      const topQueries = await fetchTopQueries(gscToken, gscSiteUrl, startDate, endDate);
+      report.topQueries = topQueries;
+      dashboard.topQueries = topQueries.slice(0, 20);
+      lines.push("## کلمات کلیدی که توی جستجوی گوگل برامون نمایش داده شدن");
+      lines.push("");
+      if (topQueries.length === 0) {
+        lines.push("هیچ کلمه‌ی کلیدی‌ای توی این بازه ثبت نشده.");
+      } else {
+        lines.push("| کلمه کلیدی | کلیک | نمایش | CTR | میانگین رتبه |");
+        lines.push("|---|---|---|---|---|");
+        for (const q of topQueries.slice(0, 25)) {
+          lines.push(`| ${q.query} | ${q.clicks} | ${q.impressions} | ${(q.ctr * 100).toFixed(1)}% | ${q.position.toFixed(1)} |`);
+        }
+        lines.push("");
+        lines.push(
+          "توجه: این لیست فقط کلماتی رو نشون می‌ده که گوگل واقعاً بهشون نمایشی داده — اگه اینجا کلمه‌ای شبیه نام برند («ایران رانرز») غالبه و کلمات عمومی («کلاس دویدن»، «آموزش دویدن») یا خیلی کم‌تعدادن یا رتبه‌ی خیلی پایینی دارن، یعنی مشکل اصلی ایندکس‌نشدن نیست — مشکل رقابت روی کلمات عمومیه."
+        );
+      }
+      lines.push("");
+    } catch (err) {
+      report.topQueriesError = String(err.message || err);
+      lines.push("## کلمات کلیدی که توی جستجوی گوگل برامون نمایش داده شدن");
+      lines.push("");
+      lines.push(`⚠️ نتونستم این بخش رو بگیرم: ${report.topQueriesError}`);
+      lines.push("");
+    }
 
     // --- legacy/orphaned URL audit (old domain content still indexed) ---
     const legacyUrls = await auditLegacyUrls(gscToken, gscSiteUrl, sitemapUrls);
