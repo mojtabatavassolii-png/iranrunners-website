@@ -32,8 +32,7 @@
     },
     {
       "url": "https://iranrunners.com/%DA%A9%D9%84%D8%A7%D8%B3-%D9%87%D8%A7/%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87-%D8%AA%D8%BA%D8%B0%DB%8C%D9%87.html",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-11-16T20:15:20Z",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
@@ -113,8 +112,7 @@
     },
     {
       "url": "https://iranrunners.com/%D9%88%D8%A8%D9%84%D8%A7%DA%AF/%D9%82%D8%A7%D9%86%D9%88%D9%86-10-%D8%AF%D8%B1%D8%B5%D8%AF.html",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-11-11T23:59:22Z",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
@@ -176,8 +174,7 @@
     },
     {
       "url": "https://iranrunners.com/%D9%85%D8%B1%D8%A8%DB%8C%D8%A7%D9%86.html",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-11-03T20:40:51Z",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 3,
       "impressions": 35,
       "ctr": 0.08571428571428572,
@@ -185,8 +182,7 @@
     },
     {
       "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C.html",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-11-07T19:48:15Z",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 0,
       "impressions": 21,
       "ctr": 0,
@@ -194,8 +190,7 @@
     },
     {
       "url": "https://iranrunners.com/",
-      "coverageState": "Submitted and indexed",
-      "lastCrawlTime": "2026-11-11T12:25:17Z",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 21,
       "impressions": 62,
       "ctr": 0.3387096774193548,
@@ -494,5 +489,20 @@
       "position": 4
     }
   ],
-  "legacyUrls": []
+  "legacyUrls": [
+    {
+      "url": "/cart/",
+      "coverageState": "خطا در بررسی (503)",
+      "clicks": 0,
+      "impressions": 0,
+      "liveStatus": "۴۰۴ (وجود نداره)"
+    },
+    {
+      "url": "/wp-content/",
+      "coverageState": "خطا در بررسی (503)",
+      "clicks": 0,
+      "impressions": 0,
+      "liveStatus": "۴۰۴ (وجود نداره)"
+    }
+  ]
 }

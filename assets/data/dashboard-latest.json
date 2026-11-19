@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-19T08:42:26.991Z",
+  "generatedAt": "2026-11-19T21:27:04.435Z",
   "startDate": "2026-10-20",
   "endDate": "2026-11-16",
   "indexStatus": {
-    "indexed": 23,
-    "pending": 0,
+    "indexed": 18,
+    "pending": 5,
     "total": 23
   },
   "pages": [
@@ -37,7 +37,7 @@
     },
     {
       "url": "/کلاس-ها/برنامه-تغذیه.html",
-      "coverageState": "Submitted and indexed",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
@@ -118,7 +118,7 @@
     },
     {
       "url": "/وبلاگ/قانون-10-درصد.html",
-      "coverageState": "Submitted and indexed",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
@@ -181,7 +181,7 @@
     },
     {
       "url": "/مربیان.html",
-      "coverageState": "Submitted and indexed",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 3,
       "impressions": 35,
       "ctr": 0.08571428571428572,
@@ -190,7 +190,7 @@
     },
     {
       "url": "/گالری.html",
-      "coverageState": "Submitted and indexed",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 0,
       "impressions": 21,
       "ctr": 0,
@@ -199,7 +199,7 @@
     },
     {
       "url": "/",
-      "coverageState": "Submitted and indexed",
+      "coverageState": "خطا در بررسی (503)",
       "clicks": 21,
       "impressions": 62,
       "ctr": 0.3387096774193548,
@@ -260,7 +260,63 @@
       "position": 4
     }
   ],
-  "indexTasks": [],
+  "indexTasks": [
+    {
+      "url": "/کلاس-ها/برنامه-تغذیه.html",
+      "coverageState": "خطا در بررسی (503)",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (503)») توی این گزارش نگاشت نشده.",
+        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/وبلاگ/قانون-10-درصد.html",
+      "coverageState": "خطا در بررسی (503)",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (503)») توی این گزارش نگاشت نشده.",
+        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/مربیان.html",
+      "coverageState": "خطا در بررسی (503)",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (503)») توی این گزارش نگاشت نشده.",
+        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/گالری.html",
+      "coverageState": "خطا در بررسی (503)",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (503)») توی این گزارش نگاشت نشده.",
+        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
+        "severity": "warning"
+      }
+    },
+    {
+      "url": "/",
+      "coverageState": "خطا در بررسی (503)",
+      "status": "نیاز به بررسی",
+      "note": "",
+      "issue": {
+        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (503)») توی این گزارش نگاشت نشده.",
+        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
+        "severity": "warning"
+      }
+    }
+  ],
   "daily": [
     {
       "date": "20261020",
