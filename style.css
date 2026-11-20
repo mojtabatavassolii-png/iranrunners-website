@@ -306,6 +306,15 @@ section { padding: 74px 0; }
 }
 @media (max-width: 900px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .card-grid { grid-template-columns: 1fr; } }
+/* a lone last card in the 2-column layout (odd total count) would otherwise
+   sit in one column with an empty gap beside it — center it full-row instead */
+@media (min-width: 601px) and (max-width: 900px) {
+  .card-grid > *:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 11px);
+    margin-inline: auto;
+  }
+}
 
 .class-card {
   background: var(--bg-panel);
@@ -551,6 +560,15 @@ section { padding: 74px 0; }
 }
 @media (max-width: 900px) { .post-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .post-grid { grid-template-columns: 1fr; } }
+/* a lone last card in the 2-column layout (odd total count) would otherwise
+   sit in one column with an empty gap beside it — center it full-row instead */
+@media (min-width: 601px) and (max-width: 900px) {
+  .post-grid > *:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 11px);
+    margin-inline: auto;
+  }
+}
 
 .post-card {
   background: var(--bg-panel);
