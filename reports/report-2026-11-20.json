@@ -5,7 +5,8 @@
   "pages": [
     {
       "url": "https://iranrunners.com/%DA%A9%D9%84%D8%A7%D8%B3-%D9%87%D8%A7/%D9%85%D8%B1%D8%A8%DB%8C%DA%AF%D8%B1%DB%8C-%D8%A7%D8%AE%D8%AA%D8%B5%D8%A7%D8%B5%DB%8C.html",
-      "coverageState": "خطا در بررسی (503)",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-04T05:10:57Z",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
@@ -67,7 +68,8 @@
     },
     {
       "url": "https://iranrunners.com/%DA%AF%D8%A7%D9%84%D8%B1%DB%8C/%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D9%87-10-%DA%A9%DB%8C%D9%84%D9%88%D9%85%D8%AA%D8%B1-%D8%AA%D9%87%D8%B1%D8%A7%D9%86-%DA%A9%D9%84%D8%A7%D8%A8.html",
-      "coverageState": "خطا در بررسی (503)",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-20T14:26:40Z",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
@@ -492,13 +494,5 @@
       "position": 4
     }
   ],
-  "legacyUrls": [
-    {
-      "url": "/my-account/",
-      "coverageState": "خطا در بررسی (500)",
-      "clicks": 0,
-      "impressions": 0,
-      "liveStatus": "۴۰۴ (وجود نداره)"
-    }
-  ]
+  "legacyUrls": []
 }

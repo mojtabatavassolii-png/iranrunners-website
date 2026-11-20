@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-20T08:28:44.539Z",
+  "generatedAt": "2026-11-20T21:02:06.565Z",
   "startDate": "2026-10-21",
   "endDate": "2026-11-17",
   "indexStatus": {
-    "indexed": 21,
-    "pending": 2,
+    "indexed": 23,
+    "pending": 0,
     "total": 23
   },
   "pages": [
     {
       "url": "/کلاس-ها/مربیگری-اختصاصی.html",
-      "coverageState": "خطا در بررسی (503)",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
@@ -73,7 +73,7 @@
     },
     {
       "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "خطا در بررسی (503)",
+      "coverageState": "Submitted and indexed",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
@@ -260,30 +260,7 @@
       "position": 4
     }
   ],
-  "indexTasks": [
-    {
-      "url": "/کلاس-ها/مربیگری-اختصاصی.html",
-      "coverageState": "خطا در بررسی (503)",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (503)») توی این گزارش نگاشت نشده.",
-        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
-        "severity": "warning"
-      }
-    },
-    {
-      "url": "/گالری/مسابقه-10-کیلومتر-تهران-کلاب.html",
-      "coverageState": "خطا در بررسی (503)",
-      "status": "نیاز به بررسی",
-      "note": "",
-      "issue": {
-        "simple": "دلیل مشخصی برای این وضعیت («خطا در بررسی (503)») توی این گزارش نگاشت نشده.",
-        "action": "این آدرس رو مستقیم توی Search Console → Pages بررسی کن تا جزئیات دقیق رو ببینی.",
-        "severity": "warning"
-      }
-    }
-  ],
+  "indexTasks": [],
   "daily": [
     {
       "date": "20261021",
