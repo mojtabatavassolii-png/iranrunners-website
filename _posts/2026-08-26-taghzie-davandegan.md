@@ -22,7 +22,7 @@ inline_images:
     position: 3
   - file: /assets/gallery/IMG_0431-1.jpeg
     alt: تغذیه قبل از دویدن
-    position: 2
+    position: 1
 read_time: 7 MIN READ
 date: 2026-10-14
 lead: تغذیه دوندگان نقش تعیین‌کننده‌ای توی نتیجه هر مسابقه داره — تغذیه اشتباه
