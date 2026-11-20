@@ -17,13 +17,13 @@ image: /assets/gallery/WhatsApp Image 2026-09-09 at 2.46.06 PM.jpg
 image_alt: دونده‌ای در حال ریکاوری فعال با دویدن آرام
 image_webp: /assets/gallery/WhatsApp Image 2026-09-09 at 2.46.06 PM.webp
 inline_images:
-  - file: /assets/gallery/IMG_0437.jpeg
+  - file: /assets/gallery/IMG_0439-1.jpeg
     alt: نرم دوی برای ریکاوری
     position: 2
   - file: /assets/gallery/IMG_0438.jpeg
     alt: خواب و استراحت برای ریکاوری
     position: 3
-  - file: /assets/gallery/IMG_0439.jpeg
+  - file: /assets/gallery/IMG_0437-1.jpeg
     alt: تاثیر کشش روی ریکاوری
     position: 4
 read_time: 6 MIN READ
