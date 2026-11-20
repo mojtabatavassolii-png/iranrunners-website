@@ -26,7 +26,10 @@ image: /assets/gallery/IMG_4754-2.jpeg
       <a href="{{ event.url | relative_url }}" class="event-card">
         <div class="event-cover">
           {% if event.photos and event.photos.size > 0 %}
-          <img src="{{ event.photos[0] | relative_url }}" alt="{{ event.title }}" loading="lazy">
+          <picture>
+            <source srcset="{{ event.photos[0] | replace: '.jpeg', '.webp' | relative_url }}" type="image/webp">
+            <img src="{{ event.photos[0] | relative_url }}" alt="{{ event.title }}" loading="lazy">
+          </picture>
           {% endif %}
         </div>
         <div class="event-body">

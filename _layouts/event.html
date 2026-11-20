@@ -15,7 +15,10 @@ nav: gallery
     <div class="gallery-grid uniform-grid">
       {% for photo in page.photos %}
       <a class="g-item" href="{{ photo | relative_url }}" data-lightbox="{{ photo | relative_url }}" data-lightbox-alt="{{ page.title }}">
-        <img src="{{ photo | relative_url }}" alt="{{ page.title }}" loading="lazy">
+        <picture>
+          <source srcset="{{ photo | replace: '.jpeg', '.webp' | relative_url }}" type="image/webp">
+          <img src="{{ photo | relative_url }}" alt="{{ page.title }}" loading="lazy">
+        </picture>
       </a>
       {% endfor %}
     </div>

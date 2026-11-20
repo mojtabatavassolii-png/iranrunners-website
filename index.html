@@ -181,11 +181,17 @@ focus_keyword: "کلاس دویدن"
     picked.forEach(function (p) {
       var item = document.createElement('div');
       item.className = 'g-item';
+      var picture = document.createElement('picture');
+      var source = document.createElement('source');
+      source.srcset = p.url.replace(/\.jpeg$/, '.webp');
+      source.type = 'image/webp';
       var img = document.createElement('img');
       img.src = p.url;
       img.alt = p.title;
       img.loading = 'lazy';
-      item.appendChild(img);
+      picture.appendChild(source);
+      picture.appendChild(img);
+      item.appendChild(picture);
       grid.appendChild(item);
     });
   })();
