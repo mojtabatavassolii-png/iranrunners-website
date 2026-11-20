@@ -201,24 +201,33 @@ image: /assets/gallery/IMG_1760.jpeg
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
   var cards = document.querySelectorAll('.class-card, .post-card');
-  if (!cards.length || !('IntersectionObserver' in window)) { return; }
-  cards.forEach(function (c, i) {
-    c.classList.add('reveal');
-    c.style.transitionDelay = (i % 4) * 0.08 + 's';
-  });
+  var containers = document.querySelectorAll('.preview-scroll-row, .card-grid, .post-grid');
+  if (!cards.length || !containers.length || !('IntersectionObserver' in window)) { return; }
+  cards.forEach(function (c) { c.classList.add('reveal'); });
+  // Observing each CARD directly breaks inside a horizontally-scrolled row
+  // (.preview-scroll-row): a card only peeking at the clipped edge never
+  // crosses the intersection threshold, so it stays invisible — a visible
+  // gap instead of a hint of the next card. Observing the row/grid
+  // container instead (always a normal, unclipped block in page flow) and
+  // revealing all its cards together once the container is on screen
+  // sidesteps that entirely. Kept identical to the other two copies of
+  // this script.
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) { return; }
-      var el = entry.target;
-      io.unobserve(el);
-      el.classList.add('in-view');
-      el.addEventListener('transitionend', function cleanup() {
-        el.classList.remove('reveal', 'in-view');
-        el.style.transitionDelay = '';
-        el.removeEventListener('transitionend', cleanup);
+      io.unobserve(entry.target);
+      var ownCards = entry.target.querySelectorAll('.class-card, .post-card');
+      ownCards.forEach(function (el, i) {
+        el.style.transitionDelay = (i % 4) * 0.08 + 's';
+        el.classList.add('in-view');
+        el.addEventListener('transitionend', function cleanup() {
+          el.classList.remove('reveal', 'in-view');
+          el.style.transitionDelay = '';
+          el.removeEventListener('transitionend', cleanup);
+        });
       });
     });
-  }, { threshold: 0.25, rootMargin: '0px 0px -40px 0px' });
-  cards.forEach(function (c) { io.observe(c); });
+  }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+  containers.forEach(function (c) { io.observe(c); });
 })();
 </script>
