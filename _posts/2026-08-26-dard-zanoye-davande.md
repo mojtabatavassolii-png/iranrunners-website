@@ -23,8 +23,8 @@ inline_images:
   - file: /assets/gallery/IMG_0450.jpeg
     alt: تمرینات و حرکات اصلاحی برای درد زانوی دونده
     position: 3
-  - file: /assets/gallery/IMG_0451.jpeg
-    alt: پیشگیری درد زانوی دونده
+  - file: /assets/gallery/IMG_0452.jpeg
+    alt: درمان درد زانوی دونده توسط پزشک متخصص
     position: 4
 read_time: 7 MIN READ
 date: 2026-10-14
