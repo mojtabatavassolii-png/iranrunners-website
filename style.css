@@ -1235,7 +1235,7 @@ footer.site-footer {
 .event-card:hover .event-cover img { transform: scale(1.05); }
 .event-body { padding: 18px 20px; }
 .event-body h3 { margin: 0 0 6px; font-size: 1.1rem; font-weight: 800; }
-.event-body .event-date { color: var(--text-faint); font-size: 0.85rem; display: block; margin-bottom: 4px; }
+.event-body .event-date { color: var(--text-faint); font-size: 0.85rem; display: block; margin-bottom: 4px; direction: ltr; text-align: right; }
 .event-body .event-count { color: var(--accent-sunrise); font-size: 0.82rem; font-weight: 700; }
 
 /* ---------- uniform photo frame (event detail page) ---------- */

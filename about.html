@@ -63,7 +63,7 @@ image: /assets/gallery/IMG_0036.jpeg
       </div>
       <a href="https://instagram.com/{{ site.data.about.contact_info.instagram | remove: '@' }}" class="contact-item" target="_blank" rel="noopener noreferrer">
         <span class="c-label">INSTAGRAM</span>
-        <span class="c-value">{{ site.data.about.contact_info.instagram }}</span>
+        <span class="c-value" style="direction:ltr;display:inline-block;">{{ site.data.about.contact_info.instagram }}</span>
       </a>
       {% assign founder = site.data.coaches | where: "name", "مجتبی توسلی" | first %}
       {% if founder.telegram %}
