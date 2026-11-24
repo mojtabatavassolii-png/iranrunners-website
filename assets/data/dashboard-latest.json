@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-23T08:57:36.994Z",
-  "startDate": "2026-10-24",
-  "endDate": "2026-11-20",
+  "generatedAt": "2026-11-24T00:47:17.410Z",
+  "startDate": "2026-10-25",
+  "endDate": "2026-11-21",
   "indexStatus": {
     "indexed": 23,
     "pending": 0,
@@ -177,7 +177,7 @@
       "impressions": 13,
       "ctr": 0,
       "position": 4.615384615384615,
-      "views": 75
+      "views": 74
     },
     {
       "url": "/مربیان.html",
@@ -204,7 +204,7 @@
       "impressions": 55,
       "ctr": 0.2727272727272727,
       "position": 4.363636363636363,
-      "views": 253
+      "views": 252
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -262,12 +262,6 @@
   ],
   "indexTasks": [],
   "daily": [
-    {
-      "date": "20261024",
-      "sessions": 2,
-      "activeUsers": 1,
-      "pageViews": 2
-    },
     {
       "date": "20261025",
       "sessions": 6,
@@ -428,11 +422,11 @@
   "topPages": [
     {
       "path": "/index.html",
-      "views": 253
+      "views": 252
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 75
+      "views": 74
     },
     {
       "path": "/وبلاگ.html",
@@ -478,21 +472,21 @@
     },
     {
       "channel": "Organic Social",
-      "sessions": "36"
+      "sessions": "34"
     },
     {
       "channel": "Unassigned",
       "sessions": "2"
     }
   ],
-  "activeUsers": 80,
-  "totalUsers": 82,
+  "activeUsers": 79,
+  "totalUsers": 81,
   "geography": {
     "countries": [
       {
         "country": "Iran",
-        "activeUsers": 29,
-        "sessions": 37
+        "activeUsers": 28,
+        "sessions": 35
       },
       {
         "country": "United States",
@@ -564,8 +558,8 @@
       {
         "country": "Iran",
         "city": "Tehran",
-        "activeUsers": 24,
-        "sessions": 31
+        "activeUsers": 23,
+        "sessions": 29
       },
       {
         "country": "Germany",
@@ -647,7 +641,7 @@
     },
     {
       "sourceMedium": "ig / social",
-      "sessions": 26
+      "sessions": 24
     },
     {
       "sourceMedium": "facebook.com / referral",
@@ -683,8 +677,8 @@
   "entryPages": [
     {
       "landingPage": "/index.html",
-      "sessions": 98,
-      "bounceRate": 0.3673469387755102
+      "sessions": 97,
+      "bounceRate": 0.3711340206185567
     },
     {
       "landingPage": "/کلاس-ها.html",
@@ -692,14 +686,14 @@
       "bounceRate": 0.5384615384615384
     },
     {
-      "landingPage": "(not set)",
-      "sessions": 6,
-      "bounceRate": 1
-    },
-    {
       "landingPage": "/محاسبه-گر-پیس.html",
       "sessions": 6,
       "bounceRate": 0.5
+    },
+    {
+      "landingPage": "(not set)",
+      "sessions": 5,
+      "bounceRate": 1
     },
     {
       "landingPage": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
