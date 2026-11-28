@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-27T21:55:44.980Z",
-  "startDate": "2026-10-28",
-  "endDate": "2026-11-24",
+  "generatedAt": "2026-11-28T08:52:52.233Z",
+  "startDate": "2026-10-29",
+  "endDate": "2026-11-25",
   "indexStatus": {
     "indexed": 23,
     "pending": 0,
@@ -20,11 +20,11 @@
     {
       "url": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
       "coverageState": "Submitted and indexed",
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 14,
-      "views": 8
+      "clicks": 1,
+      "impressions": 5,
+      "ctr": 0.2,
+      "position": 12.8,
+      "views": 9
     },
     {
       "url": "/کلاس-ها/کلاس-های-حضوری-پارک-پردیسان.html",
@@ -93,9 +93,9 @@
       "url": "/وبلاگ/درد-زانوی-دونده.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 27,
+      "impressions": 25,
       "ctr": 0,
-      "position": 55.77777777777778,
+      "position": 57.08,
       "views": 18
     },
     {
@@ -138,9 +138,9 @@
       "url": "/وبلاگ/شروع-دویدن-برای-مبتدیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 0,
-      "impressions": 18,
+      "impressions": 17,
       "ctr": 0,
-      "position": 7.833333333333333,
+      "position": 7.823529411764706,
       "views": 13
     },
     {
@@ -177,15 +177,15 @@
       "impressions": 13,
       "ctr": 0,
       "position": 4.846153846153847,
-      "views": 77
+      "views": 79
     },
     {
       "url": "/مربیان.html",
       "coverageState": "Submitted and indexed",
       "clicks": 2,
-      "impressions": 30,
-      "ctr": 0.06666666666666667,
-      "position": 6.7,
+      "impressions": 29,
+      "ctr": 0.06896551724137931,
+      "position": 6.896551724137931,
       "views": 22
     },
     {
@@ -200,11 +200,11 @@
     {
       "url": "/",
       "coverageState": "Submitted and indexed",
-      "clicks": 13,
-      "impressions": 53,
-      "ctr": 0.24528301886792453,
-      "position": 4.622641509433962,
-      "views": 254
+      "clicks": 14,
+      "impressions": 57,
+      "ctr": 0.24561403508771928,
+      "position": 4.368421052631579,
+      "views": 257
     },
     {
       "url": "/محاسبه-گر-پیس.html",
@@ -241,9 +241,9 @@
     {
       "query": "زانوی دونده",
       "clicks": 0,
-      "impressions": 37,
+      "impressions": 33,
       "ctr": 0,
-      "position": 69.56756756756756
+      "position": 70.39393939393939
     },
     {
       "query": "قبل دویدن چی بخوریم",
@@ -262,12 +262,6 @@
   ],
   "indexTasks": [],
   "daily": [
-    {
-      "date": "20261028",
-      "sessions": 1,
-      "activeUsers": 1,
-      "pageViews": 1
-    },
     {
       "date": "20261029",
       "sessions": 2,
@@ -417,16 +411,22 @@
       "sessions": 5,
       "activeUsers": 4,
       "pageViews": 18
+    },
+    {
+      "date": "20261125",
+      "sessions": 4,
+      "activeUsers": 4,
+      "pageViews": 7
     }
   ],
   "topPages": [
     {
       "path": "/index.html",
-      "views": 254
+      "views": 257
     },
     {
       "path": "/کلاس-ها.html",
-      "views": 77
+      "views": 79
     },
     {
       "path": "/وبلاگ.html",
@@ -464,14 +464,14 @@
   "channels": [
     {
       "channel": "Organic Search",
-      "sessions": "56"
-    },
-    {
-      "channel": "Direct",
-      "sessions": "39"
+      "sessions": "57"
     },
     {
       "channel": "Organic Social",
+      "sessions": "41"
+    },
+    {
+      "channel": "Direct",
       "sessions": "39"
     },
     {
@@ -479,14 +479,14 @@
       "sessions": "3"
     }
   ],
-  "activeUsers": 78,
-  "totalUsers": 80,
+  "activeUsers": 81,
+  "totalUsers": 83,
   "geography": {
     "countries": [
       {
         "country": "Iran",
-        "activeUsers": 28,
-        "sessions": 38
+        "activeUsers": 31,
+        "sessions": 41
       },
       {
         "country": "United States",
@@ -499,12 +499,12 @@
         "sessions": 59
       },
       {
-        "country": "Azerbaijan",
-        "activeUsers": 3,
-        "sessions": 3
+        "country": "Netherlands",
+        "activeUsers": 4,
+        "sessions": 4
       },
       {
-        "country": "Netherlands",
+        "country": "Azerbaijan",
         "activeUsers": 3,
         "sessions": 3
       },
@@ -525,11 +525,6 @@
       },
       {
         "country": "Sweden",
-        "activeUsers": 2,
-        "sessions": 2
-      },
-      {
-        "country": "United Kingdom",
         "activeUsers": 2,
         "sessions": 2
       },
@@ -557,14 +552,19 @@
         "country": "Ireland",
         "activeUsers": 1,
         "sessions": 1
+      },
+      {
+        "country": "Russia",
+        "activeUsers": 1,
+        "sessions": 1
       }
     ],
     "cities": [
       {
         "country": "Iran",
         "city": "Tehran",
-        "activeUsers": 23,
-        "sessions": 32
+        "activeUsers": 25,
+        "sessions": 34
       },
       {
         "country": "Germany",
@@ -638,7 +638,7 @@
   "trafficSources": [
     {
       "sourceMedium": "google / organic",
-      "sessions": 55
+      "sessions": 56
     },
     {
       "sourceMedium": "(direct) / (none)",
@@ -646,7 +646,7 @@
     },
     {
       "sourceMedium": "ig / social",
-      "sessions": 31
+      "sessions": 33
     },
     {
       "sourceMedium": "(not set)",
@@ -686,13 +686,18 @@
   "entryPages": [
     {
       "landingPage": "/index.html",
-      "sessions": 96,
-      "bounceRate": 0.3645833333333333
+      "sessions": 98,
+      "bounceRate": 0.3469387755102041
     },
     {
       "landingPage": "/کلاس-ها.html",
       "sessions": 13,
       "bounceRate": 0.46153846153846156
+    },
+    {
+      "landingPage": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
+      "sessions": 6,
+      "bounceRate": 0.5
     },
     {
       "landingPage": "(not set)",
@@ -701,11 +706,6 @@
     },
     {
       "landingPage": "/محاسبه-گر-پیس.html",
-      "sessions": 5,
-      "bounceRate": 0.6
-    },
-    {
-      "landingPage": "/کلاس-ها/کلاس-های-غیرحضوری-خارج-از-ایران.html",
       "sessions": 5,
       "bounceRate": 0.6
     },
